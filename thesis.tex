@@ -1,0 +1,352 @@
+%%%%%
+%%
+%% Sample document ``thesis.tex''
+%%
+%% Version: v0.2
+%% Authors: Jean Martina, Rok Strnisa, Matej Urbas
+%% Date: 30/07/2008
+%%
+%% Copyright (c) 2008-2011, Rok Strniša, Jean Martina, Matej Urbas
+%% License: Simplified BSD License
+%% License file: ./License
+%% Original License URL: http://www.freebsd.org/copyright/freebsd-license.html
+%%%%%
+
+% Available documentclass options:
+%
+%   <all `report` document class options, e.g.: `a5paper`>
+%   withindex   - enables the index. New index entries can be added through `\index{my entry}`
+%   glossary    - enables the glossary.
+%   techreport  - typesets the thesis in the technical report format.
+%   firstyr     - formats the document as a first-year report.
+%   times       - uses the `Times` font.
+%   backrefs    - add back references in the Bibliography section
+%
+% For more info see `README.md`
+\documentclass[withindex,glossary,techreport]{cam-thesis}
+
+% Citations using numbers
+\usepackage[numbers]{natbib}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{setspace}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[bottom]{footmisc}
+\usepackage{tikz-cd} 
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{verbatim}
+\usepackage{alphalph}
+
+%%% Commands
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+%\newtheorem*{remark}{Remark}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Thesis meta-information
+%%
+
+%% The title of the thesis:
+\title{Dynamics and rare events in non-equilibrium systems}
+
+%% The full name of the author (e.g.: James Smith):
+\author{Lukas Takaaki Kikuchi}
+
+%% College affiliation:
+\college{Churchill college}
+
+%% College shield [optional]:
+\collegeshield{CollegeShields/Churchill}
+
+%% Submission date [optional]:
+% \submissiondate{November, 2042}
+
+%% You can redefine the submission notice [optional]:
+% \submissionnotice{A badass thesis submitted on time for the Degree of PhD}
+
+%% Declaration date:
+\date{October, 2022}
+
+%% PDF meta-info:
+\subjectline{Soft condensed matter and statistical physics}
+\keywords{non-equilibrium-physics}
+
+\onehalfspacing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Abstract:
+%%
+\abstract{%
+  My abstract ...
+  
+  
+\newpage
+This thesis is dedicated to... 
+}
+
+% This thesis is dedicated to my friends, who have kept me going.
+% This thesis is dedicated to my friends, without whom I'd 
+% This thesis is dedicated to my friends
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Acknowledgements:
+%%
+\acknowledgements{%
+  
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Glossary [optional]:
+%%
+\newglossaryentry{HOL}{
+    name=HOL,
+    description={Higher-order logic}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Contents:
+%%
+\begin{document}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Title page, abstract, declaration etc.:
+%% -    the title page (is automatically omitted in the technical report mode).
+\frontmatter{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Thesis body:
+%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PART I : Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introduction}
+
+
+%%%% Introduce soft and slender matter and give examples.
+% Todo:
+% - Include soft robotics as example
+
+A wide range of structures exhibit properties of softness and slenderness, from biological materials like cilia \citep{guMagneticCiliaCarpets2020} and cellular membranes \citep{krishnaswamyCosserattypeModelRed1996}, to strands of DNA \citep{corazzaUnravelingLoopingEfficiency2022a} and hydrogels \citep{rajanMechanicsViscoelasticBuckling2019}. In this instance `soft' refers to the constitutive properties of the material, like that of rubber or biological tissue, and `slender' refers to its geometrical thinness.
+
+- Also include references to research that have been done using cosserat theory.
+
+%Cosserat theories are being used to describe an increasing number of physical phenomena. For example, Green, Naghdi and their coworkers have developed Cosserat theories for many applications which include: shells (Naghdi, 1972); rods (Green et aI., I 974a,b); fluid jets and sheets (Naghdi, 1979); electromagnetic effects in shells (Green and Naghdi, 1983) and rods (Green and Naghdi, 1985); turbulence (Marshall and Naghdi, 1989a,b); microcrack growth (Marshall et aI., 1991); composite materials (Green and Naghdi, 1991); and a model of dislocations in three-dimensional plasticity theory (Naghdi and Srinivasa, 1993a,b). In addition, a computer search of the Compendex and Inspec data bases indicates that Cosserat theories are also being used to describe: finite elements (Simo and Fox, 1989), (Simo et aI., 1989) and (Simo et aI., 1990); shearbanding and liquefaction in granular materials (Vardoulakis, 1989); fracture of bone (Lakes et aI., 1990); size effects in rocks (Sulem and Vardoulakis, 1990) and foams (Lakes, 1993); liquid bridges subjected to microgravity (Meseguer and Perales, 1992); grain rotations in granular media (Alehossein and Muhlhaus, 1994); suppression of localization in plasticity (De Borst, 1991; Iordache and Willam, 1995); fracture scaling parameters of inhomogeneous microstructure in composites (Cairns et a!., 1995); micromechanics of inclusions (Cheng and He, 1995) and failure of welds (Craine and Newman, 1996)
+
+We develop a general geometric theory of the kinematics and dynamics of $G$ or $G/H$-valued systems. We show in particular that the continuum mechanics of all directed media, otherwise known as Cosserat media, can be unified in description using this framework. As a special case, we also recover classical (undirected) continuum mechanics, expressed in Cartan's theory of moving frames.
+
+---
+
+Make it clear what is new: The general geometric framework and the Lie group integrators, as well as the presentation of all of the various Cosserat theories through the same framework.
+
+Whilst the connection between Lie groups and mechanics has long been studied \citep{marsdenIntroductionMechanicsSymmetry2013}, here we provide a theory of mechanics Lie group-valued continua.
+
+At a level of abstraction sufficient to describe all Cosserat theories, but also more general systems. For example, the framework is amenable to relativistic systems as well.
+
+A lot of the results have already been shown before (a lot of the stuff in the Cosserat rod section in particular). The main purpose is to show how it all falls out of the a unified framework, and also works as a review article to some extent.
+
+\include{thesis_part1}
+
+\include{thesis_part2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% References:
+%%
+% If you include some work not referenced in the main text (e.g. using \nocite{}), consider changing "References" to "Bibliography".
+%
+
+% \renewcommand to change default "Bibliography" to "References"
+\renewcommand{\bibname}{References}
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{plainnat}
+
+
+
+
+
+
+
+\bibliography{refs/parti, refs/partii, refs/pyritz, refs/fluctuations_around_instantons, refs/nucleation, refs/path-integrals, refs/rare_events, refs/diffus_refs1, refs/diffus_refs2}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Appendix:
+%%
+
+\appendix
+
+%\chapter{Moving frames for sub-manifolds of $SE(d)$} \label{app:Moving frames for sub-manifolds of SE(d)}
+
+\chapter{Glossary of notation} \label{app:glossary of notation}
+
+Often we will abbreviate partial derivatives as
+\begin{equation}
+\begin{aligned}
+\partial_u f & := \frac{\partial f}{\partial u} \\
+\partial_t f & := \frac{\partial f}{\partial t}
+\end{aligned}
+\end{equation}
+or
+\begin{equation}
+\begin{aligned}
+f' & := \frac{\partial f}{\partial u} \\
+\dot{f} & := \frac{\partial f}{\partial t}
+\end{aligned}.
+\end{equation}
+This applies to both scalar, vectorial and group-valued functions.
+
+If we have multiple coordinates, derivatives will be denoted by subscripts i.e. $f_u$, $f_t$ etc. or $\partial_\alpha = \frac{\partial}{\partial u^\alpha}$.
+
+In any dimension $d$ we will assume that $\mathbb{R}^d$ is a vector space equipped with the standard Euclidean metric. Vectors $\mathbf{a} \in \mathbb{R}^d$ will be written as column vectors $\mathbf{a} = (a_1\ a_2\ \dots\ a_d)^T$, and their inner product will often be written as
+\begin{equation}
+\mathbf{a} \cdot \mathbf{b} = \mathbf{a}^T \mathbf{b}
+\end{equation}
+interchangeably.
+
+which for any two vectors $\mathbf{a},\mathbf{b}\in \mathbb{R}^d$ can be written in several different ways interchangeably:
+\begin{equation}
+\mathbf{a} \cdot \mathbf{b} = \mathbf{a}^T \mathbf{b}
+\end{equation}
+
+Smooth function $C^\infty$
+
+Norm of vector $|\mathbf{v}|$.
+
+Einstein summation
+
+$f : A \to B$ is a mapping, or function interchangeably
+
+We will often distinguish $\mathbb{E}^d$ and $\mathbb{R}^d$. 
+
+$\mathbb{R}^{n \times m}$
+
+Introduce the vec notation here as well, and tilde notation $\tilde{v}$, and do it clearly and in detail.
+
+$e$ is the identity of Lie groups.
+
+introduce the hatmap and give it explicitly (and use the vec notation). 
+
+\begin{equation}
+\hat{v} = \begin{pmatrix}
+0 & -v_3 & v_2 \\
+v_3 & 0 & - v_1 \\
+- v_2 & v_1 & 0
+\end{pmatrix}
+\end{equation}
+
+also have that $\vec{\cdot}$ signifes the inverse hatmap for anti-symmetric 3x3 matrices. So $\vec{\hat{v}} \in \mathbb{R}^{3}$.
+
+$\hat{v} = v \times$
+
+$x \times y = - y \times x =  \hat{y} x$
+
+$\mathbb{1}$ identity matrix
+
+If $f : V \to W$, then $\Phi(V)$ is the image of $V$ under $f$. 
+
+$X = \{ \vec{a} ; \vec{b} \}$
+
+
+Matrix derivatives, and the fact that we only take them with respect to the non-zero values. $A_{ji} = \frac{\partial U}{\partial B_{ij}}$.
+
+$\bigwedge_{\beta \neq \alpha}$
+
+closure of sets $\bar{U}$.
+
+For a map $f : M \to N$, $f(A)$ is the image of the map under $A \subset M$.
+
+\chapter{Nondimensionalisation of the Cosserat rod} \label{app:Nondimensionalisation of the Cosserat rod}
+
+Begin with discussion on how to find the dimensions of all kinematic and dynamic quantities.
+
+\chapter{Numerical algorithms for spatio-temporal reconstruction} 
+
+\section{Reconstructing the Cosserat rod from the Maurer-Cartan form} \label{app:Reconstructing the Cosserat rod from xi}
+
+We solve
+\begin{subequations} 
+\begin{align}
+\mathcal{F}' & =  \mathcal{F}X \label{eq:F u} \\
+\dot{\mathcal{F}} & = \mathcal{F} \label{eq:F t} Y.
+\end{align}
+\end{subequations}
+in order to reconstruct $\mathcal{F}(t,u)$ from its infinitesimal description $\xi$. Formally, they have solutions
+\begin{subequations} 
+\begin{align}
+\mathcal{F}_{ij}(u, \bar{t}) & = \mathcal{F}_{ik}(0, \bar{t}) \mathscr{U} \left\{ e^{ \int_0^u X(u, \bar{t}) du } \right\}_{kj} \\
+\mathcal{F}_{ij}(\bar{u}, t) & = \mathcal{F}_{ik}(\bar{u}, 0) \mathscr{T} \left\{ e^{ \int_0^t Y(\bar{u}, t) dt } \right\}_{kj}
+\end{align}
+\end{subequations}
+where $\mathscr{U}(\cdot)$ and $\mathscr{T}(\cdot)$ signifies the spatial and temporal time-ordered integral respectively. Numerically, these can be efficiently approximated by discretisation, and incrementally solved using the \textit{Magnus expansion}. Eq. \ref{eq:F u} and Eq. \ref{eq:F t}
+can therefore be used together to trace out $\mathcal{F}$
+from a single initial condition $\mathcal{F}(u_{0}, t_{0})$. Due to
+the integrability of $\xi$, the value $\mathcal{F}(t, u)$ at $(t, u)$ is invariant with respect to which particular path
+in $(t, u)$-space is taken. In light of this there are theoretically
+an infinite number of reconstruction schemes. Below we propose what
+we find to be the most convenient reconstruction scheme.
+
+We discretise time and space as $u_{\alpha}=\alpha\Delta u,\ \alpha=0,\dots,N_{u}$, such that $u_{0}=t_{0}=0$ and $t_{\beta}=\beta\Delta t,\ \beta=0,\dots,N_{t}$
+and $u_{N_{u}}=L_{0}$ and $t_{N_{t}}=T$. We define $\mathcal{F}^{\alpha,\beta}\approx\mathcal{F}(\alpha\Delta u,\beta\Delta t)$,
+$X^{\alpha,\beta}\approx X(\alpha\Delta u,\beta\Delta t)$ and $Y^{\alpha,k}\approx Y(\alpha\Delta u,\beta\Delta t)$.
+\begin{subequations} \label{eq:numerical schema for reconstruction of Cosserat rod}
+\begin{align}
+\mathcal{F}_{ij}^{0, \beta+1} & =\mathcal{F}_{ik}^{0, \beta}\exp\left(\Delta t\ N^{0, \beta}\right)_{kj}, & \mathcal{F}^{0,0}=\mathcal{F}^{(i)}\\
+\mathcal{F}_{ij}^{\alpha+1, \beta} & =\mathcal{F}_{ik}^{\alpha, \beta}\exp\left(\Delta u\ X^{\alpha,\beta}\right)_{kj} \label{eq:F spatial numerical eq}
+\end{align}
+\end{subequations}
+with the initial condition $\mathcal{F}^{0,0}=\mathcal{F}^{(i)}$.
+The matrix exponential has a closed-form analytical formula given
+by
+\begin{equation}
+\exp(H)=\left(\begin{array}{cc}
+1 & \vec{0}^{T}\\
+A(\hat{m})\vec{v} & B(\hat{m})
+\end{array}\right)
+\end{equation}
+for $H=\left\{ \vec{v};\vec{m}\right\} \in\mathfrak{se}(3)$ and
+\begin{subequations} 
+\begin{align}
+A(\hat{m}) & =\mathbbm{1}_{3}+\frac{1-\cos|\vec{m}|}{|\vec{m}|^{2}}\hat{m}+\frac{|\vec{m}|-\sin|\vec{m}|}{|\vec{m}|^{3}}\hat{m}^{2}\label{eq:A}\\
+B(\hat{m}) & =\exp(\hat{m})=\mathbbm{1}_{3}+\frac{\sin|\vec{m}|}{|\vec{m}|}\hat{m}+\frac{1-\cos|\vec{m}|}{|\vec{m}|^{2}}\hat{m}^{2}\label{eq:B}
+\end{align}
+\end{subequations}
+where $B(\hat{m})\in SO(3)$ is an element of the special orthogonal
+group in 3 dimensions. As Eq. \ref{eq:A} and Eq. \ref{eq:B} are
+ill-conditioned for small $|\vec{m}|$, in numerics it is often prudent
+to Taylor expand these expressions.
+
+One benefit of Eq.~\ref{eq:numerical schema for reconstruction of Cosserat rod} as a numerical solution schema is that it allows for flexibility in terms of when Eq.~\ref{eq:F spatial numerical eq} is evaluated. For example, in simulations we use a temporal discretisation $\Delta t$, but we might only need to reconstruct the Cosserat rod at intervals $n \Delta t$, for some integer $n$.
+
+\section{Reconstructing the spatio-temporal configuration from the Maurer-Cartan form} \label{app:Reconstructing the spatio-temporal configuration from the Maurer-Cartan form}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Index:
+%%
+\printthesisindex
+
+\end{document}
