@@ -202,6 +202,30 @@ A lot of the results have already been shown before (a lot of the stuff in the C
 
 \chapter{Glossary of notation} \label{app:glossary of notation}
 
+\section{Part I notation}
+
+Functions $f : A \to B$
+
+Matrices $\mathbb{R}^{d \times d}$.
+
+$\dot{\mathbf{x}}$.
+
+$C^0_{\mathbf{x}_0}([0,T])$
+
+$\mathbf{a} \cdot \mathbf{b}$.
+
+
+Let $P$ be the probability density of $\mathbb{P}$ with respect to the Lebesgue measure, and we will henceforth write this relation as $P \sim \mathbb{P}$.
+
+
+$(Z_i)_j \sim \mathcal{N}(0, 2D)$
+
+$\mathcal{N}(0, \mathbbm{1}_d)$
+
+$\langle X \rangle $
+
+\section{Part II notation}
+
 Often we will abbreviate partial derivatives as
 \begin{equation}
 \begin{aligned}
@@ -278,6 +302,118 @@ closure of sets $\bar{U}$.
 
 For a map $f : M \to N$, $f(A)$ is the image of the map under $A \subset M$.
 
+\chapter{MCMC benchmark models} \label{app:MCMC benchmark models}
+
+Here we define the Langevin model systems considered in Ch.~\ref{ch:Monte Carlo methods in Path Spaces} and Ch.~\ref{ch:Diffusivity dependence of transition paths}. We begin by defining a non-dimensionalised formulation of the Langevin equation with additive noise
+\begin{equation}
+d\mathbf{X}=\mu\mathbf{F}dt+\sqrt{2D}d\mathbf{W}.
+\end{equation}
+where $\mu$ is the mobility constant and $D$ the diffusion constant. We write the latter as $D = \mu k_B \theta$, where $k_B$ is the Boltzmann constant $\theta$ is the temperature. We assume that the force is the gradient of a potential energy function $U : \mathbb{R}^d \to \mathbb{R}$  as $\mathbf{F} = - \nabla \cdot U$.
+
+Let $T_{0}=\frac{L^{2}}{k_{B}\theta_{0}\mu}$ be a time-scale, $\theta_{0}$ a temperature-scale, and $L_0$ a characteristic length-scale of the potential. We set $t=T_{0}\tilde{t}$,
+$\theta=\theta_{0}\tilde{\theta}$, $\mathbf{X}=L_0 \tilde{\mathbf{X}}$,
+$\mathbf{F}= \frac{\tilde{U}_0}{L_0} \tilde{\mathbf{F}}$ and $\mathbf{W}=\sqrt{T_{0}}\tilde{\mathbf{W}}$. $T_{0}$ is the typical diffusion time-scale at temperature $\theta_{0}$. We get
+\begin{equation}
+	d\mathbf{\tilde{X}}=\tilde{U}_{0} \tilde{\mathbf{F}}d\tilde{t}+\sqrt{2\tilde{\theta}}d\tilde{\mathbf{W}}.
+\end{equation}
+where all quantities in the equation are now non-dimensional, and where $\tilde{U}_{0}=\frac{U_{0}}{k_{B}\theta_{0}}$ is the ratio
+of the energetic well-depth $U_{0}$ and the thermal energy at temperature $\theta_{0}$. We set $\tilde{U}_0 = 1$, such that $\theta = \theta_0$ corresponds to the temperature at which $U_0 = k_B \theta_0$. In other words, the characteristic energy scale of the potential is equal to the thermal energy at temperature $\theta_0$. Finally, the non-diemsionalised Langevin equation is
+\begin{equation}
+	d\mathbf{\tilde{X}}= \tilde{\mathbf{F}}d\tilde{t}+\sqrt{2\tilde{\theta}}d\tilde{\mathbf{W}}.
+\end{equation}
+
+\section{The asymmetric double-well system} \label{app:The asymmetric double-well system}
+
+Consider a $1$-dimensional Langevin system with a quartic potential
+\begin{equation} \label{eq:general quartic potential}
+	U(x) = U_0 \left( 1 + a \frac{x}{L_0} + b \left( \frac{x}{L_0} \right)^2 + x \left( \frac{x}{L_0} \right)^3  + d \left( \frac{x}{L_0} \right)^4  \right).
+\end{equation}
+We impose the following condtions
+\begin{enumerate}
+\item $U'(-L_0) = U'(L_0) = 0$. Extrema at $x = -L_0$ and $x= L_0$.
+\item $U(-L_0) = 0$ and $U(L_0) = \Delta U$. The energy cost of moving from the left-most extremum to the right-most extremum is $\Delta U$.
+\end{enumerate}
+Imposing the conditions on Eq.\ref{eq:general quartic potential}, we get
+\begin{equation}  \label{eq:asymmetric double well}
+U(x)= \left( \left(\frac{x}{L_0}-1\right)^{2}-\frac{1}{4}\frac{\Delta U}{U_{0}}\left(\frac{x}{L_0}-2\right)\right)\left(\frac{x}{L_0}+1\right)^{2}. 
+\end{equation}
+Equation \ref{eq:asymmetric double well} defines an \textit{asymmetric} variant of a standard quartic double-well system, with minimii at $\frac{x}{L_0}= -1$ and $\frac{x}{L_0}=1$, and a maximum at $\frac{x}{L_0} = \frac{ 3 \Delta U}{16 U_0}$. See Fig.~\ref{fig:1D process trajectories} for a plot of the potential energy landscape. In non-dimensionalised form, the potential is
+\begin{equation}  \label{eq:asymmetric double well}
+\tilde{U}(\tilde{x})= \left( \tilde{x}-1\right)^{2} - \frac{1}{4} \frac{\Delta U}{U_{0}} \left( \tilde{x}-2 \right) \left(\tilde{x}+1\right)^{2}. 
+\end{equation}
+where $\tilde{x} = x / L$. In all numerical simulations, we have set $\frac{\Delta U}{U_{0}}=1/2$.
+
+\section{The switch system} \label{app:The switch system}
+
+Here we define the \textit{switch} system, and its non-conservative variant used in Ch.~\ref{ch:Diffusivity dependence of transition paths}. We consider a $2$-dimensional Langevin system with a Sombrero-type potential $U : \mathbb{R}^2 \to \mathbb{R}$. Let $\Gamma=\{(x,y)\ |\ \sqrt{x^2 + y^2} =1\}$ be the circle centred around the origin, and let $\Gamma^{+}$ and
+$\Gamma^{-}$ signify the upper and lower semi-circle respectively. We will a construct the potential such that $\Gamma$ coincides with a manifold of potential minima, and such that the perpendicular curvature of the potential along $\Gamma^{+}$ is larger than along $\Gamma^{-}$. We
+start with a radial quartic potential of the form 
+\begin{align}
+U(x_{1},x_{2}) & =U_{r}(r(x_{1},x_{2}))\\
+U_{r}(r) & =U_{0}\left(\frac{r}{L_0}-1\right)\left(1+a\frac{r}{L_0}+b\left(\frac{r}{L_0}\right)^{2}+c\left(\frac{r}{L_0}\right)^{3}\right)\nonumber 
+\end{align}
+where $L_0$ is the length-scale of the system, $U_{0}$ will be the
+value of the potential at the local maximum $r=0$, and $a,b,c\in\mathbb{R}$
+will be specified below. We will henceforth suppress the argument of
+the radial coordinate function $r(x_{1},x_{2})=\sqrt{x_{1}^{2}+x_{2}^{2}}$. We
+impose the following conditions on the potential to fix $a, b$ and $c$:
+\begin{enumerate}
+\item $U_r'(0) = 0$. The origin is an extremum.
+\item $U_r'(L_0) = 0$. $\Gamma$ is an extremum of the potential.
+\item $U_r''(L_0) = k$. The curvature along $\Gamma$ is $k$.
+\end{enumerate}
+We get
+\begin{equation}
+U_{r}(r)=\frac{1}{2}\left(\frac{r}{L_0}-1\right)^{2}\left[L_0^{2} k \left(\frac{r}{L_0}\right)^{2}-2U_{0}\left(\frac{r}{L_0}-1\right)\left(3\frac{r}{L_0}+1\right)\right]
+\end{equation}
+which is, in the non-dimensionalised form
+\begin{equation}
+\tilde{U}_{r}(\tilde{r})= \frac{1}{2} 
+\left( \tilde{r} -1 \right)^{2} \left[L_0^{2} \tilde{k} \tilde{r}^{2}-2  
+\left(\tilde{r}-1\right)\left(3\tilde{r}+1\right)\right].
+\end{equation}
+where $\tilde{r} = r / L$ and $\tilde{k} = \frac{k}{U_0}$. In order to ensure that the potential has a Sombrero-like form, we
+must further have that the potential is confining, which is equivalent
+to $\underset{r\to\infty}{\lim}U_{r}(r)=\infty$, which implies that
+$6U_{0}\leq L_0^{2}k$. We now introduce an angular dependence in the
+curvature. We set
+\begin{equation}
+L_0^{2}k(\phi)=6U_{0}(1+2h(\phi))\label{eq:curvature}
+\end{equation}
+where $\phi=\phi(x_{1},x_{2})$ is the angle of $(x_{1},x_{2})$ in
+polar coordinates so that $x_{1}=\cos(\phi)$, $x_{2}=\sin(\phi)$,
+and where
+\begin{equation}
+h(\phi)=\frac{1}{4}\left(\xi_{2}+\xi_{1}+(\xi_{2}-\xi_{1})\sin\phi\right)
+\end{equation}
+where $\xi_{2}>\xi_{1}$, and where $h(\phi)\in[\xi_{1},\xi_{2}]$
+satisfies $h(-\pi/2)=\xi_{1}$ and $h(\pi/2)=\xi_{2}$. Eq.~\eqref{eq:curvature}
+is constructed so that the perpendicular curvature of $\Gamma^{+}$
+is larger than that of $\Gamma^{-}$. The drift of the system is now
+given by $\mathbf{F}=-\nabla U$. This concludes the definition of the switch system.
+
+We now consider a non-conservative variant of the switch system. We introduce an additional non-conservative
+force $\mathbf{F}^{a}=-\eta\hat{\boldsymbol{\phi}}$ for which the
+work done in a displacement $d\mathbf{x}=dr\hat{\mathbf{r}}+rd\phi\hat{\boldsymbol{\phi}}$
+is $dW=\mathbf{F}^{a}\cdot d\mathbf{x}=\eta rd\phi$. This force energetically
+biases the upper transition channel $\Gamma^{+}$. The total force
+is thus $\mathbf{F}=-\nabla U+\mathbf{F}^{a}$.
+
+In the numerical experiments presented in the main text, we used the
+Itô Langevin equation 
+\begin{equation}
+d\mathbf{X}=\mu\mathbf{F}dt+\sqrt{2\mu k_{B}\theta}d\mathbf{W}.\label{eq:langevin equation}
+\end{equation}
+For the numerical experiments in the main text  we use $\tilde{U}_{0}=1$,
+which means that $\tilde{\theta}=1$ corresponds to a temperature
+such that $k_{B}\theta=U_{0}$. We also set $\xi_{1}=0$ and $\xi_{2}=2$.
+To compare the gradient force $-\nabla \cdot U$ with $\mathbf{F}^{a}$ we also introduce
+$f_{\text{eq}}=U_{0}/L$, which is the characteristic force strength
+of the gradient force.
+
+
+
+
 \chapter{Nondimensionalisation of the Cosserat rod} \label{app:Nondimensionalisation of the Cosserat rod}
 
 Begin with discussion on how to find the dimensions of all kinematic and dynamic quantities.
@@ -336,7 +472,7 @@ B(\hat{m}) & =\exp(\hat{m})=\mathbbm{1}_{3}+\frac{\sin|\vec{m}|}{|\vec{m}|}\hat{
 where $B(\hat{m})\in SO(3)$ is an element of the special orthogonal
 group in 3 dimensions. As Eq. \ref{eq:A} and Eq. \ref{eq:B} are
 ill-conditioned for small $|\vec{m}|$, in numerics it is often prudent
-to Taylor expand these expressions.
+to Taylor expand to at least $O(|\vec{m}|^6)$ when $|\vec{m}| < 0.1$ \citep{giusteriSimulationViscoelasticCosserat2021}.
 
 One benefit of Eq.~\ref{eq:numerical schema for reconstruction of Cosserat rod} as a numerical solution schema is that it allows for flexibility in terms of when Eq.~\ref{eq:F spatial numerical eq} is evaluated. For example, in simulations we use a temporal discretisation $\Delta t$, but we might only need to reconstruct the Cosserat rod at intervals $n \Delta t$, for some integer $n$.
 
