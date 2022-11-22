@@ -1322,15 +1322,15 @@ The notation in Eq.~\ref{eq:langevin equation physics form} is highly symbolical
 d \mathbf{X} = \mathbf{b}(\mathbf{X}) dt + \sqrt{2D} d \mathbf{W}
 \end{equation}
 which represents the stochastic displacement $d\mathbf{X}$ in a time
-interval $dt$, subject to a drift-field $\mathbf{a}$ and Brownian displacements $\sigma d\mathbf{W}$, where $\mathbf{W}$ is the Wiener process and $\sigma \in \mathbb{R}^{d \times d}$ is the \textit{volatility matrix}. Equation \ref{eq:ito diffusion equation} and Eq.~\ref{eq:langevin equation physics form} can be related by setting $\mathbf{b} = \mu \mathbf{F}$ and $\sigma = \sqrt{2 D}$. Symbolically, we may relate $\mathbf{W}$ and $\boldsymbol{\xi}$ as $\dot{\mathbf{W}} = \boldsymbol{\xi}$. Equation \ref{eq:ito diffusion equation} can be understood as a short-hand for an alternative integral representation of the It\^{o} diffusion equation  
-\begin{equation}
+interval $dt$, subject to a drift-field $\mathbf{b}$ and Brownian displacements $\sigma d\mathbf{W}$, where $\mathbf{W}$ is the Wiener process and $\sigma \in \mathbb{R}^{d \times d}$ is the \textit{volatility matrix}. Equation \ref{eq:ito diffusion equation} and Eq.~\ref{eq:langevin equation physics form} can be related by setting $\mathbf{b} = \mu \mathbf{F}$ and $\sigma = \sqrt{2 D}$. Symbolically, we may relate $\mathbf{W}$ and $\boldsymbol{\xi}$ as $\dot{\mathbf{W}} = \boldsymbol{\xi}$. Equation \ref{eq:ito diffusion equation} can be understood as a short-hand for an alternative integral representation of the It\^{o} diffusion equation  
+\begin{equation} \label{eq:integral ito equation}
 \mathbf{X}(t) = \int_0^t \mathbf{b}(\mathbf{X}(t')) dt' + \sqrt{2D} \int_0^{t} d \mathbf{W}(t')
 \end{equation}
 where the second term is an \textit{It\^{o} stochastic integral} \citep{oksendalStochasticDifferentialEquations2003, shreveStochasticCalculusFinance2005} with respect to the stochastic increment $d \mathbf{W}$.
 
-Let $C^0([0,T])$ be the set of continuous paths $\mathbf{x} : [0, T] \to \mathbb{R}^d$, and furthermore let $C_{\mathbf{x}_0}^0([0,T]) \subset C^0([0,T])$ be the subset of paths that satisfy $\mathbf{x}(0) = \mathbf{x}_0$, where $\mathbf{x}_0 \in \mathbb{R}^d$ is the star-point of the path. The \textit{transition path ensemble} $E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T]) \subset C_{\mathbf{x}_0}^0([0,T])$ of Eq.~\ref{eq:ito diffusion equation} is the subset of paths that satisfy $\mathbf{x}(0) = \mathbf{x}_0$ and $\mathbf{x}(T) = \mathbf{x}_T$, where $\mathbf{x}_T \in \mathbb{R}^d$ is the end-point of the path. Realisations of Eq.~\ref{eq:ito diffusion equation} are elements $\mathbf{X} \in C_{\mathbf{x}_0}^0([0,T])$, and we will often refer to these as \textit{stochastic paths}. Given an end-point $\mathbf{x}_T$, a \textit{transition path} is a stochastic path that is an element $\mathbf{X} \in E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T])$.
+Let $C^0([0,T])$ be the set of continuous paths $\mathbf{x} : [0, T] \to \mathbb{R}^d$, and furthermore let $C_{\mathbf{x}_0}^0([0,T]) \subset C^0([0,T])$ be the subset of paths that satisfy $\mathbf{x}(0) = \mathbf{x}_0$, where $\mathbf{x}_0 \in \mathbb{R}^d$ is the star-point of the path. The \textit{transition path ensemble} $E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T]) \subset C_{\mathbf{x}_0}^0([0,T])$ of Eq.~\ref{eq:ito diffusion equation} is the subset of paths that satisfy $\mathbf{x}(0) = \mathbf{x}_0$ and $\mathbf{x}(T) = \mathbf{x}_T$, where $\mathbf{x}_T \in \mathbb{R}^d$ is the end-point of the path. Realisations of Eq.~\ref{eq:ito diffusion equation} are elements $\mathbf{X} \in C_{\mathbf{x}_0}^0([0,T])$, and we will often refer to these as \textit{stochastic paths}. Given an end-point $\mathbf{x}_T$, a \textit{transition path} is a stochastic path that is an element $\mathbf{X} \in E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T])$. Transition paths can thus be considered realisations of a \textit{pinned} It\^{o} diffusion, where we condition on the end-point $\mathbf{X}(T) = \mathbf{x}_T$.
 
-Consider some measurable subset of stochastic paths $U \subset C_{\mathbf{x}_0}^0([0,T])$. The measure $\mathbb{P}_\mathbf{X}(U)$ of the probability of observing a path that takes its value in $A$ is often written in a path-integral formulation as \citep{huntPathIntegralSolutions1981, adibStochasticActionsDiffusive2008, chaichianPathIntegralsPhysics2001}
+Consider some measurable subset of stochastic paths $U \subset C_{\mathbf{x}_0}^0([0,T])$. The \textit{law} $\mathbb{P}_\mathbf{X}$ of a stochastic differential equation like Eq.~\ref{eq:ito diffusion equation} is a \textit{probability measure} over $C_{\mathbf{x}_0}^0([0,T])$. The probability of observing a stochastic trajectory in a measurable subset $U \subset C_{\mathbf{x}_0}^0([0,T])$ is then $\mathbb{P}_\mathbf{X}(U)$. In the physics literature $\mathbb{P}_\mathbf{X}(U)$ is often written in a path-integral formulation as \citep{huntPathIntegralSolutions1981, adibStochasticActionsDiffusive2008, chaichianPathIntegralsPhysics2001}
 \begin{equation} \label{eq:path-probability meausure in terms of path-integral}
 \mathbb{P}_\mathbf{X}(U) = \int_U P_\mathbf{X}[\mathbf{x}] \mathcal{D} \mathbf{x}
 \end{equation}
@@ -1338,7 +1338,7 @@ where
 \begin{equation} \label{eq:path-probability density}
 P_\mathbf{X}[\mathbf{x}] \propto \exp(-S[\mathbf{x}])
 \end{equation}
-represents a \textit{path-space probability density} over $C_{\mathbf{x}_0}^0([0,T])$, and the exponential scaling-factor of the density $S[\mathbf{x}]$ is called the \textit{stochastic action}. We call $\mathbb{P}_\mathbf{X}$ a \textit{probability measure} over $C_{\mathbf{x}_0}^0([0,T])$, which is defined in terms of the \textit{density} $P_\mathbf{X}$. $\mathcal{D} \mathbf{x}$ represents what would be a volume measure over the infinite-dimensional space of stochastic paths. Mathematically, one would call $\mathcal{D} \mathbf{x}$ an infinite-dimensional analogue of a \textit{Lebesgue measure} (although as we will discuss below, such an analogue does not exist). Equation \ref{eq:path-probability meausure in terms of path-integral} applies equivalently to subsets $A \subset E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T])$, by simply conditioning Eq.~\ref{eq:path-probability density} on the end-point. Accordingly, we can compute the expectations of observables as
+represents a \textit{path-space probability density} over $C_{\mathbf{x}_0}^0([0,T])$, and the exponential scaling-factor of the density $S[\mathbf{x}]$ is called the \textit{stochastic action}. In Eq.~\ref{eq:path-probability meausure in terms of path-integral} we expressed the law $\mathbb{P}_\mathbf{X}$ in terms of the \textit{path-probability density} $P_\mathbf{X}$. $\mathcal{D} \mathbf{x}$ represents what would be a volume measure over the infinite-dimensional space of stochastic paths. Mathematically, one would call $\mathcal{D} \mathbf{x}$ an infinite-dimensional analogue of a \textit{Lebesgue measure} (although as we will discuss below, such an analogue does not exist). Equation \ref{eq:path-probability meausure in terms of path-integral} applies equivalently to subsets $A \subset E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T])$, by simply conditioning Eq.~\ref{eq:path-probability density} on the end-point. Accordingly, we can compute the expectations of observables as
 \begin{equation} \label{eq:expectation of observable}
 	\langle \mathcal{O}[\mathbf{X}] \rangle = \int_{C_{\mathbf{x}_0}^0} \mathcal{O}[\mathbf{x}] P_\mathbf{X}[\mathbf{x}] \mathcal{D} \mathbf{x}
 \end{equation}
@@ -1350,7 +1350,7 @@ S_\text{FW}[\mathbf{x}] = \int_0^T \frac{1}{2 D} |\dot{\mathbf{x}} - \mathbf{b}(
 \end{equation}
 and the \textit{Onsager-Machlup} (OM) action functional is \citep{adibStochasticActionsDiffusive2008, durrOnsagerMachlupFunctionLagrangian1978a, stratonovichProbabilityFunctionalDiffusion1971, fujitaOnsagerMachlupFunctionDiffusion1982, onsagerFluctuationsIrreversibleProcesses1953, bachFunctionalsPathsDiffusion1977, horsthemkeOnsagerMachlupFunctionOne1975}
 \begin{equation} \label{eq:OM action functional}
-S_\text{OM}[\mathbf{x}] = \int_0^T \left\{ \frac{1}{2 D} |\dot{\mathbf{x}} - \mathbf{b}(\mathbf{x})|^2 + \frac{1}{2} \nabla \cdot \mathbf{a}(\mathbf{x}) \right\} dt.
+S_\text{OM}[\mathbf{x}] = \int_0^T \left\{ \frac{1}{2 D} |\dot{\mathbf{x}} - \mathbf{b}(\mathbf{x})|^2 + \frac{1}{2} \nabla \cdot \mathbf{b}(\mathbf{x}) \right\} dt.
 \end{equation}
 Note that Eq.~\ref{eq:FW action functional} is not interpreted here as a large deviation principle in a zero-temperature limit, but rather defines a path-probability density via Eq.~\ref{eq:path-probability density} for arbitrary temperatures. This seeming contradiction, along with the fact that there are two stochastic actions, yielding ostensibly two different path-probability densities, has been a point of confusion \citep{adibStochasticActionsDiffusive2008, gladrowExperimentalMeasurementRelative2021}.  In \citep{adibStochasticActionsDiffusive2008} it is shown that the actions are equivalent for the purposes of sampling the path-probability distribution. In other words, formally Eq.~\ref{eq:path-probability meausure in terms of path-integral} yields the same value for the probability $\mathbb{P}_\mathbf{X}(A)$ regardless of what action is used. However, in \citep{gladrowExperimentalMeasurementRelative2021} it is shown that if one considers the subset $C^1_{\mathbf{x}_0}([0,T]) \subset C^0_{\mathbf{x}_0}([0,T])$ of paths with at-least one derivative, then the appropriate action functional is the Onsager-Machlup action. Therefore if one wants to consider \textit{most-probable paths}, which are always piece-wise smooth, the Onsager-Machlup action is to be preferred over the Freidlin-Wentzell action. Note that in the limit of vanishing noise, which is the regime in which we worked in Ch.~\ref{ch:Ritz methods for Freidlin-Wentzel-Graham actions}, the Onsager-Machlup action converges to the Freidlin-Wentzell action. 
  
@@ -1370,7 +1370,7 @@ We thus replace the path-space probability density $P_\mathbf{X}[\mathbf{X}]$ wi
 
 Mathematically, the root of the problem stems from the non-existence of the `path-space volume measure' $\mathcal{D} \mathbf{x}$. Consider some probability measure $\mu$ with density $p$ over a finite-dimensional space $\mathbb{R}^n$. Probabilities can then be computed using integrals $\mu(U) = \int_U p(\mathbf{z}) d \mathbf{z}$ for a measurable subset  $U \subset \mathbb{R}^n$. Here, $d \mathbf{z}$ is a volume measure on the space $\mathbb{R}^d$, and is known in the mathematical literature as a \textit{Lebesgue measure}. In particular, Lebesgue measures have the desirable property of translation-invariance. Intuitively we can see that $\mathcal{D} \mathbf{x}$ symbolically plays the role of an infinite-dimensional Lebesgue measure from Eq.~\ref{eq:mathcal D to d}. However, it is a theorem that there exists no infinite-dimensional analogue of a Lebesgue measure \citep{MeasureIntegrationTheory1972}.
 
-Although not a Lebesgue measure, there is a measure that is well-defined on general infinite dimensional spaces, known as the \textit{abstract Wiener space construction} \citep{grossAbstractWienerSpaces1967, MeasureIntegrationTheory1972}. If the sample space is $C_{\mathbf{x}_0}^0([0,T])$, then the corresponding measure $\mathbb{P}_\mathbf{W}$ is called the \textit{classical Wiener measure} \citep{cameronTransformationsWeinerIntegrals1944b, cameronTransformationsWienerIntegrals1945a}. As its name suggests, $\mathbb{P}_\mathbf{W}$ is the probability measure over the space of realisations of the Wiener process. If we consider the Wiener process as an It\^{o} diffusion with the drift-field set to zero $\mathbf{b} = 0$, we can write the Wiener measure using Eqs.~\ref{eq:path-probability meausure in terms of path-integral}, \ref{eq:path-probability density} and \ref{eq:FW action functional} (or Eq.~\ref{eq:OM action functional}) as
+Although not a Lebesgue measure, there is a measure that is well-defined on general infinite dimensional spaces, known as the \textit{abstract Wiener space construction} \citep{grossAbstractWienerSpaces1967, MeasureIntegrationTheory1972}. If the sample space is $C_{\mathbf{x}_0}^0([0,T])$, then the corresponding probability measure $\mathbb{P}_\mathbf{W}$ is called the \textit{classical Wiener measure} \citep{cameronTransformationsWeinerIntegrals1944b, cameronTransformationsWienerIntegrals1945a}. As its name suggests, $\mathbb{P}_\mathbf{W}$ is the law of the Wiener process. If we consider the Wiener process as an It\^{o} diffusion with the drift-field set to zero $\mathbf{b} = 0$, we can write the Wiener measure using Eqs.~\ref{eq:path-probability meausure in terms of path-integral}, \ref{eq:path-probability density} and \ref{eq:FW action functional} (or Eq.~\ref{eq:OM action functional}) as
 \begin{equation} \label{eq:path-integral prob of W}
 \mathbb{P}_\mathbf{W}(U) = \int_U P_\mathbf{W}[\mathbf{x}] \mathcal{D} \mathbf{x}
 \end{equation}
@@ -1433,11 +1433,11 @@ Just as $\mathbb{P}_\mathbf{W}$ serves as a measure over the space $C_{\mathbf{x
 \begin{equation}
 	\mathbf{B} = \left(1 - \frac{t}{T}\right) \mathbf{W} + \frac{t}{T} (\mathbf{x}_T - \mathbf{x}_0)
 \end{equation}
-if we let $\mathbf{W}(0) = \mathbf{x}_0$. Then the probability measure $\mathbb{P}_\mathbf{B}$ is defined over $E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T])$, and we have that \citep{beskosMCMCMETHODSDIFFUSION2008}
+if we let $\mathbf{W}(0) = \mathbf{x}_0$. Then the law $\mathbb{P}_\mathbf{B}$ is defined over $E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T])$, and we have that \citep{beskosMCMCMETHODSDIFFUSION2008}
 \begin{equation} \label{eq:true path-space probability of TPE}
 \mathbb{P}_\mathbf{X}(U) = \int_U \frac{d \mathbb{P}_\mathbf{X}}{d \mathbb{P}_\mathbf{B}}[\mathbf{x}] d \mathbb{P}_\mathbf{B}[\mathbf{x}]
 \end{equation}
-where $\mathbb{P}_\mathbf{X}$ is here to be understood as the measure of the process $\mathbf{X}$ conditioned as $\mathbf{X}(0) = \mathbf{x}_0$ and $\mathbf{X}(T) = \mathbf{x}_T$. 
+where $\mathbb{P}_\mathbf{X}$ is here to be understood as the law of the pinned It\^{o} diffusion, where realisations $\mathbf{X}$ are conditioned as $\mathbf{X}(0) = \mathbf{x}_0$ and $\mathbf{X}(T) = \mathbf{x}_T$. Note that we have used the same symbol $\mathbb{P}_\mathbf{X}$ for the law of both the unpinned and pinned processes. Henceforth, $\mathbb{P}_\mathbf{X}$ will denote to law of latter, unless explicitly stated otherwise.
 
 Despite the fact that densities over path-spaces are ill-defined, we will continue making use of the path-integrals with respect to the fictitious infinite-dimensional Lebesgue measure. This is primarily due to the ubiquity of the path-integral in the physics, and because it is often intuitively easier to understand densities with respect to a uniform volume density. Mathematically, this will not cause any issues as long as we understand that ill-defined path-integrals correspond to well-defined integrals with respect to the Wiener measure, as in Eq.~\ref{eq:true path-space probability} and Eq.~\ref{eq:true path-space probability of TPE}.
 
@@ -1593,7 +1593,7 @@ We can now state the pCN algorithm in its entirety:
 
 \subsection{Kosambi-Karhunen-Lo\`eve expansions of stochastic trajectories} \label{sec:Kosambi-Karhunen-Loeve expansions of stochastic trajectories}
  
-In the previous subsection we outlined the pCN algorithm, which was defined directly on general infinite-dimensional functional sample spaces. Here we specialise to transition paths of It\^{o} diffusions. The sample space is now $E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T])$, the transition path ensemble, and the target measure is $\mathbb{P}_\mathbf{X}$. Henceforth we will abbreviate the transition path ensemble as $E \equiv E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T])$. As shown in Eq.~\ref{eq:true path-space probability of TPE}, the path-probability measure $\mathbb{P}_\mathbf{X}$ has a density with respect to the Brownian bridge measure $\mathbb{P}_\mathbf{B}$, and we will consider the latter the reference Gaussian measure.
+In the previous subsection we outlined the pCN algorithm, which was defined directly on general infinite-dimensional functional sample spaces. Here we specialise to transition paths of pinned It\^{o} diffusions. The sample space is now $E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T])$, the transition path ensemble, and the target measure is the law $\mathbb{P}_\mathbf{X}$. Henceforth we will abbreviate the transition path ensemble as $E \equiv E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T])$. As shown in Eq.~\ref{eq:true path-space probability of TPE}, $\mathbb{P}_\mathbf{X}$ has a density with respect to the Brownian bridge law $\mathbb{P}_\mathbf{B}$, and we will consider the latter the reference Gaussian measure.
 
 In the second step of the pCN algorithm, we must sample the reference Gaussian measure to generate the proposal state. One method by which to sample $\mathbb{P}_\mathbf{B}$ is using the \textit{Kosambi-Karhunen-Lo\`eve} (KKL) therorem \citep{kosambiParallelismPathspaces, karhunenUeberLineareMethoden1947, loeveProbabilityTheory1977}, which is a representation of a stochastic process as an infinite linear combination of orthogonal basis functions $\phi_k(t)$. The KKL representation is found by solving a homogeneous Fredholm integral equation of the second kind
 \begin{equation} \label{eq:fredholm eq for KKL}
@@ -1607,23 +1607,27 @@ where $\phi_i(t)$ are pairwise orthonormal functions on $[0, T]$ and $Z_i$ are p
 
 The solution to Eq.~\ref{eq:fredholm eq for KKL} for the one-dimensional Brownian bridge process is known. The result, trivially extended to a $d$-dimensional Brownian bridge process with diffusion constant $D$, can be written as
 \begin{equation} \label{eq:brownian bridge kkl expansion}
-	\mathbf{B}(t) = \mathbf{x}_0 + (\mathbf{x}_T - \mathbf{x}_0) \frac{t}{T} +\sqrt{2 D} \sum_{i=1}^\infty \mathbf{Z}_i \sqrt{\lambda_i} \phi_i(t)
+	\mathbf{B}(t) = \mathbf{x}_0 + (\mathbf{x}_T - \mathbf{x}_0) \frac{t}{T} +\sqrt{2 D} \sum_{i=1}^\infty \mathbf{Z}_k \sqrt{\lambda_k} \phi_k(t)
 \end{equation}
 where $\mathbf{Z}_k \in \mathbb{R}^d,\ k =1,\dots,\infty$ are independent $d$-dimensional normal random variables distributed as $\mathbf{Z}_k \sim \mathcal{N}(0, \mathbbm{1}_d)$, and where
 \begin{subequations}
 	\begin{align}
 		\phi_k(t) & = \sqrt{\frac{2}{T}} \sin (t / \sqrt{\lambda_k}) \\
-		\lambda_k & = \frac{T^2}{\pi^2 k^2} .
+		\lambda_k & = \frac{T^2}{\pi^2 k^2},
 	\end{align}
 \end{subequations}
-We will write the components of the random coefficients as $Z_{ik} \equiv (\mathbf{Z}_k)_i,\ i=1,\dots,d$, and each component is then distributed as $Z_{ik} \sim \mathcal{N}(0, 1)$. The first two terms in Eq.~\ref{eq:brownian bridge kkl expansion} are a result of the fact that Brownian bridge, as we have defined it, is not centred and has mean $\langle \mathbf{B}(t) \rangle = \mathbf{x}_0 + (\mathbf{x}_T - \mathbf{x}_0) \frac{t}{T}$.
+and where $\phi_k(t)$ satisfy
+\begin{equation}
+	\int_0^T \phi_k(t) \phi_l(t) dt = \delta_{kl}
+\end{equation}
+for all $k,l=1,\dots, \infty$. We will write the components of the random coefficients as $Z_{ik} \equiv (\mathbf{Z}_k)_i,\ i=1,\dots,d$, and each component is then distributed as $Z_{ik} \sim \mathcal{N}(0, 1)$. The first two terms in Eq.~\ref{eq:brownian bridge kkl expansion} are a result of the fact that Brownian bridge, as we have defined it, is not centred and has mean $\langle \mathbf{B}(t) \rangle = \mathbf{x}_0 + (\mathbf{x}_T - \mathbf{x}_0) \frac{t}{T}$.
 
-In the numerical algorithm, we will make use Eq.~\ref{eq:brownian bridge kkl expansion} to generate samples of the Brownian bridge process using, by truncating the sum to $N$ terms and sampling the $d N$ independent random variables $Z_{ik} \sim \mathcal{N}(0, 1)$. The paths-space probability measure $\mathbb{P}_\mathbf{B}$ therefore becomes a $d N$-dimensional probability measure $\mathbb{P}^N_\mathbf{B}$. Furthermore, we note that $\phi_k$ also forms an orthonormal basis for the TPE. Therefore we will also expand transition paths $\mathbf{X}^N \in E$ in the same truncated KKL basis of the Brownian bridge process as
+In the numerical algorithm, we will make use of Eq.~\ref{eq:brownian bridge kkl expansion} to generate samples of the Brownian bridge process using, by truncating the sum to $N$ terms and sampling the $d N$ independent random variables $Z_{ik} \sim \mathcal{N}(0, 1)$. The law $\mathbb{P}_\mathbf{B}$ therefore becomes a $d N$-dimensional probability measure $\mathbb{P}^N_\mathbf{B}$. Furthermore, we note that $\phi_k$ also forms an orthonormal basis for the TPE. Therefore we will also expand transition paths $\mathbf{X}^N \in E$ in the same truncated KKL basis of the Brownian bridge process as
 \begin{equation} \label{eq:KKL expansion of transition paths}
 	\mathbf{X}^N(t;A) = \mathbf{x}_0 + (\mathbf{x}_T - \mathbf{x}_0) \frac{t}{T} +\sqrt{2 D} \sum_{k=1}^N \mathbf{A}_k \sqrt{\lambda_i} \phi_i(t)
 \end{equation}
 where $A = (\mathbf{A}_1\ \mathbf{A}_2\ \dots \mathbf{A}_N) \in \mathbb{R}^{d \times N}$ is a matrix where the columns $\mathbf{A}_k \in \mathbb{R}^d,\ k=1,\dots,N$ are the coefficients of the expansion. We will refer to $\mathbf{A}_k$ as the \text{modes} of $\mathbf{X}^N(t)$, $A$ as the mode matrix and $N$ the \textit{mode truncation}. We have thus introduced a parameterisation $\mathbf{X}(t ; A)$ of transition paths, which in turn defines the subspace
-\begin{equation}
+\begin{equation} \label{eq:finite dimensional TPE}
 	E^N = \{ \mathbf{X}(t;A)\ :\ A \in \mathbb{R}^{d \times N} \} \subset E
 \end{equation}
 of the transition path ensemble. The $d N$-dimensional probability measure $\mathbb{P}^N_\mathbf{X}$ over $E^N$ is found by projecting Eq.~\ref{eq:true path-space probability of TPE} onto $E^N$, and we have
@@ -1644,155 +1648,181 @@ Finally, the pCN rule defined on the KKL mode-representation of transition paths
 		\end{equation}
 for each $i=1,\dots,d$ and $k = 1,\dots,N$, where $Z_{ik}$ is sampled from $\mathcal{N}(0,1)$. In contrast to Eq.~\ref{eq:pCN update rule}, the pCN update rule on functional space, here we have introduced a tuneable step-size matrix $\kappa_{ik}$ for each individual mode coefficient. In Sec.~\ref{sec:Mode-dependent step-sizes} we will discuss how to use the band-structure of the KKL expansion to find a step-size matrices that improve the MCMC correlation time.  % In Sec.~\ref{sec:variable mode coefficients} we will devise an 
 
+There is an analogous expansion to Eq.~\ref{eq:KKL expansion of transition paths}, if we were to instead sample $C_{\mathbf{x}_0}^0([0,T])$, the set of stochastic paths starting at $\mathbf{x}_0$ with open end-point conditions. In that case, the appropriate expansion of stochastic paths would be the KKL basis of the Wiener process. This would in turn induce an $N$-dimensional subspace of paths, analogous to Eq.~\ref{eq:finite dimensional TPE}.
+
 \subsection{Numerical algorithm} \label{sec:pCN Numerical algorithm summary}
-
-
-\begin{figure*} 
-    \centering
-     
-    \begin{subfigure}[b]{0.31\textwidth}  
-        \centering 
-        \includegraphics[width=\textwidth]{figs_part1/mcmc/1D_process_trajectories}
-        \caption[]%
-        {}    
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.33\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figs_part1/mcmc/1D_process_cold_trajectories}
-        \caption[]%
-        {}    
-    \end{subfigure}    
-    \hfill
-    \begin{subfigure}[b]{0.314\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figs_part1/mcmc/1D_process_potential}
-        \caption[]%
-        {}    
-    \end{subfigure}    
-    
-    \caption[ ]
-    {\small Simulation of the $1$-dimensional antisymmetric double-well system (defined in App.~\ref{app:The asymmetric double-well system}) using the pCN algorithm. We sampled transition paths of duration $T/T_0 = 2$ between the minima at $x_0/L_0 = -1$ (red dashed lines) to the minima at $x_0/L_0 = 1$ (blue dashed lines), and with mode truncation $N = 200(T/T_0)$. (a) Shows $50$ transition paths at temperature $\theta / \theta_0 = 2$. (b) Shows $10$ transition paths at temperature $\theta / theta_0$, and the instanton (green line). (c) Potential landscape of the system, with the minimi plotted (hollow red and blue circles respectively).}
-    \label{fig:1D process trajectories}
-\end{figure*} 
-
-\begin{figure}[t]
-\includegraphics[width=0.98\textwidth]{figs_part1/mcmc/1D_process_MCMC_vs_Langevin}
-\centering \caption{Simulation of the $1$-dimensional antisymmetric double-well system using both the pCN and the Euler-Maruyama methods. The resulting samples were projected onto the KKL basis of the Brownian bridge process, and the figure shows the marginalised distribution over the coefficients $A_k$ of the sampled TPE. In each sub-plot, the green line is the distribution of a centred normal with unit-variance $Z_k \sim \mathcal{N}(0,1)$, which corresponds to the modes of the Brownian bridge process. The parameters of the simulation are the same as those of Fig.~\ref{fig:1D process trajectories} (a).}
-\label{fig:1D process MCMC vs Euler-Maruyama} 
-\end{figure}
-
-We can summarise the sampling algorithm projected onto the truncated Brownian bridge KKL expansion as follows:
+We can summarise the pCN sampling algorithm projected onto the truncated Brownian bridge KKL expansion as follows:
 
 \begin{enumerate}
+\begin{samepage}
 	\item Choose the mode truncation parameter $N$.
 	\item Choose an initial state $A^{(0)} \in \mathbb{R}^{d \times N}$.
 	\item Generate a proposal state
-		\begin{equation}
+		\begin{equation} \label{eq:pCN proposal numerical algo}
 			A_{ik}' = \sqrt{1 - \kappa^2} A_{ik}^{(n)} + \kappa_{ik} Z_{ik}
 		\end{equation}
-		for each $i=1,\dots,d$ and $k = 1,\dots,N$, where $Z_{ik}$ is sampled from $\mathcal{N}(0,1)$.
+		for each $i=1,\dots,d$ and $k = 1,\dots,N$, where $Z_{ik}$ is sampled from $\mathcal{N}(0,1)$ and $\kappa_{ik}$ is the step-size matrix.
 	\item Draw a random number $U$ from $\text{Unif}([0,1])$.
 		\begin{itemize}
 			\item If $U < A_\text{pCN}[A^{(n)}, A']$, then set $A^{(n+1)} = A'$.
 			\item Otherwise set $A^{(n+1)} = A^{(n)}$.
 		\end{itemize}
+\end{samepage}
 \end{enumerate}
-Fig.~\ref{fig:1D process trajectories} shows the result of applying the pCN algorithm to sample the transition path ensemble of a $1$-dimensional Langevin particle moving between the minimi of an asymmetric double-well potential (see Fig.~\ref{fig:1D process trajectories} (c)). See App.~\ref{app:The asymmetric double-well system} and App.~\ref{app:The asymmetric double-well system} for a detailed specification of the model. Fig.~\ref{fig:1D process trajectories} (a) shows a sample of $50$ trajectories from the TPE, simulated at temperature $\theta/\theta_0 = 2$, where $\theta_0$ is a reference temperature. The reference temperature $\theta_0$ is defined such that at $\theta = \theta_0$ the thermal fluctuations equal the characteristic energy scale of the confining potential energy (See App.~\ref{app:MCMC benchmark models} for details on the non-dimensionalisation of the model system). In Fig.~\ref{fig:1D process trajectories} (b) we show the maximiser of the path-probability density functional Eq.~\ref{eq:path-probability meausure in terms of path-integral} (which we call the \textit{instanton}), as well as a sample of $10$ trajectories from the TPE simulated at a temperature $\theta/\theta_0 = 0.01$. The duration of the transition paths were $T /T_0 = 2$, where $T_0$ is a reference time-scale. We computed the instanton by minimising the Onsager-Machlup action of the model system, using a Ritz method as described in Ch.~\ref{ch:Ritz methods for Freidlin-Wentzel-Graham actions}. Note that, as mentioned in the introduction, at finite temperatures the instanton must be computed using Onsager-Machlup action, as opposed to the Freidlin-Wentzell action \citep{gladrowExperimentalMeasurementRelative2021, adibStochasticActionsDiffusive2008}. At temperatures $\theta > \theta_0$, where thermal fluctuations (represented by the noise term in the Langevin equation) dominate over the potential, and we see in Fig.~\ref{fig:1D process trajectories} (a) that the sample paths transition between the two minimi several times. On the other hand, at temperatures $\theta \ll \theta_0$, where we would expect that transition events are rare, the TPE is concentrated around the instanton.
+In practice, if the algorithm was run for $M$ iterations, it is often prudent to discard some portion of the first $M_\text{B} < M$ of the samples $\{ A^{(n)} \}_{n=1}^{M}$. This is due to the fact that $A^{(0)}$ is in general not a representative sample from the target distribution $\mathbb{P}_\mathbf{X}$. We thus let the MCMC `\textit{burn in}' for $M_\text{B}$ iterations, and discard $\{ A^{(n)} \}_{n=1}^{M_\text{B}}$. In all numerical experiments in this text, we use a burn-in of $M_\text{B}/M = 0.3$.
 
-To verify that our implementation of the algorithm correctly sampled the TPE, we verified our results using a standard Euler-Maruyama integrator \citep{kloedenNumericalSolutionStochastic2011}. Using the latter, we generated samples of the TPE by collecting trajectories
+Recall that in the definition of the acceptance probability Eq.~\ref{eq:truncated pCN acceptance probability} we must either use the Onsager-Machlup or the Freidlin-Wentzell form of the relative action $\Phi$. As discussed in the introduction, for the purposes of sampling $\mathbb{P}_\mathbf{X}$ there is no difference between the two actions. In all numerical results that follows we have used the Onsager-Machlup action, where we have also verified that the Freidlin-Wentzell action lead to the same result.
+
+\begin{figure*} 
+    \centering
+     
+    \begin{subfigure}[b]{0.47\textwidth}  
+        \centering 
+        \includegraphics[width=\textwidth]{figs_part1/mcmc/1D_process_trajectories}
+        \caption[]%
+        {}    
+        \label{fig:1D process trajectories hot}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figs_part1/mcmc/1D_process_cold_trajectories}
+        \caption[]%
+        {}    
+        \label{fig:1D process trajectories cold}
+    \end{subfigure}   
+    
+    \vskip\baselineskip    
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figs_part1/mcmc/1D_process_potential}
+        \caption[]%
+        {}    
+        \label{fig:1D process potential} 
+    \end{subfigure}
+    
+    \caption[ ]
+    {\small Simulation of the $1$-dimensional antisymmetric double-well system (defined in App.~\ref{app:The asymmetric double-well system}) using $M=10^8$ iterations of the pCN algorithm with burn-in $M_\text{B}/M = 0.3$. We sampled transition paths of duration $T/T_0 = 2$ between the minima at $x_0/L_0 = -1$ (red dashed lines) to the minima at $x_0/L_0 = 1$ (blue dashed lines), and with mode truncation $N = 200(T/T_0)$. (a) Shows $50$ transition paths at temperature $\theta / \theta_0 = 2$. (b) Shows $10$ transition paths at temperature $\theta / \theta_0$, and the instanton (green line). (c) The antisymmetric double-well potential, with minimi at $x/L_0 = -1$ (hollow red circle) and $x/L_0=1$ (filled blue circle). See App.~\ref{app:The asymmetric double-well system} for its definition.}
+    \label{fig:1D process trajectories}
+\end{figure*} 
+
+Fig.~\ref{fig:1D process trajectories} shows the result of $M=10^8$ iterations of the pCN algorithm to a benchmark problem, with burn-in $M_\text{B}/M = 0.3$. We sample the TPE of a $1$-dimensional overdamped Langevin dynamics of a particle moving between the minimi of an asymmetric double-well potential. See Fig.~\ref{fig:1D process potential} for the potential energy profile of the system, and App.~\ref{app:The asymmetric double-well system} for a detailed specification of the model. Fig.~\ref{fig:1D process trajectories hot} shows a sample of $50$ trajectories from the TPE, simulated at temperature $\theta/\theta_0 = 2$, where $\theta_0$ is a reference temperature. The reference temperature $\theta_0$ is defined such that at $\theta = \theta_0$ the thermal fluctuations equal the characteristic energy scale of the confining potential energy (See App.~\ref{app:MCMC benchmark models} for details on the non-dimensionalisation of the model system). In Fig.~\ref{fig:1D process trajectories} Fig.~\ref{fig:1D process trajectories cold} we show the maximiser of the path-probability density functional Eq.~\ref{eq:path-probability meausure in terms of path-integral} (which we call the \textit{instanton}), as well as a sample of $10$ trajectories from the TPE simulated at a temperature $\theta/\theta_0 = 0.01$. The duration of the transition paths were $T /T_0 = 2$, where $T_0$ is a reference time-scale. We computed the instanton by minimising the Onsager-Machlup action of the model system, using a Ritz method as described in Ch.~\ref{ch:Ritz methods for Freidlin-Wentzel-Graham actions}. Note that, as mentioned in the introduction, at finite temperatures the instanton must be computed using Onsager-Machlup action, as opposed to the Freidlin-Wentzell action \citep{gladrowExperimentalMeasurementRelative2021, adibStochasticActionsDiffusive2008}. At temperatures $\theta > \theta_0$, where thermal fluctuations (represented by the noise term in the Langevin equation) dominate over the potential, and we see in Fig.~\ref{fig:1D process trajectories} (a) that the sample paths transition between the two minimi several times. On the other hand, at temperatures $\theta \ll \theta_0$, where we would expect that transition events are rare, the TPE is concentrated around the instanton.
+
+
+\begin{figure}[t]
+\includegraphics[width=0.98\textwidth]{figs_part1/mcmc/1D_process_MCMC_vs_Langevin}
+\centering \caption{Simulation of the $1$-dimensional antisymmetric double-well system using both the pCN and the Euler-Maruyama methods. The resulting samples were projected onto the KKL basis of the Brownian bridge process, and the figure shows the marginalised distribution over the coefficients $A_k$ of the sampled TPE. In each sub-plot, the green line are the distributions of a centred normal with unit-variance $Z_k \sim \mathcal{N}(0,1)$, which corresponds to the modes of the Brownian bridge process. The parameters of the simulation are the same as those of Fig.~\ref{fig:1D process trajectories} (a).}
+\label{fig:1D process MCMC vs Euler-Maruyama} 
+\end{figure}
+
+To verify that our implementation of the algorithm correctly sampled the TPE, we verified our results using a standard Euler-Maruyama integrator \citep{kloedenNumericalSolutionStochastic2011}. Using the latter, we generated samples $10^6$ of the TPE by collecting trajectories
 with end-points within a small interval $\tilde{x}(T)\in[1-\epsilon,1+\epsilon]$
-around the right minima, where $\epsilon=10^{-2}$. We then projected the paths onto the KKL basis of the Brownian bridge process, and compared the sample with the result of the pCN method. The results are showed in Fig.~\ref{fig:1D process MCMC vs Euler-Maruyama}, where we plot the marginalised histograms of the mode distributions against each other.
+around the right minima, where $\epsilon=10^{-2}$. We used a temperature $\theta / \theta_0$ as in Fig.~\ref{fig:1D process trajectories hot}, as it is unfeasible to use the Euler-Maruyama algorithm to sample the TPE for temperature regimes where transition events are rare. We projected the resulting sample paths onto the KKL basis of the Brownian bridge process, and compared the sample with the result of the pCN method. The results are showed in Fig.~\ref{fig:1D process MCMC vs Euler-Maruyama}, where we plot the marginalised histograms of the mode distributions against each other.
 
 \subsection{Mode-space band structure} \label{sec:Mode-space band structure}
 
 \begin{figure}[t]
-\includegraphics[width=0.98\textwidth]{figs_part1/mcmc/1D_process_covariances}
-\centering \caption{The absolute normalised covariances $\rho_{kl} = \langle A_k A_l \rangle / \sqrt{ \langle A_k^2 \rangle \langle A_k^2 \rangle }$ of the modes of the transition paths of the $1$-dimensional antisymmetric double-well system. We sampled the TPE using the pCN algorithm, with parameters $T/T_0 = 2$, $\theta/\theta_0 = 2$ and $N = 200(T/T_0)$. We see that the modes de-correlate for high mode numbers, and are approximatively uncorrelated beyond the $k \in [0, 30]$ quadrant.}
+\includegraphics[width=0.7\textwidth]{figs_part1/mcmc/1D_process_covariances}
+\centering \caption{The absolute normalised covariances $\rho_{kl} = \langle A_k A_l \rangle / \sqrt{ \langle A_k^2 \rangle \langle A_k^2 \rangle }$ of the first $100$ modes of the transition paths of the $1$-dimensional antisymmetric double-well system. As $\rho_{kk} = 1,\ k=1,\dots,N$ by definition, we have excluded the diagonal from the plot. We sampled the TPE using the pCN algorithm, with parameters $T/T_0 = 2$, $\theta/\theta_0 = 2$ and $N = 200(T/T_0)$. We see that there is a band-separation between the low and high mode-numbers, where modes beyond the the $k \in [0, 30]$ quadrant are largely uncorrelated.}
 \label{fig:1D process covariance} 
 \end{figure}
 
-Beyond the con
+In Fig.~\ref{fig:1D process MCMC vs Euler-Maruyama} we see that the marginalised distributions of the modes of stochastic trajectories in the TPE (blue lines) increasingly coincide with normal distributions of unit variance (green lines) at higher mode orders. The latter corresponds to the modes of the Brownian bridge process, as was established in Sec.~\ref{sec:Kosambi-Karhunen-Loeve expansions of stochastic trajectories}. Fig.~\ref{fig:1D process covariance} shows the absolute normalised covariances $\rho_{kl} = \langle A_k A_l \rangle / \sqrt{ \langle A_k^2 \rangle \langle A_k^2 \rangle }$ of the modes. Here we see the modes also rapidly decorrelate, and are numerically negligible beyond the first $30$ modes. Fig.~\ref{fig:1D process MCMC vs Euler-Maruyama} and Fig.~\ref{fig:1D process covariance} are a first indication that modes of transition paths are approximately distributed like a Brownian bridge process for large mode orders $k$. As we discuss and show below, this holds for \textit{any} It\^{o} diffusion with additive noise, regardless of the drift-field $\mathbf{b}$.
 
-The marginalised modes of the 
+\begin{figure}[t]
+\includegraphics[width=0.95\textwidth]{figs_part1/mcmc/rough_path_decomposition}
+\centering \caption{}
+\label{fig:rough path decomposition} 
+\end{figure}
 
-Fig.~\ref{fig:1D process MCMC vs Euler-Maruyama}
+The law $\mathbb{P}_\mathbf{X}$ over the TPE of an It\^{o} diffusion can be seen as a non-linear transformation of $\mathbb{P}_\mathbf{B}$, the law of the Brownian bridge process. They are related via Eq.~\ref{eq:true path-space probability of TPE} in terms of the density Eq.~\ref{eq:radon-nikodym derivative of Px}, where the latter is an expression entirely in terms of the drift-field. Therefore, the difference in statistical `information' contained in $\mathbb{P}_\mathbf{X}$ relative to $\mathbb{P}_\mathbf{B}$ is exactly the drift-field $\mathbf{b}$. 
 
-In the following we expand an unpinned Langevin processes of the form in Eq. \ref{eq:Ito equation} in the KKL basis of its underlying Brownian motion. We see that, regardless of the drift and the system parameters, the the distribution of the path modes start to decouple and converges onto that of the Brownian process for large $N$.
+Furthermore, the difference in distribution between $\mathbb{P}_\mathbf{X}$ and $\mathbb{P}_\mathbf{B}$ is located in the lower-end of the mode-spectrum. For the $1$-dimensional benchmark problem, in Fig.~\ref{fig:1D process covariance} we can see a division in mode space between a low-frequency and high-frequency band, where the division between the two bands can be conservatively assigned at around $k_| = 40$. The low-frequency band thus correspond to the first $k_|$ modes in the expansion Eq.~\ref{eq:KKL expansion of transition paths}, and the high-frequency band correspond to all modes $k > k_|$. We can consider the low-frequency modes the `smooth' and the high-frequency modes the `rough' parts of a stochastic trajectory, as visualised in Fig.~\ref{fig:rough path decomposition}. In the dynamics of an It\^{o} diffusion Eq.~\ref{eq:ito diffusion equation}, the stochastic term $\sigma d\mathbf{W}$ dominates over deterministic drift-field $\mathbf{b}$ at short-time scales. In other words, $\mathbf{b}$ only affects the system on long time-scales. Therefore we would intuit that stochastic realisations $\mathbf{X}$, of the It\^{o} diffusion equation, look like they are undergoing drift-less free diffusion as we `zoom in' on the trajectory. Therefore, if $\mathbf{b}$ is smooth, we would expect that $\mathbb{P}_\mathbf{X}$ and $\mathbb{P}_\mathbf{B}$ only behave differently in the `smooth' low-frequency band, and behave identically in `rough' high-frequency band. Further numerical evidence of the band-separation is further provided in Sec.~\ref{sec:Mode-dependent step-sizes} and in later sections in Fig. \ref{fig:switch modes covariance} and Fig. \ref{fig:switch modes marginalised}, in addition to the results already discussed for the $1$-dimensional antisymmetric double-well system.
 
-We start with the Stratonovich integral solution of (\ref{eq:Ito equation})
-\begin{equation} \label{eq:Stratonovich integral solution}
-X_t = \int_0^t dt' \gamma^{-1} F(X_{t'}) + \int_0^t dB_{t'}
+Statements analogous to the above would apply if we instead considered the spectrum of the law of an unpinned It\^{o} diffusion, with sample space $C_{\mathbf{x}_0}^0([0,T])$, the set of stochastic paths starting at $\mathbf{x}_0$ with open end-point conditions at $t=T$. In that case, using identical arguments, we would find that the spectrum of the $\mathbb{P}_\mathbf{X}$ would resemble $\mathbb{P}_\mathbf{W}$ in the high-frequency band, where the latter is the law of the Wiener process. Furthermore, below we will provide an analytical argument.
+
+In the following we expand a unpinned Langevin processes of the form Eq. \ref{eq:ito diffusion equation} in the KKL basis of the Wiener process $\mathbf{W}$. For simplicity we only consider the $1$-dimensional case, but the results below readily generalises to higher dimensional processes. The KKL expansion of the $1$-dimensional Wiener process is
+\begin{equation} \label{eq:wiener kkl expansion}
+	W(t) = \mathbf{x}_0 +\sqrt{2 D} \sum_{k=1}^\infty Z_k \sqrt{\nu_k} \chi_k(t)
 \end{equation}
-where the second term is the Stratonovich integral. Note that, as the noise is additive, the It\^{o} integral would be equivalent. For simplicity we set $X_0 = 0$, wth no loss of generality. We also only consider the one-dimensional case, but the results readily generalises to higher dimensions. We now expand the Brownian motion in its KKL expansion Eq. \ref{eq:Brownian process KKL basis} and truncate the sum up to order $N$
+where $Z_k,\ k =1,\dots,\infty$ are independent $d$-dimensional normal random variables distributed as $\mathbf{Z}_k \sim \mathcal{N}(0, \mathbbm{1}_d)$, and where
 \begin{subequations}
-\begin{align}
-b^N(t) & = \sqrt{\frac{2}{\beta \gamma}} \sum_{k=1}^N Z_k \sqrt{\lambda_k} \phi_k(t)
-\end{align}
+	\begin{align}
+		\chi_k(t) & = \sqrt{\frac{2}{T}} \sin (t / \sqrt{\nu_k}) \\
+		\nu_k & = \frac{T^2}{\pi^2 \left(k - \frac{1}{2} \right)^2},
+	\end{align}
 \end{subequations}
-and approximate (\ref{eq:Stratonovich integral solution}) as
-\begin{equation} \label{eq:Approximate Stratonovich integral solution}
-\begin{aligned} 
-x^N(t) =\ & \int_0^t dt' \gamma^{-1} F(x^N(t'))  \\
-& + \int_0^t db^N(t').
-\end{aligned} 
+and where $\chi_k(t)$ satisfy $\langle \chi_k, \chi_l \rangle = \delta_{kl}$, where we have defined
+\begin{equation}
+	\langle f, g \rangle = \int_0^T f(t) g(t) dt.
 \end{equation}
-where the second term is a Riemann-Stieltjes integral and $0 \leq t \leq T_f$. By the Wong-Zakai theorem we have that the sequence of solutions to (\ref{eq:Approximate Stratonovich integral solution}) converges uniformly in probability to the solution of (\ref{eq:Stratonovich integral solution}) as $N\to\infty$ \citep{wongConvergenceOrdinaryIntegrals1965, twardowskaWongZakaiApproximationsStochastic1996, frizMultidimensionalStochasticProcesses2010}.
+for any two functions $f, g : [0,T] \to \mathbb{R}$. We begin with the integral form of the It\^{o} diffusion equation Eq.~\ref{eq:integral ito equation}
+\begin{equation} \label{eq:integral ito equation 2}
+X(t) = \int_0^t b(X(t')) dt' + \sqrt{2D} \int_0^{t} d W(t')
+\end{equation}
+where $b : \mathbb{R} \to \mathbb{R}$ is the drift-field, $t \in [0, T]$ and the second term of Eq.~\ref{eq:integral ito equation 2} is an It\^{o} integral. We assume, without loss of generality, that $X(0) = 0$. We now expand the Wiener process in its KKL expansion, and truncate the sum up to order $N$ to approximate Eq.~\ref{eq:integral ito equation 2} as
+\begin{equation} \label{eq:Approximate ito integral solution}
+X^N(t) = \int_0^t b(X^N(t')) dt' + \int_0^t dW^N(t')
+\end{equation}
+where $W^N$ is the truncation of Eq.~\ref{eq:wiener kkl expansion}, $X^N$ is the truncated stochastic process, and where the second term in Eq.~\ref{eq:Approximate ito integral solution} is now a Riemann-Stieltjes integral. It is a theorem (known as the \textit{Wong-Zakai theorem}) \citep{wongConvergenceOrdinaryIntegrals1965, twardowskaWongZakaiApproximationsStochastic1996, frizMultidimensionalStochasticProcesses2010} that as $N\to\infty$ the sequence of solutions to Eq.~\ref{eq:Approximate ito integral solution} converges uniformly in probability to the solution of Eq.~\ref{eq:integral ito equation 2}\footnote{Note that the Wong-Zakai theorem holds for the Stratonovich formulation of Eq.~\ref{eq:integral ito equation 2}. However, for additive noise the It\^{o} and Stratonovich formulations are equivalent.}.
 
-As $x^N(t)$ is smooth for finite $N$, we can take the derivative
-\begin{equation} \label{eq:mode Langevin}
-\dot{x}^N(t) = \gamma^{-1} F(x^N(t)) + \dot{b}^N(t).
+
+We we will expand $X^N$ as
+\begin{equation}
+	X^N(t) = \sqrt{2D} \sum_{k=1}^N A_k \sqrt{\nu_k} \chi_k(t).
 \end{equation}
-We now expand $x^N(t)$ and $b^N(t)$ in the truncated KKL basis of the latter
+As $X^N(t)$ and $W^N(t)$ are smooth for finite $N$, we can take the derivative of Eq.~\ref{eq:Approximate ito integral solution} to find
+\begin{equation} \label{eq:approximate ito equation}
+	\dot{X}^N(t) = b(X^N(t)) + \dot{W}^N(t).
+\end{equation}
+We can expand the $\dot{X}^N(t)$ and $\dot{W}^N(t)$ as
 \begin{subequations}
-\begin{align}
-x^N(t) & = \sqrt{\frac{2}{\beta \gamma}} \sum_{k=1}^N A_k \sqrt{\lambda_k} \phi_k(t) \\
-\dot{x}^N(t) & = \sqrt{\frac{2}{\beta \gamma}} \sum_{k=1}^N A_k \psi_k(t) \\
-\dot{b}^N(t) & = \sqrt{\frac{2}{\beta \gamma}} \sum_{k=1}^N Z_k \psi_k(t) \\
-\psi_k(t) & = \sqrt{\lambda_k} \dot{\phi}_k(t) = \sqrt{2/T_f} \cos(t / \sqrt{\lambda_k}),
-\end{align}
+	\begin{align}
+		\dot{X}^N(t) & = \sqrt{2 D} \sum_{k=1}^N A_k \psi_k(t) \\
+		\dot{W}^N(t) & = \sqrt{2 D} \sum_{k=1}^N Z_k \psi_k(t)
+	\end{align}
 \end{subequations}
-substitute them into Eq. \ref{eq:mode Langevin}, and use the orthogonality of $\{\psi_k(t)\}_{k=1}^{\infty}$ to get
-\begin{equation} \label{eq:Mode relation}
-\begin{aligned}
-A_k = \sqrt{\beta} F_k + Z_k, \quad & k=1,2, \dots, N
-\end{aligned}
-\end{equation}
 where
-\begin{equation} \label{eq:Force modes}
-\begin{aligned}
-F_k & = \frac{1}{\sqrt{2}} \int_0^{T_f} \psi_k(t) F(X_t) dt \\
-    & = \int_0^{T_f} \cos(t/\sqrt{\lambda_k}) F(X_t) dt
-\end{aligned}
-\end{equation}
-is the force along the path projected onto $\{\psi_k\}_{k=1}^\infty$. This is a non-linear equation for the path coefficients $A_k$ in terms of $Z_k$. If we take $N \to \infty$, Eq. \ref{eq:Mode relation} is fully equivalent to the Langevin equation Eq. \ref{eq:Langevin equation}, and in principle the path ensemble could be sampled directly by solving the former. For simple systems like the Ohrnstein-Uhlenbeck process it can be done analytically. The feasability of using Eq. \ref{eq:Mode relation} as a sampling method is a question for another study. {\color{red} One would technically have to prove that (\ref{eq:Mode relation}) is valid as $N \to \infty$. Referees might complain here. We should perhaps add some qualifications about the rigour.}
-
-Any finite choice of the number of modes $N$ will lead to truncation errors, and for a general system we do not explicitly know the requisite $N$ required. Yet due to the convergence of Fourier modes, it is clear that the force modes decay at least as fast as
 \begin{equation}
-|F_k| \leq \frac{C(\beta, \gamma, T_f)}{k}
+	\psi_k(t) = \sqrt{\nu_k} \dot{\chi}_k(t) = \sqrt{\frac{2}{T}} \cos(t / \sqrt{\lambda_k}).
 \end{equation}
-where $C(\beta, \gamma)$ is some function of the system parameters. As $Z_k$ are always of order 1, we would expect that the statistics of modes higher than some cutoff $k > N_B$ resemble very closely to that of Brownian motion
+As $\langle \psi_k, \psi_l \rangle = \delta_{kl}$, we have that $\psi_k$ forms an orthonormal basis over the space of paths. We can therefore expand the drift-field as
 \begin{equation}
-A_k \approx Z_k, \quad k > N_B.
+	b(X^N(t)) = \sqrt{2 D} \sum_{k=1}^N b_k \psi_k(t)
 \end{equation}
-This cutoff point will be a function of the system parameters $N_B = N_B(\beta, \gamma, T_f)$. We thus see that any Langevin process with additive noise must collapse onto its underlying Brownian motion for high modes. On a numerical level, this means that there is always only a finite number $N_B$ of physically relevant modes.
+where $b_k = \langle \psi_k, b(X^N) \rangle / \sqrt{2 D}$. From Eq.~\ref{eq:approximate ito equation}, and the orthonormality of $\psi_k$, we get
+\begin{equation} \label{eq:mode langevin}
+	A_k = b_k + Z_k,
+\end{equation}
+where $k = 1,\dots, N$. This is a spectral version of the It\^{o} diffusion equation, where we have projected Eq.~\ref{eq:integral ito equation 2} onto the truncated KKL spectrum of the Wiener process. Here the mode coefficients $A_k$ are random variables expressed in terms of the drift modes $b_k$ and the modes of the Wiener process $Z_k$. As $b_k = \langle \psi_k, b(X^N) \rangle  / \sqrt{2 D}$, we have that $b_k = b_k(A)$ is in general a non-linear equation in terms of the mode coefficients $A = (A_1, \dots, A_N)$. We note that Eq.~\ref{eq:mode langevin} can in principle be used to sample the It\^{o} diffusion equation, by drawing $N$ random numbers $Z_k \sim \mathcal{N}(0,1)$ and then solving Eq.~\ref{eq:mode langevin} for $A$.
 
-Note that the rate of the decay of the force modes is also regulated by a factor of $\sqrt{\beta}$ in Eq. \ref{eq:Mode relation}, which would indicate that a smaller number of modes are needed in general for higher temperatures.
-
-Whilst the above results apply only to unpinned processes, similar convergence behaviour was found numerically for pinned processes, where paths were expanded using the Brownian bridge KKL basis. These results are depicted in figures \ref{fig:double-well path mode convergence} and \ref{fig:double-well force mode convergence}.
-
-{\color{red} TODO: Scaling relation}
-
-\begin{comment}
-In terms of MCMC sampling, this means that the target measure $\mu$ increasingly looks like the Gaussian reference measure $\mu_0$ in the high frequency modes.
-
-The suitability of the Brownian bridge KKL basis extends beyond computational convenience. Especially in noise-dominated regimes {\color{red} Need to rephrase this. The pathological case is if it is not noise-dominated.} one can see Bridge Langevin processes as perturbations away from the Brownian bridge, where the perturbation is the drift $F(x)$. In such a regime any system-specific information would only be contained within the distributions of the lowest modes of the path ensemble. This claim will be supported in subsequent sections with both numerical and analytical results.
-\end{comment}
-
+Any finite choice of the number of modes $N$ will lead to truncation errors, but for increasing $N$ Eq.~\ref{eq:mode langevin} will probabilistically convergence to the true infinite-dimensional distribution. For a given $X^N$, $b_k$ can be seen as the Fourier coefficients of $b$. Now, using the known convergence-properties of Fourier expansions, we have that
+\begin{equation}
+	|b_k| \leq \frac{C(D, T)}{k}
+\end{equation}
+where $C(D, T)$ is some function of the system parameters. As $Z_k$ is always of order $1$, Eq.~\ref{eq:mode langevin} tells us that
+\begin{equation}
+	A_k \approx Z_k
+\end{equation}
+for $k > k_|$ for some value of $k_|$, and sufficiently large $N > k_|$. We thus see that for a given system, there are always only a finite number of physically relevant modes distinct from free diffusion dynamics.  In general $k_|$ be dependent on the drift-field $b$, and will be an increasing function of the diffusivity $D$ and duration $T$. 
 
 \subsection{Mode-dependent step-sizes} \label{sec:Mode-dependent step-sizes}
 
+\begin{figure}[t]
+\includegraphics[width=0.8\textwidth]{figs_part1/mcmc/1D_process_acceptance_rate}
+\centering \caption{The modal acceptance rates $r^\text{acc}_k$ (red line) for the $1$-dimensional asymmetric double-well system, with system parameters identical to those in Fig.~\ref{fig:1D process trajectories hot}}
+\label{fig:1D process acceptance rate} 
+\end{figure}
 
+The band-structure of the mode-spectrum of It\^{o} processes can potentially be exploited to improve the sampling algorithm. Here, as a simple first attempt, we will use the band-structure to adapt the step-sizes in the pCN algorithm for each individual mode. To construct an adapted step-size matrix $\kappa_{ik}$, we need to first have a method by which to estimate the extent to which each mode is distributed like a Gaussian. Note that if $\kappa_{ik} = 1$ for a given $i,k$, then the proposal Eq.~\ref{eq:pCN proposal numerical algo} at each iteration is an independent random sample from $\mathcal{N}(0,1)$.
+
+Consider a modified pCN algorithm that, at each iteration step $n$, only updates a single mode $A_{ik}$ at a time. The algorithm updates the mode in sequence, such that after $d N$ iterations all of the modes $A_{ik},\ i=1,\dots,d,\ k=1,\dots,N$ will have been updated once. Let $r_{ik}$ be the \textit{modal acceptance rate} of the iterations of the mode $A_{ik}$, which is the ratio of accepted proposals to the number of iterations $M/(dN)$, where $M$ is the number of iterations of the whole algorithm. Similarly, let $r$ be the acceptance rate of all modes in the regular pCN algorithm. Figure ~\ref{fig:1D process acceptance rate} plots the modal acceptance rates (blue line) for the $1$-dimensional asymmetric double-well system, with system parameters identical to those in Fig.~\ref{fig:1D process trajectories hot}, mode truncation $N = 1000$ and iterations $M = 1000N$. We see that $r_k \approx 1$ for modes $k \geq 50$. Therefore we may consider a sigmoidal step-size profile
+\begin{equation} \label{eq:kappa profile}
+	\kappa_k = \kappa_\text{min} + (\kappa_\text{max} - \kappa_\text{min}) \left( 1 + \exp\left( - \sigma_\kappa ( k - \mu_\kappa) \right) \right)
+\end{equation}
+with $\kappa_\text{min} = 0.4$, $\kappa_\text{max}=1$, $\mu_k = 50$ and $\sigma_\kappa = 0.05$, which is plotted in Fig.~\ref{fig:1D process acceptance rate} (blue line). The base-line step-size $\kappa_\text{min}$ was computed by finding an approximate constant $\kappa_{ik} = \bar{\kappa}$ that yielded an acceptance rate $r \approx 0.3$ in the regular pCN algorithm.
+
+\citep{goodmanEnsembleSamplersAffine2010}
 
 \subsection{Generalised end-point conditions}
 
@@ -1863,7 +1893,7 @@ Perhaps you should first just present a vanilla TMC for finite dimensional distr
 of the modes of the sample paths in the KKL basis, found by sampling
 the system with gradient dynamics using the TMC, at $\theta/\theta_{0}=3.36$,
 $T/T_{0}=3$ and $N=200(T/T_{0})$.}
-\label{fig:mode covariance} 
+\label{fig:switch modes covariance} 
 \end{figure}
 
 \begin{figure}[t]
@@ -1872,7 +1902,7 @@ $T/T_{0}=3$ and $N=200(T/T_{0})$.}
 (blue) and the Wiener process (green) in the KKL basis, found by sampling
 the system with gradient dynamics using the TMC, at $\theta/\theta_{0}=3.36$,
 $T/T_{0}=3$ and $N=200(T/T_{0})$.}
-\label{fig:mode marginalised} 
+\label{fig:switch modes marginalised} 
 \end{figure}
 Here we describe in further detail the \emph{Teleporter MCMC }(TMC)
 algorithm used in the main text. We start with a discussion of the
@@ -1919,8 +1949,8 @@ Due to our discretisation procedure $M$ can be kept small as the
 noise dominates over the drift for high-frequency modes, which manifests
 itself as $H_{ij}^{[\alpha]}$ rapdily converging onto the precision
 matrix of the Wiener measure , $\left(H_{ij}^{W}\right)_{kl}=\frac{\beta}{4\mu}\delta_{ij}\delta_{kl}$,
-for high mode numbers $i,j$. This is demonstrated in Fig. \ref{fig:mode covariance}
-and Fig. \ref{fig:mode marginalised}.
+for high mode numbers $i,j$. This is demonstrated in Fig. \ref{fig:switch modes covariance}
+and Fig. \ref{fig:switch modes marginalised}.
 
 Using the multivariate Gaussian with precision matrix $\tilde{H}^{[\alpha]}$,
 we construct a grafted Gaussian process ${\bf W}^{[\alpha]}(t)=\mathbf{x}^{[\alpha]}(t)+\sqrt{\frac{2\mu}{\beta}}\sum_{i=1}^{\infty}\mathbf{Z}_{i}^{[\alpha]}\sqrt{\lambda_{i}}\phi_{i}(t)$
