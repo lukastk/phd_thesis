@@ -272,6 +272,16 @@
 \newcommand{\@acknowledgements}{}
 \newcommand{\acknowledgements}[1]{\renewcommand{\@acknowledgements}{#1}}
 
+% DOCVAR: declaration (The text that will be instered into the
+% declaration of the thesis.)
+\newcommand{\@declaration}{}
+\newcommand{\declaration}[1]{\renewcommand{\@declaration}{#1}}
+
+% DOCVAR: dedication (The text that will be instered into the
+% declaration of the thesis.)
+\newcommand{\@dedication}{}
+\newcommand{\dedication}[1]{\renewcommand{\@dedication}{#1}}
+
 % DOCVAR: college (The name of the thesis writer's college, which will appear
 % just below their name.)
 \newcommand{\@college}{}
@@ -501,6 +511,44 @@ This dissertation does not exceed the prescribed limit of 60\,000 words.
 \fi}
 \fi
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Declaration
+%%
+%%%%%
+
+\chapter*{Declaration}
+\thispagestyle{empty}
+\@declaration{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Dedication
+%%
+%%%%%
+
+\thispagestyle{empty}
+\@dedication{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Acknowledgements
+%%
+%%%%%
+
+\ifcam@firstyr
+% First and second yr report don't need the acknowledgements
+\else 
+{\ifcam@secondyr
+%
+\else
+\chapter*{Acknowledgements}
+\thispagestyle{empty}
+\@acknowledgements{}
+\fi}
+\fi
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -528,24 +576,6 @@ This dissertation does not exceed the prescribed limit of 60\,000 words.
 \@abstract{}
 \fi
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%% Acknowledgements
-%%
-%%%%%
-
-\ifcam@firstyr
-% First and second yr report don't need the acknowledgements
-\else 
-{\ifcam@secondyr
-%
-\else
-\chapter*{Acknowledgements}
-\thispagestyle{empty}
-\@acknowledgements{}
-\fi}
-\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%

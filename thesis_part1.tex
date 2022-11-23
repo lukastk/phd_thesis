@@ -1010,13 +1010,13 @@ and describes a multistable genetic network. In the region of configuration
 space we consider, the vector field has two fixed points one of which
 is stable and the other a saddle. The top panel of Fig. \ref{fig:genetic-switch-quasipotential}
 shows the instantons moving between these fixed points. Unlike in
-the previous examples, here the instantons move either entire with
+the previous examples, here the instantons move either entirely with
 (solid line) or entirely against (dashed line) the flow. The bottom
 panel shows the quasipotential with respect to the stable fixed point.
 The procedure to evaluate and plot it is as described above. The quasipotential
 provides a quantification of the dispersion of the coordinate about
 the stable fixed point and a measure of the non-equilibrium ``temperature''
-of this non-mechanical system. 
+on the state-space of this non-mechanical system. 
 
 \begin{figure*} 
     \centering
@@ -1297,7 +1297,7 @@ forthcoming work.
 
 \section{Introduction}
 
-In a large deviation limit, the dominant transition pathway of an Itô diffusion equation between fixed points of its drift field is given by the minimiser of the associated Freidlin-Wentzell action. Physically, this corresponds to taking a limit of vanishing noise. Although useful for many applications, as discussed in the introduction of the previous chapter, in any real system the zero-noise limit is un-physical. At finite noise, we must instead consider the whole \textit{transition path ensemble} (TPE), the set of all transition paths of a system given fixed end-points. Therefore at finite noise one can have multiple competing transition \textit{channels}, as will be a major topic in Ch.~\ref{ch:Diffusivity dependence of transition paths}.
+In a large deviation limit, the dominant transition pathway of an Itô diffusion equation between fixed points of its drift field is given by the minimiser of the associated Freidlin-Wentzell action, which is known as the instanton of the system. Physically, we found the instanton in a limit of vanishing temperature. Although useful for many applications (as discussed in the introduction of the previous chapter), in any real system the zero-temperature limit is un-physical. At any finite temperature sample realisations of the system will follow stochastic trajectories that do not necessarily concentrate around nor coincide with the instanton. There may be multiple competing transition channels (as will be a major topic in Ch.~\ref{ch:Diffusivity dependence of transition paths}), or no clearly defined transition channels whatsoever. Therefore at finite temperatures, it is of relevance to consider the \textit{transition path ensemble} (TPE), the set of all transition paths of a system given fixed end-points.
 
 Due to the fixed end-points, standard simulation methods like the Euler-Maruyama integrator \citep{kloedenNumericalSolutionStochastic2011} are often inefficient at sampling the transition path ensemble. In this chapter we will apply some recent mathematical developments in the field of infinite-dimensional \textit{Markov-Chain Monte Carlo} (MCMC) methods \citep{cotterMCMCMethodsFunctions2013, beskosMCMCMETHODSDIFFUSION2008, hairerAnalysisSPDEsArising2005, hairerAnalysisSPDEsArising2007, hairerSpectralGapsMetropolis2014},
 to sample the \textit{transition path ensemble} (TPE) of Itô diffusion equations. The resulting algorithm, known as the \textit{pCN}-algorithm, is an MCMC procedure which can evaluate probabilistic path-integrals over the space of stochastic paths. Using Kosambi-Karhunen-Lo\`eve (KKL) theory \citep{kosambiParallelismPathspaces, karhunenUeberLineareMethoden1947, loeveProbabilityTheory1977}, we develop a fast implementation of the pCN using Fast-Fourier Transforms. In Sec.~\ref{sec:Teleporter MCMC} we present the \textit{teleporter MCMC} (TMC), an extension of the pCN geared towards effectively sampling TPEs with multiple competing transition channels. 
@@ -1443,7 +1443,7 @@ Despite the fact that densities over path-spaces are ill-defined, we will contin
 
 \section{Path-space MCMC methods} \label{sec:Path-space MCMC}
 
-In this section we will discuss and apply the \textit{preconditioned Nicolson-Crank} (pCN) algorithm to sample the transition path ensemble of It\^{o} diffusions with additive noise. In Sec.~\ref{sec:The preconditioned Crank-Nicolson algorithm} we begin with an overview of Markov chain Monte Carlo methods, and proceed to reproduce the derivation of the general pCN algorithm in \citep{cotterMCMCMethodsFunctions2013, beskosMCMCMETHODSDIFFUSION2008, hairerAnalysisSPDEsArising2005, hairerAnalysisSPDEsArising2007, hairerSpectralGapsMetropolis2014}. We will frequently express probabilities in terms of fictitious path-space probability densities with respect to Lebesgue measures, as this is the predominant mathematical language used in the physics literature. The reader may refer to the references for a more rigorous approach. In Sec.~\ref{sec:Kosambi-Karhunen-Loeve expansions of stochastic trajectories} we expand stochastic paths in the Kosambi-Karhunen-Lo\`eve (KKL) basis of the Brownian bridge process, and develop a sampling algorithm using Fast-Fourier Transforms. In Sec.~\ref{sec:Mode-space band structure} we analyse the band structure of It\^{o} diffusions through the lens of the KKL basis. The treatment here will be further developed in Sec.~\ref{sec:Teleporter MCMC}, where we extend the pCN algorithm to simultaneously sample multiple transition channels.
+In this section we will discuss and apply the \textit{preconditioned Nicolson-Crank} (pCN) algorithm to sample the transition path ensemble of It\^{o} diffusions with additive noise. In Sec.~\ref{sec:The preconditioned Crank-Nicolson algorithm} we begin with an overview of Markov chain Monte Carlo methods, and proceed to reproduce the derivation of the general pCN algorithm in \citep{cotterMCMCMethodsFunctions2013, beskosMCMCMETHODSDIFFUSION2008, hairerAnalysisSPDEsArising2005, hairerAnalysisSPDEsArising2007, hairerSpectralGapsMetropolis2014}. We will frequently express probabilities in terms of fictitious path-space probability densities with respect to Lebesgue measures, as this is the predominant mathematical language used in the physics literature. The reader may refer to the references for a more rigorous approach. In Sec.~\ref{sec:Kosambi-Karhunen-Loeve expansions of stochastic trajectories} we expand stochastic paths in the Kosambi-Karhunen-Lo\`eve (KKL) basis of the Brownian bridge process, and develop a sampling algorithm using Fast-Fourier Transforms. In Sec.~\ref{sec:Mode-space band structure} we analyse the band structure of It\^{o} diffusions through the lens of the KKL basis, and in Sec.~\ref{sec:Mode-dependent step-sizes} we exploit the band-structure to improve the autocorrelation times of the MCMC algorithm. The results of this section will lead up to and be further developed in Sec.~\ref{sec:Teleporter MCMC}, where we extend the pCN algorithm to simultaneously sample multiple transition channels. 
 
 \subsection{The preconditioned Crank-Nicolson algorithm} \label{sec:The preconditioned Crank-Nicolson algorithm}
  
@@ -1463,7 +1463,7 @@ for any measurable subset $A \subset C$. We furthermore assume that $\mathbb{P}_
 where $S_0[\mathbf{x}]$ is the Gaussian action of $P_0[\mathbf{x}]$ and $\Phi[\mathbf{x}]$ is the relative action, which satisfies $\frac{d \mathbb{P}}{d \mathbb{P}_0} \propto \exp( - \Phi[\mathbf{x}] )$. In subsequent subsections we will apply the MCMC method to sample the probability measure $\mathbb{P}_\mathbf{X}$ over the sample space $E_{\mathbf{x}_0}^{\mathbf{x}_T}([0,T])$, which has a density with respect to the Gaussian measure $\mathbb{P}_\mathbf{B}$.
 
 The aim of the MCMC is to generate samples from the target measure $\mathbb{P}$. In applications, this is often for the purpose of estimating expectations like Eq.~\ref{eq:expectation of observable}. Let $\mathbf{x}^{(n)},\ n=1,\dots,M$ be $M$ samples from the target measure $\mathbb{P}$. Then expectations can be approximated as
-\begin{equation}
+\begin{equation} \label{eq:MCMC expectation}
 	\langle \mathcal{O}[\mathbf{x}] \rangle = \int_C \mathcal{O}[\mathbf{x}] \frac{d \mathbb{P}}{d \mathbb{P}_0}[\mathbf{x}] d \mathbb{P}_0[\mathbf{x}^{(n)}] \approx \frac{1}{M} \sum_{n=1}^{M} \mathcal{O}[\mathbf{x}].
 \end{equation}
 for any observable $\mathcal{O}[\mathbf{x}]$. In the limit $M \to \infty$, the right-hand side will converge to the true expectation.
@@ -1544,7 +1544,7 @@ The root cause of the divergence of the convergence-times of the RMW under mesh 
 \begin{equation} \label{eq:absolute cont of forward and backward measures}
 	\int_{U \times U'} V[\mathbf{x}, \mathbf{y}] \mathcal{D}\mathbf{x} \mathcal{D}\mathbf{y} = 0 \Rightarrow  \int_{A \times A'} V^T[\mathbf{x}, \mathbf{y}] \mathcal{D}\mathbf{x} \mathcal{D}\mathbf{y} = 0
 \end{equation}
-where $U \times U' \subset C \times C$. However, if we substitue Eq.~\ref{eq:RMW proposal rule} into Eq.~\ref{eq:absolute cont of forward and backward measures}, using Eq.~\ref{eq:forward and backward measures}, we find that absolute continuity fails. Due to the symmetry of the RMW proposal kernel it is clear that Eq.~\ref{eq:absolute cont of forward and backward measures} does hold for arbitrary $U \times U'$.
+where $U \times U' \subset C \times C$. However, if we substitue Eq.~\ref{eq:RMW transition kernel} into Eq.~\ref{eq:absolute cont of forward and backward measures}, using Eq.~\ref{eq:forward and backward measures}, we find that absolute continuity fails. Due to the symmetry of the RMW proposal kernel it is clear that Eq.~\ref{eq:absolute cont of forward and backward measures} does hold for arbitrary $U \times U'$.
 
 Recent work by \citep{beskosMCMCMETHODSDIFFUSION2008, cotterMCMCMethodsFunctions2013, hairerAnalysisSPDEsArising2005, hairerAnalysisSPDEsArising2007} have developed and formalised the theory of MCMC methods so that protocols can remain well-defined on infinite-dimensional functional sample spaces. One of the main results of this work was the \textit{preconditioned Crank-Nicolson} (pCN) algorithm. In contrast to the RMW, and most other common MCMC protocols, the pCN is defined directly on the space of functions. This guarantees that, upon discretisation, the algorithm remains well-defined under mesh refinement $N \to \infty$.
 
@@ -1672,6 +1672,28 @@ We can summarise the pCN sampling algorithm projected onto the truncated Brownia
 In practice, if the algorithm was run for $M$ iterations, it is often prudent to discard some portion of the first $M_\text{B} < M$ of the samples $\{ A^{(n)} \}_{n=1}^{M}$. This is due to the fact that $A^{(0)}$ is in general not a representative sample from the target distribution $\mathbb{P}_\mathbf{X}$. We thus let the MCMC `\textit{burn in}' for $M_\text{B}$ iterations, and discard $\{ A^{(n)} \}_{n=1}^{M_\text{B}}$. In all numerical experiments in this text, we use a burn-in of $M_\text{B}/M = 0.3$.
 
 Recall that in the definition of the acceptance probability Eq.~\ref{eq:truncated pCN acceptance probability} we must either use the Onsager-Machlup or the Freidlin-Wentzell form of the relative action $\Phi$. As discussed in the introduction, for the purposes of sampling $\mathbb{P}_\mathbf{X}$ there is no difference between the two actions. In all numerical results that follows we have used the Onsager-Machlup action, where we have also verified that the Freidlin-Wentzell action lead to the same result.
+
+The evaluation of the acceptance probability $A_\text{pCN}$ involves the calculation of the integral Eq.~\ref{eq:Phi evaluated on X}, which necessitates that we evaluate the expansion Eq.~\ref{eq:KKL expansion of transition paths} of truncated sample paths $\mathbf{X}^N(t)$ and their derivatives $\dot{\mathbf{X}}^N(t)$. Let $X^N_{ik} \equiv X_i^N( \Delta t k )$ for $k = 0,\dots,N+1$, where $\Delta t = \frac{T}{N+1}$. Similarly, let $\dot{X}^N_{ik} \equiv \dot{X}_i^N( \Delta t k )$ for $k = 0,\dots,N+1$. Then Eq.~\ref{eq:Phi evaluated on X} can be approximated using a trapezoidal rule. If done naively, evaluating all $X^N_{ik}$ is an operation that scales as $O(N^2)$. However, we can exploit the fact that Eq.~\ref{eq:KKL expansion of transition paths} is a similar to a discrete Fourier transform of the mode coefficients $A_{ik}$.
+
+Let $\text{DST}_\text{I}$ and $\text{DCT}_\text{I}$ be the \textit{Discrete Sine Transform of type I} and the \textit{Discrete Cosine Transform of type I} respectively, as defined in \citep{makhoulFastCosineTransform1980, ahmedDiscreteCosineTransform1974}. Let $\mathbf{c} \in \mathbb{R}^{N+2}$ be a vector, and we denote its components as $c_k,\ k=0,\dots, N+1$. The result of the Discrete Sine Transform is then a vector $\text{DST}_\text{I}(\mathbf{c}) \in \mathbb{R}^{N+2}$, and we denote its components as $\text{DST}_\text{I}(\mathbf{c})_k,\ k=0, \dots, N+1$. Let the equivalent hold for $\text{DCT}_\text{I}$. It is then possible to show that
+\begin{subequations} \label{eq:KKL expansion FFT}
+	\begin{align}
+	X_{ik} & = \bar{x}_{ik} + \text{DST}_\text{I} ( \mathbf{c}^i )_{k-1}, & k=1,\dots,N \\
+	X_{ik} & = \bar{x}_{ik}, & k=0, N+1 \\
+	\dot{X}_{ik} & = \text{DCT}_\text{I} ( \mathbf{d}^i )_k, & k=0,\dots,N+1
+	\end{align}
+\end{subequations}
+where $\bar{x}_{ik} = (x_0)_i + ( (x_T)_i - (x_0)_i) \frac{ k \Delta t}{T}$, and $\mathbf{c}^i$ and $\mathbf{d}^i$ are defined as
+\begin{subequations}
+	\begin{align}
+	c^i_0 & = c^i_{N+1} = 0 \\
+	c^i_k & = \sqrt{\frac{T}{2}} \frac{1}{\pi k} A_{i(k-1)}, & k =0,\dots,N-1 \\
+	d^i_0 & = \frac{1}{T} ( \bar{x}_{i(N+1)} - \bar{x}_{i0} ), \quad d^i_{N+1} = 0 \\
+	d^i_k & = \sqrt{\frac{1}{2 T}} A_{ik}, & k=2,\dots,N 
+	\end{align}
+\end{subequations}
+As the $\text{DST}_\text{I}$ and $\text{DCT}_\text{I}$ can be computed efficiently using Fast-Fourier Transforms, Eq.~\ref{eq:KKL expansion FFT} enables us to reconstruct transition paths from their coefficients with a time-complexity of $O(N \log N)$. 
+
 
 \begin{figure*} 
     \centering
@@ -1809,8 +1831,8 @@ for $k > k_|$ for some value of $k_|$, and sufficiently large $N > k_|$. We thus
 \subsection{Mode-dependent step-sizes} \label{sec:Mode-dependent step-sizes}
 
 \begin{figure}[t]
-\includegraphics[width=0.8\textwidth]{figs_part1/mcmc/1D_process_acceptance_rate}
-\centering \caption{The modal acceptance rates $r^\text{acc}_k$ (red line) for the $1$-dimensional asymmetric double-well system, with system parameters identical to those in Fig.~\ref{fig:1D process trajectories hot}}
+\includegraphics[width=0.9\textwidth]{figs_part1/mcmc/1D_process_acceptance_rate}
+\centering \caption{ (Red line) The modal acceptance rates $r^\text{acc}_k$  for the $1$-dimensional asymmetric double-well system, with system parameters identical to those in Fig.~\ref{fig:1D process trajectories hot}. (Blue line) A sigmoidal step-size profile $\kappa_k$.}
 \label{fig:1D process acceptance rate} 
 \end{figure}
 
@@ -1818,13 +1840,29 @@ The band-structure of the mode-spectrum of It\^{o} processes can potentially be 
 
 Consider a modified pCN algorithm that, at each iteration step $n$, only updates a single mode $A_{ik}$ at a time. The algorithm updates the mode in sequence, such that after $d N$ iterations all of the modes $A_{ik},\ i=1,\dots,d,\ k=1,\dots,N$ will have been updated once. Let $r_{ik}$ be the \textit{modal acceptance rate} of the iterations of the mode $A_{ik}$, which is the ratio of accepted proposals to the number of iterations $M/(dN)$, where $M$ is the number of iterations of the whole algorithm. Similarly, let $r$ be the acceptance rate of all modes in the regular pCN algorithm. Figure ~\ref{fig:1D process acceptance rate} plots the modal acceptance rates (blue line) for the $1$-dimensional asymmetric double-well system, with system parameters identical to those in Fig.~\ref{fig:1D process trajectories hot}, mode truncation $N = 1000$ and iterations $M = 1000N$. We see that $r_k \approx 1$ for modes $k \geq 50$. Therefore we may consider a sigmoidal step-size profile
 \begin{equation} \label{eq:kappa profile}
-	\kappa_k = \kappa_\text{min} + (\kappa_\text{max} - \kappa_\text{min}) \left( 1 + \exp\left( - \sigma_\kappa ( k - \mu_\kappa) \right) \right)
+	\kappa_k = \kappa_\text{min} + \frac{\kappa_\text{max} - \kappa_\text{min}}{1 + \exp\left( - \sigma_\kappa ( k - k_|) \right)}
 \end{equation}
-with $\kappa_\text{min} = 0.4$, $\kappa_\text{max}=1$, $\mu_k = 50$ and $\sigma_\kappa = 0.05$, which is plotted in Fig.~\ref{fig:1D process acceptance rate} (blue line). The base-line step-size $\kappa_\text{min}$ was computed by finding an approximate constant $\kappa_{ik} = \bar{\kappa}$ that yielded an acceptance rate $r \approx 0.3$ in the regular pCN algorithm.
+with $\kappa_\text{min} = 0.4$, $\kappa_\text{max}=1$, $k_| = 50$ and $\sigma_\kappa = 0.05$, which is plotted in Fig.~\ref{fig:1D process acceptance rate} (blue line). The base-line step-size $\kappa_\text{min}$ was computed by finding an approximate constant $\kappa_{k} = \bar{\kappa}$ that yielded an acceptance rate $r \approx 0.3$ in the regular pCN algorithm.
 
-\citep{goodmanEnsembleSamplersAffine2010}
+\begin{figure}[t]
+\includegraphics[width=0.98\textwidth]{figs_part1/mcmc/autocorrelation_benchmarks}
+\centering \caption{ The auto-correlation times $\tau_{\mathcal{O}}$ of MCMC runs of the antisymmetric double-well system at temperatures $\theta/\theta_0 = 2, 1/5,1/20$ with adapted and unadapted modal step-sizes $\kappa_i$, for varying mode truncations $N$.}
+\label{fig:1D autocorrelation benchmarks} 
+\end{figure}
 
-\subsection{Generalised end-point conditions}
+We benchmarked MCMC runs with adapted step-size profiles against runs with constant steps-sizes by considering their relative \textit{auto-correlation times}. Let $\mathcal{O}[\mathbf{X}]$ be some observable, and $X^{(n)},\ n=1,\dots,M$ the result of an MCMC run. Then the expectation $\langle \mathcal{O}[\mathbf{X}] \rangle$ can be estimated using Eq.~\ref{eq:MCMC expectation}, and the variance as
+\begin{equation} 
+	\sigma^2_{\mathcal{O}} = \langle (\mathcal{O}[\mathbf{X}] - \langle \mathcal{O}[\mathbf{X}] \rangle)^2 \rangle = \frac{\tau_\mathcal{O}}{M} \sum_{n=1}^M (\mathcal{O}[\mathbf{X}^{(n)}] - \langle \mathcal{O}[\mathbf{X}] \rangle)^2,
+\end{equation}
+where $\tau_\mathcal{O}$ is the \textit{integrated autocorrelation time} for the chain $\mathcal{O}[\mathbf{X}^{(n)}],\ n=1,\dots,M$. It carries the interpretation of the amount of iterations required for the MCMC to `forget' where it began, such that the effective number of samples is $M/\tau_\mathcal{O}$. See \citep{sokalMonteCarloMethods1997, goodmanEnsembleSamplersAffine2010} for detailed definitions and how to estimate $\tau_\mathcal{O}$. In Fig.~\ref{fig:1D autocorrelation benchmarks} we show the results of the benchmark runs. For mode truncations varying between $N=400$ and $N=2000$, we computed the auto-correlation times for MCMC runs with an adapted step-size $\kappa_k$ as in Eq.~\ref{eq:kappa profile}, as well as an unadapted step-size $\kappa_k = \kappa_\text{min}$. We ran simulations at temperatures $\theta/\theta_0 = 2, 1/5,1/20$, with $\kappa_\text{min} = 0.4, 0.35, 0.3$ respectively, and $\kappa_\text{max}=1$, $k_| = 50$ and $\sigma_\kappa = 0.05$ for all temperatures. We see that the adapted step-size runs enjoy lower autocorrelation times.
+
+The above is a modest attempt at utilising the band-structure to improve autocorrelation times. A more promising avenue would be to apply a multi-level MCMC algorithm \citep{gilesMultilevelMonteCarlo2008, dodwellHierarchicalMultilevelMarkov2015, jansenMultilevelMonteCarlo2020, rohrbachMultilevelSimulationHardsphere2022}, which consists of a series of $M_\text{multi}$ chains with a hierarchy of mode truncations $N_{i},i=1,\dots,M_\text{multi}$ such that $N_{i} < N_{i+1}$. The MCMC can be efficently run on the lowest-dimensional chain, and then be \textit{upsampled} via the multi-level scheme, such that we generate samples of the highest $N_{M_\text{multi}}$-dimensional system.
+
+
+
+
+
+\subsection{Generalised end-point conditions} \label{sec:Generalised end-point conditions}
 
 So far we have considered transition path ensembles with fixed end-point conditions. We may consider a TPE of a more a general form
 \begin{equation}
