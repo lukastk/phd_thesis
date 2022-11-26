@@ -26,7 +26,8 @@
 \documentclass[withindex,glossary,techreport]{cam-thesis}
 
 % Citations using numbers
-\usepackage[numbers]{natbib}
+\usepackage[sort,numbers]{natbib}
+%\usepackage[numbers]{natbib}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{xcolor}
@@ -80,7 +81,7 @@
 \subjectline{Soft condensed matter and statistical physics}
 \keywords{non-equilibrium-physics}
 
-\onehalfspacing
+%\onehalfspacing
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Abstract:
@@ -150,6 +151,41 @@
 
 \chapter{Introduction}
 
+%From ch 3
+The fluctuating dynamics of many physical, chemical and biological
+systems are commonly modelled by stochastic differential equations
+expressed in Langevin or Itô forms \citep{kampenStochasticProcessesPhysics2011,gardinerStochasticMethodsHandbook2010,riskenFokkerPlanckEquationMethods2012,bharucha-reidElementsTheoryMarkov2012}.
+In such systems it is often of great interest to identify the typical
+pathways that stochastic paths take to transition from an initial
+to a final state, as for example in the nucleation of solids, the
+conformational changes in biomolecules, or shifts in ecological balance
+\citep{faccioliDominantPathwaysProtein2006, demarcoPhaseTransitionModel2001, gardnerConstructionGeneticToggle2000, mangelBarrierTransitionsDriven1994, wolynesNavigatingFoldingRoutes1995, huangMolecularMathematicalBasis2012, paninskiMostLikelyVoltage2006, noltingBallsCupsQuasipotentials2016, leeFindingMultipleReaction2017}.
+Typically, such transition paths cluster around multiple pathways
+in the space of configurations and the relative probability of one
+or the other of these pathways depends on the drift, the diffusivity,
+and the duration allowed for the transition to take place \citep{onsagerFluctuationsIrreversibleProcesses1953,bachFunctionalsPathsDiffusion1977,itoProbabilisticConstructionLagrangean1978,ikedaStochasticDifferentialEquations2014}.
+As transitions are often rare events, direct simulations are not always
+practical and other means, analytical or numerical, are required to
+study them. Methods that allow for a full exploration of the space
+of transition pathways in stochastic dynamical systems, then, are
+of substantial theoretical and practical importance.
+
+The theory of large deviations \citep{ventselSMALLRANDOMPERTURBATIONS1970,stratonovichMarkovMethodsTheory1989,grahamMacroscopicPotentialsBifurcations1989,arnoldStochasticDifferentialEquations1974}
+provides an analytical method for obtaining transition pathways -
+instantons - in regimes dominated by the drift and for very long durations
+of path. Experimental systems, however, are typically not in a regime
+where the diffusivity is asymptotically low and durations are asymptotically
+long \citep{gladrowExperimentalMeasurementRelative2021}. While the
+relevance of including finite-temperature fluctuations around the
+instanton \citep{gelfandIntegrationFunctionalSpaces1960} is increasingly
+recognized \citep{nickelsen_noise_2022,corazza_normalized_2020,lu_gaussian_2017},
+the physical implications of these fluctuations are far from being
+understood.
+
+
+
+
+
 
 %%%% Introduce soft and slender matter and give examples.
 % Todo:
@@ -195,7 +231,7 @@ A lot of the results have already been shown before (a lot of the stuff in the C
 
 
 
-
+\bibliographystyle{unsrtnat}
 \bibliography{refs/parti, refs/partii, refs/pyritz, refs/fluctuations_around_instantons, refs/nucleation, refs/path-integrals, refs/rare_events, refs/diffus_refs1, refs/diffus_refs2}
 
 
@@ -232,7 +268,12 @@ $(Z_i)_j \sim \mathcal{N}(0, 2D)$
 
 $\mathcal{N}(0, \mathbbm{1}_d)$
 
+$\mathcal{N}(0, \mathcal{C})$ for infinite dimensional operators.s
+
 $\langle X \rangle $
+
+
+$\langle\mathbf{f},\mathbf{g}\rangle=\sum_{i}\int_{0}^{T}f_{i}(t)g_{i}(t)dt$
 
 \section{Part II notation}
 
@@ -402,7 +443,7 @@ is constructed so that the perpendicular curvature of $\Gamma^{+}$
 is larger than that of $\Gamma^{-}$. The drift of the system is now
 given by $\mathbf{F}=-\nabla U$. This concludes the definition of the switch system.
 
-We now consider a non-conservative variant of the switch system. We introduce an additional non-conservative
+We also consider a non-conservative variant of the switch system. We introduce an additional non-conservative
 force $\mathbf{F}^{a}=-\eta\hat{\boldsymbol{\phi}}$ for which the
 work done in a displacement $d\mathbf{x}=dr\hat{\mathbf{r}}+rd\phi\hat{\boldsymbol{\phi}}$
 is $dW=\mathbf{F}^{a}\cdot d\mathbf{x}=\eta rd\phi$. This force energetically
@@ -421,8 +462,90 @@ To compare the gradient force $-\nabla \cdot U$ with $\mathbf{F}^{a}$ we also in
 $f_{\text{eq}}=U_{0}/L$, which is the characteristic force strength
 of the gradient force.
 
+\chapter{Calculating the regularised normalisation constants of infinite-dimensional Gaussian measures} \label{app:Calculation of the Gaussian normalisation constants}
 
+The regularised normalisation constants of Gaussian measures defined on functional
+spaces can be found by computing the determinants of their covariance
+operators. Equivalently, they can be found by computing
+the determinant of their precision operator, which is the inverse
+of the covariance operator. As for finite-dimensional linear operators,
+determinants of differential operators can be found by computing the product of their
+eigenvalues, but as the numerical computation of the spectrum of a linear operator is expensive, this is in general not feasible in this setting. For a specific class of linear operators, their regularised normalisation constants can be computed using the Gelfand-Yaglom theorem (GYT) \citep{gelfandIntegrationFunctionalSpaces1960, levitTheoremInfiniteProducts1977, dunneFunctionalDeterminantsQuantum2008}, by solving a system of ODEs. Here we will first recount the GYT, and then derive an extension of theorem that can be used for the precision operators of the semi-classical expansions of the laws of general It\^{o} processes with additive noise.
 
+Let the linear operators
+\begin{equation}
+\mathcal{L}=\frac{d}{dt}\left(P\frac{d}{dt}\right)-R\label{eq:linear operator}
+\end{equation}
+and
+\begin{equation}
+\mathcal{L}_{0}=\frac{d}{dt}\left(P\frac{d}{dt}\right)\label{eq:free linear operator}
+\end{equation}
+be defined for $0\leq t\leq T$, and where $P(t)\in\mathbb{R}^{d\times d}$
+is a symmetric positive-definite matrix function and $R(t)\in\mathbb{R}^{d\times d}$
+is a symmetric matrix function. Let $\gamma^{(k)}$ and $\mathbf{u}^{(k)}(t;\alpha)$
+be the eigenvalues and eigenfunctions of $\mathcal{L}$, which are
+solutions to the boundary value problem
+\begin{equation}
+\mathcal{L}\mathbf{u}^{(k)}(t)=\gamma^{(k)}\mathbf{u}^{(k)}(t)\label{eq:eigenfunction eq}
+\end{equation}
+where $\mathbf{u}^{(k)}(0)=\mathbf{u}^{(k)}(T)=0$. Similarly, let
+$\mathbf{u}_{0}^{(k)}(t)$ and $\gamma_{0}^{(k)}$ be the eigenfunctions
+and eigenvalues of $\mathcal{L}_{0}$. Then the \emph{functional determinant}
+of $\mathcal{L}$ is defined in regularised form as
+\begin{equation}
+\frac{\det\mathcal{L}}{\det\mathcal{L}_{0}}=\prod_{k=1}^{\infty}\frac{\gamma^{(k)}}{\gamma_{0}^{(k)}}.\label{eq:functional determinant}
+\end{equation}
+As the spectrum of Eq.~\ref{eq:linear operator} is unknown, and
+numerically expensive to compute, a much more efficient way of computing
+Eq.~\ref{eq:functional determinant} is via the Gelfand-Yaglom
+theorem (GYT) \citep{gelfandIntegrationFunctionalSpaces1960,levitTheoremInfiniteProducts1977,dunneFunctionalDeterminantsQuantum2008}.
+The GYT states that the functional determinant can be expressed as
+\begin{equation}
+\left|\frac{\det\mathcal{L}}{\det\mathcal{L}_{0}}\right|=\left|\frac{\det\left[Y(T)\right]}{\det\left[Y_{0}(T)\right]}\right|\label{eq:GY result}
+\end{equation}
+where $Y(t)\in\mathbb{R}^{d\times x}$ with components $Y_{ij}(t)=y_{i}^{(j)}(t)$,
+where the $\mathbf{y}^{(j)}(t)$ are solutions to the $d$ second-order
+ODEs with initial conditions
+\begin{align} 
+\mathcal{L}\mathbf{y}^{(j)}(t) & =0\label{eq:GY theorem}\\
+\mathbf{y}^{(j)}(0) & =0\\
+\frac{d}{dt}y_{i}^{(j)}(0) & =\delta_{ij}.
+\end{align}
+and where the matrix $Y_{0}(t)\in\mathbb{R}^{d\times d}$
+is defined similarly, but with $\mathcal{L}$ in Eq.~\ref{eq:GY theorem}
+replaced with $\mathcal{L}_{0}$. We now present a generalisation of the GYT that allows for linear operators of the form
+\begin{equation} \label{eq:extended GYT form operator}
+\mathcal{L}=\frac{d^{2}}{dt^{2}}+U\frac{d}{dt}+R
+\end{equation}
+where $0\leq t\leq T$, and where $U(t),\ R(t)\in\mathbb{R}^{d\times d}$
+are anti-symmetric and symmetric matrix functions respectively. This extended GYT will make the theorem applicable to compute the regularised normalisation constants of the precision operators discussed in Sec.~\ref{sec:Second-order variational expansions of stochastic action functionals}.
+
+We define the linear operator $\mathcal{G}$ which acts on vector
+functions as
+\begin{equation} \label{eq:G eq}
+	\mathcal{G}\mathbf{y}=G\mathbf{y}
+\end{equation}
+where $G(t)$ is a matrix function that solves the equation
+\begin{equation}
+\dot{G}=-\frac{1}{2}UG.\label{eq:G eq}
+\end{equation}
+As $U(t)$ is anti-symmetric we have $U(t) \in \mathfrak{so}(d)$, where the latter is the Lie algebra of the special orthogonal group $SO(d)$. Then Eq.~\ref{eq:G eq} is the exponential mapping from the Lie algebra to the Lie group, therefore $G \in SO(d)$. We define the linear operator
+\begin{equation} \label{eq:transformed linear operator}
+\tilde{\mathcal{L}}=\mathcal{G}^{-1}\mathcal{L}\mathcal{G}=\frac{d}{dt^{2}}+G^{T}\left(R-\frac{1}{2}\dot{U}-\frac{1}{4}U^{2}\right)G
+\end{equation}
+where we have used $G^{-1} = G^T$. Equation \ref{eq:transformed linear operator} is of the form Eq.~\ref{eq:linear operator}, as the second term is a symmetric matrix, and we can therefore compute $\det\tilde{\mathcal{L}}$ using the GYT. As for any two operators $\mathcal{A}$
+and $\mathcal{B}$, we have that $\det\mathcal{A\mathcal{B}}=\det\mathcal{A}\det\mathcal{B}$,
+and $\det\mathcal{A}^{-1}=1/\det\mathcal{A}$, and we therefore have
+that $\det\mathcal{L}=\det\tilde{\mathcal{L}}$. The functional determinant
+$\det\mathcal{L}$ can thus be computed by first solving Eq.~\ref{eq:G eq}, and then
+constructing $\tilde{\mathcal{L}}$ using Eq.~\ref{eq:transformed linear operator},
+and finally using the GYT to compute $\det\tilde{\mathcal{L}}$.
+
+The above can be applied to compute the regularised normalisation constants of the precision operators derived in Sec.~\ref{sec:Second-order variational expansions of stochastic action functionals}, which were the result the semi-classical approximations of the path measures of general It\^{o} diffusions with additive noise. The precision matrix is of the form
+\begin{equation}
+	\mathcal{H}^{[\bar{\mathbf{x}}]} =-\frac{1}{D} \frac{d}{dt^{2}}+2A\frac{d}{dt}+B
+\end{equation}
+We can compute the regularised normalisation constant of $\mathcal{H}^{[\bar{\mathbf{x}}]}$ by letting $P(t)=-\frac{1}{D} \mathbbm{I}_{d}$, $U=-2 D A$ and $R=B$ and applying the extended GYT. In the case of gradient dynamics, when $A = 0$, the original GYT can be readily applied by using $P(t)=-\frac{1}{D} \mathbbm{I}_{d}$ and $R(t)=-B(t)$, where $\mathbbm{I}_{d}$ is the identity matrix.
 
 \chapter{Nondimensionalisation of the Cosserat rod} \label{app:Nondimensionalisation of the Cosserat rod}
 

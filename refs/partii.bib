@@ -355,6 +355,39 @@
   pages = {598--601}
 }
 
+@article{celledoniIntroductionLieGroup2014c,
+  title = {An Introduction to {{Lie}} Group Integrators \textendash{} Basics, New Developments and Applications},
+  author = {Celledoni, Elena and Marthinsen, H{\aa}kon and Owren, Brynjulf},
+  year = {2014},
+  month = jan,
+  journal = {Journal of Computational Physics},
+  series = {Physics-Compatible Numerical Methods},
+  volume = {257},
+  pages = {1040--1061},
+  issn = {0021-9991},
+  doi = {10.1016/j.jcp.2012.12.031},
+  abstract = {We give a short and elementary introduction to Lie group methods. A selection of applications of Lie group integrators are discussed. Finally, a family of symplectic integrators on cotangent bundles of Lie groups is presented and the notion of discrete gradient methods is generalised to Lie groups.},
+  langid = {english},
+  keywords = {Integral preserving methods,Lie group integrators,Symplectic methods},
+  file = {/Users/lukastk/AppData/Zotero/storage/QWY69A8I/Celledoni et al. - 2014 - An introduction to Lie group integrators – basics,.pdf;/Users/lukastk/AppData/Zotero/storage/MN85J8GP/S0021999113000041.html}
+}
+
+@article{celledoniLieGroupIntegrators2022,
+  title = {Lie Group Integrators for Mechanical Systems},
+  author = {Celledoni, Elena and {\c C}okaj, Ergys and Leone, Andrea and Murari, Davide and Owren, Brynjulf},
+  year = {2022},
+  month = jan,
+  journal = {International Journal of Computer Mathematics},
+  volume = {99},
+  number = {1},
+  pages = {58--88},
+  issn = {0020-7160, 1029-0265},
+  doi = {10.1080/00207160.2021.1966772},
+  abstract = {Since they were introduced in the 1990s, Lie group integrators have become a method of choice in many application areas. These include multibody dynamics, shape analysis, data science, image registration and biophysical simulations. Two important classes of intrinsic Lie group integrators are the Runge\textendash Kutta\textendash Munthe\textendash Kaas methods and the commutator free Lie group integrators. We give a short introduction to these classes of methods. The Hamiltonian framework is attractive for many mechanical problems, and in particular we shall consider Lie group integrators for problems on cotangent bundles of Lie groups where a number of different formulations are possible. There is a natural symplectic structure on such manifolds and through variational principles one may derive symplectic Lie group integrators. We also consider the practical aspects of the implementation of Lie group integrators, such as adaptive time stepping. The theory is illustrated by applying the methods to two nontrivial applications in mechanics. One is the N-fold spherical pendulum where we introduce the restriction of the adjoint action of the group SE(3) to TS2, the tangent bundle of the two-dimensional sphere. Finally, we show how Lie group integrators can be applied to model the controlled path of a payload being transported by two rotors. This problem is modelled on R6 \texttimes{} (SO(3) \texttimes{} so(3))2 \texttimes{} (TS2)2 and put in a format where Lie group integrators can be applied.},
+  langid = {english},
+  file = {/Users/lukastk/AppData/Zotero/storage/7F3FMUTM/Celledoni et al. - 2022 - Lie group integrators for mechanical systems.pdf}
+}
+
 @misc{cendraLagrangianReductionEuler1999,
   title = {Lagrangian {{Reduction}}, the {{Euler--Poincar}}\textbackslash '\{e\} {{Equations}}, and {{Semidirect Products}}},
   author = {Cendra, H. and Holm, D. D. and Marsden, J. E. and Ratiu, T. S.},
@@ -1046,6 +1079,17 @@
   file = {/Users/lukastk/AppData/Zotero/storage/UEWZUL3K/An introductory treatise on reduced balance laws o.pdf;/Users/lukastk/AppData/Zotero/storage/IR6F7BDG/S0020768317303451.html}
 }
 
+@article{iserlesLiegroupMethods2005,
+  title = {Lie-Group Methods},
+  author = {Iserles, Arieh and {Munthe-Kaas}, Hans and N{\o}rsett, Syvert and Zanna, Antonella},
+  year = {2005},
+  journal = {Acta Numerica},
+  publisher = {{Cambridge University Press (CUP)}},
+  doi = {10.1017/S0962492900002154},
+  abstract = {Many differential equations of practical interest evolve on Lie groups or on manifolds acted upon by Lie groups. The retention of Lie-group structure under discretization is often vital in the recovery of qualitatively-correct geometry and dynamics and in the minimisation of numerical error. Having introduced requisite elements of differential geometry, this paper surveys the novel theory of numerical integrators that respect Lie-group structure, highlighting theory, algorithmic issues and a number of applications.},
+  file = {/Users/lukastk/AppData/Zotero/storage/K6Q86F5J/Iserles et al. - 2005 - Lie-group methods.pdf}
+}
+
 @article{ivanovaModelingPhysicalFields,
   title = {Modeling of Physical Fields by Means of the {{Cosserat}} Continuum},
   author = {Ivanova, E. A.},
@@ -1270,6 +1314,23 @@
   doi = {10.1016/0020-7225(95)00139-5},
   abstract = {This paper is concerned with the development of a continuum model of the red bloc d cell wall undergoing finite elastic deformations. The red blood cell wall comprises two interconnected constituent layers: a protein layer, which behaves as an elastic membrane and a lipid bilayer, which exhibits both solid-like and fluid-like properties. The cell wall is modeled as a pair of material surfaces that are interconnected by a deformable director called a connector and a detailed constitutive theory is developed for each layer. The constitutive equations are based on physically observed phenomena and are tailored to reflect the solid-like and fluid-like properties of the lipid bilayer. An illustrative example involving finite deformations of interconnected cylindrical sectors is presented.},
   langid = {english}
+}
+
+@article{krogstadGeneralizedIntegratingFactor2005,
+  title = {Generalized Integrating Factor Methods for Stiff {{PDEs}}},
+  author = {Krogstad, S.},
+  year = {2005},
+  month = feb,
+  journal = {Journal of Computational Physics},
+  volume = {203},
+  number = {1},
+  pages = {72--88},
+  issn = {0021-9991},
+  doi = {10.1016/j.jcp.2004.08.006},
+  abstract = {The integrating factor (IF) method for numerical integration of stiff nonlinear PDEs has the disadvantage of producing large error coefficients when the linear term has large norm. We propose a generalization of the IF method, and in particular construct multistep-type methods with several orders of magnitude improved accuracy. We also consider exponential time differencing (ETD) methods, and point out connections with a particular application of the commutator-free Lie group methods. We present a new fourth order ETDRK method with improved accuracy. The methods considered are compared in several numerical examples.},
+  langid = {english},
+  keywords = {Exponential time differencing,Integrating factor methods,Lie group methods,Stiff systems},
+  file = {/Users/lukastk/AppData/Zotero/storage/57EANQJG/Krogstad - 2005 - Generalized integrating factor methods for stiff P.pdf;/Users/lukastk/AppData/Zotero/storage/BEGBRYI9/S0021999104003183.html}
 }
 
 @book{landauMechanicsVolume1982,
@@ -1553,6 +1614,23 @@
   file = {/Users/lukastk/AppData/Zotero/storage/CNQ9378D/Mühlhaus - 1989 - Application of Cosserat theory in numerical soluti.pdf}
 }
 
+@article{munthe-kaasHighOrderRungeKutta1999a,
+  title = {High Order {{Runge-Kutta}} Methods on Manifolds},
+  author = {{Munthe-Kaas}, Hans},
+  year = {1999},
+  month = jan,
+  journal = {Applied Numerical Mathematics},
+  series = {Proceedings of the {{NSF}}/{{CBMS Regional Conference}} on {{Numerical Analysis}} of {{Hamiltonian Differential Equations}}},
+  volume = {29},
+  number = {1},
+  pages = {115--127},
+  issn = {0168-9274},
+  doi = {10.1016/S0168-9274(98)00030-0},
+  abstract = {We present a family of Runge-Kutta type integration schemes of arbitrarily high order for differential equations evolving on manifolds. We prove that any classical Runge-Kutta method can be turned into an invariant method of the same order on a general homogeneous manifold, and present a family of algorithms that are relatively simple to implement. These are defined in a general abstract framework, based on a Lie algebra acting on the manifold. The general framework gives rise to a wide range of different concrete applications; we present some examples.},
+  langid = {english},
+  file = {/Users/lukastk/AppData/Zotero/storage/FBQ46Y3V/S0168927498000300.html}
+}
+
 @book{naghdiTheoryShellsPlates1972,
   title = {The {{Theory}} of {{Shells}} and {{Plates}}},
   author = {Naghdi, Paul Mansour},
@@ -1740,6 +1818,21 @@
   langid = {english},
   keywords = {bone,cellular solids,continuum mechanics,Cosserat theory,foams,generalized continua,homogénéisation,homogenization,micromécanique,micromechanics,milieux continus,milieux continus généralisés,mousses,solides cellulaires,théorie de Cosserat,tissus osseux},
   file = {/Users/lukastk/AppData/Zotero/storage/UMKYCQ9L/Onck - 2002 - Cosserat modeling of cellular solids.pdf;/Users/lukastk/AppData/Zotero/storage/DTFAS8EE/S1631072102015292.html}
+}
+
+@article{owrenLieGroupIntegrators2016,
+  title = {Lie Group Integrators},
+  author = {Owren, Brynjulf},
+  year = {2016},
+  month = jan,
+  journal = {arXiv:1601.04664 [math]},
+  eprint = {1601.04664},
+  eprinttype = {arxiv},
+  primaryclass = {math},
+  abstract = {In this survey we discuss a wide variety of aspects related to Lie group integrators. These numerical integration schemes for differential equations on manifolds have been studied in a general and systematic manner since the 1990s and the activity has since then branched out in several different subareas, focussing both on theoretical and practical issues. From two alternative setups, using either frames or Lie group actions on a manifold, we here introduce the most important classes of schemes used to integrate nonlinear ordinary differential equations on Lie groups and manifolds. We describe a number of different applications where there is a natural action by a Lie group on a manifold such that our integrators can be implemented. An issue which is not well understood is the role of isotropy and how it affects the behaviour of the numerical methods. The order theory of numerical Lie group integrators has become an advanced subtopic in its own right, and here we give a brief introduction on a somewhat elementary level. Finally, we shall discuss Lie group integrators having the property that they preserve a symplectic structure or a first integral.},
+  archiveprefix = {arXiv},
+  keywords = {Mathematics - Numerical Analysis},
+  file = {/Users/lukastk/AppData/Zotero/storage/YB2ZV45B/Owren - 2016 - Lie group integrators.pdf;/Users/lukastk/AppData/Zotero/storage/L86ZPA8H/1601.html}
 }
 
 @article{pagan-diazSimulationFabricationStronger2018,
@@ -2369,4 +2462,3 @@
   langid = {english},
   file = {/Users/lukastk/AppData/Zotero/storage/HL23IJFD/Zhang et al. - 2019 - Modeling and simulation of complex dynamic musculo.pdf}
 }
-
