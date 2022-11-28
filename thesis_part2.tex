@@ -310,7 +310,7 @@ g \mapsto g^{-1}
 are smooth maps.
 \end{definition}
 
-For all Lie groups $G$ under consideration in this text the group elements in $G$ can be represented as invertible matrices. In other words, there is a map $\Pi : G \to GL(V)$, where $GL(V)$ is the Lie group of linear operators with non-zero determinant acting on some $n$-dimensional vector space $V$. Such a map is called a \textit{representation} of $G$. For all Lie groups there is a canonical \textit{fundamental representation} $g : G \to GL(\mathbb{R}^{n \times n})$, and we will often identify the image $g(G) = \tilde{G}$ with the Lie group itself. Henceforth, unless explicitly stated to be otherwise, we will use the shorthand $g \in G$, identifying the Lie group elements in their fundamental representation with the Lie group elements themselves.
+For all Lie groups $G$ under consideration in this text the group elements in $G$ can be represented as invertible matrices. In other words, there is a map $\Pi : G \to GL(V)$, where $GL(V)$ is the Lie group of linear operators with non-zero determinant acting on some $n$-dimensional vector space $V$. Such a map is called a \textit{representation} of $G$. For all Lie groups there is a canonical \textit{fundamental representation} $g : G \to GL(\mathbb{R}^{n})$, and we will often identify the image $g(G) = \tilde{G}$ with the Lie group itself. Henceforth, unless explicitly stated to be otherwise, we will use the shorthand $g \in G$, identifying the Lie group elements in their fundamental representation with the Lie group elements themselves.
 
 For each element $g \in G$, the \textit{left multiplication} map $L_g : G \to G$ is defined as $L_g h = gh$ where $h \in G$. Similarly, the \textit{right multiplication} map $R_g : G \to G$ is defined as $R_g h = hg$. For maps between smooth manifolds $\Psi : M \to N$, we define its \textit{derivative} at $p \in M$ as the mapping $D\Psi_p : T_p M \to T_{\Phi(p)} N$ given by the formula
 \begin{equation} \label{eq:derivative of linear map}
@@ -371,7 +371,7 @@ X \wedge Y = E_a E_b a_i^a b_j^b\ dx^i \wedge dx^j
 \end{equation}
 where $E_a E_b$ denotes ordinary matrix multiplication. Note that the wedge product of two Lie algebra-valued forms is not necessarily Lie algebra-valued.
 
-Finally we note that for any Lie group representation $\Pi : G \to GL(V)$, there is a corresponding representation $\rho : \mathfrak{g} \to \mathfrak{gl}(V)$ of the Lie algebra, such that the image $\rho(\mathfrak{g})$ is a subset of $\mathfrak{gl}(V)$-matrices, acting on the same vector space $V$ that the Lie group representations $\Pi(g)$ act on. As with Lie groups, there is a canonical fundamental representation of the Lie algebra as linear maps $\mathfrak{gl}(\mathbb{R}^{n \times n})$, and we identify this representation with $\mathfrak{g}$ itself.
+Finally we note that for any Lie group representation $\Pi : G \to GL(V)$, there is a corresponding representation $\rho : \mathfrak{g} \to \mathfrak{gl}(V)$ of the Lie algebra, that are related as $\exp(\rho(W)) \in \Pi(G)$ for any $W \in \mathfrak{g}$. As with Lie groups, there is a canonical fundamental representation of the Lie algebra as linear maps $\mathfrak{gl}(\mathbb{R}^{n})$, and we identify this representation with $\mathfrak{g}$ itself.
 
 The following are some examples of Lie groups:
 \begin{itemize}
@@ -383,7 +383,7 @@ The following are some examples of Lie groups:
 
 \item The special orthogonal group $SO(n)$ is the set of matrices $R \in SO(n)$ for which $\det{R} = 1$. Its Lie algebra $\mathfrak{so}(n)$ is equal to $\mathfrak{o}(n)$.
 
-\item The translation group $T(n)$ is the group of translations in $n$-dimensional Euclidean space.
+\item The translation group $T(V)$ is the Lie group of translations on a vector space $V$. We denote $T(n)$ as the group of translation on $n$-dimensional Euclidean space.
 
 \item The special Euclidean group $SE(n)$ is the group of translations and rotations in $n$-dimensional space, and can be written as the semi-direct product $SE(n) = T(n) \rtimes SO(n)$.
 \end{itemize}
@@ -630,7 +630,7 @@ N = \begin{pmatrix}
 \vec{V} & \hat{\Omega}
 \end{pmatrix}
 \end{equation}
-where $\hat{\Omega} \in \mathbb{R}^{3 \times 3}$ is the angular velocity under the hat-map. We can see $N$ as a generalised velocity, defined on the Lie algebra. The inverse of Eq.~\ref{eq:rigid body SE(3) state} is given by
+where $\hat{\Omega} \in \mathfrak{so}(3)$ is the angular velocity under the hat-map Eq.~\ref{eq:hat map}, which is the isomorphism between $3$-vectors and $3 \times 3$ antisymmetric matrices, and where $\mathfrak{so}(3)$ is the Lie algebra of the special orthogonal group $SO(3)$. We can see $N$ as a generalised velocity, defined on the Lie algebra. The inverse of Eq.~\ref{eq:rigid body SE(3) state} is given by
 \begin{equation}
 \Phi^{-1} = \begin{pmatrix}
 1 & \mathbf{0}^T \\
@@ -738,7 +738,7 @@ As we will compute the corresponding variational principle for the Cosserat rod 
 \begin{equation} \label{eq:euler poincare equation for rigid body}
 \frac{d}{dt} \frac{\partial \ell}{\partial N} = \text{ad}_N^* \frac{\partial \ell}{\partial N}
 \end{equation}
-where $\text{ad}^*_N : \mathfrak{se}(3)^* \to \mathfrak{se}(3)^*$ is the dual of the adjoint action, defined on the dual $\mathfrak{se}(3)^*$ to the Lie algebra, and $\frac{\partial \ell}{\partial N}$ is the matrix partial derivative. Equation \ref{eq:euler poincare equation for rigid body} is the result of the \textit{Euler-Poincaré theorem} \citep{marleHenriPoincareNote2013a, marsdenIntroductionMechanicsSymmetry2013, poincareFormeNouvelleEquations1901}, and is also thus referred to as the \textit{Euler-Poincaré equation}. Further details, and its derivation in the continuum case, will follow in the subsequent sections. Evaluating Eq.~\ref{eq:euler poincare equation for rigid body} leads to
+where $\text{ad}^*_N : \mathfrak{se}(3)^* \to \mathfrak{se}(3)^*$ is the dual of the adjoint action, defined on the dual $\mathfrak{se}(3)^*$ to the Lie algebra, and $\frac{\partial \ell}{\partial N}$ is the matrix partial derivative which is carried out as in Eq.~\ref{eq:numerator-layout convention}. Equation \ref{eq:euler poincare equation for rigid body} is the result of the \textit{Euler-Poincaré theorem} \citep{marleHenriPoincareNote2013a, marsdenIntroductionMechanicsSymmetry2013, poincareFormeNouvelleEquations1901}, and is also thus referred to as the \textit{Euler-Poincaré equation}. Further details, and its derivation in the continuum case, will follow in the subsequent sections. Evaluating Eq.~\ref{eq:euler poincare equation for rigid body} leads to
 \begin{subequations} \label{eq:dynamic eoms for rigid body}
 \begin{align} 
 \dot{\vec{V}} & = \vec{V} \times \vec{\Omega} \label{eq:V rigid body equation} \\
@@ -1064,13 +1064,13 @@ The reduced Lagrangian density Eq.~\ref{eq:cosserat reduced lagrangian} is expli
 
 
 The \textit{generalised conjugate momentum} of the Cosserat rod is
-\begin{equation}
+\begin{equation} \label{eq:generalised conjugate momentum def cosserat}
 S := \frac{\partial \ell}{\partial N}  = \frac{\partial \mathcal{K}}{\partial N} = \begin{pmatrix}
 0 & \vec{P}^T \\ 
-\vec{0} & \vec{L}^T
+\vec{0} & \hat{L}^T
 \end{pmatrix}  \in \mathfrak{se}(3)^*
 \end{equation}
-where $\vec{P} = \rho_0 \vec{V}$ and $\vec{L} = \mathbb{I} \vec{\Omega}$. It will become clear that $\vec{P}$ is the linear momentum of the center-line per unit material length, and $\vec{L}$ is the angular momentum per unit material length of the material frame. We use the short-hand $S = \{ \vec{P} ; \vec{L} \}$ as for Lie algebra elements. The matrix derivative $\frac{\partial \ell}{\partial N}$ is evaluated only with respect to the non-zero components of $N$, for which we have $S_{ji} = \frac{\partial \ell}{\partial N_{ij}}$, and $S_{ji} = 0$ otherwise. $S$ can be seen to take values in the dual Lie algebra $\mathfrak{se}(3)^*$, which is the space of linear operators $\mathfrak{se}(3) \to \mathbb{R}$ on the Lie algebra. To see this, note that $\mathcal{K}(N)$ can be written as
+where $\vec{P} = \rho_0 \vec{V}$ and $\vec{L} = \mathbb{I} \vec{\Omega}$. The matrix derivative is carried out using the numerator-layout convention Eq.~\ref{eq:numerator-layout convention}, such that $S_{ij} = \partial \ell /\partial N_{ji}$. The matrix representation of the dual Lie algebra can thus be seen as the space $\mathfrak{se}(3)^* = \{ Y^T\ :\ Y \in \mathfrak{se}(3) \}$. It will become clear that $\vec{P}$ is the linear momentum of the center-line per unit material length, and $\vec{L}$ is the angular momentum per unit material length of the material frame. We use the short-hand $S = \{ \vec{P} ; \vec{L} \}^*$, corresponding to matrices of the form Eq.~\ref{eq:generalised conjugate momentum def cosserat}. The matrix derivative $\frac{\partial \ell}{\partial N}$ is evaluated only with respect to the non-zero components of $N$, for which we have $S_{ji} = \frac{\partial \ell}{\partial N_{ij}}$, and $S_{ji} = 0$ otherwise. $S$ can be seen to take values in the dual Lie algebra $\mathfrak{se}(3)^*$, which is the space of linear operators $\mathfrak{se}(3) \to \mathbb{R}$ on the Lie algebra. To see this, note that $\mathcal{K}(N)$ can be written as
 \begin{equation}
 \mathcal{K}(N) = \frac{1}{2} \langle N, P \rangle
 \end{equation}
@@ -1082,7 +1082,7 @@ where $A = \{\vec{a}; \vec{m}\} \in \mathfrak{se}(3)$ and $B = \{\vec{b}; \vec{n
 \begin{equation}
 Q := \frac{\partial \mathcal{U}}{\partial X}.
 \end{equation}
-We write its components as $Q = \{ \vec{F} ; \vec{M} \}$ where
+We write its components as $Q = \{ \vec{F} ; \vec{M} \}^*$ where
 \begin{subequations} \label{eq:F_i and M_i from U}
 \begin{align}
 F_i = \frac{\partial \mathcal{U}}{\partial \theta_i} \\
@@ -1352,7 +1352,7 @@ where we used $\eta = \Phi^{-1} \delta \Phi$, and where $T = L^*_\Phi \mathbf{T}
 Q & = 0, \quad u = 0, L_0. 
 \end{align}
 \end{subequations}
-The analogous equation for non-continuum systems can be found Eq.~4 in \cite{marleHenriPoincareNote2013a} and Eq.~6 in \citep{wisniewskiEulerPoincarReductionExternally}. Expressed in non-Lie algebraic terms, by setting $\vec{T} = \{ \vec{f} ; \vec{m} \}$, the equations of motion in the moving frame are
+The analogous equation for non-continuum systems can be found Eq.~4 in \cite{marleHenriPoincareNote2013a} and Eq.~6 in \citep{wisniewskiEulerPoincarReductionExternally}. Expressed in non-Lie algebraic terms, by setting $\vec{T} = \{ \vec{f} ; \vec{m} \}^*$, the equations of motion in the moving frame are
 \begin{subequations} \label{eq:dynamics in terms of V and L with body forces}
 \begin{align}
 D_t \vec{P} & = D_u \vec{F} + \vec{f} \\
@@ -1412,8 +1412,8 @@ The full set of kinodynamical equations of motion for the Cosserat rod can thus 
 Q & = 0, \quad u = 0, L_0, 
 \end{align}
 \end{subequations}
-and the equations close using $P = \mathsf{M} N$. Using $X = \{ \vec{\theta} ; \vec{\pi} \}$, $N = \{ \vec{V} ; \vec{\Omega} \}$ and $P = \{ \rho_0 \vec{V} ; \vec{L} \}$ the equations of motion in the moving frame become
-\begin{subequations} 
+and the equations close using $P = \mathsf{M} N$. Using $X = \{ \vec{\theta} ; \vec{\pi} \}$, $N = \{ \vec{V} ; \vec{\Omega} \}$, $S = \{ \vec{P} ; \vec{L} \}^*$, $Q = \{ \vec{F} ; \vec{M} \}^*$ and $T = \{ \vec{f} ; \vec{m} \}^*$ the equations of motion in the moving frame become
+\begin{subequations} \label{eq:submatrix kinodynamic eoms for cosserat rod}
 \begin{align}
 D_t \vec{\theta} & = D_u \vec{V} \\
 \partial_t \vec{\pi} & = D_u \vec{\Omega} \\
@@ -1620,7 +1620,7 @@ D_t \vec{P} & = D_u \vec{F} + \vec{f},
 \end{subequations}
 where the material derivatives are computed as before, using $\vec{\pi} = (\tau\ 0\ \kappa)$ and $\vec{\Omega}$ given by Eq.~\ref{eq:angular velocity in frenet-serret}, and where the force must obey the conditions Eq.~\ref{eq:filament force constraints}. We note that $\vec{M}$ does not appear explicitly in the dynamics, and we can indeed in theory write down the three arbitrary constitutive force components $\vec{F}$, which would induce a moment via Eq.~\ref{eq:filament force constraints} that has no impact on the dynamics. This is however not how the constitutive forces and moments are defined in practice, as we will now show.
 
-We now move on to treat conservative constitutive dynamics. As discussed in \citep{levyReviewElieCartan1935}, when the Lie algebra, that acts transitively on the configuration space, is of a higher dimension than the configuration space the resulting Lagrangian dynamics (i.e. conservative dynamics) is under-determined. For a Cosserat rod we have $Q = \frac{\partial \mathcal{U}}{\partial X} = \{ \vec{F} ; \vec{M} \}$ which results in Eq.~\ref{eq:F_i and M_i from U}. In contrast, as $\vec{\theta} = (h\ 0\ 0)^T$ and $\vec{\pi} = (\tau\ 0\ \kappa)^T$ for a filament, the only components that are determined for a general constitutive $\mathcal{U}$ are
+We now move on to treat conservative constitutive dynamics. As discussed in \citep{levyReviewElieCartan1935}, when the Lie algebra, that acts transitively on the configuration space, is of a higher dimension than the configuration space the resulting Lagrangian dynamics (i.e. conservative dynamics) is under-determined. For a Cosserat rod we have $Q = \frac{\partial \mathcal{U}}{\partial X} = \{ \vec{F} ; \vec{M} \}^*$ which results in Eq.~\ref{eq:F_i and M_i from U}. In contrast, as $\vec{\theta} = (h\ 0\ 0)^T$ and $\vec{\pi} = (\tau\ 0\ \kappa)^T$ for a filament, the only components that are determined for a general constitutive $\mathcal{U}$ are
 \begin{subequations} \label{eq:F1, M2 and M3 for filament}
 \begin{align}
 F_1 & =  \frac{\partial \mathcal{U}}{\partial h} \\
@@ -1865,7 +1865,7 @@ where we have set $T = - \mathsf{H} \dot{X} - \mathsf{G} N$, and where $\mathsf{
 \end{align}
 \end{subequations}
 where $\gamma^\text{in}_T$, $\gamma^\text{in}_R$, $\gamma_T$ and $\gamma_R$ are positive-definite $3 \times 3$-matrices, we can write the equations of motion as
-\begin{subequations} 
+\begin{subequations} \label{eq:underdamped cosserat rod}
 \begin{align}
 D_t \vec{\theta} & = D_u \vec{V} \\
 \partial_t \vec{\pi} & = D_u \vec{\Omega} \\
@@ -1876,7 +1876,7 @@ D_t \vec{L} & = D_u \vec{M} + \vec{\theta} \times \vec{F}  - \gamma^\text{in}_R 
 where again $\gamma^\text{in}_T \dot{\vec{\theta}}$ and $\gamma^\text{in}_T \dot{\vec{\pi}}$ can be evaluated using the kinematic equations of motion, and $\vec{F} = \vec{M} = 0,\ u= 0,L_0$.
 
 We can consider a limit where the dissipative forces dominate over the inertial forces (which correspond to the left-hand side of Eq.~\ref{eq:dynamics with dissipation}). In this limit, we set $S \approx 0$, or equivalently $\vec{P} \approx 0$ and $\vec{L} = \mathbb{I} \vec{\Omega} \approx 0$. The resulting equations are \textit{overdamped} equations of motion
-\begin{subequations} 
+\begin{subequations}  
 \begin{align}
 \dot{X} & = \mathcal{D}_u N \label{eq:overdamped kinematics} \\
 \mathsf{G} N & = \mathcal{D}^*_u Q + \mathsf{H} \dot{X} \label{eq:overdamped dynamics} \\
@@ -1903,7 +1903,7 @@ and formally we can write $N$ as
 N = \mathscr{A}^{-1} \mathcal{D}^*_u Q
 \end{equation}
 where $\mathscr{A} = \mathsf{G} - \mathsf{H} (\partial_u + \text{ad}_X)$. In simulations, which invariably employ some discretisation scheme, $\mathscr{A}$ becomes a matrix that can be inverted numerically. If, however, we neglect internal dissipation we have $N = \mathsf{G}^{-1} \left( \partial_u - \text{ad}_X^* \right) Q$, and we can write the equations of motion in a compact form as
-\begin{equation}
+\begin{equation} \label{eq:Cosserat rod overdamped dynamics}
 \dot{X}  = \mathcal{D}_u \left[ \mathsf{G}^{-1} \mathcal{D}^*_u Q \right],
 \end{equation}
 or equivalently
@@ -1983,7 +1983,7 @@ In Sec.~\ref{sec:geometrisation applications} we use the geometrisation programm
 \begin{figure}[t]
 \centering
         \includegraphics[width=0.8\textwidth]{figs_part2/ch8_geometrisation/cosserat_geometrisation.pdf}
-        \caption{The relation between the spatio-temporal configuration $\Phi$ and the adapted frame field $\tilde{\Phi}$ of a filament. In the top-left and top-right we show the mapping of $(t_p, u_p)$, a point in the kinematic base space $W$, to $\tilde{\Phi}(t_p, u_p)$ and $\Phi(t_p, u_p)$, which are related by the projection map $\pi$.}\label{fig:cosserat rod geometrisation illustration}
+        \caption{The relation between the spatio-temporal configuration $\Phi$ and the adapted frame field $\tilde{\Phi}$ of a filament, where the latter can be seen as the spatio-temporal configuration of a Cosserat rod. In the top-left and top-right we show the mapping of $(t_p, u_p)$, a point in the kinematic base space $W$, to $\tilde{\Phi}(t_p, u_p)$ and $\Phi(t_p, u_p)$, which are related by the projection map $\pi$.}\label{fig:cosserat rod geometrisation illustration}
 \end{figure}
 
 Here we generalise the results of Sec.~\ref{sec:Geometric Cosserat rod mechanics} to systems with an arbitrary material base space and homogeneous configuration space. To aid understanding it will be helpful to reintroduce some nomenclature, and to relate and contextualise the mathematical formulation of the Cosserat rod and the filament to the general systems that we describe in what follows. This preamble will thus serve as a brief overview of the results given in the subsequent subsections.
@@ -2037,12 +2037,12 @@ where $\alpha = 1, \dots, d-1$ and $\beta = \alpha+1, \dots, d$, and where we ha
 which we call the generalised material derivative along the $\alpha$th material direction, and where $\partial_\alpha = \frac{\partial}{\partial u^\alpha}$. The $d$ spatial reconstruction fields $X_\alpha$ are not independent, as the spatial integrability condition Eq.~\ref{eq:(summary) spatial integrability condition} must be obeyed at all times $t$. However, as spatial integrability is preserved by the equations of motions Eq.~\ref{eq:(summary) geometrised kinematic equations of motion}, it suffices that the initial conditions satisfy Eq.~\ref{eq:(summary) spatial integrability condition} at $t=0$. Spatial integrability also implies that the total number of degrees of freedom is $\text{dim}(G) = d$.
 
 Numerical errors in the spatial integrability will in general accrue when integrating the kinematic equations of motion. Let
-\begin{equation}
-	\Delta_\text{int}(t, \mathbf{u}) = \partial_\beta X^\alpha - \mathcal{D}_\alpha X^\beta
+\begin{equation} \label{eq:spatial integrability residual}
+	\Delta^\text{int}_{\alpha \beta}(t, \mathbf{u}) = \partial_\beta X_\alpha - \mathcal{D}_\alpha X_\beta
 \end{equation}
 be the residual error in spatial integrability at time $t$ and material point $\mathbf{u}$. In Sec.~\ref{sec:Geometric kinematics} we show that 
 \begin{equation} \label{eq:(summary) time derivative of spatial integrability conditions}
-\partial_t \Delta_\text{int} = [ \Delta_\text{int}, N].
+\partial_t \Delta^\text{int}_{\alpha \beta} = [ \Delta^\text{int}_{\alpha \beta}, N].
 \end{equation}
 We thus see that the amplitude of the residual error at any material point on the system will grow exponentially in time at any material point $\mathbf{u}$, if the $\Delta_\text{int}(t,\mathbf{u}) \neq 0$. Standard integration techniques like the Forward-Euler scheme will thus in practice suffer these failures of spatial integrability. In Ch.~\ref{ch:Geometric numerical integrators} we develop geometric integrators that are designed to preserve Eq.~\ref{eq:(summary) spatial integrability condition}.
 
@@ -2062,7 +2062,7 @@ The dynamic quantities correspond analogously to those in Sec.~\ref{sec:Cosserat
 \begin{equation} \label{eq:(summary) generalised conjguate momentum}
 S = \frac{\partial \mathcal{K}}{\partial N}
 \end{equation}
-where $\mathcal{K} = \mathcal{K}(N)$ is a kinetic energy density defined on the system, and $S$ takes values in the dual Lie algebra $\mathfrak{g}^*$. The general dynamic equations of motion of the system are then
+where $\mathcal{K} = \mathcal{K}(N)$ is a kinetic energy density defined on the system, and $S$ takes values in the dual Lie algebra $\mathfrak{g}^*$, which in its matrix representation can be seen as the space $\mathfrak{g}^* = \{ Y^T\ :\ Y \in \mathfrak{g} \}$. The matrix derivative is carried out using numerator-layout convention Eq.~\ref{eq:numerator-layout convention}. The general dynamic equations of motion of the system are then
 \begin{subequations} \label{eq:(summary) dynamical equations of motion}
 \begin{align}
 \mathcal{D}^*_t S & = \mathcal{D}^*_\alpha Q^\alpha + T \\
@@ -2284,11 +2284,11 @@ is the generalised material derivative along the $\alpha$th material direction. 
 \end{equation}
 where we used the Jacobi identity $[A,[B,C]] = -[C, [A, B]] - [B, [C, A]]$. Finally, we get
 \begin{equation} \label{eq:time derivative of spatial integrability conditions}
-\partial_t \Delta_\text{int}(t, \mathbf{u}) = [ \Delta_\text{int}(t, \mathbf{u}), N].
+\partial_t \Delta^\text{int}_{\alpha \beta}(t, \mathbf{u}) = [ \Delta^\text{int}_{\alpha \beta}, N].
 \end{equation}
 where
 \begin{equation}
-	 \Delta_\text{int}(t, \mathbf{u}) = \partial_\beta X^\alpha - \mathcal{D}_\alpha X^\beta
+	 \Delta^\text{int}_{\alpha \beta}(t, \mathbf{u}) = \partial_\beta X_\alpha - \mathcal{D}_\alpha X_\beta
 \end{equation}
 is the residual error in spatial integrability at time $t$ and material point $\mathbf{u}$. If $X_\alpha$ satisfies Eq.~\ref{eq:spatial integrability conditions} at time $t=0$, then the right-hand side of Eq.~\ref{eq:time derivative of spatial integrability conditions} vanishes. Therefore we see that the kinematic equations of motion Eq.~\ref{eq:xi from N} preserves the spatial integrability conditions Eq.~\ref{eq:spatial integrability conditions} at all future times. Equation \ref{eq:time derivative of spatial integrability conditions} shows how that the amplitude of the error in spatial integrability grows exponentially in time.
 
@@ -2604,10 +2604,11 @@ n_\alpha Q^\alpha & = 0, \quad \text{on } \partial M.
 where $\text{ad}_{\cdot}^*$ was given in Eq.~\ref{eq:SE(3) dual adjoint}, and where
 \begin{subequations} \label{eq:S Qu Qv Qw}
 \begin{align}
-S & = \frac{\partial \mathcal{K}}{\partial N} = \{ \vec{P} ; \vec{L} \} \\
-Q^u & = \{ \vec{F}^u ; \vec{M}^u \} \\
-Q^v & = \{ \vec{F}^v ; \vec{M}^v \} \\
-Q^w & = \{ \vec{F}^w ; \vec{M}^w \}.
+S & = \frac{\partial \mathcal{K}}{\partial N} = \{ \vec{P} ; \vec{L} \}^* \\
+Q^u & = \{ \vec{F}^u ; \vec{M}^u \}^* \\
+Q^v & = \{ \vec{F}^v ; \vec{M}^v \}^* \\
+Q^w & = \{ \vec{F}^w ; \vec{M}^w \}^* \\
+T & = \{ \vec{f} ; \vec{m} \}^*
 \end{align}
 \end{subequations}
 We now define the kinetic energy per unit material volume as
@@ -2708,14 +2709,14 @@ d E & = E \hat{\Omega} dt + E \hat{\pi}_u du + E \hat{\pi}_v dv.
 \end{align}
 \end{subequations}
 and from Eq.~\ref{eq:(summary) geometrised kinematic equations of motion} we find the kinematic equations of motion
-\begin{subequations}
+\begin{subequations} \label{eq:cosserat surface eom}
 \begin{align}
 \dot{X}_u & = \mathcal{D}_u N \\
 \dot{X}_v & = \mathcal{D}_v N
 \end{align}
 \end{subequations}
 where the spatial reconstruction fields $X_u$ and $X_v$ must obey the spatial integrability conditions
-\begin{equation}
+\begin{equation} \label{eq:cosserat surface integrability}
 \partial_v X_u = \mathcal{D}_u X_v.
 \end{equation}
 
@@ -2735,9 +2736,10 @@ n_\alpha Q^\alpha & = 0, \quad \text{on } \partial M.
 where we sum over $\alpha = u,v$ and $\text{ad}_{\cdot}^*$ was given in Eq.~\ref{eq:SE(3) dual adjoint}, and where
 \begin{subequations} \label{eq:S Qu Qv}
 \begin{align}
-S & = \frac{\partial \mathcal{K}}{\partial N} = \{ \vec{P} ; \vec{L} \} \\
-Q^u & = \{ \vec{F}^u ; \vec{M}^u \} \\
-Q^v & = \{ \vec{F}^v ; \vec{M}^v \}
+S & = \frac{\partial \mathcal{K}}{\partial N} = \{ \vec{P} ; \vec{L} \}^* \\
+Q^u & = \{ \vec{F}^u ; \vec{M}^u \}^* \\
+Q^v & = \{ \vec{F}^v ; \vec{M}^v \}^* \\
+T & = \{ \vec{f} ; \vec{m} \}^*
 \end{align}
 \end{subequations}
 and $\vec{P} = \rho_0 \vec{V}$ and $\vec{L} = \mathbb{I} \vec{\Omega}$.  Substituting Eq.~\ref{eq:N X_alpha defs} and Eq.~\ref{eq:S Qu Qv} into Eq.~\ref{eq:surface dynamical eoms} we get
@@ -3127,284 +3129,285 @@ Perhaps these steps should have their own section, where I go through each step 
 
 \chapter{Geometric numerical integrators} \label{ch:Geometric numerical integrators}
 
-In numerics, the general class of systems considered in Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} are simulated by integrating the kinodynamic equations of motion, which were stated in full in Eq.~\ref{eq:combined, eoms}. One of the simplest integrators is the Forward-Euler (FE) scheme, wherein the equations are linearised by means of a uniform discretisation in time. However, the Lie group-geometric intricacies of Eq.~\ref{eq:combined, eoms} are lost if such a scheme is applied. In particular, the adjoint action of the Lie group $G$ is prominent in the equations of motion, where $G$ is either the symmetry group of the configuration space or the configuration space itself. In this chapter we develop numerical integrators that are built around the properties of $G$. As we show in Sec.~\ref{sec:lie group integrators applications}, the resulting geometric numerical integrators preserve the spatial integrability conditions Eq.~\ref{eq:combined, spatial integrability}.
+In numerics, the general class of systems considered in Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} are simulated by integrating the kinodynamic equations of motion, which were stated in full in Eq.~\ref{eq:combined, eoms}. One of the simplest methods to use is the Forward-Euler integrator (FEI), wherein the equations are linearised by means of a uniform discretisation in time. However, the Lie group-geometric intricacies of Eq.~\ref{eq:combined, eoms} are lost if such a scheme is applied. In particular, the adjoint action of the Lie group $G$ is prominent in the equations of motion, where $G$ is either the symmetry group of the configuration space or the configuration space itself. In this chapter we develop numerical integrators that are built around the properties of $G$. As we show in Sec.~\ref{sec:lie group integrators applications}, the resulting \textit{geometric} numerical integrators preserve the spatial integrability conditions Eq.~\ref{eq:combined, spatial integrability}.
 
-The form of equations we consider can all be be put into the form
+The equations of motion we consider in this text can all be be put into the form
 \begin{equation} \label{eq:general class of matrix equations}
-\partial_t x = f + A x
+\partial_t x = F + A x
 \end{equation}
-where $x = x(t,\mathbf{u}) \in \mathbb{R}^n$ is the state of the system, and $f$ is a $\mathbb{R}^n$-valued drift-field and $A$ a $\mathbb{R}^{n \times n}$-valued linear operator acting on the components of $x$. In general, $f$ and $A$ can be dependent on $x$ as well as its derivatives $\partial_\alpha x, \partial^2_\alpha x$, including higher-order derivatives. Given an initial condition $x(t_0) = x_0$ and $f_0 = f(x_0, \partial_\alpha x |_{x = x_0}, \dots)$ and $A_0 = A(x_0, \partial_\alpha x |_{x = x_0}, \dots)$, then we can approximate $x(t_0 + \Delta t)$ as
+where $x = x(t,\mathbf{u}) \in \mathbb{R}^n$ is the state of the system, and $F$ is a $\mathbb{R}^n$-valued drift-field and $A$ a $\mathbb{R}^{n \times n}$-valued linear operator acting on the components of $x$. In general, $F$ and $A$ can be dependent on $x$ as well as its derivatives $\partial_\alpha x, \partial^2_\alpha x$, including higher-order derivatives. Given an initial condition $x(t_0) = x_0$ and $F_0 = f(x_0, \partial_\alpha x |_{x = x_0}, \dots)$ and $A_0 = A(x_0, \partial_\alpha x |_{x = x_0}, \dots)$, then we can approximate $x(t_0 + \Delta t)$ as
 \begin{equation} \label{eq:FE scheme}
-	x(t_0 + \Delta t) \approx f_0 \Delta t + A_0 x_0 \Delta t.
+	x(t_0 + \Delta t, \mathbf{u}) \approx F_0 \Delta t + A_0 x_0 \Delta t.
 \end{equation}
-This is the Forward-Euler integration scheme, using which we can numerically approximate solutions to Eq.~\ref{eq:general class of matrix equations} on a uniform time-grid $t_i = i \Delta t$. Implicitly we have assumed that $f$ and the product $A x_0$ are constant in time-interval $[t_0, t_0 + \Delta t]$ in Eq.~\ref{eq:FE scheme}. We now relax the latter assumption, approximating Eq.~\ref{eq:general class of matrix equations} as
+which is an approximate short-time propagator Eq.~\ref{eq:general class of matrix equations}. This is the Forward-Euler integration scheme, using which we can numerically approximate solutions to Eq.~\ref{eq:general class of matrix equations} on a uniform time-grid $t_i = i \Delta t$. Implicitly we have assumed that $f$ and the product $A x_0$ are constant in the time-interval $[t_0, t_0 + \Delta t]$ in Eq.~\ref{eq:FE scheme}. We now relax the latter assumption, approximating Eq.~\ref{eq:general class of matrix equations} as
 \begin{equation} \label{eq:general class of matrix equations}
-\partial_t x \approx f_0 + A_0 x,\ \quad t \in [t_0, t_0 + \Delta t].
+\partial_t x \approx F_0 + A_0 x,\ \quad t \in [t_0, t_0 + \Delta t].
 \end{equation}
-where $x(t_0) = x_0$. The right-hand side can be solved analytically \citep{haleOrdinaryDifferentialEquations2009}, such that we get 
+where $x(t_0) = x_0$. The right-hand side can be solved analytically \citep{haleOrdinaryDifferentialEquations2009}, such that we get the alternative short-time propagator
 \begin{equation} \label{eq:general lie group integrator}
-	x(t_0 + \Delta t) \approx e^{\Delta t A_0} x_0 + \left( \int_0^{\Delta t} e^{(\Delta t - \Delta t') A_0} d \Delta t' \right) f_0,
+	x(t_0 + \Delta t, \mathbf{u}) \approx e^{\Delta t A_0} x_0 + \left( \int_0^{\Delta t} e^{(\Delta t - \Delta t') A_0} d \Delta t' \right) F_0,
 \end{equation}
-which provides an alternative to the FE integrator.
+which provides an alternative to the FEI.
 
-Let $\mathfrak{g}$ be a a Lie algebra with representation $\rho : \mathfrak{g} \to \mathfrak{gl}(V)$, where $V$ is an $n$-dimensional vector space and $\mathfrak{gl}(V)$ is the Lie algebra of the general linear group. Now if we recast Eq.~\ref{eq:general class of matrix equations} such that $A$ is an element of the given Lie algebra representation (that is, $A \in \rho(\mathfrak{g})$), then $x$ take values in the vector space $V$ that the Lie algebra representation is acting on. In this setting, the integrator Eq.~\ref{eq:general lie group integrator} is known as a \textit{Lie group integrator} \citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022}. The drift-field is now $f : V \to V$, and should be considered a translation
-
-
-
-If $A$ takes values in a representation of a Lie algebra $\mathfrak{g}$ with on a vector space $V$, then we 
-
-
-then Eq.~\ref{eq:general lie group integrator} is known as a \textit{Lie group integrator} \citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022}, in which case $e^{\Delta t A_0}$ is Lie group-valued.
-
-Eq.~\ref{eq:general lie group integrator} thus ensures that $x$ remains on the 
-
-
-
-However if we assume $f$ and $A$ are approximately constant under the time-interval $[t_0, t_0 + \Delta t]$,
-
- $\Delta t$  Eq.~\ref{eq:general class of matrix equations} be 
-
-for some $n$, and where $f : \mathbf{R}^n \to \mathbb{R}^n$ is an $x$-dependent drift-field and 
-
-eq:combined, generalised material derivatives
-
-Moreover, signifcant errors will accrue 
-
-
-In these equations, the adjoint action of the Lie group $G$ is prominent, where $G$ is either the symmetry group of the configuration space or the configuration space itself.
-
-
-the kinodynamic equations of motion of the general class of systems discussed in Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces}, which are stated in full in Eq.~\ref{eq:combined, eoms}, must be simulated forwards in time.
-
-
-
-Introduce Lie group integrators with references.
-
+Now, let $\mathfrak{g}$ be a a Lie algebra with representation $\rho : \mathfrak{g} \to \mathfrak{gl}(V)$, where $V$ is an $n$-dimensional vector space and $\mathfrak{gl}(V)$ is the Lie algebra of the general linear group. If we recast Eq.~\ref{eq:general class of matrix equations} such that $A$ is an element of the given Lie algebra representation (that is, $A \in \rho(\mathfrak{g})$), then $x$ takes values in the vector space $V$ that the Lie algebra is acting on. Furthermore, the drift-field is now a function $F : V \to V$, and should be considered to take values in $\mathfrak{t}$, the Lie algebra of the \textit{translation group}\footnote{Note that as the translation group is abelian, we have that it is isomorphic with its Lie algebra $\mathfrak{t}(V) \cong T$.} $T$ acting on $V$. The right-hand side of Eq.~\ref{eq:general class of matrix equations} can thus be seen as a combination of a translation $F$ and the $\mathfrak{g}$-action $A$ on the $V$-valued $x$. Therefore, the linear map
 \begin{equation}
-\partial_t x = f(x) + A(x) x
+	x \mapsto F + Ax
 \end{equation}
-
-\citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022}
-
-
-As we will see in Sec.~\ref{sec:lie group integrators applications} the primary benefit of Lie group integrators is that they preserve the geometric structure of the equations of motion. Specifically, the Lie group integrators we develop in this chapter preserve the spatial integrability condition Eq.~\ref{eq:combined, spatial integrability}. We also see that they accrue smaller errors by orders of magnitude relative to standard the Forward-Euler tehcnique.
-
-
-\section{Lie group integrators for $SO(3)$-valued configuration spaces}
-
-\section{$SE(3)$-Lie group integrators}
-
----
-
-The kinematic equations of motion are
-
-\begin{equation}
-\dot{X}=Z'-\text{ad}_{Y}X\label{eq:eom}
-\end{equation}
-where $\dot{X}=\partial_{t}X$ and $Z'=\partial_{u}Z$. In general
-$Z$ will be a smooth function of $\vec{\theta}$, $\vec{\pi}$ and
-$t$, and can thus be approximated as constant for short time-steps
-$\Delta t$. This linearises Eq. \ref{eq:eom}, and we can construct
-a simple Forward-Euler (FE) integrator
-\[
-X(u,t+\Delta t)\approx X(u,t)+\Delta t(Z'(u,t)-\text{ad}_{Z(u,t)}X(u,t))
-\]
-for each $u$. This is perhaps the most straight-forward way of simulating
-the kinematics of the Cosserat rod, however here we construct an alternative
-integrator that takes into account that $\text{ad}_{Y}$ is a geometric
-operation in the group of special Euclidean transformations, and benefits
-from being treated with care. We can construct the geometric kinematic
-integrator by solving Eq. \ref{eq:eom} analytically for short-time
-steps, presuming constant $Y$. We do this by recognising that pointwise
-at $u$ Eq. \ref{eq:eom} can be written as a first-order matrix ODE
-\begin{equation}
-\partial_{t}\left(\begin{array}{c}
-1\\
-X
-\end{array}\right)=M\left(\begin{array}{c}
-1\\
-X
-\end{array}\right)
-\end{equation}
+can \textit{itself} be seen as a representation of the product Lie algebra $\mathfrak{t} \times \mathfrak{g}$. This can be seen explicitly by rewriting Eq.~\ref{eq:general class of matrix equations} as
+\begin{equation} \label{eq:recast matrix equation}
+	\partial_t \begin{pmatrix}
+		1 \\ x
+	\end{pmatrix} = M \begin{pmatrix}
+		1 \\ x
+	\end{pmatrix}
+\end{equation} 
 where
 \begin{equation}
-M=\left(\begin{array}{cc}
-0 & 0\\
-Z' & -\text{ad}_{Z}
-\end{array}\right)\label{eq:M}
+	M = \begin{pmatrix}
+		0 & 0 \\
+		F & A
+	\end{pmatrix},
 \end{equation}
-where $M$ should not strictly-speaking be seen as a matrix, but rather
-as a linear operator on matrices. The short-time integrator for Eq.
-\ref{eq:eom} is then found by exponentiating $M$. Formally we get
-\begin{equation}
-\left(\begin{array}{c}
-1\\
-\vec{X}(t+\Delta t)
-\end{array}\right)=e^{\Delta tM}\left(\begin{array}{c}
-1\\
-\vec{X}
-\end{array}\right)
-\end{equation}
-The exponential can be evaluated explicitly to find
+where we identify $M$ as a representation of $\mathfrak{t} \times \mathfrak{g}$.
 
-\begin{equation}
-X(u,t+\Delta t)\approx e^{-\Delta t\ \text{ad}_{Y}}X+\int_{0}^{\Delta t}e^{-(\Delta t-\Delta t')\ \text{ad}_{Z}}Z'd\Delta t'\label{eq:general expression for matrix ODE with drift}
+ Now, if we repeat the same derivation we did previously to get a short-time propagator for Eq.~\ref{eq:recast matrix equation}. Let $x(t_0) = x_0$ and $M_0 = M|_{x = x_0}$, we then have
+\begin{equation} \label{eq:general lie group integrator 2}
+	\begin{pmatrix}
+		1 \\ x(t + \Delta t), \mathbf{u})
+	\end{pmatrix} \approx e^{\Delta t M_0} \begin{pmatrix}
+		1 \\ x_0
+	\end{pmatrix}.
 \end{equation}
-where the exponential of the adjoint is defined as
+Recall that the exponential map of a Lie algebra representation yields a representation of the corresponding Lie group. Therefore, therefore we have that $e^{\Delta t M_0}$ is a representation of the Lie group product $T \times G$. Now, note that Eq.~\ref{eq:general lie group integrator 2} must be equivalent Eq.~\ref{eq:general lie group integrator}. This tells us that the right-hand side of Eq.~\ref{eq:general class of matrix equations} can be seen as the infinitesimal action of the Lie algebra $\mathfrak{t} \times \mathfrak{g}$ on the $V$-valued $x$, via the given representation. Eq.~\ref{eq:general lie group integrator} thus ensures, using the exponential map $\exp : \mathfrak{t} \times \mathfrak{g} \to T \times G$, that we properly integrate the infinitesimal action from the Lie algebra to the corresponding Lie group $T \times G$. In this setting, the integrator Eq.~\ref{eq:general lie group integrator} is known as a \textit{Lie group integrator} (LGI) \citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022}.
+
+Both the FEI and the LGI will suffer numerical errors. However, the errors of the former will accrue in such a way that the `effective' action of $F$ and $A$ on $x$ does not exponentiate to a well-defined action on the Lie group-level. On the other hand, the LGI is defined so that errors accrue \textit{in the Lie group itself}.
+
+%We thus see that the integrator we derived in Eq.~\ref{eq:general lie group integrator} can be seen as the result of exponentiating the action of $\mathfrak{t} \times \mathfrak{g}$ to its corresponding Lie group $T \times G$, via the exponential map $\exp : \mathfrak{t} \times \mathfrak{g} \to T \times G$. 
+
+%In other words the right-hand side of Eq.~\ref{eq:general class of matrix equations} can thus be seen as the infinitesimal action of the Lie algebra $\mathfrak{t} \times \mathfrak{g}$ on the $V$-valued $x$, via the given representation. Eq.~\ref{eq:general lie group integrator} thus ensures, using the exponential map, that we properly integrate the infinitesimal action from the Lie algebra to the Lie group $T \times G$, which the FE fails to do in general.
+
+In Sec.~\ref{sec:Geometric integrators for general configuration spaces} we will use the results above to derive Lie group integrators for the general class of $G/H$-configured systems considered in Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces}. We will then present results for the specific cases of $SO(3)$- and $SE(3)$-valued configuration spaces in Sec.~\ref{sec:Geometric integrators for SO(3)-valued configuration spaces} and Sec.~\ref{sec:Geometric integrators for SE(3)-valued configuration spaces} respectively. The results of these latter two sections also apply for systems with a configuration space that is a homogeneous space for which $SO(3)$ or $SE(3)$ is the symmetry group. Sec.~\ref{sec:lie group integrators applications} we show some numerical results for the Cosserat rod and Cosserat sheet, simulated using the geometric integrators.
+
+\section{Geometric integrators for general configuration spaces} \label{sec:Geometric integrators for general configuration spaces}
+
+We consider a system with a $d$-dimensional material base space $M$ and configuration space $G/H$, where $G$ is an $n$-dimensional Lie group with Lie algebra $\mathfrak{g}$ and $H \subset G$ is a Lie subgroup. The kinodynamic equations of motion of the system are given in Eq.~\ref{eq:combined, eoms}, which can be put into the form of Eq.~\ref{eq:general class of matrix equations} by setting
+\begin{subequations} \label{eq:rewritten kinodynamic eoms}
+	\begin{align}
+		\partial_t X_\alpha  & = F_\alpha + A X_\alpha \label{eq:rewritten kinematic eom} \\
+		\partial_t S & = H + B S \label{eq:rewritten dynamic eom}
+	\end{align}
+\end{subequations}
+where $\alpha = 1, \dots, d$ and
+\begin{subequations} \label{eq:F H defs}
+	\begin{align}
+		F_\alpha & = \partial_\alpha N \\
+		H & = \mathcal{D}^*_\alpha Q^\alpha + T
+	\end{align}
+\end{subequations}
+and $A = - \text{ad}_N$, $B = - \text{ad}^*_N$, where we used $\text{ad}_X N = - \text{ad}_N X$. We assume that all quantities are expressed in a non-dimensionalised form . Now, as per the discussion in the introduction of this chapter, we recognise that the vector spaces in which $X$ and $S$ take values in are $\mathfrak{g}$ and $\mathfrak{g}^*$ respectively. Furthermore, $f$ and $h$ are translations acting on  $\mathfrak{g}$ and $\mathfrak{g}^*$ respectively, and $A$ and $B$ are elements of the \textit{adjoint representation} of $\mathfrak{g}$ and its corresponding dual representation, respectively. The adjoint representation $\text{ad} : \mathfrak{g} \to \mathfrak{gl}(\mathfrak{g})$ maps Lie algebra elements to linear maps on the Lie algebra itself. We will consider $X$ and $N$ in their fundamental matrix representation $X,N \in \mathbb{R}^{m \times m}$ for some $m$, and we write their indices as $X_{ij}$ and $N_{ij},\ i,j=1,\dots, m$.
+
+From Eq.~\ref{eq:general lie group integrator} we find the short-term propagators
+\begin{subequations} \label{eq:kinodynamic short term propagators}
+	\begin{align}
+		X_\alpha(t_0 + \Delta t, \mathbf{u}) & \approx e^{- \Delta t\ \text{ad}_N} X_0
+			+ \left( \int_0^{\Delta t} e^{-(\Delta t - \Delta t') \text{ad}_N} d \Delta t' \right) F_{\alpha,0} \\
+		S(t_0 + \Delta t, \mathbf{u}) & \approx e^{- \Delta t\ \text{ad}^*_N} S_0
+			+ \left( \int_0^{\Delta t} e^{- (\Delta t - \Delta t') \text{ad}^*_N} d \Delta t' \right) H_0. \label{eq:S short-term propagator}
+	\end{align}
+\end{subequations}
+To use the short-term propagators the matrix exponentials and the integrals must be evaluated. Though as $\text{ad}_N \in \mathbb{R}^{m^2 \times m^2}$ in matrix form, numerically evaluating the exponentials of adjoint representations can be expensive. However, we can more efficiently compute them using the identity
 \begin{equation}
-e^{\text{ad}_{H}}K=\sum_{k=0}^{\infty}\frac{(\text{ad}_{H})^{k}}{k!}K
+	\text{Ad}_{e^Y} = e^{\text{ad}_Y}
 \end{equation}
-for any $H,K\in\mathfrak{se}(d)$. We can exploit the fact that $\text{Ad}_{e^{A}}=e^{\text{ad}_{A}}$,
+for any $Y \in \mathfrak{g}$, and $\text{Ad}$ is the adjoint action of the Lie group, defined as
+\begin{equation} \label{eq:adjoint action 2}
+\text{Ad}_g Y = g Y g^{-1}
+\end{equation} 
+for any $g \in G$. We therefore have that, using $(e^{Y})^{-1} = e^{-Y}$
+\begin{subequations} \label{eq:exp expressions for kinematic eom}
+	\begin{align}
+		e^{-\Delta t\ \text{ad}_N} X_{\alpha, 0} & = e^{- \Delta t N} X_{\alpha, 0} e^{\Delta t N} \\
+		\left( \int_0^{\Delta t} e^{-(\Delta t - \Delta t') \text{ad}_N} d \Delta t' \right) F_{\alpha, 0} & = \int_0^{\Delta t} e^{- (\Delta t - \Delta t') N} F_{\alpha, 0} e^{(\Delta t - \Delta t') N}  d \Delta t'
+	\end{align}
+\end{subequations}
+where the right-hand sides are now expressed in terms of the exponentials of the Lie algebra elements, which are computationally more convenient to compute. To find the equivalent expressions for Eq.~\ref{eq:S short-term propagator}, note that from $e^{\text{ad}^*_Y} = e^{(\text{ad}_Y)^T} = (e^{\text{ad}_Y})^T$ we have that $e^{\text{ad}^*_Y} = (\text{Ad}_{ e^Y })^T$. To find the transpose of the adjoint action, we can write Eq.~\ref{eq:adjoint action 2} in index form $(\text{Ad}_g Y)_{ij} = (\text{Ad}_g)_{ik, jl} Y_{kl}$, where $(\text{Ad}_g)_{ik, jl} = g_{ik} g^{-1}_{lj}$, summing over repeated indices. Then $(\text{Ad}_g)^T_{ik, jl} = (\text{Ad}_g)_{jl, ik} = g_{jl} g^{-1}_{ki}$ such that
+\begin{equation} \label{eq:adjoint action 2}
+(\text{Ad}_g)^T Z = (g^{-1})^T Z g^T
+\end{equation} 
+for any $Z \in \mathfrak{g}^*$ and $g \in G$. We thus find that
+\begin{subequations} \label{eq:exp expressions for dynamic eom}
+	\begin{align}
+		e^{-\Delta t\ \text{ad}^*_N} S_0 & = (e^{\Delta t N})^T S_0 (e^{- \Delta t N})^T \\
+		\left( \int_0^{\Delta t} e^{-(\Delta t - \Delta t') \text{ad}^*_N} d \Delta t' \right) H_0 & = \int_0^{\Delta t} (e^{(\Delta t - \Delta t') N})^T H_0 (e^{-(\Delta t - \Delta t') N})^T d \Delta t' \nonumber \\
+		& = \left( \int_0^{\Delta t} (e^{-(\Delta t - \Delta t') N}) H_0^T (e^{(\Delta t - \Delta t') N}) d \Delta t' \right)^T 
+	\end{align}
+\end{subequations}
+Comparing Eqs.~\ref{eq:exp expressions for kinematic eom} and \ref{eq:exp expressions for dynamic eom}, we see that they can be evaluated using the same sequence of calculations. We define
+\begin{equation}
+	\mathscr{E}_G(\Delta t, N, Y) = \int_0^{\Delta t} e^{-(\Delta t - \Delta t') N} Y e^{(\Delta t - \Delta t') N} d \Delta t'
+\end{equation}
+where $N,Y \in \mathbb{R}^{m \times m}$ are constant matrices, such that we can rewrite Eq.~\ref{eq:kinodynamic short term propagators} as
+\begin{subequations} \label{eq:kinodynamic short term propagators}
+	\begin{align}
+		X_{\alpha}(t_0 + \Delta t, \mathbf{u}) & \approx e^{- \Delta t N} X_{\alpha, 0} e^{ \Delta t N} + \mathscr{E}_G(\Delta t, N, F_{\alpha, 0}) \label{eq:X propagator} \\
+		S(t_0 + \Delta t, \mathbf{u}) & \approx (e^{\Delta t N})^T S_0 (e^{-\Delta t N})^T + \mathscr{E}_G(\Delta t, N, H_0^T)^T, \label{eq:S propagator}
+	\end{align}
+\end{subequations}
+where the transposes in Eq.~\ref{eq:S propagator} can be understood by recalling the matrix representation of the dual Lie algebra $\mathfrak{g}^* = \{ Y^T\ :\ Y \in \mathfrak{g} \}$ (see Eq.~\ref{eq:(summary) generalised conjguate momentum}). We can thus treat Eq.~\ref{eq:S propagator} in a manner identical to Eq.~\ref{eq:X propagator} by taking the transpose, to get
+\begin{equation}
+	S^T(t_0 + \Delta t, \mathbf{u}) \approx e^{-\Delta t N} S^T_0 e^{\Delta t N} + \mathscr{E}_G(\Delta t, N, H_0^T).
+\end{equation}
+We see that in order to evaluate the short-term propagator we need to compute $e^{- \Delta t N}$, $\mathscr{E}_G(\Delta t, N, F_0)$ and $\mathscr{E}_G(\Delta t, N, H_0^T)$. For many Lie groups, the exponential map is known in closed-form such that $e^{- \Delta t N}$ can be computed efficiently. If this is not the case, it can be approximated using
+\begin{equation}
+e^{Y} = \sum_{k=0}^\infty \frac{1}{k!} Y^k
+\end{equation}
+up to arbitrary precision by truncating the sum. Once an expression for $e^{- \Delta t N}$ has been found (whether it is analytic or approximate), we must compute $\mathscr{E}_G(\Delta t, N, Y)$. In principle this can be done using numerical quadrature, but in Sec.~\ref{sec:Geometric integrators for SO(3)-valued configuration spaces} and Sec.~\ref{sec:Geometric integrators for SE(3)-valued configuration spaces} we derive their closed-form expressions for $SO(3)$- and $SE(3)$-configured systems. 
+
+\section{Geometric integrators for $SO(3)$-configured system} \label{sec:Geometric integrators for SO(3)-valued configuration spaces}
+
+Here we construct the short-term propagator for $SO(3)$-configured systems. The results also apply to systems with homogeneous configuration spaces, like $S^2$, on which $SO(3)$ is the associated symmetry group. The closed-form expression for the exponential map $\exp_{SO(3)} : \mathfrak{so}(3) \to SO(3)$ is \citep{blancoTutorialSETransformation}
+\begin{equation}
+	\exp_{SO(3)}(\hat{Y}) = \mathbbm{1}_{3}+\frac{\sin|\vec{Y}|}{|\vec{Y}|}\hat{Y}+\frac{1-\cos|\vec{Y}|}{|\vec{Y}|^{2}}\hat{Y}^{2}
+\end{equation}
+where $\vec{Y} \in \mathbb{R}^3$ and $\hat{Y} \in \mathfrak{so}(3)$ is given by the hat map Eq.~\ref{eq:hat map}. Now using the identity $R \hat{Y} R^{-1} = \widehat{R \vec{Y}}$ for any $R \in SO(3)$, we have
+\begin{equation} \label{eq:E-map SO(3)}
+	\mathscr{E}_{SO(3)}(\Delta t, \hat{N}, \vec{Y}) = \Delta t \mathscr{B}(- \Delta t \hat{N}) \vec{Y} 
+\end{equation}
 where
-\begin{equation}
-\text{Ad}_{g}K=gKg^{-1}
+\begin{equation} \label{eq:SO(3) exp map}
+\begin{aligned}
+	\mathscr{B}(\hat{Y}) & = \int_0^1  \exp_{SO(3)} ( \alpha \hat{Y} ) d \alpha \\
+	& = \mathbbm{1}_{3}+\frac{1-\cos|\vec{Y}|}{|\vec{Y}|^{2}}\hat{Y}+\frac{|\vec{Y}|-\sin|\vec{Y}|}{|\vec{Y}|^{3}}\hat{Y}^{2}.
+\end{aligned}
 \end{equation}
-is the Lie group adjoint action, to get
-\begin{align}
-e^{-\Delta t\ \text{ad}_{Z}}X & =e^{-\Delta tZ}Xe^{\Delta tZ}\\
-\int_{0}^{\Delta t}e^{-(\Delta t-\Delta t')\ \text{ad}_{Z}}Z'd\Delta t' & =\int_{0}^{\Delta t}e^{-(\Delta t-\Delta t')Z}Z'e^{(\Delta t-\Delta t')Z}d\Delta t'\label{eq:integral part}
-\end{align}
-For $d=3$, the explicit form of $e^{\Delta tY}$ is known, and is
-given in the appendix, with which we can evaluate these expressions.
-The detailed calculation is found in the appendix. The resulting integrator
-is
-\begin{align}
-\vec{\theta}(t+\Delta t) & \approx B_{\Delta t\hat{\Omega}}\vec{\theta}+\Delta tA_{\Delta t\hat{\Omega}}\vec{V}'-\vec{p}-\vec{q}\\
-\vec{\pi}(t+\Delta t) & \approx B_{\Delta\hat{\Omega}}\vec{\pi}+\Delta tA_{\Delta t\hat{\Omega}}\vec{\Omega}'
-\end{align}
-where $A_{\Delta t\hat{\Omega}}$ and $B_{\Delta t\hat{\Omega}}$
-are given by Eq. \ref{eq:A} and Eq. \ref{eq:B} respectively, and
-$\psi=\Delta t|\vec{\Omega}|$, and
-\begin{align}
-\vec{p} & =\Delta t(A_{\Delta t\Omega}\vec{V})\times(B_{\Delta t\Omega}\vec{\pi})\\
-\vec{q} & =\sum_{i,j=1}^{3}k_{ij}\bar{\Omega}^{i-1}\hat{\Omega}'\bar{\Omega}^{j-1}\label{eq:q}
-\end{align}
-where $\bar{\Omega}=\hat{\Omega}/|\vec{\Omega}|$ and $K=(k_{ij})$
-is
-\begin{equation}
-K=\left(\begin{matrix}\frac{\psi^{2}}{2} & -\psi+\sin\psi & \frac{\psi^{2}}{2}+\cos\psi-1\\
--\psi\cos\psi+\sin\psi & \frac{\sin^{2}\psi}{2}+\cos\psi-1 & -\psi\cos\psi-\frac{\psi}{2}+\sin\psi+\frac{\sin2\psi}{4}\\
-\frac{\psi^{2}}{2}-\psi\sin\psi-\cos\psi+1 & -\frac{3\psi}{2}+2\sin\psi-\frac{\sin2\psi}{4} & \frac{\left(\psi-\sin\psi\right)^{2}}{2}
-\end{matrix}\right)
+For convenience we have let $\mathscr{E}_{SO(3)}(\Delta t, \hat{N}, \hat{Y}) \in \mathbb{R}^3$ using the inverse hat-map. The short-term propagator can then be written as
+\begin{subequations} \label{eq:SO(3) kinodynamic short term propagators}
+	\begin{align}
+		\vec{X}_{\alpha}(t_0 + \Delta t, \mathbf{u}) & \approx \exp_{SO(3)}( - \Delta t \hat{N} ) \vec{X}_{\alpha, 0} + \mathscr{E}_{SO(3)}(\Delta t, \hat{N}, \vec{F}_{\alpha, 0}) \\
+		\vec{S}(t_0 + \Delta t, \mathbf{u}) & \approx \exp_{SO(3)}( - \Delta t \hat{N} ) \vec{S}_0 + \mathscr{E}_{SO(3)}(\Delta t, \hat{N}, \vec{H}_0).
+	\end{align}
+\end{subequations}
+where $\vec{F}_{\alpha, 0}$ and $\vec{H}_0$ are computed using Eq.~\ref{eq:F H defs}. As the exponential map Eq.~\ref{eq:SO(3) exp map} is ill-conditioned for  small $|\vec{Y}|$, it is often necessary to Taylor expand $\exp_{SO(3)} ( \alpha \hat{Y} )$ and $\mathscr{E}_{SO(3)}(\Delta t, \hat{N}, \vec{Y})$ to at least $O(|\vec{Y}|^6)$ when $|\vec{Y}| < 0.1$.
+
+\section{Geometric integrators for $SE(3)$-configured systems} \label{sec:Geometric integrators for SE(3)-valued configuration spaces}
+
+Here we construct the short-term propagator for $SE(3)$-configured systems. The results also apply to systems with homogeneous configuration spaces, like $\mathbb{E}^3$, on which $SE(3)$ is the associated symmetry group. We will only present the results here. See App.~\ref{app:Detailed derivation of the SE(3) short-time propagator} for detailed derivations. As for the Cosserat systems, we write the kinematic and dynamical quantities of the equations of motion as $X_\alpha = \{ \vec{\theta}_\alpha, \vec{\pi}_\alpha \}$, $N = \{ \vec{V} ; \vec{\Omega} \}$, $S = \{ \vec{P} ; \vec{L} \}^*$ and $Q = \{ \vec{F} ; \vec{M} \}^*$. All quantities are assumed to be expressed in a non-dimensionalised form.
+
+The closed form expression for the exponential map $\text{exp}_{SE(3)} : \mathfrak{se}(3) \to SE(3)$ is \citep{blancoTutorialSETransformation}
+\begin{equation} \label{eq:SE(3) exp map}
+	\exp_{SE(3)}(Y) = \begin{pmatrix}
+		1 & \vec{0}^T \\
+		\mathscr{B}(\hat{m}) \vec{a} & \exp_{SO(3)}(\hat{m})
+	\end{pmatrix}.
 \end{equation}
-In practice it can be useful to evaluate Eq. \ref{eq:general expression for matrix ODE with drift}
-using a symbolical computation package like \emph{SymPy}, to get an
-expression for the three components of $\vec{q}$ directly.
-
-As $\bar{\Omega},$ $A_{\Delta t\hat{\Omega}}$ and $B_{\Delta t\hat{\Omega}}$
-are ill-conditioned for small $\psi$, it is often necessary to Taylor
-expand $A_{\Delta t\hat{\Omega}}$, $B_{\Delta t\hat{\Omega}}$ and
-$\vec{q}$ around $\psi=0$ in these regimes. For a detailed treatment
-of this see the appendix.
-
-\paragraph{Simplified kinematic integrator}
-
-Here we present a simplified version of the integrator, where $\vec{q}$
-no longer needs to be computed. The simplified integrator can be found
-by considering the equations of motion put in the form
-
-\begin{align}
-\partial_{t}\left(\begin{array}{c}
-1\\
-\vec{\theta}
-\end{array}\right) & =N_{\theta}\left(\begin{array}{c}
-1\\
-\vec{\theta}
-\end{array}\right)\\
-\partial_{t}\left(\begin{array}{c}
-1\\
-\vec{\pi}
-\end{array}\right) & =N_{\pi}\left(\begin{array}{c}
-1\\
-\vec{\pi}
-\end{array}\right)
-\end{align}
+In App.~\ref{app:Detailed derivation of the SE(3) short-time propagator} we show that
+\begin{equation} \label{eq:E thingie SE(3) result}
+	\mathscr{E}_{SE(3)}(\Delta t, N, Y)  = \begin{pmatrix}
+		0 & \vec{0}^T \\
+		\circled{1} + \vec{r}(\Delta t, \vec{m}, \vec{V}) & \circled{2}
+		\end{pmatrix}
+\end{equation}
 where
-\begin{align}
-N_{\theta} & =\left(\begin{array}{cc}
-0 & \vec{0}^{T}\\
-D_{u}\vec{V} & \hat{\Omega}
-\end{array}\right)\in\mathfrak{se}(3)\\
-N_{\pi} & =\left(\begin{array}{cc}
-0 & \vec{0}^{T}\\
-\partial_{u}\vec{\Omega} & \hat{\Omega}
-\end{array}\right)\in\mathfrak{se}(3)
-\end{align}
-and where we used $-\hat{\pi}\vec{\Omega}=\hat{\Omega}\vec{\pi}$.
-We see that at time $t$ and at every $u$, for short time-steps $\Delta t$,
-$\vec{\theta}(t+\Delta t,u)$ and $\vec{\pi}(t+\Delta t,u)$ can approximately
-be related to $\vec{\theta}(t,u)$ and $\vec{\pi}(t,u)$ via $SE(3)$
-group transformations. We have
-\begin{align}
-\vec{\theta}(t+\Delta t) & \approx e^{-\Delta tN_{\theta}}\vec{\theta}=B_{\Delta t\hat{\Omega}}\vec{\theta}+\Delta tA_{\Delta t\hat{\Omega}}(D_{u}\vec{V})\\
-\vec{\pi}(t+\Delta t) & \approx e^{-\Delta tN_{\pi}}\vec{\pi}=B_{\Delta t\hat{\Omega}}\vec{\pi}+\Delta tA_{\Delta t\hat{\Omega}}(\partial_{u}\vec{\Omega})
-\end{align}
-This formulation of the kinematics does not exploit the full symmetries
-of the system, as in the case of the full kinematic integrator, but
-as will be shown in the Sec. V still performs better than the forward-Euler
-integrator.
+\begin{subequations}
+	\begin{align}
+		\circled{1} & = \Delta t \mathscr{B}( - \Delta t \hat{\Omega}) \vec{a} \\
+		\circled{2} & = \mathscr{E}_{SO(3)}(\Delta t, \hat{\Omega}, \hat{m}) \\
+		\vec{r}(\Delta t, N, \vec{m}) & = \frac{1}{|\vec{\Omega}|^2} \sum_{i,j=1}^{3} R_{ij} \bar{\Omega}^{i-1} \hat{m} \bar{\Omega}^{j-1} \vec{V}
+	\end{align}
+\end{subequations}
+where $\bar{\Omega} = \hat{\Omega} / |\vec{\Omega}|$ and
+\footnotesize
+\begin{equation} \label{eq:geometric integrator R matrix}
+\begin{aligned}
+	& R = \psi^{-2} \int_0^1 d\alpha P =  \\
+	& \begin{pmatrix}
+\frac{\psi^{2}}{2} & - \psi + \sin{\left(\psi \right)} & \frac{\psi^{2}}{2} + \cos{\left(\psi \right)} - 1\\
+- \psi \cos{\left(\psi \right)} + \sin{\left(\psi \right)} & - \frac{\left(\cos{\left(\psi \right)} - 1\right)^{2}}{2} &
+ - \psi \cos{\left(\psi \right)} - \frac{\psi}{2} 
+ + \sin{\left(\psi \right)} + \frac{\sin{\left(2 \psi \right)}}{4}  \\
+\frac{\psi^{2}}{2} - \psi \sin{\left(\psi \right)} - \cos{\left(\psi \right)} + 1 & - \frac{3 \psi}{2} + 2 \sin{\left(\psi \right)} - \frac{\sin{\left(2 \psi \right)}}{4} & \frac{\left(\psi - \sin{\left(\psi \right)}\right)^{2}}{2}
+	\end{pmatrix},
+\end{aligned}
+\end{equation}
+\normalsize
+where $\psi = \Delta t |\vec{\Omega}|$. Using Eq.~\ref{eq:SE(3) exp map} and Eq.~\ref{eq:E thingie SE(3) result}, together with Eq.~\ref{eq:kinodynamic short term propagators} the short-term propagator for $SE(3)$-configured systems can be computed.
 
-\subsubsection{Dynamic integrator}
-
-The steps taken to derive the simplified kinematic integrator apply
-in the case of the dynamical equations of motion as well. The equations
-of motion for the inertial degrees of freedom can be put in the form
-\begin{align}
-\partial_{t}\left(\begin{array}{c}
-1\\
-\vec{V}
-\end{array}\right) & =N_{V}\left(\begin{array}{c}
-1\\
-\vec{V}
-\end{array}\right)\\
-\partial_{t}\left(\begin{array}{c}
-1\\
-\vec{L}
-\end{array}\right) & =N_{L}\left(\begin{array}{c}
-1\\
-\vec{L}
-\end{array}\right)
-\end{align}
+In practice we may want to work with the sub-matrices of the kinodynamic degrees of freedom, rather than in their full matrix form. In App.~\ref{app:Detailed derivation of the SE(3) short-time propagator} we also show that the short-term propagator can be written out explicitly as
+\begin{subequations}
+	\begin{align}
+	\vec{\theta}_\alpha(t_0 + \Delta t, \mathbf{u}) & \approx U_0^1 \vec{\theta}_{0,\alpha} + \Delta t U_0^2 \vec{f}_{0,\alpha}^1 + \vec{s}_0(\vec{\pi}_{0,\alpha}) + \vec{r}(\Delta t, N_0, \vec{f}_{0,\alpha}^2) \\
+	\vec{\pi}_\alpha(t_0 + \Delta t, \mathbf{u}) & \approx U_0^1 \vec{\pi}_{0,\alpha} + \mathscr{E}_{SO(3)}(\Delta t, \hat{\Omega}, \hat{f}_{0,\alpha}^2) \\
+	\vec{P}(t_0 + \Delta t, \mathbf{u}) & \approx U_0^1 \vec{P}_{0\phantom{,\alpha}} + \Delta t U_0^2 \vec{h}_0^1 + \vec{s}_0(\vec{L}_0) + \vec{r}(\Delta t, N_0, \vec{h}_0^2) \\
+	\vec{L}(t_0 + \Delta t, \mathbf{u}) & \approx U_0^1 \vec{L}_{0\phantom{,\alpha}} + \mathscr{E}_{SO(3)}(\Delta t, \hat{\Omega}, \hat{h}_0^2).
+	\end{align}
+\end{subequations} 
 where
-\begin{align}
-N_{V} & =\left(\begin{array}{cc}
-0 & \vec{0}^{T}\\
-\frac{1}{\rho A}(D_{u}\vec{F}+\vec{f}) & \hat{\Omega}
-\end{array}\right)\in\mathfrak{se}(3)\\
-N_{L} & =\left(\begin{array}{cc}
-0 & \vec{0}^{T}\\
-D_{u}\vec{M}+\vec{\theta}\times\vec{F}+\vec{m} & \hat{\Omega}
-\end{array}\right)\in\mathfrak{se}(3)
-\end{align}
-The integrator becomes
+\begin{subequations}
+	\begin{align}
+		X_\alpha(t_0, \mathbf{u}) & := X_{0,\alpha} = \{ \vec{\theta}_{\alpha,0} ; \vec{\pi}_{\alpha,0} \} \\
+		S(t_0, \mathbf{u}) & := S_0 = \{ \vec{P}_0 ; \vec{L}_0 \}^* \\
+		F_\alpha(t_0, \mathbf{u}) & := F_{0,\alpha} = \{ \vec{f}^1_{\alpha,0} ; \vec{f}^2_{\alpha,0} \} \\
+		H(t_0, \mathbf{u}) & := H_0 = \{ \vec{h}^1_0 ; \vec{h}^2_0 \}^*
+	\end{align}
+\end{subequations}
+and
+\begin{subequations}
+	\begin{align}
+		U^1_0 & = \exp_{SO(3)}(-\Delta t \hat{\Omega}_0) \\
+		U^2_0 & = \mathscr{B}(- \Delta t \hat{\Omega}_0) \\
+		\vec{s}_0(\vec{m}) & = \Delta t (L \vec{m}) \times \left( U_0^2 \vec{V}_0 \right)
+	\end{align}
+\end{subequations}
+Note that as with the $SO(3)$-propagator, the exponential mappings involved are ill-conditioned as their arguments go to zero. Therefore, in numerical applications $\exp_{SE(3)}(Y)$ and $\mathscr{E}_{SE(3)}(\Delta t, N, Y)$ should be Taylor expanded when the arguments are small.
 
-\begin{align}
-\vec{V}(t+\Delta t) & \approx e^{-\Delta tN_{V}}\vec{V}\\
- & =B_{\Delta t\hat{\Omega}}\vec{V}+\Delta tA_{\Delta t\hat{\Omega}}\left(\frac{1}{\rho A}(D_{u}\vec{F}+\vec{f})\right)\\
-\vec{L}(t+\Delta t) & \approx e^{-\Delta tN_{L}}\vec{L}\\
- & =B_{\Delta t\hat{\Omega}}\vec{L}+\Delta tA_{\Delta t\hat{\Omega}}\left(D_{u}\vec{M}+\vec{\theta}\times\vec{F}+\vec{m}\right)
-\end{align}
-which can be used in conjunction with either the kinematic integrator
-or its simplified variation.
-
-\section{Geometric numerical integrators for sub-manifolds of Lie groups}
-
-\section{Geometric numerical integrators for Cosserat rods}
-
-\section{Geometric numerical integrators for Cosserat surfaces}
-
-\section{Geometric numerical integrators for Cosserat rods on 2-spheres}
+Finally, in App.~\ref{app:Simplified integrator for SE(3)-configured systems} we also derive an alternative short-term propagator, that exploits the fact that $\vec{\theta}_\alpha$, $\vec{\pi}_\alpha$, $\vec{P}$ and $\vec{L}$ can be integrated separately using the $SO(3)$-propagator defined in Sec.~\ref{sec:Geometric integrators for SO(3)-valued configuration spaces}. The resulting propagator enjoys a simplified form, and does not require computing $\vec{r}(\Delta t, N, \vec{m})$, which is the most costly operation required for the full $SE(3)$-propagator. However, the simplification comes at the cost of not encapsulating the full geometry of the equations of motion. We will compare the two version of the propagators, as well as the Forward-Euler propagator, in Sec.~\ref{sec:lie group integrators applications}.
 
 
-\section{Applications} \label{sec:lie group integrators applications}
+\section{Benchmark tests} \label{sec:lie group integrators applications}
 
 
+\begin{figure*} 
+    \centering
 
-\subsection{Cosserat rod}
+    \begin{subfigure}[b]{0.76\textwidth}  
+        \centering 
+        \includegraphics[width=\textwidth]{figs_part2/benchmark_simulations/OD_rod_close_error}
+        \caption[]%
+        {}    
+        \label{fig:OD_rod_close_error}
+    \end{subfigure}
+    
+    \vskip\baselineskip 
+    
+    \begin{subfigure}[b]{0.76\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figs_part2/benchmark_simulations/UD_rod_close_error}
+        \caption[]%
+        {}    
+        \label{fig:UD_rod_close_error}
+    \end{subfigure}    
+    
+    \vskip\baselineskip   
+    
+    \begin{subfigure}[b]{0.76\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figs_part2/benchmark_simulations/KE_surface_integrability_error}
+        \caption[]%
+        {}    
+        \label{fig:KE_surface_integrability_error}
+    \end{subfigure}
 
+    \caption[  ]
+    {\small (a and b) The mean closure failure of a $N_\text{sim} = 50$ benchmark simulations of closed Cosserat rods undergoing overdamped and underdamped dynamics respectively, as a function the time-discretisation $\Delta t$, integrated using the given short-term propagators. We see that the $SE(3)$ propagator preserves the closed loop of the rod up to near-machine precision. (c) The spatial integrability error $\Delta^\text{int}_{uv}$ as a function $\Delta t$ of a Cosserat sheet, as a result of kinematically propagating it using the given short-term propagators. We see that the $SE(3)$ propagator preserves spatial integrability where the simplified $SE(3)$ and the Forward-Euler propagators fail to do so.} 
+\end{figure*}
 
+Here we compare the performance of the Forward-Euler Eq.~\ref{eq:FE scheme}, the $SE(3)$ and the simplified $SE(3)$ propagators in numerics. In simulations, we have observed that the latter two propagators enjoy smaller errors in general during numerical integration. However, the main benefit of geometric integrators are that they preserve the geometric structures of the systems. We consider three systems: Overdamped Cosserat rod kinodynamics (see \ref{eq:Cosserat rod overdamped dynamics}), underdamped Cosserat rod kinodynamics (see Eq.~\ref{eq:underdamped cosserat rod}) and Cosserat surface kinematics (see Eq.~\ref{eq:cosserat surface eom}).
 
-\subsection{Cosserat surface}
+For the Cosserat rod systems, we considered a random initial \textit{closed} configuration (see Fig.~\ref{fig:example random initial cosserat configuration} for an example), under the influence of randomly configured constitutive forces and moments. We then simulated the systems until a time $T$, and computed extent to which the rod \textit{fails to be closed} at $T$. In other words, if $\Phi(u,t)$ is the spatio-temporal configuration of the simulated rod, we compute the distance $|\Phi(L_0, T) - \Phi(0, T)|$, which is \textit{closure failure} of the rod. Due to numerical errors, rods that are initially configured as closed will in general fail to remain so. For a range of time-discretisations $\Delta t$, we simulated $N_\text{sim} = 50$ random configurations, and found the resulting closure failures. We then computed sample means and variances of the closure failures as a function of $\Delta t$. The results are shown in Fig.~\ref{fig:OD_rod_close_error} and Fig.~\ref{fig:UD_rod_close_error} for the overdamped and underdamped systems respectively. We see that the simplified $SE(3)$ propagator outperforms the Forward-Euler, however the closure error for the $SE(3)$ propagator is vanishingly small and near machine precision. We also see that the $SE(3)$ propagator is consistent in this regard, with its relatively small sample variances.
+
+For the Cosserat surface, we considered an initial conditional of a flat sheet with a constant perpendicular material frame, that is then subjected to a random velocity and angular velocity profiles. We then computed the short-term propagator for a given time-discretisation $\Delta t$. On the resulting propagated state, we computed the supremum of the residual integrability error $\Delta^\text{int}_{u v}$, given in Eq.~\ref{eq:spatial integrability residual} over the material base space. As for the Cosserat rod, we performed $N_\text{sim} = 50$ random simulations for each $\Delta t$, and computed the sample mean and variance of the error. The results are shown in Fig.~\ref{KE_surface_integrability_error}. Here we see again that the simplified $SE(3)$ propagator has a slightly improved performance relative to the Forward-Euler propagator. The full $SE(3)$ propagator however preserves the spatial integrability of the near machine precision for $\Delta t \leq 5 \times 10^{-5}$.
+
+ We briefly explain the relevance of the residual integrability error: If the $\Delta^\text{int}_{u v} \neq 0$ then the spatial reconstruction fields $X_\alpha$ do not satisfy the spatial integrability conditions Eq.~\ref{eq:(summary) spatial integrability condition}. In practical terms, this means that $X_\alpha$ do not integrate to a a unique spatio-temporal configuration $\Phi$ (the specific $\Phi$ that is computed would be dependent on the path taken in the reconstruction). Furthermore, in Eq.~\ref{eq:(summary) time derivative of spatial integrability conditions} we see that integrability errors suffer exponential growth. Thus, simulations using non-geometric integrators will in general require intermittently stopping to re-spatially integrate $X_\alpha$ in order to maintain the errors. We thus see the importance and utility of constructing a geometric integrator for a given $G$-configured system.
 
 \chapter{Conclusion}
 

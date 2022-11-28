@@ -42,6 +42,11 @@
 \usepackage{mathrsfs}
 \usepackage{verbatim}
 \usepackage{alphalph}
+\usepackage{yhmath}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{courier} 
+
 
 %%% Commands
 
@@ -50,7 +55,8 @@
 \newtheorem{definition}{Definition}[section]
 %\newtheorem*{remark}{Remark}
 
-
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Thesis meta-information
@@ -277,6 +283,28 @@ $\langle\mathbf{f},\mathbf{g}\rangle=\sum_{i}\int_{0}^{T}f_{i}(t)g_{i}(t)dt$
 
 \section{Part II notation}
 
+
+  
+
+Matrix derivatives are carried out using the numerator-layout convention. For a matrix $X = \mathbb{R}^{p \times q}$ and and $y$ is a scalar, then
+\begin{equation} \label{eq:numerator-layout convention}
+	\frac{\partial y}{\partial X} = \begin{pmatrix}
+		\frac{\partial y}{\partial X_{11}} & \frac{\partial y}{\partial X_{21}} & \dots & \frac{\partial y}{\partial X_{p1}} \\
+		\frac{\partial y}{\partial X_{12}} & \frac{\partial y}{\partial X_{22}} & \dots & \frac{\partial y}{\partial X_{p2}} \\
+		 \vdots & \ddots & \vdots \\
+		 \frac{\partial y}{\partial X_{1q}} & \frac{\partial y}{\partial X_{2q}} & \dots & \frac{\partial y}{\partial X_{pq}}
+	\end{pmatrix}
+\end{equation}.
+Vector deriviatives
+\begin{equation}
+	\frac{\partial y}{\partial \vec{x}} = \begin{pmatrix}
+		\frac{\partial y}{\partial x_1} \\
+		\frac{\partial y}{\partial x_2} \\
+		\vdots \\
+		\frac{\partial y}{\partial x_p}
+	\end{pmatrix}
+\end{equation}
+
 Often we will abbreviate partial derivatives as
 \begin{equation}
 \begin{aligned}
@@ -291,7 +319,7 @@ f' & := \frac{\partial f}{\partial u} \\
 \dot{f} & := \frac{\partial f}{\partial t}
 \end{aligned}.
 \end{equation}
-This applies to both scalar, vectorial and group-valued functions.
+This applies to both scalar, vectorial and group-valued functions. 
 
 If we have multiple coordinates, derivatives will be denoted by subscripts i.e. $f_u$, $f_t$ etc. or $\partial_\alpha = \frac{\partial}{\partial u^\alpha}$.
 
@@ -324,8 +352,8 @@ $e$ is the identity of Lie groups.
 
 introduce the hatmap and give it explicitly (and use the vec notation). 
 
-\begin{equation}
-\hat{v} = \begin{pmatrix}
+\begin{equation} \label{eq:hat map}
+\hat{v} =  \begin{pmatrix}
 0 & -v_3 & v_2 \\
 v_3 & 0 & - v_1 \\
 - v_2 & v_1 & 0
@@ -352,6 +380,21 @@ $\bigwedge_{\beta \neq \alpha}$
 closure of sets $\bar{U}$.
 
 For a map $f : M \to N$, $f(A)$ is the image of the map under $A \subset M$.
+
+\begin{equation}
+	\{ \vec{a}, \vec{m} \} = \begin{pmatrix}
+		0 & \vec{0}^T \\
+		\vec{a} & \hat{m}
+	\end{pmatrix} \in \mathfrak{se}(3)
+\end{equation}
+where $\vec{a}, \vec{m} \in \mathbb{R}^3$, and $\vec{0} = (0\ 0\ 0)^T$.
+\begin{equation}
+	\{ \vec{b}, \vec{n} \}^* = \begin{pmatrix}
+		0 & \vec{b}^T \\
+		\vec{0} & \hat{n}^T
+	\end{pmatrix} \in \mathfrak{se}^*(3)
+\end{equation}
+where $\vec{b}, \vec{n} \in \mathbb{R}^3$
 
 \chapter{MCMC benchmark models} \label{app:MCMC benchmark models}
 
@@ -547,9 +590,6 @@ The above can be applied to compute the regularised normalisation constants of t
 \end{equation}
 We can compute the regularised normalisation constant of $\mathcal{H}^{[\bar{\mathbf{x}}]}$ by letting $P(t)=-\frac{1}{D} \mathbbm{I}_{d}$, $U=-2 D A$ and $R=B$ and applying the extended GYT. In the case of gradient dynamics, when $A = 0$, the original GYT can be readily applied by using $P(t)=-\frac{1}{D} \mathbbm{I}_{d}$ and $R(t)=-B(t)$, where $\mathbbm{I}_{d}$ is the identity matrix.
 
-\chapter{Nondimensionalisation of the Cosserat rod} \label{app:Nondimensionalisation of the Cosserat rod}
-
-Begin with discussion on how to find the dimensions of all kinematic and dynamic quantities.
 
 \chapter{Numerical algorithms for spatio-temporal reconstruction} 
 
@@ -582,36 +622,555 @@ and $u_{N_{u}}=L_{0}$ and $t_{N_{t}}=T$. We define $\mathcal{F}^{\alpha,\beta}\a
 $X^{\alpha,\beta}\approx X(\alpha\Delta u,\beta\Delta t)$ and $Y^{\alpha,k}\approx Y(\alpha\Delta u,\beta\Delta t)$.
 \begin{subequations} \label{eq:numerical schema for reconstruction of Cosserat rod}
 \begin{align}
-\mathcal{F}_{ij}^{0, \beta+1} & =\mathcal{F}_{ik}^{0, \beta}\exp\left(\Delta t\ N^{0, \beta}\right)_{kj}, & \mathcal{F}^{0,0}=\mathcal{F}^{(i)}\\
-\mathcal{F}_{ij}^{\alpha+1, \beta} & =\mathcal{F}_{ik}^{\alpha, \beta}\exp\left(\Delta u\ X^{\alpha,\beta}\right)_{kj} \label{eq:F spatial numerical eq}
+\mathcal{F}_{ij}^{0, \beta+1} & =\mathcal{F}_{ik}^{0, \beta} \exp_{SE(3)} \left(\Delta t\ N^{0, \beta}\right)_{kj}, & \mathcal{F}^{0,0}=\mathcal{F}^{(i)}\\
+\mathcal{F}_{ij}^{\alpha+1, \beta} & =\mathcal{F}_{ik}^{\alpha, \beta}\exp_{SE(3)}  \left(\Delta u\ X^{\alpha,\beta}\right)_{kj} \label{eq:F spatial numerical eq}
 \end{align}
 \end{subequations}
 with the initial condition $\mathcal{F}^{0,0}=\mathcal{F}^{(i)}$.
 The matrix exponential has a closed-form analytical formula given
 by
 \begin{equation}
-\exp(H)=\left(\begin{array}{cc}
+\exp_{SE(3)}  (H)=\left(\begin{array}{cc}
 1 & \vec{0}^{T}\\
-A(\hat{m})\vec{v} & B(\hat{m})
+\mathscr{B}(\hat{m}) \vec{v} & \exp_{SO(3)}(\hat{m})
 \end{array}\right)
 \end{equation}
 for $H=\left\{ \vec{v};\vec{m}\right\} \in\mathfrak{se}(3)$ and
 \begin{subequations} 
 \begin{align}
-A(\hat{m}) & =\mathbbm{1}_{3}+\frac{1-\cos|\vec{m}|}{|\vec{m}|^{2}}\hat{m}+\frac{|\vec{m}|-\sin|\vec{m}|}{|\vec{m}|^{3}}\hat{m}^{2}\label{eq:A}\\
-B(\hat{m}) & =\exp(\hat{m})=\mathbbm{1}_{3}+\frac{\sin|\vec{m}|}{|\vec{m}|}\hat{m}+\frac{1-\cos|\vec{m}|}{|\vec{m}|^{2}}\hat{m}^{2}\label{eq:B}
+\mathscr{B}(\hat{m}) & =\mathbbm{1}_{3}+\frac{1-\cos|\vec{m}|}{|\vec{m}|^{2}}\hat{m}+\frac{|\vec{m}|-\sin|\vec{m}|}{|\vec{m}|^{3}}\hat{m}^{2}\label{eq:A}\\
+\exp_{SO(3)} (\hat{m}) & =\mathbbm{1}_{3}+\frac{\sin|\vec{m}|}{|\vec{m}|}\hat{m}+\frac{1-\cos|\vec{m}|}{|\vec{m}|^{2}}\hat{m}^{2}\label{eq:B}
 \end{align}
 \end{subequations}
-where $B(\hat{m})\in SO(3)$ is an element of the special orthogonal
+where $\exp_{SO(3)} (\hat{m}) \in SO(3)$ is an element of the special orthogonal
 group in 3 dimensions. As Eq. \ref{eq:A} and Eq. \ref{eq:B} are
 ill-conditioned for small $|\vec{m}|$, in numerics it is often prudent
 to Taylor expand to at least $O(|\vec{m}|^6)$ when $|\vec{m}| < 0.1$ \citep{giusteriSimulationViscoelasticCosserat2021}.
 
-One benefit of Eq.~\ref{eq:numerical schema for reconstruction of Cosserat rod} as a numerical solution schema is that it allows for flexibility in terms of when Eq.~\ref{eq:F spatial numerical eq} is evaluated. For example, in simulations we use a temporal discretisation $\Delta t$, but we might only need to reconstruct the Cosserat rod at intervals $n \Delta t$, for some integer $n$.
+A benefit of Eq.~\ref{eq:numerical schema for reconstruction of Cosserat rod} as a numerical solution schema is that it allows for flexibility in terms of when Eq.~\ref{eq:F spatial numerical eq} is evaluated. For example, in simulations we use a temporal discretisation $\Delta t$, but we can choose to only reconstruct the Cosserat rod at intervals $n \Delta t$, for some integer $n$.
 
 \section{Reconstructing the spatio-temporal configuration from the Maurer-Cartan form} \label{app:Reconstructing the spatio-temporal configuration from the Maurer-Cartan form}
 
 
+
+\chapter{Detailed derivation of the $SE(3)$ short-time propagator} \label{app:Detailed derivation of the SE(3) short-time propagator}
+
+Here we provide detailed derivations of the results in Sec.~\ref{sec:Geometric integrators for SE(3)-valued configuration spaces}. Let $Y = \{ \vec{a} ; \vec{m} \} \in \mathfrak{se}(3)$, $N = \{ \vec{V} ; \vec{\Omega} \}$ and $\bar{\Delta} t = \Delta t - \Delta t'$, then
+\begin{equation} \label{eq:E thingie SE(3)}
+\begin{aligned}
+	\mathscr{E}_{SE(3)}(\Delta t, N, Y) &  = \int_0^{\Delta t} \exp_{SE(3)}(-\bar{\Delta} t N) Y \exp_{SE(3)}(\bar{\Delta} t N) d \Delta t' \\
+	& = \begin{pmatrix}
+		0 & \vec{0}^T \\
+		\circled{1} + \vec{r}(\Delta t, \vec{m}, \vec{V}) & \circled{2}
+		\end{pmatrix}
+\end{aligned}
+\end{equation}
+where we used Eq.~\ref{eq:SE(3) exp map}, and where
+\begin{subequations}
+	\begin{align}
+	\circled{1} & = \int_0^{\Delta t} \exp_{SO(3)}(-\bar{\Delta} t \hat{\Omega}) \vec{a}\  d \Delta t' \\
+	\circled{2} & = \int_0^{\Delta t} \exp_{SO(3)}(-\bar{\Delta} t \hat{\Omega}) \hat{m} \exp_{SO(3)}( \bar{\Delta} t \hat{\Omega})\ d \Delta t' \\
+	\vec{r}(\Delta t, N, Y) & = \int_0^{\Delta t} \bar{\Delta} t \exp_{SO(3)}(-\bar{\Delta} t \hat{\Omega}) \hat{m} \mathscr{B}(\bar{\Delta} t \hat{\Omega}) \vec{V}  d \Delta t'.
+	\end{align}
+\end{subequations}
+From the results of Sec.~\ref{sec:Geometric integrators for SO(3)-valued configuration spaces} we can make the identifications
+\begin{subequations}
+	\begin{align}
+		\circled{1} & = \Delta t \mathscr{B}( - \Delta t \hat{\Omega}) \vec{a} \\
+		\circled{2} & = \mathscr{E}_{SO(3)}(\Delta t, \hat{\Omega}, \hat{m}).
+	\end{align}
+\end{subequations}
+where $\mathscr{B}(\hat{m})$ was defined in Eq.\ref{eq:SO(3) exp map}. It remains to evaluate $\vec{r}(\Delta t, N, Y)$. Let $\alpha = \Delta t' / \Delta t$, $\psi = \Delta t |\vec{\Omega}|$ and $\bar{\Omega} = \hat{\Omega} /|\vec{\Omega}|$ such that $(\Delta t - \Delta t') \hat{\Omega} = (1- \alpha) \psi \bar{\Omega}$. We rewrite $\vec{r}(\Delta t, N, Y)$ as
+\begin{equation}
+	\vec{r} (\Delta t, N, Y) = \int_0^1 \Delta t^2 (1-\alpha) \exp_{SO(3)}( - (1-\alpha) \psi \bar{\Omega}) \hat{m} \mathscr{B}((1-\alpha) \psi \bar{\Omega}) \vec{V} d \alpha.
+\end{equation}
+We now evaluate the integrand explicitly, we get
+\begin{equation} \label{eq:SE(3) propagator calc 1}
+	\Delta t^2 (1-\alpha) \exp_{SO(3)}( - (1-\alpha) \psi \bar{\Omega}) \hat{m} \mathscr{B}((1-\alpha) \psi \bar{\Omega})  = \Delta t^2 \sum_{i,j=1}^{3} P_{ij} \bar{\Omega}^{i-1} \hat{m} \bar{\Omega}^{j-1}
+\end{equation}
+where
+\small
+\begin{equation}
+P = \begin{pmatrix}
+\bar{\alpha} & \frac{\cos{\left(\bar{\alpha} \psi \right)} - 1}{\psi} & \bar{\alpha} - \frac{\sin{\left(\bar{\alpha} \psi \right)}}{\psi}\\\bar{\alpha} \sin{\left(\bar{\alpha} \psi \right)} & \frac{\left(\cos{\left(\bar{\alpha} \psi \right)} - 1\right) \sin{\left(\bar{\alpha} \psi \right)}}{\psi} & \frac{\left(\bar{\alpha} \psi - \sin{\left(\bar{\alpha} \psi \right)}\right) \sin{\left(\bar{\alpha} \psi \right)}}{\psi}\\\bar{\alpha} \left(1 - \cos{\left(\bar{\alpha} \psi \right)}\right) & - \frac{\left(\cos{\left(\bar{\alpha} \psi \right)} - 1\right)^{2}}{\psi} & 
+\bar{\alpha} ( 1 - \cos{\left(\bar{\alpha} \psi \right)}) - 
+\frac{ 2\sin{\left(\bar{\alpha} \psi \right)} + \sin{\left(2 \bar{\alpha} \psi \right)} }{2 \psi} 
+\end{pmatrix}
+\end{equation}
+\normalsize
+where the $i$th and $j$th indices of $P_{ij}$ signify rows and columns respectively and $\bar{\alpha} = 1 - \alpha$. We can now integrate each component $p_{ij}$ individually. We define
+\footnotesize
+\begin{equation} \label{eq:geometric integrator R matrix}
+\begin{aligned}
+	& R = \psi^2 \int_0^1 d\alpha P =  \\
+	& \begin{pmatrix}
+\frac{\psi^{2}}{2} & - \psi + \sin{\left(\psi \right)} & \frac{\psi^{2}}{2} + \cos{\left(\psi \right)} - 1\\
+- \psi \cos{\left(\psi \right)} + \sin{\left(\psi \right)} & - \frac{\left(\cos{\left(\psi \right)} - 1\right)^{2}}{2} &
+ - \psi \cos{\left(\psi \right)} - \frac{\psi}{2} 
+ + \sin{\left(\psi \right)} + \frac{\sin{\left(2 \psi \right)}}{4}  \\
+\frac{\psi^{2}}{2} - \psi \sin{\left(\psi \right)} - \cos{\left(\psi \right)} + 1 & - \frac{3 \psi}{2} + 2 \sin{\left(\psi \right)} - \frac{\sin{\left(2 \psi \right)}}{4} & \frac{\left(\psi - \sin{\left(\psi \right)}\right)^{2}}{2}
+	\end{pmatrix},
+\end{aligned}
+\end{equation}
+\normalsize
+such that
+\begin{equation} \label{eq:r function SE(3)}
+	\vec{r}(\Delta t, N, \vec{m}) = \frac{1}{|\vec{\Omega}|^2} \sum_{i,j=1}^{3} R_{ij} \bar{\Omega}^{i-1} \hat{m} \bar{\Omega}^{j-1} \vec{V}.
+\end{equation}
+We made use of the symbolical manipulation package \emph{SymPy} \citep{meurerSymPySymbolicComputing2017} in order to find the expressions for $P$ and $R$. We will now express the short-term propagator Eq.~\ref{eq:kinodynamic short term propagators} in terms of the sub-matrices of $X_\alpha = \{ \vec{\theta}_\alpha, \vec{\pi}_\alpha \}$, $N = \{ \vec{V} ; \vec{\Omega} \}$ $S = \{ \vec{P} ; \vec{L} \}^*$ and $Q = \{ \vec{F} ; \vec{M} \}^*$. Firstly we define
+\begin{subequations}
+	\begin{align}
+		X_\alpha(t_0, \mathbf{u}) & := X_{0,\alpha} = \{ \vec{\theta}_{\alpha,0} ; \vec{\pi}_{\alpha,0} \} \\
+		N(t_0, \mathbf{u}) & := N_0 = \{ \vec{V}_0 ; \vec{\Omega}_0 \} \\
+		S(t_0, \mathbf{u}) & := S_0 = \{ \vec{P}_0 ; \vec{L}_0 \}^* \\
+		F_\alpha(t_0, \mathbf{u}) & := F_{0,\alpha} = \{ \vec{f}^1_{\alpha,0} ; \vec{f}^2_{\alpha,0} \} \\
+		H(t_0, \mathbf{u}) & := H_0 = \{ \vec{h}^1_0 ; \vec{h}^2_0 \}^*
+	\end{align}
+\end{subequations}
+where $F_\alpha$ and $H$ were defined in Eq.~\ref{eq:F H defs} using $Q^\alpha = \{ \vec{F}^\alpha ; \vec{M}^\alpha \}^*$, and
+\begin{subequations}
+	\begin{align}
+		U^1_0 & = \exp_{SO(3)}(-\Delta t \hat{\Omega}_0) \\
+		U^2_0 & = \mathscr{B}(- \Delta t \hat{\Omega}_0) \\
+		\vec{s}_0(\vec{m}) & = \Delta t (L \vec{m}) \times \left( U_0^2 \vec{V}_0 \right)
+	\end{align}
+\end{subequations}
+where $\times$ denotes the cross product. Then we have that
+\begin{subequations} \label{eq:SE(3) propagator calc 2}
+\begin{align}
+	\exp_{SE(3)}(-\Delta t N) X_{0,\alpha} \exp_{SE(3)}(\Delta t N) & = \begin{pmatrix}
+		0 & \vec{0}^T \\
+		U_0^1 \vec{\theta}_0 + \vec{s}_0(\vec{\pi}_{0,\alpha}) & \widehat{ U_0^1 \vec{\pi_{0,\alpha}} }
+	\end{pmatrix} \\
+	\exp_{SE(3)}(-\Delta t N) S_0^T \exp_{SE(3)}(\Delta t N) & = \begin{pmatrix}
+		0 & \vec{0}^T \\
+		U_0^1 \vec{P}_0 + \vec{s}_0(\vec{P}_0) & \widehat{ U_0^1 \vec{L_0} }	
+	\end{pmatrix}.
+\end{align}
+\end{subequations}
+Then, using Eq.~\ref{eq:SE(3) propagator calc 2} with Eq.~\ref{eq:E thingie SE(3)} we can expand Eq.~\ref{eq:kinodynamic short term propagators} as
+\begin{subequations}
+	\begin{align}
+	\vec{\theta}_\alpha(t_0 + \Delta t, \mathbf{u}) & \approx U_0^1 \vec{\theta}_{0,\alpha} + \Delta t U_0^2 \vec{f}_{0,\alpha}^1 + \vec{s}_0(\vec{\pi}_{0,\alpha}) + \vec{r}(\Delta t, N_0, \vec{f}_{0,\alpha}^2) \\
+	\vec{\pi}_\alpha(t_0 + \Delta t, \mathbf{u}) & \approx U_0^1 \vec{\pi}_{0,\alpha} + \mathscr{E}_{SO(3)}(\Delta t, \hat{\Omega}, \hat{f}_{0,\alpha}^2) \\
+	\vec{P}(t_0 + \Delta t, \mathbf{u}) & \approx U_0^1 \vec{P}_{0\phantom{,\alpha}} + \Delta t U_0^2 \vec{h}_0^1 + \vec{s}_0(\vec{L}_0) + \vec{r}(\Delta t, N_0, \vec{h}_0^2) \\
+	\vec{L}(t_0 + \Delta t, \mathbf{u}) & \approx U_0^1 \vec{L}_{0\phantom{,\alpha}} + \mathscr{E}_{SO(3)}(\Delta t, \hat{\Omega}, \hat{h}_0^2).
+	\end{align}
+\end{subequations} 
+
+\section{Simplified integrator for $SE(3)$-configured systems} \label{app:Simplified integrator for SE(3)-configured systems}
+
+The kinodynamic equations of an $SE(3)$-configured system, if expressed in terms of the sub-matrices of $X_\alpha$ and $S$, are
+\begin{subequations}  \label{eq:components SE(3) kinodynamic}
+\begin{align}
+D_t \vec{\theta}_\alpha & = D_\alpha \vec{V} \\
+\partial_t \vec{\pi}_\alpha & = D_\alpha \vec{\Omega} \\
+D_t \vec{P} & = D_\alpha \vec{F}^\alpha + \vec{f}  \\
+D_t \vec{L} & = D_\alpha \vec{M}^\alpha + \vec{\theta}_\alpha \times \vec{F}^\alpha + \vec{m}
+\end{align}
+\end{subequations}
+where $D_t = \partial_t + \hat{\Omega}$ and $D_\alpha = \partial_\alpha + \hat{\pi}$ and $\alpha = 1,\dots,d$. We can construct a simplified short-term propagator by noting that each individual equation in Eq.~\ref{eq:components SE(3) kinodynamic} can be integrated using the propagator derived in Sec.~\ref{sec:Geometric integrators for SO(3)-valued configuration spaces}. To see that we rewrite Eq.~\ref{eq:components SE(3) kinodynamic} as
+\begin{subequations}  \label{eq:components SE(3) kinodynamic rewritten}
+\begin{align}
+\partial_t \vec{\theta}_\alpha & = G_\alpha + A \vec{\theta}_\alpha \\
+\partial_t \vec{\pi}_\alpha & = H_\alpha + A \vec{\pi}_\alpha \\
+\partial_t \vec{P}_{\phantom{\alpha}} & = K_{\phantom{\alpha}} + A \vec{P} \\
+\partial_t \vec{L}_{\phantom{\alpha}} & = J_{\phantom{\alpha}} + A \vec{Q}
+\end{align}
+\end{subequations}
+where
+\begin{subequations} 
+\begin{align}
+A_{\phantom{\alpha}} & = - \hat{\Omega} \\
+G_\alpha & = D_\alpha \vec{V} \\
+H_\alpha & = \partial_\alpha \vec{\Omega} \\
+K_{\phantom{\alpha}} & = D_\alpha \vec{F}^\alpha + \vec{f} \\
+J_{\phantom{\alpha}} & = D_\alpha \vec{M}^\alpha + \vec{\theta}_\alpha \times \vec{F}^\alpha + \vec{m}.
+\end{align}
+\end{subequations}
+As $A \in \mathfrak{so}(3)$, the short-term propagator for each individual equation in Eq.~\ref{eq:components SE(3) kinodynamic rewritten} can now be found using the $SO(3)$-integrator defined in Sec.~\ref{sec:Geometric integrators for SO(3)-valued configuration spaces}. The resulting integrator requires far less computation (in particular, it does not require evaluating Eq.~\ref{eq:r function SE(3)}), however this comes at the cost of omitting the broader geometric properties of $SE(3)$.
+
+
+\chapter{Non-dimensionalisation of the Cosserat rod equations of motion} \label{app:Nondimensionalisation of the Cosserat rod}
+
+Here we will derive the non-dimensionalised kinodynamic equations of motion of an underdamped Cosserat rod (given in Eq.~\ref{eq:underdamped cosserat rod}), as well as an overdamped Cosserat rod (given in Eq.~\ref{eq:Cosserat rod overdamped dynamics}, in the absence of internal frictional and body forces. We set
+\begin{align*}
+\vec{\theta} & =\vec{\tilde{\theta}}\\
+\vec{\pi} & =L_{0}^{-1}\vec{\tilde{\pi}}\\
+\vec{V} & =\frac{L_{0}}{\tau}\vec{\tilde{V}}\\
+\vec{\Omega} & =\tau^{-1}\vec{\tilde{\Omega}}\\
+\vec{L} & =\frac{\rho_0 L_{0}^{2}}{\tau}\vec{\tilde{L}}\\
+\vec{F} & =F_{0}\vec{\tilde{F}}\\
+\vec{M} & =M_{0}\vec{\tilde{M}}
+\end{align*}
+where $\tau$, $F_{0}$ and $M_{0}$ are time, force and moment scales
+that will be specified later. We also find that $\tilde{P} = \tilde{V}$. As $\vec{L}= \mathbb{I} \vec{\Omega}$, we also
+define the dimensionless moment of inerta $\tilde{\mathbb{I}}=\frac{1}{\rho L_{0}^{2}}I$.
+The resulting equations of motion become
+\begin{align}
+D_{\tilde{t}}\vec{\tilde{\theta}} & =D_{\tilde{u}}\vec{\tilde{V}}\\
+\partial_{\tilde{t}}\vec{\pi} & =D_{\tilde{u}}\vec{\tilde{\Omega}}\\
+\alpha^{T}D_{\tilde{t}}\vec{\tilde{P}} & =D_{\tilde{u}}\vec{\tilde{F}}-\beta^{T}\vec{\tilde{V}}\\
+\alpha^{R}D_{\tilde{t}}\vec{\tilde{L}} & =D_{\tilde{u}}\vec{\tilde{M}}+\zeta\vec{\theta}\times\vec{\tilde{F}}-\zeta\lambda\vec{\tilde{\Omega}}
+\end{align}
+where
+\begin{align*}
+\alpha^{T} & =\frac{\rho L_{0}^{2}/\tau^{2}}{F_{0}}\\
+\beta^{T} & =\frac{(L_{0}/\tau)\gamma_{T}}{F_{0}/L_{0}}\\
+\alpha^{R} & =\frac{\rho L_{0}^{3}/\tau^{2}}{M_{0}}\\
+\zeta & =\frac{F_{0}}{M_{0}/L_{0}}\\
+\lambda & =\frac{\gamma_{R}}{\gamma_{T}L_{0}^{2}}
+\end{align*}
+$\alpha^{T}$ can be seen as the ratio of the characeristic inertial
+forces compared to the characteristic internal force amplitude $F_{0}$, and we have assumed that the translational and rotation friction coefficients are scalar constants. $\beta^{T}$ is the ratio of the characteristic frictional force to
+the internal force. $\alpha^{R}$ is the ratio of the characteristic
+inertial moment to the characteristic moment amplitude $M_{0}$. $\zeta$
+compares the characteristic force amplitude to the moment. $\lambda$
+compares the translation to the rotational friction.
+
+Without loss of generality we now set $\beta^{T}=1$, which means
+$\tau=\frac{\gamma_{T}L_{0}^{2}}{F_{0}}$ which is the characteristic
+damping time-scale for a simple harmonic oscillator. We also set $\zeta=1$,
+which ensures that if $\vec{\tilde{F}}$ and $\vec{\tilde{M}}$ are
+of the same order, then $\vec{F}$ and $\vec{M}/L_{0}$ are as well.
+We also then have that $\alpha^{R}=\alpha^{T}=\alpha=\frac{\rho AL_{0}^{2}/\tau^{2}}{F_{0}}$
+The resulting equations are
+\begin{align}
+D_{\tilde{t}}\vec{\tilde{\theta}} & =D_{\tilde{u}}\vec{\tilde{V}}\\
+\partial_{\tilde{t}}\vec{\pi} & =D_{\tilde{u}}\vec{\tilde{\Omega}}\\
+\alpha D_{\tilde{t}}\vec{\tilde{V}} & =D_{\tilde{u}}\vec{\tilde{F}}-\vec{\tilde{V}}\\
+\alpha D_{\tilde{t}}\vec{\tilde{L}} & =D_{\tilde{u}}\vec{\tilde{M}}+\vec{\theta}\times\vec{\tilde{F}}-\lambda\vec{\tilde{\Omega}}
+\end{align}
+with two tunable parameters $\alpha$ and $\lambda$, as well as the
+dimensionless moment of inertia $\tilde{I}$.
+
+Let us now assume that we have constitutive laws
+\begin{align*}
+F_{i} & =g_{i}\theta_{i}\\
+M_{i} & =\epsilon_{i}\pi_{i}
+\end{align*}
+then in non-dimensionalised form these become
+\begin{align*}
+\tilde{F}_{i} & =\tilde{g}_{i}\tilde{\theta}_{i}\\
+\tilde{M}_{i} & =\tilde{\epsilon}_{i}\tilde{\pi}_{i}
+\end{align*}
+where $\tilde{g}_{i}=g_{i}/F_{0}$ and $\tilde{\epsilon}_{i}=\epsilon_{i}/(L_{0}M_{0})$. For overdamped systems we have $\alpha=0$, such that
+\begin{align}
+D_{\tilde{t}}\vec{\tilde{\theta}} & =D_{\tilde{u}}\vec{\tilde{V}}\\
+\partial_{\tilde{t}}\vec{\pi} & =D_{\tilde{u}}\vec{\tilde{\Omega}}\\
+\vec{\tilde{V}} & =D_{\tilde{u}}\vec{\tilde{F}}\nonumber \\
+\lambda\vec{\tilde{\Omega}} & =D_{\tilde{u}}\vec{\tilde{M}}+\vec{\theta}\times\vec{\tilde{F}}
+\end{align}
+
+
+
+\chapter{Details of the geometric integrator benchmark simulations}
+
+\section{Simulation of the Cosserat rod}
+
+We simulated the Cosserat rod with overdamped and underdamped dynamics, specified in Eq.~\ref{eq:Cosserat rod overdamped dynamics} and Eq.~\ref{eq:underdamped cosserat rod} respectively. The non-dimensionalised equations of motion are given in App.~\ref{app:Nondimensionalisation of the Cosserat rod}. Henceforth all quantities will be assumed to be non-dimensional, and we will therefore omit the tilde-notation of App.~\ref{app:Nondimensionalisation of the Cosserat rod}. For overdamped dynamics we used $\lambda = 1$ and simulated for a duration of $T = 0.1$. For underdamped dynamics we used $\alpha = \lambda = 1$ and $T = 0.1$. The material coordinate took values in the unit interval $u \in [0,1]$.
+
+To simulate the equations of motion of both systems we discretised space and time as
+\begin{subequations}
+	\begin{align} 
+		u_i  & = i \Delta u, & i=0, \dots, N_u  \\
+		t_i & = i \Delta t, & i=0, \dots, N_t
+	\end{align}
+\end{subequations}
+where we used $\Delta u = 1/200$ for all simulations, such that $N_u = 200$. We ran simulations using a range of time-discretisations
+\begin{equation} \label{eq:cosserat dts}
+	\Delta t \in \mathcal{T} = \left\{ a 10^{-b}\ :\ a \in \{1, 1.25, 2, 2.5, 5 \} \text{ and } b \in \{ 4, \dots, 6 \} \right\}
+\end{equation}
+and for each $\Delta t$, we ran simulations where the rod was subject to a randomly configured force and moment, and starting with random initial conditions, as well as random moment of inertia for the underdamped system. We do not consider  the effects of internal frictionional or body forces.
+
+The angular momentum, and the forces and moments were of the form
+\begin{subequations}
+	\begin{align}
+		\vec{L} & = \mathbb{I} \vec{\Omega} \\
+		\vec{F} & = \mathsf{K}^{(1)} (\vec{\theta} - \vec{\theta}_0) \\
+		\vec{F} & = \mathsf{K}^{(2)} \vec{\pi}
+	\end{align}
+\end{subequations}
+where $\mathbb{I}, \mathsf{K}^{(1)}, \mathsf{K}^{(2)} \in \mathbb{R}^{3 \times 3}$ were randomly generated each run using the code provided in Listing \ref{lst:random stiffness matrix}.
+
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\lstset{framextopmargin=50pt,frame=bottomline}
+
+\begin{lstlisting}[language=Python, caption=Generating random stiffness matrices and moment of inertia., label={lst:random stiffness matrix}]
+import numpy as np
+    
+def random_pos_def_matrix():
+    mat = np.random.random((3,3))
+    mat = mat + mat.T
+    mat += np.eye(3) * 3
+    mat /= np.max(np.linalg.eigvals(mat))
+    mat *= 1e-2
+    return mat
+    
+# Generate random K1 matrix
+K1 = random_pos_def_matrix()
+
+# Generate random K2 matrix
+K2 = random_pos_def_matrix()
+
+# Generate random moment of inertia
+mom_I = random_pos_def_matrix()
+\end{lstlisting}
+
+Initial configurations of the rod $\Phi_0 = (\mathbf{r}_0 ; E_0)$ were constructed by first generating a random closed center-line $\mathbf{r}_0(u)$ and its corresponding adapted frame, after which the latter was rotated into a deformed material frame $E_0(u)$. The random center-line was generated using a random superposition of sinusoidal functions, using the code provided in Listing ~\ref{lst:random centerline}.
+
+\begin{lstlisting}[language=Python, caption=Generating random stiffness matrices and moment of inertia., label={lst:random centerline}]
+N_random_curve_modes = 3
+mu_random_curve = 0
+sigma_random_curve = 0.1
+L0 = 1
+Nu = 200
+us_grid = np.linspace(0, 1, Nu, endpoint=False)
+
+def generate_random_periodic_function(dim, us, L, N, mu, sigma):
+    fs = np.zeros((3, len(us)))
+    dfs = np.zeros((3, len(us)))
+    
+    for i in range(dim):
+        fs[i] += np.random.normal(mu, sigma)/2
+        
+        for j in range(1, N):
+            a, b= np.random.normal(mu, sigma), np.random.normal(mu, sigma)
+            
+            fs[i] += a * np.cos((2*np.pi/L)*j*us) / (j*np.pi)
+            fs[i] += b * np.sin((2*np.pi/L)*j*us) / (j*np.pi)
+            
+            dfs[i] += -(a * (2*np.pi/L)*j / (j*np.pi)) * np.sin((2*np.pi/L)*j*us)
+            dfs[i] += (b * (2*np.pi/L)*j / (j*np.pi)) * np.cos((2*np.pi/L)*j*us)
+            
+    return fs, dfs
+
+R0, dR0 = generate_random_periodic_function(dim, us_grid, L0, N_random_curve_modes, mu_random_curve, sigma_random_curve)
+\end{lstlisting}
+
+For a given center-line $\mathbf{r}_0(u)$ we can construct an adapted frame by computing
+\begin{subequations}
+\begin{align}
+	 h & = |\partial_u \mathbf{r}| \\
+	\mathbf{t} & = (\partial_u \mathbf{r}) / h \\
+	\mathbf{n} & = (t_1 t_3, t_2 t_3, -t_1^2 - t_2^2)^T / \sqrt{ t_1^2 + t_3^2 +(t_1^2 + t_2^2)^2 } \\
+	\mathbf{b} & = \mathbf{t} \times \mathbf{n}
+\end{align}
+\end{subequations}
+which corresponds to a configuration $\Phi^\text{F} = (\mathbf{r} ; E^\text{F})$, where $E^\text{F} = (\mathbf{e}_1^\text{F}\ \mathbf{e}_2^\text{F}\ \mathbf{e}_3^\text{F})$. The corresponding spatial reconstruction field $X^\text{F} = \{ \vec{\pi}^\text{F}; \vec{\theta}^\text{F} \}$ of the adapted frame can be computed as
+\begin{subequations}
+	\begin{align}
+		\pi_1^\text{F} & = (\partial_u \mathbf{n}) \cdot \mathbf{b} \\
+		\pi_2^\text{F} & = - (\partial_u \mathbf{t}) \cdot \mathbf{b} \\
+		\pi_3^\text{F} & = (\partial_u \mathbf{t}) \cdot \mathbf{n} \\
+		\theta_1^\text{F} & = h\\
+		\theta_2^\text{F} & = \theta_3^\text{F} = 0.
+	\end{align}
+\end{subequations}
+Now, given some rotation matrix $R(u)$ defied over the length of the rod, we construct the initial configuration of the rod as 
+\begin{subequations} \label{eq:deformation of rod}
+	\begin{align}
+		\hat{\pi}_0 & = (\partial_u R) R^T + R \hat{\pi}^\text{F} R^T \\
+		\vec{\theta}_0 & = R \vec{\theta}^\text{F}.
+	\end{align}
+\end{subequations}
+The form of these equations are such that the configuration $\Phi_0 = (\mathbf{r} ; E_0)$, which are the initial conditions used in the simulations, shares the same center-line with $\Phi^\text{F}$, where $E_0 = R E^\text{F}$. Equation \ref{eq:deformation of rod} can be found by substituting $E_0 = R E$ into Eq.~\ref{eq:eom for e_i along u}. Derivatives of the spatial reconstruction fields $X(t_i, u_i)$ and all other quantities were computed using Fourier transforms, following the numerical algorithms provided in \citep{trefethen2000spectral}.
+
+The deformational rotation $R$ was constructed by generating random Euler angle-fields $\rho(u)$, $\phi(u)$ and $\psi(u)$ along $u \in [0, T]$, and then letting $R = R(\rho, \phi, \psi)$, where $R(\rho, \phi, \psi)$ is the mapping from Euler angles to rotation matrices. The Listing \ref{lst:random deformation R} shows the code that generates random deformations $R$.
+
+\begin{lstlisting}[language=Python, caption=Generating random deformational rotation field., label={lst:random deformation R}]
+N_R_modes = 3
+mu_R = 0.1
+sigma_R = 0.01
+
+def eul2rot(rho, phi, psi) :
+    R = np.zeros((3, 3, rho.shape[-1]))
+    R[0,0] = np.cos(phi)*np.cos(psi)
+    R[0,1] = np.sin(rho)*np.sin(phi)*np.cos(psi) - np.sin(psi)*np.cos(rho)
+    R[0,2] = np.sin(phi)*np.cos(rho)*np.cos(psi) + np.sin(rho)*np.sin(psi)
+    
+    R[1,0] = np.sin(psi)*np.cos(phi)
+    R[1,1] = np.sin(rho)*np.sin(phi)*np.sin(psi) + np.cos(rho)*np.cos(psi)
+    R[1,2] = np.sin(phi)*np.sin(psi)*np.cos(rho) - np.sin(alprhoha)*np.cos(psi)
+    
+    R[2,0] = -np.sin(phi)
+    R[2,1] = np.sin(rho)*np.cos(phi)
+    R[2,2] = np.cos(rho)*np.cos(phi)
+
+    return R
+
+us_grid = np.linspace(0, 1, Nu, endpoint=False)
+R_rho = generate_random_periodic_function(1, us, L0, N_rot_modes, mu_rot, sigma_rot)[0]
+R_phi = generate_random_periodic_function(1, us, L0, N_rot_modes, mu_rot, sigma_rot)[0]
+R_psi = generate_random_periodic_function(1, us, L0, N_rot_modes, mu_rot, sigma_rot)[0]
+
+R = eul2rot(R_rho, R_phi, R_psi)
+\end{lstlisting}
+
+\begin{figure}[t]
+\centering
+        \includegraphics[width=0.8\textwidth]{figs_part2/benchmark_simulations/example_intial_rod_config}
+        \caption{An example of a random initial configuration of the Cosserat rod generated by the outlined procedure. The blue line is the center-line $\mathbf{r}(u)$ and the red, green and blue lines attached to the center-line are $\mathbf{e}_1(u)$, $\mathbf{e}_2(u)$ and $\mathbf{e}_3(u)$ respectively.}
+        \label{fig:example random initial cosserat configuration}
+\end{figure}
+
+This completes the description of the procedures used to generate the initial configurations of the Cosserat rod. See Fig.~\ref{fig:example random initial cosserat configuration} for an example of a random initial Cosserat configuration. For a given random configuration, which we will refer to via the index $\ell$, we ran simulations using the Forward-Euler (FEI), the $SE(3)$-integrator (SEI) and the simplified $SE(3)$ (SSEI) integrators for each $\Delta t \in \mathcal{T}$. Let $X^{I,\Delta t,\ell}$ be the result of a simulation using a given algorithm $I \in \{ \text{FEI}, \text{SEI}, \text{SSEI} \}$, time-step $\Delta t$ and initial configuration $\ell$. Using the algorithm described in App.~\ref{app:Reconstructing the Cosserat rod from xi} we can then reconstruct the corresponding spatio-temporal configuration $\Phi_\ell^{I,\Delta t,\ell} = (\mathbf{r}_\ell^{I, \Delta t,\ell} ; E_\ell^{I, \Delta t,\ell})$. We now define
+\begin{subequations}
+	\begin{align}
+		\text{err}_\text{close}^{I, \Delta t, \ell} & = 
+			|\mathbf{r}^{I, \Delta t, \ell}(T, 1) - \mathbf{r}^{I, \Delta t, \ell}(T, 0)|
+			+ \sum_i |\mathbf{e}_i^{I, \Delta t, \ell}(T, 1) - \mathbf{e}_i^{I, \Delta t, \ell}(T, 0)|   \label{eq:cosserat close error}
+	\end{align}
+\end{subequations}
+which measures the failure of the Cosserat rod to close. That is, $\text{err}_\text{close}^{I, \Delta t, \ell}$ is the magnitude of the discontinuity of $\Phi_\ell^{I,\Delta t,\ell}$ at $u=1$. As the initial configuration is a closed loop, we have $\mathbf{r}^{I, \Delta t, \ell}(0, 0) = \mathbf{r}^{I, \Delta t, \ell}(0, 1)$ for all simulations. Simulation errors will however in general cause the configuration of the Cosserat rod in the numerics to no longer close. Note that it is not sufficient for $X^{I,\Delta t,\ell}(t,u)$ to be a smooth periodic function of $u$ in order for $\Phi_\ell^{I,\Delta t,\ell}$ to be smooth a smooth function of $u$.
+
+For both the underdamped and overdampded Cosserat rod, and for each $I$ and $\Delta t$ we ran $N_\text{sim} = 50$ simulations with random initial conditions $\ell = 1,\dots, N_\text{sim}$. We then computed the sample means and variances of the error
+\begin{subequations}
+	\begin{align}
+		\langle \text{err}_\text{close}^{I, \Delta t} \rangle & = \frac{1}{N_\text{sim}} \sum_{\ell = 1}^{N_\text{sim}} \text{err}_\text{close}^{I, \Delta t, \ell} \\
+		\text{Var}( \text{err}_\text{close}^{I, \Delta t}) & = \frac{1}{N_\text{sim}-1} \sum_{\ell = 1}^{N_\text{sim}} ( \text{err}_\text{close}^{I, \Delta t, \ell} - \langle \text{err}_\text{close}^{I, \Delta t} \rangle)^2.
+	\end{align}
+\end{subequations}
+
+\begin{comment}
+This completes the description of the procedures used to generate the initial configurations of the Cosserat rod. See Fig.~\ref{fig:example random initial cosserat configuration} for an example of a random initial Cosserat configuration. For a given random configuration, which we will refer to via the index $\ell$, we ran simulations using the Forward-Euler (FEI), the $SE(3)$-integrator (SEI) and the simplified $SE(3)$ (SSEI) integrators for each $\Delta t \in \mathcal{T}$. We also ran a reference simulation using the $SE(3)$-integrator at time-step $\Delta t_\text{ref} = 10^{-8}$. Let $X^{I,\Delta t,\ell}$ be the result of a simulation using a given algorithm $I \in \{ \text{FEI}, \text{SEI}, \text{SSEI} \}$, time-step $\Delta t$ and initial configuration $\ell$. Using the algorithm described in App.~\ref{app:Reconstructing the Cosserat rod from xi} we can then reconstruct the corresponding spatio-temporal configuration $\Phi_\ell^{I,\Delta t,\ell} = (\mathbf{r}_\ell^{I, \Delta t,\ell} ; E_\ell^{I, \Delta t,\ell})$. We now define
+\begin{subequations}
+	\begin{align}
+		\text{err}_\text{ref}^{I, \Delta t, \ell} & = \sup_{i = 1, \dots, N_u} \left| \Phi_\ell^{I, \Delta t, \ell}(T, i \Delta u) - \Phi_\ell^{I, \Delta t_\text{ref}, \ell}(T, i \Delta u) \right| \label{eq:cosserat ref error} \\
+		\text{err}_\text{close}^{I, \Delta t, \ell} & = |\mathbf{r}^{I, \Delta t, \ell}(T, 1) - \mathbf{r}^{I, \Delta t, \ell}(T, 0)|  \label{eq:cosserat close error}
+	\end{align}
+\end{subequations}
+where we have defined $|\Phi| = |\mathbf{r}| + \sum_{i=1}^3 |\mathbf{e}_i|$. Equation \ref{eq:cosserat ref error} is the supremum over the residuals between the reference configuration $\Phi_\ell^{I, \Delta t_\text{ref}}$ and the $\Phi_\ell^{I, \Delta t}$. Equation \ref{eq:cosserat close error} measures the the difference between the initial and final point of the center-line. As the initial configuration is a closed loop, we have $\mathbf{r}^{I, \Delta t, \ell}(0, 0) = \mathbf{r}^{I, \Delta t, \ell}(0, 1)$ for all simulations. Numerical errors can however cause the loop to become unclosed.
+
+
+For both the underdamped and overdampded Cosserat rod, and for each $I$ and $\Delta t$ we ran $N_\text{sim} = 50$ simulations with random initial conditions $\ell = 1,\dots, N_\text{sim}$. We then computed the sample mean and variances of the errors
+\begin{subequations}
+	\begin{align}
+		\langle \text{err}_\text{ref}^{I, \Delta t} \rangle & = \frac{1}{N_\text{sim}} \sum_{\ell = 1}^{N_\text{sim}} \text{err}_\text{ref}^{I, \Delta t, \ell} \\
+		\text{Var}( \text{err}_\text{ref}^{I, \Delta t}) & = \frac{1}{N_\text{sim}-1} \sum_{\ell = 1}^{N_\text{sim}} ( \text{err}_\text{ref}^{I, \Delta t, \ell} - \langle \text{err}_\text{ref}^{I, \Delta t} \rangle)^2.
+	\end{align}
+\end{subequations}
+and
+\begin{subequations}
+	\begin{align}
+		\langle \text{err}_\text{close}^{I, \Delta t} \rangle & = \frac{1}{N_\text{sim}} \sum_{\ell = 1}^{N_\text{sim}} \text{err}_\text{close}^{I, \Delta t, \ell} \\
+		\text{Var}( \text{err}_\text{close}^{I, \Delta t}) & = \frac{1}{N_\text{sim}-1} \sum_{\ell = 1}^{N_\text{sim}} ( \text{err}_\text{close}^{I, \Delta t, \ell} - \langle \text{err}_\text{close}^{I, \Delta t} \rangle)^2.
+	\end{align}
+\end{subequations}
+\end{comment}
+
+\section{Simulation of the Cosserat surface}
+
+We simulated the kinematic equations of motion of a Cosserat surface, which were given in Eq.~\ref{eq:cosserat surface eom}. We discretised space and time as
+\begin{subequations}
+	\begin{align} 
+		u_i & = 1 - \cos \left( \frac{i \pi}{N} \right),\ i = 0, 1, \dots, N_u \label{eq:chebyshev nodes} \\
+		v_i & = 1 - \cos \left( \frac{i \pi}{N} \right),\ i = 0, 1, \dots, N_v  \\
+		t_i & = i \Delta t
+	\end{align}
+\end{subequations}
+where Eq.~\ref{eq:chebyshev nodes} are known as the \textit{Chebyshev points}.\footnote{Eq.~\ref{eq:chebyshev nodes} is however in a non-standard form, as we have ordered the points in ascending order.} We differentiated functions on Chebyshev grids using \textit{spectral differentiation}, see \citep{trefethen2000spectral} for details. For all numerics we used $N_u = N_v = 20$.
+
+To test our suite of integrators we evaluated their short-time propagators using a range of time-discretisations
+\begin{equation} \label{eq:cosserat dts}
+	\Delta t \in \mathcal{T} = \left\{ a 10^{-b}\ :\ a \in \{1, 1.25, 2, 2.5, 5 \} \text{ and } b \in \{ 4, \dots, 7 \} \right\}.
+\end{equation}
+
+Every short-term propagator was evaluated on the same initial condition $X_{0,\alpha}(u,v) = \{ \vec{\theta}_{0,\alpha}, \vec{\pi}_{0,\alpha} \},\ \alpha=u,v$, where
+\begin{subequations}
+	\begin{align}
+		(\theta_{0,u})_2(i\Delta u, j \Delta u) & = 1 \\
+		(\theta_{0,u})_1(i\Delta u, j \Delta u) & = (\theta_{0,u})_3(i\Delta u, j \Delta u) = 0 \\
+		(\theta_{0,v})_3(i\Delta u, j \Delta u) & = 1 \\
+		(\theta_{0,v})_1(i\Delta u, j \Delta u) & = (\theta_{0,v})_2(i\Delta u, j \Delta u) = 0 \\
+		\vec{\pi}_{0,u}(i\Delta u, j \Delta u) & = \vec{\pi}_{0,v}(i\Delta u, j \Delta u) = 0
+	\end{align}
+\end{subequations}
+for all $i = 0,\dots, N_u,\ j=0,\dots,N_v$. The corresponding spatio-temporal configuration $\Phi_0 = (\mathbf{r}, E)$ is a flat sheet $\mathbf{r}(i \Delta u, j \Delta u)  = (0, i \Delta u, j \Delta v )^T$ with a constant perpendicular material frame. The system is subject to generalised velocity field $N_0 = \{ \vec{V}_0, \vec{\Omega}_0 \}$ which we generate as a random superposition of sinusoidal surfaces, which can reproduces using Listing \ref{lst:cosserat surface initial conditions}.
+
+\begin{lstlisting}[language=Python, caption=Setting up initial conditions nad generating random velocity fields., label={lst:cosserat surface initial conditions}]
+# Parameters
+
+Lu0 = 1
+Lv0 = 1
+
+Nu = 20
+Nv = 20
+
+N_rand_V_u = 5
+N_rand_V_v = 5
+
+N_rand_Omg_u = 5
+N_rand_Omg_v = 5
+
+rand_V_var = 1e0
+rand_Omg_var = 1e0
+
+# Initial conditions
+
+thu0 = np.zeros((3, Nu, Nv))
+thv0 = np.zeros((3, Nu, Nv))
+piu0 = np.zeros((3, Nu, Nv))
+piv0 = np.zeros((3, Nu, Nv))
+
+thu0[1] = 1
+thv0[2] = 1
+
+piu0[1] = 0
+piv0[0] = 0
+
+# Construct material mesh grid
+
+def get_grid_1D(Mm, L):
+    N = Mm - 1
+    x = np.cos(np.pi*np.arange(0,N+1)/N)
+    x = L*(1-x)/2
+    return x
+
+us = get_grid_1D(Nu, Lu0)
+vs = get_grid_1D(Nv, Lv0)
+grid_U, grid_V = np.meshgrid(us, vs, indexing='ij')
+
+# Define random velocity and and angular velocity
+
+rand_V_coeffs = np.zeros((3, N_rand_V_u, N_rand_V_v))
+rand_Omg_coeffs = np.zeros((3, N_rand_Omg_u, N_rand_Omg_v))
+
+for di in range(dim):
+    for i in range(N_rand_V_u):
+        for j in range(N_rand_V_v):
+            rand_V_coeffs[di,i,j] = rand_V_var * np.random.normal()
+            rand_Omg_coeffs[di,i,j] = rand_Omg_var * np.random.normal()
+            
+# Compute velocity field
+
+V_field = np.zeros((3, Nu, Nv))
+for di in range(dim):
+    for i in range(N_rand_V_u):
+        for j in range(N_rand_V_v):
+            V_field[di] += rand_V_coeffs[di,i,j] * np.sin((i - 0.5)*np.pi*grid_U/Lu0) * np.sin((j - 0.5)*np.pi*grid_V/Lv0) / ( (i-0.5) * (j - 0.5) * np.pi**2 )
+
+# Compute angular velocity field
+
+Omg_field = np.zeros((3, Nu, Nv))
+for di in range(dim):
+    for i in range(N_rand_Omg_u):
+        for j in range(N_rand_Omg_v):
+            Omg_field[di] += rand_Omg_coeffs[di,i,j] * np.sin((i - 0.5)*np.pi*grid_U/Lu0) * np.sin((j - 0.5)*np.pi*grid_V/Lv0) / ( (i-0.5) * (j - 0.5) * np.pi**2 )
+\end{lstlisting}
+
+Let $I \in \{ \text{FEI}, \text{SEI}, \text{SSEI} \}$ refer to the Forward-Euler, $SE(3)$- and simplified $SE(3)$-propagators respectively, and let $\ell = 1, \dots, N_\text{sim}$ be an index over the set of randomly generated velocity fields. In our results we used $N_\text{sim} = 50$. Let $X_{\Delta t, \alpha}^{I, \ell}$ be the result of computing the short-term propagator using integrator $I$, with time-step $\Delta t$ and configuration $\ell$. For each $I$, $\Delta t$ and $\ell$, we computed the supremum of the residual integrability error $\Delta^\text{int}_{u v}$, given in Eq.~\ref{eq:spatial integrability residual} over the material base space. In other words we compute
+\begin{equation}
+	\text{err}_\text{int}^{I, \Delta t, \ell} = \sup_{ i = 1,\dots,N_u,\ j = 1,\dots, N_v } \left| \partial_v X_{\Delta t, u}^{I, \ell} - \mathcal{D}_u X_{\Delta t, v}^{I, \ell}.
+ \right|
+\end{equation}
+where the derivatives were computed on the Chebyshev grid using spectral differentiation. We also compute the mean and variance of the integrability error over the set of configurations $\ell$
+\begin{subequations}
+	\begin{align}
+		\langle \text{err}_\text{int}^{I, \Delta t} \rangle & = \frac{1}{N_\text{sim}} \sum_{\ell = 1}^{N_\text{sim}} \text{err}_\text{int}^{I, \Delta t, \ell} \\
+		\text{Var}( \text{err}_\text{int}^{I, \Delta t}) & = \frac{1}{N_\text{sim}-1} \sum_{\ell = 1}^{N_\text{sim}} ( \text{err}_\text{int}^{I, \Delta t, \ell} - \langle \text{err}_\text{ref}^{I, \Delta t} \rangle)^2.
+	\end{align}
+\end{subequations}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Index:
