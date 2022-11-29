@@ -47,6 +47,9 @@
 \usepackage{listings}
 \usepackage{courier} 
 
+\usepackage[toc]{appendix}
+
+\onehalfspacing
 
 %%% Commands
 
@@ -63,7 +66,7 @@
 %%
 
 %% The title of the thesis:
-\title{Dynamics and rare events in non-equilibrium systems}
+\title{Rare events and dynamics in non-equilibrium systems}
 
 %% The full name of the author (e.g.: James Smith):
 \author{Lukas Takaaki Kikuchi}
@@ -155,7 +158,38 @@
 %% PART I : Introduction
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Introduction}
+
+
+
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+
+\section*{Introduction to Part I}
+
+\section*{Introduction to Part II}
+
+The 
+
+Prempt the field MCMC and stochastic geometry stuff.
+
+Many systems in noneq where you have diffusions on lie groups.
+
+Mention what the difficulties are with the conventional methods.
+
+Maybe incorporate stuff from your talk in the geometry part of the intro. triangulasiont coordinitisation. It is general difficult to triangulate a principal fibre bundle.
+
+Although disparate, the two main topics of this thesis do have a potential synthesis. This will not be explored in detail here, but will be remarked on in conclusions.
+
+
+{\color{red} In the introduction, do not give a recap but instead try to just tell the abbreviated story of what you are doing. In the conclusion, you will summarise the steps taken in a similar manner, but there you'll emphasis the results that were found instead (as well as the subconclusion sections)}.
+
+For the MCMC part:
+
+In the first part of this thesis, we study and develop tools for the study of the transition path ensemble. Beginning at a limit of zero temperature, in Ch.
+
+\section*{asd}
+
+
 
 %From ch 3
 The fluctuating dynamics of many physical, chemical and biological
@@ -189,10 +223,6 @@ the physical implications of these fluctuations are far from being
 understood.
 
 
-
-
-
-
 %%%% Introduce soft and slender matter and give examples.
 % Todo:
 % - Include soft robotics as example
@@ -214,6 +244,86 @@ Whilst the connection between Lie groups and mechanics has long been studied \ci
 At a level of abstraction sufficient to describe all Cosserat theories, but also more general systems. For example, the framework is amenable to relativistic systems as well.
 
 A lot of the results have already been shown before (a lot of the stuff in the Cosserat rod section in particular). The main purpose is to show how it all falls out of the a unified framework, and also works as a review article to some extent.
+
+
+
+\subsection{2 - FW}
+
+The theory of Freidlin and Wentzell \citep{ventselSMALLRANDOMPERTURBATIONS1970}
+gives asymptotic probability estimates of rare events in dynamical
+systems perturbed by small noise \citep{bolhuis2002transition, allen2005sampling, allen2009forward, ebener2019instanton}.
+Specifically, Freidlin-Wentzell theory yields estimates of the stationary
+distributions and mean first-passage times. Both these quantities
+are determined, in turn, by the asymptotic estimate of the probability
+of a stochastic trajectory to not deviate from a smooth path by more
+than a given amount in a given interval of time. The key result of
+Freidlin and Wentzell is that the limiting form of this probability,
+for small noise and small deviations, is given by a non-negative functional
+of the smooth path. This functional is the Freidlin-Wentzell action
+and its minimum, for fixed initial and terminal states, determines
+both the stationary distributions and first-passage times. The smooth
+path minimising the action is often called the Freidlin-Wentzell instanton.
+The theory is applicable to dynamical systems of both gradient and
+non-gradient character and can so be used to study a wide variety
+of equilibrium and non-equilibrium systems modelled by Itô diffusions
+\citep{paninski2006most,huang2012molecular, bouchet2016generalisation, maier1996scaling, wolynes1995navigating, noltingBallsCupsQuasipotentials2016, mangel1994barrier, gardner2000construction, demarco2001phase, nelson1987stochastic}.
+
+Determining the minimum of the Freidlin-Wentzell action is a problem
+in the calculus of variations. The Euler-Lagrange equations provide
+the necessary conditions for extrema of variational problems and,
+unsurprisingly, have been the basis of the large literature devoted
+to the numerical computation of Freidlin-Wentzell instantons \citep{weinan2002string,paninski2006most,heymann2008geometric,grafke2017long}.
+There exists, however, an alternative ``direct'' route for the solution
+of variational problems in which the functional is reduced, through
+finite-dimensional parametrizations of paths, to a multivariate function
+and then extre\textcolor{black}{mised by appropriate multivariate
+optimisation methods \citep{gelfand2012calculus,kantorovich1958approximate}.
+To the best of our knowledge, the first use of the direct method for
+the Freidlin-Wentzell action, discretised by finite-differences, appears
+in the work of Weinan, Ren and Vanden-Eijnden \citep{weinan2004minimum}.} 
+
+\subsection{3 - MCMC}
+
+In a large deviation limit, the dominant transition pathway of an Itô diffusion equation between fixed points of its drift field is given by the minimiser of the associated Freidlin-Wentzell action, which is known as the instanton of the system. Physically, we found the instanton in a limit of vanishing temperature. Although useful for many applications (as discussed in the introduction of the previous chapter), in any real system the zero-temperature limit is un-physical. There may be multiple locally most-probable paths - \textit{local instantons} - and at finite temperatures the fluctuations around these become increasingly relevant \citep{gelfandIntegrationFunctionalSpaces1960, nickelsenNoiseCorrectionLarge2022, corazzaNormalizedGaussianPath2020b, luGaussianApproximationsTransition2017a}. Furthermore, in some noise-regimes the sample realisations of the system will follow stochastic trajectories that do not necessarily concentrate around nor coincide with the instantons. There may be multiple competing transition channels (as will be a major topic in Ch.~\ref{ch:Diffusivity dependence of transition paths}), or no clearly defined transition channels whatsoever. Therefore at finite temperatures, it is of relevance to consider the \textit{transition path ensemble} (TPE), the set of all transition paths of a system given fixed end-points.
+
+Due to the fixed end-points, standard simulation methods like the Euler-Maruyama integrator \citep{kloedenNumericalSolutionStochastic2011} are often inefficient at sampling the transition path ensemble. In this chapter we will apply some recent mathematical developments in the field of infinite-dimensional \textit{Markov-Chain Monte Carlo} (MCMC) methods \citep{cotterMCMCMethodsFunctions2013, beskosMCMCMETHODSDIFFUSION2008, hairerAnalysisSPDEsArising2005, hairerAnalysisSPDEsArising2007, hairerSpectralGapsMetropolis2014}, to sample the \textit{transition path ensemble} (TPE) of Itô diffusion equations. The resulting algorithm, known as the \textit{pCN} algorithm, is an MCMC procedure which can evaluate probabilistic path-integrals over the space of stochastic paths. Using Kosambi-Karhunen-Lo\`eve (KKL) theory \citep{kosambiParallelismPathspaces, karhunenUeberLineareMethoden1947, loeveProbabilityTheory1977}, we develop a fast implementation of the pCN using Fast-Fourier Transforms.
+
+\subsection{4 - Diffusivity}
+
+The fluctuating dynamics of many physical, chemical and biological
+systems are commonly modelled by stochastic differential equations
+expressed in Langevin or Itô forms \citep{kampenStochasticProcessesPhysics2011,gardinerStochasticMethodsHandbook2010,riskenFokkerPlanckEquationMethods2012,bharucha-reidElementsTheoryMarkov2012}.
+In such systems it is often of great interest to identify the typical
+pathways that stochastic paths take to transition from an initial
+to a final state, as for example in the nucleation of solids, the
+conformational changes in biomolecules, or shifts in ecological balance
+\citep{faccioliDominantPathwaysProtein2006, demarcoPhaseTransitionModel2001, gardnerConstructionGeneticToggle2000, mangelBarrierTransitionsDriven1994, wolynesNavigatingFoldingRoutes1995, huangMolecularMathematicalBasis2012, paninskiMostLikelyVoltage2006, noltingBallsCupsQuasipotentials2016, leeFindingMultipleReaction2017}.
+Typically, such transition paths cluster around multiple pathways
+in the space of configurations and the relative probability of one
+or the other of these pathways depends on the drift, the diffusivity,
+and the duration allowed for the transition to take place \citep{onsagerFluctuationsIrreversibleProcesses1953,bachFunctionalsPathsDiffusion1977,itoProbabilisticConstructionLagrangean1978,ikedaStochasticDifferentialEquations2014}.
+As transitions are often rare events, direct simulations are not always
+practical and other means, analytical or numerical, are required to
+study them. Methods that allow for a full exploration of the space
+of transition pathways in stochastic dynamical systems, then, are
+of substantial theoretical and practical importance.
+
+The theory of large deviations \citep{ventselSMALLRANDOMPERTURBATIONS1970,stratonovichMarkovMethodsTheory1989,grahamMacroscopicPotentialsBifurcations1989,arnoldStochasticDifferentialEquations1974}, the topic of Ch.~\ref{ch:Ritz methods for Freidlin-Wentzel-Graham actions},
+provides an analytical method for obtaining transition pathways -
+instantons - in regimes dominated by the drift and for very long durations
+of path. Experimental systems, however, are typically not in a regime
+where the diffusivity is asymptotically low and durations are asymptotically
+long \citep{gladrowExperimentalMeasurementRelative2021}. While the
+relevance of including finite-temperature fluctuations around the
+instanton \citep{gelfandIntegrationFunctionalSpaces1960} is increasingly
+recognized \citep{nickelsenNoiseCorrectionLarge2022, corazzaNormalizedGaussianPath2020b, luGaussianApproximationsTransition2017a},
+the physical implications of these fluctuations are far from being
+understood.
+
+\subsection{5 - Cosserat rod}
+
+
+
 
 \include{thesis_part1}
 
@@ -246,155 +356,9 @@ A lot of the results have already been shown before (a lot of the stuff in the C
 %% Appendix:
 %%
 
-\appendix
+\begin{appendices}
 
 %\chapter{Moving frames for sub-manifolds of $SE(d)$} \label{app:Moving frames for sub-manifolds of SE(d)}
-
-\chapter{Glossary of notation} \label{app:glossary of notation}
-
-\section{Part I notation}
-
-Measure, density, law
-
-Functions $f : A \to B$
-
-Matrices $\mathbb{R}^{d \times d}$.
-
-$\dot{\mathbf{x}}$.
-
-$C^0_{\mathbf{x}_0}([0,T])$
-
-$\mathbf{a} \cdot \mathbf{b}$.
-
-
-Let $P$ be the probability density of $\mathbb{P}$ with respect to the Lebesgue measure, and we will henceforth write this relation as $P \sim \mathbb{P}$.
-
-
-$(Z_i)_j \sim \mathcal{N}(0, 2D)$
-
-$\mathcal{N}(0, \mathbbm{1}_d)$
-
-$\mathcal{N}(0, \mathcal{C})$ for infinite dimensional operators.s
-
-$\langle X \rangle $
-
-
-$\langle\mathbf{f},\mathbf{g}\rangle=\sum_{i}\int_{0}^{T}f_{i}(t)g_{i}(t)dt$
-
-\section{Part II notation}
-
-
-  
-
-Matrix derivatives are carried out using the numerator-layout convention. For a matrix $X = \mathbb{R}^{p \times q}$ and and $y$ is a scalar, then
-\begin{equation} \label{eq:numerator-layout convention}
-	\frac{\partial y}{\partial X} = \begin{pmatrix}
-		\frac{\partial y}{\partial X_{11}} & \frac{\partial y}{\partial X_{21}} & \dots & \frac{\partial y}{\partial X_{p1}} \\
-		\frac{\partial y}{\partial X_{12}} & \frac{\partial y}{\partial X_{22}} & \dots & \frac{\partial y}{\partial X_{p2}} \\
-		 \vdots & \ddots & \vdots \\
-		 \frac{\partial y}{\partial X_{1q}} & \frac{\partial y}{\partial X_{2q}} & \dots & \frac{\partial y}{\partial X_{pq}}
-	\end{pmatrix}
-\end{equation}.
-Vector deriviatives
-\begin{equation}
-	\frac{\partial y}{\partial \vec{x}} = \begin{pmatrix}
-		\frac{\partial y}{\partial x_1} \\
-		\frac{\partial y}{\partial x_2} \\
-		\vdots \\
-		\frac{\partial y}{\partial x_p}
-	\end{pmatrix}
-\end{equation}
-
-Often we will abbreviate partial derivatives as
-\begin{equation}
-\begin{aligned}
-\partial_u f & := \frac{\partial f}{\partial u} \\
-\partial_t f & := \frac{\partial f}{\partial t}
-\end{aligned}
-\end{equation}
-or
-\begin{equation}
-\begin{aligned}
-f' & := \frac{\partial f}{\partial u} \\
-\dot{f} & := \frac{\partial f}{\partial t}
-\end{aligned}.
-\end{equation}
-This applies to both scalar, vectorial and group-valued functions. 
-
-If we have multiple coordinates, derivatives will be denoted by subscripts i.e. $f_u$, $f_t$ etc. or $\partial_\alpha = \frac{\partial}{\partial u^\alpha}$.
-
-In any dimension $d$ we will assume that $\mathbb{R}^d$ is a vector space equipped with the standard Euclidean metric. Vectors $\mathbf{a} \in \mathbb{R}^d$ will be written as column vectors $\mathbf{a} = (a_1\ a_2\ \dots\ a_d)^T$, and their inner product will often be written as
-\begin{equation}
-\mathbf{a} \cdot \mathbf{b} = \mathbf{a}^T \mathbf{b}
-\end{equation}
-interchangeably.
-
-which for any two vectors $\mathbf{a},\mathbf{b}\in \mathbb{R}^d$ can be written in several different ways interchangeably:
-\begin{equation}
-\mathbf{a} \cdot \mathbf{b} = \mathbf{a}^T \mathbf{b}
-\end{equation}
-
-Smooth function $C^\infty$
-
-Norm of vector $|\mathbf{v}|$.
-
-Einstein summation
-
-$f : A \to B$ is a mapping, or function interchangeably
-
-We will often distinguish $\mathbb{E}^d$ and $\mathbb{R}^d$. 
-
-$\mathbb{R}^{n \times m}$
-
-Introduce the vec notation here as well, and tilde notation $\tilde{v}$, and do it clearly and in detail.
-
-$e$ is the identity of Lie groups.
-
-introduce the hatmap and give it explicitly (and use the vec notation). 
-
-\begin{equation} \label{eq:hat map}
-\hat{v} =  \begin{pmatrix}
-0 & -v_3 & v_2 \\
-v_3 & 0 & - v_1 \\
-- v_2 & v_1 & 0
-\end{pmatrix}
-\end{equation}
-
-also have that $\vec{\cdot}$ signifes the inverse hatmap for anti-symmetric 3x3 matrices. So $\vec{\hat{v}} \in \mathbb{R}^{3}$.
-
-$\hat{v} = v \times$
-
-$x \times y = - y \times x =  \hat{y} x$
-
-$\mathbb{1}$ identity matrix
-
-If $f : V \to W$, then $\Phi(V)$ is the image of $V$ under $f$. 
-
-$X = \{ \vec{a} ; \vec{b} \}$
-
-
-Matrix derivatives, and the fact that we only take them with respect to the non-zero values. $A_{ji} = \frac{\partial U}{\partial B_{ij}}$.
-
-$\bigwedge_{\beta \neq \alpha}$
-
-closure of sets $\bar{U}$.
-
-For a map $f : M \to N$, $f(A)$ is the image of the map under $A \subset M$.
-
-\begin{equation}
-	\{ \vec{a}, \vec{m} \} = \begin{pmatrix}
-		0 & \vec{0}^T \\
-		\vec{a} & \hat{m}
-	\end{pmatrix} \in \mathfrak{se}(3)
-\end{equation}
-where $\vec{a}, \vec{m} \in \mathbb{R}^3$, and $\vec{0} = (0\ 0\ 0)^T$.
-\begin{equation}
-	\{ \vec{b}, \vec{n} \}^* = \begin{pmatrix}
-		0 & \vec{b}^T \\
-		\vec{0} & \hat{n}^T
-	\end{pmatrix} \in \mathfrak{se}^*(3)
-\end{equation}
-where $\vec{b}, \vec{n} \in \mathbb{R}^3$
 
 \chapter{MCMC benchmark models} \label{app:MCMC benchmark models}
 
@@ -418,6 +382,12 @@ of the energetic well-depth $U_{0}$ and the thermal energy at temperature $\thet
 
 \section{The asymmetric double-well system} \label{app:The asymmetric double-well system}
 
+\begin{figure}[t]
+\includegraphics[width=0.6\textwidth]{figs_part1/mcmc/1D_process_potential}
+\centering \caption{The asymmetric double-well potential, with minima at $x/L_0 = -1$ (hollow red circle) and $x/L_0=1$ (filled red circle). See App.~\ref{app:The asymmetric double-well system} for its definition.}
+\label{fig:1D process potential} 
+\end{figure}
+
 Consider a $1$-dimensional Langevin system with a quartic potential
 \begin{equation} \label{eq:general quartic potential}
 	U(x) = U_0 \left( 1 + a \frac{x}{L_0} + b \left( \frac{x}{L_0} \right)^2 + x \left( \frac{x}{L_0} \right)^3  + d \left( \frac{x}{L_0} \right)^4  \right).
@@ -431,7 +401,7 @@ Imposing the conditions on Eq.\ref{eq:general quartic potential}, we get
 \begin{equation}  \label{eq:asymmetric double well}
 U(x)= \left( \left(\frac{x}{L_0}-1\right)^{2}-\frac{1}{4}\frac{\Delta U}{U_{0}}\left(\frac{x}{L_0}-2\right)\right)\left(\frac{x}{L_0}+1\right)^{2}. 
 \end{equation}
-Equation \ref{eq:asymmetric double well} defines an \textit{asymmetric} variant of a standard quartic double-well system, with minimii at $\frac{x}{L_0}= -1$ and $\frac{x}{L_0}=1$, and a maximum at $\frac{x}{L_0} = \frac{ 3 \Delta U}{16 U_0}$. See Fig.~\ref{fig:1D process trajectories} for a plot of the potential energy landscape. In non-dimensionalised form, the potential is
+Equation \ref{eq:asymmetric double well} defines an \textit{asymmetric} variant of a standard quartic double-well system, with minimii at $\frac{x}{L_0}= -1$ and $\frac{x}{L_0}=1$, and a maximum at $\frac{x}{L_0} = \frac{ 3 \Delta U}{16 U_0}$. See Fig.~\ref{fig:1D process potential} for a depiction of the potential energy landscape. In non-dimensionalised form, the potential is
 \begin{equation}  \label{eq:asymmetric double well}
 \tilde{U}(\tilde{x})= \left( \tilde{x}-1\right)^{2} - \frac{1}{4} \frac{\Delta U}{U_{0}} \left( \tilde{x}-2 \right) \left(\tilde{x}+1\right)^{2}. 
 \end{equation}
@@ -591,9 +561,77 @@ The above can be applied to compute the regularised normalisation constants of t
 We can compute the regularised normalisation constant of $\mathcal{H}^{[\bar{\mathbf{x}}]}$ by letting $P(t)=-\frac{1}{D} \mathbbm{I}_{d}$, $U=-2 D A$ and $R=B$ and applying the extended GYT. In the case of gradient dynamics, when $A = 0$, the original GYT can be readily applied by using $P(t)=-\frac{1}{D} \mathbbm{I}_{d}$ and $R(t)=-B(t)$, where $\mathbbm{I}_{d}$ is the identity matrix.
 
 
-\chapter{Numerical algorithms for spatio-temporal reconstruction} 
+\chapter{Reconstructing the spatio-temporal configuration} \label{app:Reconstructing the spatio-temporal configuration}
 
-\section{Reconstructing the Cosserat rod from the Maurer-Cartan form} \label{app:Reconstructing the Cosserat rod from xi}
+To reconstruct the spatio-temporal configuration $\Phi(t, \mathbf{u})$ of a system from its spatial reconstruction fields $X_\alpha(t, \mathbf{u})$ and generalised velocity field $N(t,\mathbf{u})$, where $\mathbf{u} \in M$, we must solve the equation
+\begin{equation} \label{eq:app phi and xi}
+	\Phi^{-1} d \Phi = \xi
+\end{equation}
+where $\xi = N dt + X_\alpha du^\alpha$. Given some initial condition $\Phi(\bar{t}, \mathbf{u}_0)$, we can find $\Phi(\bar{t},\mathbf{u})$ by integrating Eq.~\ref{eq:app phi and xi} for fixed $\bar{t}$ along some curve $\gamma : [0,1] \to M$ that satisfies $\gamma(0) = \mathbf{u}_0$ and $\gamma(1) = \mathbf{u}$. If $X_\alpha$ satisfy spatial integrability, the result of this integration is independent of the shape of the path $\gamma$.
+
+A numerical scheme for reconstructing the spatio-temporal configuration can thus be devised by repeatedly integrating Eq.~\ref{eq:app phi and xi} along curves that trace out $\Phi$ along the desired points $\mathbf{u} \in M$. In the following section we will show such a scheme explicitly for the case of the Cosserat rod, and the procedure can be readily generalised to higher-dimensional systems.
+
+\section{Numerical algorithm for reconstructing the Cosserat rod} \label{app:Reconstructing the Cosserat rod from xi}
+
+Here we describe how to reconstruction the spatio-temporal configuration of a Cosserat rod $\Phi(t,u)$ from the spatial reconstruction field $X(t,u)$ and generalised velocity field $N(t,u)$. These are related as
+\begin{equation} \label{eq:app phi and xi}
+	\Phi^{-1} d \Phi = \xi
+\end{equation}
+where $\xi = X du + N dt$.
+
+From Eq.~\ref{eq:app phi and xi}, we have
+\begin{subequations} 
+\begin{align}
+\Phi' & =  \Phi X \label{eq:F u} \\
+\dot{\Phi} & = \Phi  N \label{eq:F t}.
+\end{align}
+\end{subequations}
+Formally, these have solutions
+\begin{subequations} 
+\begin{align}
+\Phi_{ij}(u, \bar{t}) & = \Phi_{ik}(0, \bar{t}) \mathscr{U} \left\{ e^{ \int_0^u X(u, \bar{t}) du } \right\}_{kj} \\
+\Phi_{ij}(\bar{u}, t) & = \Phi_{ik}(\bar{u}, 0) \mathscr{T} \left\{ e^{ \int_0^t N(\bar{u}, t) dt } \right\}_{kj}
+\end{align}
+\end{subequations}
+where $\mathscr{U}(\cdot)$ and $\mathscr{T}(\cdot)$ signifies the spatial and temporal time-ordered integral respectively. Numerically, these can be efficiently approximated by discretisation, and incrementally solved using the \textit{Magnus expansion} \citep{magnusExponentialSolutionDifferential1954}. Eq. \ref{eq:F u} and Eq. \ref{eq:F t}
+can therefore be used together to trace out $\mathcal{F}$
+from a single initial condition $\Phi(u_{0}, t_{0})$. Due to
+the integrability of $\xi$, the value $\Phi(t, u)$ at $(t, u)$ is invariant with respect to which particular path
+in $(t, u)$-space is taken. In light of this there are theoretically
+an infinite number of reconstruction schemes. Below we propose what
+we find to be the most convenient reconstruction scheme.
+
+We discretise time and space as $u_{\alpha}=\alpha\Delta u,\ \alpha=0,\dots,N_{u}$, such that $u_{0}=t_{0}=0$ and $t_{\beta}=\beta\Delta t,\ \beta=0,\dots,N_{t}$
+and $u_{N_{u}}=L_{0}$ and $t_{N_{t}}=T$. We define $\Phi^{\alpha,\beta}\approx \Phi(\alpha\Delta u,\beta\Delta t)$,
+$X^{\alpha,\beta}\approx X(\alpha\Delta u,\beta\Delta t)$ and $Y^{\alpha,k}\approx Y(\alpha\Delta u,\beta\Delta t)$.
+\begin{subequations} \label{eq:numerical schema for reconstruction of Cosserat rod}
+\begin{align}
+\Phi_{ij}^{0, \beta+1} & = \Phi_{ik}^{0, \beta} \exp_{SE(3)} \left(\Delta t\ N^{0, \beta}\right)_{kj}, & \Phi^{0,0}=\Phi^{(i)}\\
+\Phi_{ij}^{\alpha+1, \beta} & = \Phi_{ik}^{\alpha, \beta}\exp_{SE(3)}  \left(\Delta u\ X^{\alpha,\beta}\right)_{kj} \label{eq:F spatial numerical eq}
+\end{align}
+\end{subequations}
+with the initial condition $\mathcal{F}^{0,0}=\mathcal{F}^{(i)}$.
+The matrix exponential has a closed-form analytical formula given
+by
+\begin{equation}
+\exp_{SE(3)}  (H)=\left(\begin{array}{cc}
+1 & \vec{0}^{T}\\
+\mathscr{B}(\hat{m}) \vec{v} & \exp_{SO(3)}(\hat{m})
+\end{array}\right)
+\end{equation}
+for $H=\left\{ \vec{v};\vec{m}\right\} \in\mathfrak{se}(3)$ and
+\begin{subequations} 
+\begin{align}
+\mathscr{B}(\hat{m}) & =\mathbbm{1}_{3}+\frac{1-\cos|\vec{m}|}{|\vec{m}|^{2}}\hat{m}+\frac{|\vec{m}|-\sin|\vec{m}|}{|\vec{m}|^{3}}\hat{m}^{2}\label{eq:A}\\
+\exp_{SO(3)} (\hat{m}) & =\mathbbm{1}_{3}+\frac{\sin|\vec{m}|}{|\vec{m}|}\hat{m}+\frac{1-\cos|\vec{m}|}{|\vec{m}|^{2}}\hat{m}^{2}\label{eq:B}
+\end{align}
+\end{subequations}
+where $\exp_{SO(3)} (\hat{m}) \in SO(3)$ is an element of the special orthogonal
+group in 3 dimensions. As Eq. \ref{eq:A} and Eq. \ref{eq:B} are
+ill-conditioned for small $|\vec{m}|$, in numerics it is often prudent
+to Taylor expand to at least $O(|\vec{m}|^6)$ when $|\vec{m}| < 0.1$ \citep{giusteriSimulationViscoelasticCosserat2021}.
+
+A benefit of Eq.~\ref{eq:numerical schema for reconstruction of Cosserat rod} as a numerical solution schema is that it allows for flexibility in terms of when Eq.~\ref{eq:F spatial numerical eq} is evaluated. For example, in simulations we use a temporal discretisation $\Delta t$, but we can choose to only reconstruct the Cosserat rod at intervals $n \Delta t$, for some integer $n$.
 
 We solve
 \begin{subequations} 
@@ -649,7 +687,7 @@ to Taylor expand to at least $O(|\vec{m}|^6)$ when $|\vec{m}| < 0.1$ \citep{gius
 
 A benefit of Eq.~\ref{eq:numerical schema for reconstruction of Cosserat rod} as a numerical solution schema is that it allows for flexibility in terms of when Eq.~\ref{eq:F spatial numerical eq} is evaluated. For example, in simulations we use a temporal discretisation $\Delta t$, but we can choose to only reconstruct the Cosserat rod at intervals $n \Delta t$, for some integer $n$.
 
-\section{Reconstructing the spatio-temporal configuration from the Maurer-Cartan form} \label{app:Reconstructing the spatio-temporal configuration from the Maurer-Cartan form}
+
 
 
 
@@ -732,7 +770,7 @@ where $F_\alpha$ and $H$ were defined in Eq.~\ref{eq:F H defs} using $Q^\alpha =
 	\begin{align}
 		U^1_0 & = \exp_{SO(3)}(-\Delta t \hat{\Omega}_0) \\
 		U^2_0 & = \mathscr{B}(- \Delta t \hat{\Omega}_0) \\
-		\vec{s}_0(\vec{m}) & = \Delta t (L \vec{m}) \times \left( U_0^2 \vec{V}_0 \right)
+		\vec{s}_0(\vec{m}) & = \Delta t (U^1_0 \vec{m}) \times \left( U_0^2 \vec{V}_0 \right)
 	\end{align}
 \end{subequations}
 where $\times$ denotes the cross product. Then we have that
@@ -1161,7 +1199,7 @@ for di in range(dim):
 
 Let $I \in \{ \text{FEI}, \text{SEI}, \text{SSEI} \}$ refer to the Forward-Euler, $SE(3)$- and simplified $SE(3)$-propagators respectively, and let $\ell = 1, \dots, N_\text{sim}$ be an index over the set of randomly generated velocity fields. In our results we used $N_\text{sim} = 50$. Let $X_{\Delta t, \alpha}^{I, \ell}$ be the result of computing the short-term propagator using integrator $I$, with time-step $\Delta t$ and configuration $\ell$. For each $I$, $\Delta t$ and $\ell$, we computed the supremum of the residual integrability error $\Delta^\text{int}_{u v}$, given in Eq.~\ref{eq:spatial integrability residual} over the material base space. In other words we compute
 \begin{equation}
-	\text{err}_\text{int}^{I, \Delta t, \ell} = \sup_{ i = 1,\dots,N_u,\ j = 1,\dots, N_v } \left| \partial_v X_{\Delta t, u}^{I, \ell} - \mathcal{D}_u X_{\Delta t, v}^{I, \ell}.
+	\text{err}_\text{int}^{I, \Delta t, \ell} = \sup_{ i = 1,\dots,N_u,\ j = 1,\dots, N_v } \left| \partial_v X_{\Delta t, u}^{I, \ell} (i \Delta u, j \Delta v) - \mathcal{D}_u X_{\Delta t, v}^{I, \ell} (i \Delta u, j \Delta v).
  \right|
 \end{equation}
 where the derivatives were computed on the Chebyshev grid using spectral differentiation. We also compute the mean and variance of the integrability error over the set of configurations $\ell$
@@ -1171,6 +1209,158 @@ where the derivatives were computed on the Chebyshev grid using spectral differe
 		\text{Var}( \text{err}_\text{int}^{I, \Delta t}) & = \frac{1}{N_\text{sim}-1} \sum_{\ell = 1}^{N_\text{sim}} ( \text{err}_\text{int}^{I, \Delta t, \ell} - \langle \text{err}_\text{ref}^{I, \Delta t} \rangle)^2.
 	\end{align}
 \end{subequations}
+
+
+
+\begin{comment}
+\chapter*{Notation} \label{app:glossary of notation}
+\addcontentsline{toc}{chapter}{Notation}
+
+%Vectors will be denoted in both as $\mathbf{v}$ and $\vec{v}$, with components $v_i$. We write the Euclidean norm of a vector as $|\mathbf{v}| = |\vec{v}|$. 
+
+
+Functions $f$ are maps $f : A \to B$, where $A$ and $B$ are the domain and codomain of the function respectively. If $a \in A$ then $f(a) \in B$. We denote and define the image of a function as $f(A) = \{ f(a)\ :\ a \in B \}$. We denote that a map $f : \mathbb{R} \to \mathbb{R}$ is $k$-times differentiable as $f \in C^k$. The function $f$ is continuous if $f \in C^0$, and smooth if $f \in C^\infty$. This extends to functions on $\mathbb{R}^d$.
+
+\section*{Notation specific to Part I}
+
+
+
+Measure, density, law
+
+
+
+
+$C^0_{\mathbf{x}_0}([0,T])$
+
+
+
+
+Let $P$ be the probability density of $\mathbb{P}$ with respect to the Lebesgue measure, and we will henceforth write this relation as $P \sim \mathbb{P}$.
+
+
+$(Z_i)_j \sim \mathcal{N}(0, 2D)$
+
+$\mathcal{N}(0, \mathbbm{1}_d)$
+
+$\mathcal{N}(0, \mathcal{C})$ for infinite dimensional operators.s
+
+$\langle X \rangle $
+
+
+$\langle\mathbf{f},\mathbf{g}\rangle=\sum_{i}\int_{0}^{T}f_{i}(t)g_{i}(t)dt$
+
+\section*{Part II notation}
+
+Euclidean vectors are written in boldface as $\mathbf{v} \in \mathbb{E}^d$, where $\mathbb{E}^d$ is $d$-dimensional Euclidean space, with inner product $\mathbf{v} \cdot \mathbf{w}$ for $\mathbf{w} \in \mathbb{E}^d$. We write column vectors as $\vec{v} \in \mathbb{R}^d$, with components $\vec{v} = (v_1\ v_2\ \dots\ v_d)^T$.
+  
+
+Matrix derivatives are carried out using the numerator-layout convention. For a matrix $X \in \mathbb{R}^{p \times q}$ and $y(X)$ a scalar function, then
+\begin{equation} \label{eq:numerator-layout convention}
+	\frac{\partial y}{\partial X} = \begin{pmatrix}
+		\frac{\partial y}{\partial X_{11}} & \frac{\partial y}{\partial X_{21}} & \dots & \frac{\partial y}{\partial X_{p1}} \\
+		\frac{\partial y}{\partial X_{12}} & \frac{\partial y}{\partial X_{22}} & \dots & \frac{\partial y}{\partial X_{p2}} \\
+		 \vdots & \ddots & \vdots \\
+		 \frac{\partial y}{\partial X_{1q}} & \frac{\partial y}{\partial X_{2q}} & \dots & \frac{\partial y}{\partial X_{pq}}
+	\end{pmatrix}
+\end{equation}.
+For $\vec{x} \in \mathbb{R}^d$
+\begin{equation}
+	\frac{\partial y}{\partial \vec{x}} = \begin{pmatrix}
+		\frac{\partial y}{\partial x_1} \\
+		\frac{\partial y}{\partial x_2} \\
+		\vdots \\
+		\frac{\partial y}{\partial x_p}
+	\end{pmatrix}
+\end{equation}
+
+Often we will abbreviate partial derivatives as
+\begin{equation}
+\begin{aligned}
+\partial_u f & := \frac{\partial f}{\partial u} \\
+\partial_t f & := \frac{\partial f}{\partial t}
+\end{aligned}
+\end{equation}
+or
+\begin{equation}
+\begin{aligned}
+f' & := \frac{\partial f}{\partial u} \\
+\dot{f} & := \frac{\partial f}{\partial t}
+\end{aligned}.
+\end{equation}
+This applies to both scalar, vectorial and group-valued functions. 
+
+If we have multiple coordinates, derivatives will be denoted by subscripts i.e. $f_u$, $f_t$ etc. or $\partial_\alpha = \frac{\partial}{\partial u^\alpha}$.
+
+In any dimension $d$ we will assume that $\mathbb{R}^d$ is a vector space equipped with the standard Euclidean metric. Vectors $\mathbf{a} \in \mathbb{R}^d$ will be written as column vectors $\mathbf{a} = (a_1\ a_2\ \dots\ a_d)^T$, and their inner product will often be written as
+\begin{equation}
+\mathbf{a} \cdot \mathbf{b} = \mathbf{a}^T \mathbf{b}
+\end{equation}
+interchangeably.
+
+which for any two vectors $\mathbf{a},\mathbf{b}\in \mathbb{R}^d$ can be written in several different ways interchangeably:
+\begin{equation}
+\mathbf{a} \cdot \mathbf{b} = \mathbf{a}^T \mathbf{b}
+\end{equation}
+
+
+We will often distinguish $\mathbb{E}^d$ and $\mathbb{R}^d$. 
+
+
+
+Introduce the vec notation here as well, and tilde notation $\tilde{v}$, and do it clearly and in detail.
+
+$e$ is the identity of Lie groups.
+
+introduce the hatmap and give it explicitly (and use the vec notation). 
+
+\begin{equation} \label{eq:hat map}
+\hat{v} =  \begin{pmatrix}
+0 & -v_3 & v_2 \\
+v_3 & 0 & - v_1 \\
+- v_2 & v_1 & 0
+\end{pmatrix}
+\end{equation}
+
+also have that $\vec{\cdot}$ signifes the inverse hatmap for anti-symmetric 3x3 matrices. So $\vec{\hat{v}} \in \mathbb{R}^{3}$.
+
+$\hat{v} = v \times$
+
+$x \times y = - y \times x =  \hat{y} x$
+
+$\mathbb{1}$ identity matrix
+
+
+
+$X = \{ \vec{a} ; \vec{b} \}$
+
+
+Matrix derivatives, and the fact that we only take them with respect to the non-zero values. $A_{ji} = \frac{\partial U}{\partial B_{ij}}$.
+
+$\bigwedge_{\beta \neq \alpha}$
+
+closure of sets $\bar{U}$.
+
+
+
+\begin{equation}
+	\{ \vec{a}, \vec{m} \} = \begin{pmatrix}
+		0 & \vec{0}^T \\
+		\vec{a} & \hat{m}
+	\end{pmatrix} \in \mathfrak{se}(3)
+\end{equation}
+where $\vec{a}, \vec{m} \in \mathbb{R}^3$, and $\vec{0} = (0\ 0\ 0)^T$.
+\begin{equation}
+	\{ \vec{b}, \vec{n} \}^* = \begin{pmatrix}
+		0 & \vec{b}^T \\
+		\vec{0} & \hat{n}^T
+	\end{pmatrix} \in \mathfrak{se}^*(3)
+\end{equation}
+where $\vec{b}, \vec{n} \in \mathbb{R}^3$
+
+\end{comment}
+
+
+\end{appendices}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Index:
