@@ -173,11 +173,11 @@ such that $M$ is the image of $\mathbf{x}$. Here the material coordinate $X_3$ c
 
 We now conclude this section by making some remarks, prefacing the discussions in subsequent chapters, on the geometric properties of the Cosserat rod. The kinematic equations of motion Eq.~\ref{eq:Cosserat rod r kinematic eom} and Eq.~\ref{eq:Cosserat rod e_i kinematic eom} shows explicitly that the rod moves according to infinitesimal translations $\mathbf{V}dt$ and rotations $\boldsymbol{\Omega} \times \mathbf{e}_i$ respectively. This entails that we can identify the kinematic structure of the Cosserat rod with the \textit{Lie group} of Euclidean transformations of translations and rotations $SE(3)$ \citep{simoGeometricallyexactRodModel1991, simoThreedimensionalFinitestrainRod1986}. In particular the rod itself can be parametrised in terms of sub-manifolds of $SE(3)$ and, as will be the main subject of Sec.~\ref{ch:Cosserat rods}, from which geometricised kinodynamical equations of motion can be derived programmatically. In the following section some mathematical foundations will be introduced, necessary for the subsequent chapters of this part of the thesis.
 
-{\color{red} I think this should reference some more beneficial properties of using Lie group, like the lack of coordinitisation and some rerefernec to parameterising using the Lie algebra / differential invariants. But I can add that later when I've written the subsequent mathematical subsections. }
+% {\color{red} I think this should reference some more beneficial properties of using Lie group, like the lack of coordinitisation and some rerefernec to parameterising using the Lie algebra / differential invariants. But I can add that later when I've written the subsequent mathematical subsections. }
 
 % Note that these equations accurately remain invariant under rigid body transformation (just make sure to look up the significance of this again).
 
-{\color{red} Should also introduce Cosserat sheet, althouhg can do that later after you've derived the equations of motion etc.}
+% {\color{red} Should also introduce Cosserat sheet, althouhg can do that later after you've derived the equations of motion etc.}
 
 % In the purely mechanical three-dimensional theory the balance of angular momentum places restrictions on the constitutive equations which require the Cauchy stress tensor to be symmetric. Also, the conservation of mass and the balance of linear momentum are used to determine the mass density and the position of each material point in the continuum. For the Cosserat theories that will be developed in the next chapters, alternative equations representing the conservation of mass and the balances of linear and angular momentum will be used in a similar manner to determine the mass density and the position of each material point. However, the Cosserat theories will introduce additional kinematical quantities called director vectors at each material point which also need to be determined by additional balance laws. In order to motivate the forms for these balance laws, it is convenient to consider an averaged form of the balance of linear momentum
 
@@ -196,19 +196,40 @@ We now conclude this section by making some remarks, prefacing the discussions i
 
 \section{Mathematical preliminaries}
 
-As will be further discussed in Ch.~\ref{ch:Cosserat rods}, directed media can be seen as either sub-manifolds of \textit{homogeneous spaces} or sub-manifolds of \textit{Lie groups}. Through this lens, a fully geometricised and non-coordinate form of the equations of motion of such systems can be derived. This section serves primarily to establish establish the mathematical foundation and rigour of the programme, and therefore has a level of mathematical abstraction higher than that of the subsequent chapters. The reader not interested in these details may proceed to Ch.~\ref{ch:Cosserat rods}, and return to this section intermittently to fill gaps in notation and conceptual knowledge.
-
-For a fuller treatment of the concepts introduced in this section the reader can consult the following references for further exposition \citep{clellandFrenetCartanMethod2017, kleinDevelopmentMathematics19th1979, marsdenIntroductionMechanicsSymmetry2013, marleHenriPoincareNote2013a}.
+As will be further discussed in Ch.~\ref{ch:Cosserat rods}, directed media can be seen as either sub-manifolds of \textit{homogeneous spaces} or sub-manifolds of \textit{Lie groups}. Through this lens, a fully geometricised and non-coordinate form of the equations of motion of such systems can be derived. This section serves primarily to establish establish the mathematical foundation and rigour of the programme, and therefore has a level of mathematical abstraction higher than that of the subsequent chapters. The reader not interested in these details may proceed to Ch.~\ref{ch:Cosserat rods}, and return to this section intermittently to fill gaps in notation and conceptual knowledge. For a fuller treatment of the concepts introduced in this section the reader can consult the following references for further exposition \citep{clellandFrenetCartanMethod2017, kleinDevelopmentMathematics19th1979, marsdenIntroductionMechanicsSymmetry2013, marleHenriPoincareNote2013a}.
 
 \subsection{Differential geometry}
 
-Pullbacks and pushforwards
+This will be an abbreviated exposition of differential geometry. See \citep{misnerGravitation2017} for more details. Let $M$ be a set. A \textit{chart} on $M$ is a pair $(U, \phi)$ where $U \subset M$ and $\phi$ is a bijective map from $U$ to a subset $\phi(U) \subset \mathbb{R}^n$. The \textit{atlas} $\mathcal{A}$ is the set of all charts on $M$. If for any two charts $(U_1, \phi_1), (U_2, \phi_2) \in \mathcal{A}$ we have that the map $\phi_2 \circ \phi_1^{-1} : \phi_1( U_1 \cap U_2) \to \phi_2( U_1 \cap U_2)$ is a smooth function, then $M$ is called an $n$-dimensional \textit{smooth manifold}. Henceforth by \textit{manifold}, we will mean a smooth manifold.
 
-Define the Lie bracket in component form
+A function $f : M \to \mathbb{R}$ is smooth if $f \circ \phi^{-1}$ is a smooth function for any chart $(U, \phi) \in \mathcal{A}$. A curve $\gamma : [0, 1] \to M$ in $M$ is a \textit{smooth curve} if $\phi \circ \gamma$ is smooth for any chart $(U, \phi) \in \mathcal{A}$ along the intersection $\gamma([0,1]) \cap U$.
 
-\begin{equation} \label{eq:lie bracket in component form}
-[X, Y] = (X^j \partial_j Y^i - Y^j \partial_j X^i) \partial_i
+Given a map $\psi : M \to N$, where $M$ and $N$ are $m$- and $n$-dimensional manifolds respectively. Let $f : N \to \mathbb{R}^n$ be a smooth function. Then the \textit{pull-back} $\psi^* f : M \to \mathbb{R}^m$ of $f$ under $\psi$ is defined as
+\begin{equation}
+	\psi^* f = f \circ \psi.
 \end{equation}
+
+Let $f : M \to \mathbb{R}$ be a smooth function and let $\gamma : [0, 1] \to M$ be a smooth curve, and let $\gamma(\alpha_0) = p$, where $\alpha_0 \in (0,1)$. The \textit{tangent vector} to $\gamma$ at $p$ is defined as
+\begin{equation}
+	X_p(f) = \frac{d}{d \alpha} f(\gamma(\alpha)) \bigg|_{\alpha = \alpha_0}
+\end{equation}
+which is a linear map from the space of smooth functions on $M$ to $\mathbb{R}$. The \textit{tangent space} $T_p M$ is the set of all such linear maps at a point $p \in M$, which forms an $n$-dimensional vector space \citep{misnerGravitation2017}. The set of all tangent spaces
+\begin{equation}
+	TM = \{ (p, X_p)\ :\ p \in M,\ X_p \in T_p M \}.
+\end{equation}
+is known as the \textit{tangent bundle}.
+
+A \textit{vector field} $X : M \to TM$ is a map that assigns a tangent vector $X(p) \in T_p M$ at each point $p \in M$. For any smooth function $f : M \to \mathbb{R}$ and a vector field $f$, we define $X f: M \to \mathbb{R}$ as the function defined by
+\begin{equation}
+p \mapsto X_p(f).
+\end{equation}
+Therefore $X f$ should be seen as a differentiation of $f$. If the function $X f$ is smooth for all smooth functions $f$, then we say that $X$ is a \textit{smooth vector field}. We denote the space of all smooth vector fields by $\Gamma(TM)$. 
+
+Given a chart $(U, \phi) \in \mathcal{A}$, which we write in component form as $\phi(p) = (x_1(p), x_2(p), \dots, x_n(p))$, then we can expand vector field locally on $U$ as \citep{misnerGravitation2017}
+\begin{equation}
+	X = X^i \frac{\partial}{\partial x^i}
+\end{equation}
+where $X^i : M \to \mathbb{R}$ are smooth functions we call the \textit{coefficients} of $X$.
 
 \subsection{Exterior calculus} \label{sec:Exterior calculus}
 
@@ -216,7 +237,7 @@ In calculus, the differential of a scalar function $f : \mathbb{R}^3 \to \mathbb
 \begin{equation}
 df = \frac{\partial f}{\partial x} d x + \frac{\partial f}{\partial y} d y + \frac{\partial f}{\partial z} d z.
 \end{equation}
-This can be generalised for differentiable manifolds. Let $M$ be a smooth $d$-dimensional manifold, $p \in M$ a point on the manifold, $X \in \Gamma(TM)$ a vector field on $M$ and $f \in C^\infty(M)$ be a smooth function on $M$. We define the map $df : TM \to \mathbb{R}$ as
+This can be generalised for smooth manifolds. Let $M$ be a smooth $d$-dimensional manifold, $p \in M$ a point on the manifold, $X \in \Gamma(TM)$ a vector field on $M$ and $f \in C^\infty(M)$ be a smooth function on $M$. We define the map $df : TM \to \mathbb{R}$ as
 \begin{equation} \label{eq:df action}
 (df(X))(p) = X_p(f).
 \end{equation}
@@ -259,17 +280,24 @@ that $df \wedge df = 0$ for any $f \in C^\infty(M)$. If $x$ and $y$ are two $1$-
 (x \wedge y)(X, Y) = x(X) y(Y) - x(Y) y(X).
 \end{equation}
 
-We will now derive a coordinate-free expression for the exterior derivative of a $1$-form. Let $\phi = a_i dx^i$, then
+We will now derive a coordinate-free expression for the exterior derivative of a $1$-form. Let us first define the \textit{Lie bracket of vector fields} $[\cdot, \cdot]$, which is
+\begin{equation}
+	[X, Y](f) = X(Y(f)) - Y(X(f)) 
+\end{equation}
+and can be expressed in component form it as \citep{misnerGravitation2017}
+\begin{equation} \label{eq:lie bracket in component form}
+[X, Y](f) = (X^j \partial_j Y^i - Y^j \partial_j X^i) \partial_i f.
+\end{equation}
+Now, let $\phi = a_i dx^i$, then
 \begin{equation} \label{eq:exterior derivative of 1-form evaluated}
 \begin{aligned}
 d\phi(X,Y) & = da_i(X) Y^i - da_i(Y) X^i \\
  & = \frac{\partial a_i}{\partial x^k} X^k Y^i - \frac{\partial a_i}{\partial x^k} Y^k X^i \\
  & =  \left( X^k \frac{\partial}{\partial x^k} ( a_i Y^i) - a_i X^k \frac{\partial Y^i}{\partial x_k} \right) -  \left( Y^k \frac{\partial}{\partial x^k} ( a_i X^i) - a_i Y^k \frac{\partial X^i}{\partial x_k} \right) \\
  & = X^k \frac{\partial}{\partial x^k} ( a_i Y^i) - Y^k \frac{\partial}{\partial x^k} ( a_i X^i) - a_i  \left( X^k \frac{\partial Y^i}{\partial x_k} - Y^k \frac{\partial X^i}{\partial x_k} \right) \\
- & = X(\phi(Y)) - Y(\phi(X)) - \phi([X,Y])
+ & = X(\phi(Y)) - Y(\phi(X)) - \phi([X,Y]).
 \end{aligned}
 \end{equation}
-where we used Eq.~\ref{eq:lie bracket in component form}.
 
 Intuitively, a $1$-form can be seen as measuring an infinitesimal oriented length. A $2$-form can be seen as measuring an infinitesimal oriented area. A $p$-form measures an infinitesimal oriented $p$-dimensional volume. There is therefore a natural notion of integrals of $p$-forms. In general, a $p$-form $\phi$ defined on a manifold $M$ can be integrated on a $p$-dimensional sub-manifold of $M$.
 
@@ -298,8 +326,12 @@ where $\frac{\partial \mathbf{x} }{ \partial \tilde{\mathbf{x}} }$ is the Jacobi
 
 \subsection{Lie groups}
 
-\begin{definition}
-A $d$-dimensional \textit{Lie group} is a set $G$ that is both a group and a differentiable manifold of dimensions $d$, where the multiplication map $G\times G \to G$
+Here we will define and state relevant results on \textit{Lie group} theory, which will be used extensively throughout this text. For many of the systems we consider, we will identify their configurations with elements of Lie groups. Here we will only give a brief overview of theory. See \cite{clellandFrenetCartanMethod2017, schwichtenbergPhysicsSymmetry2017, hallLieGroupsLie2015} for a more detailed treatment.
+
+%\begin{definition}
+%Symmetries are often described by groups. For example, consider the discrete set of reflections and rotations of square that leaves it unchanged, which are closed under composition.\footnote{As well as satisfy all the rest of the group axioms.} On the other hand, for a sphere there is an infinite set of rotational and reflectional symmetries. It is from such examples that the notion of a \textit{Lie group} emerged, which is a smooth manifold that simultaneously admits a group structure. Systems we consider in the main text wil 
+
+A $d$-dimensional \textit{Lie group} is a set $G$ that is both a group and a smooth manifold of dimensions $d$, where the multiplication map $G\times G \to G$
 \begin{equation}
 (g,h) \mapsto gh \in G
 \end{equation}
@@ -308,7 +340,7 @@ and inverse $G \to G$
 g \mapsto g^{-1}
 \end{equation}
 are smooth maps.
-\end{definition}
+%\end{definition}
 
 For all Lie groups $G$ under consideration in this text the group elements in $G$ can be represented as invertible matrices. In other words, there is a map $\Pi : G \to GL(V)$, where $GL(V)$ is the Lie group of linear operators with non-zero determinant acting on some $n$-dimensional vector space $V$. Such a map is called a \textit{representation} of $G$. For all Lie groups there is a canonical \textit{fundamental representation} $g : G \to GL(\mathbb{R}^{n})$, and we will often identify the image $g(G) = \tilde{G}$ with the Lie group itself. Henceforth, unless explicitly stated to be otherwise, we will use the shorthand $g \in G$, identifying the Lie group elements in their fundamental representation with the Lie group elements themselves.
 
@@ -410,14 +442,25 @@ The following are some examples of Lie groups:
 
 \subsection{Homogeneous spaces}
 
-List all the main homogeneous spaces found in
-%https://en.wikipedia.org/wiki/Homogeneous_space#Formal_definition
+Here we give a brief overview of the notion and definition of a homogeneous space. Intuitively, a homogeneous space $\mathbb{X}$ is a set that is a space that `looks the same' everywhere. For example, spheres are self-similar under rotation, Euclidean space is self-similar upon translation and rotation, both of which are examples of homogeneous spaces. See \citep{clellandFrenetCartanMethod2017, schwichtenbergPhysicsSymmetry2017} for a more detailed treatment.
 
-Introduce principal bundles.
+Let $\mathbb{X}$ be a set and $G$ a Lie group. An \textit{action} $\phi : G \times X \to X$ is a map that satisfies $\phi(e, x) = x$ and $\phi(g, \phi(h, x)) = \phi(g h, x)$ for all $g,h \in G$ and $x \in \mathbb{X}$. We abbreviate the group action as $\phi(g, x) = g x$. We say that $G$ acts \textit{transitively} on $\mathbb{X}$ if the action is such that for any pair of elements $x,y \in \mathbb{X}$, there exists a group element $g \in G$ such that $g x = y$. If a set $\mathbb{X}$ admits a transitive action of a Lie group $G$, then $\mathbb{X}$ is known as a \textit{homogeneous space}, and $G$ is called the \textit{symmetry group} of $\mathbb{X}$.
 
-Define transitive action. Define homogeneous space both as a quotient $G/H$ but also as a topological space where a group $G$ acts transitively.
+All homogeneous spaces can be expressed as the quotient of a Lie group $G$ and a Lie subgroup $H \subset G$ \citep{kobayashiFoundationsDifferentialGeometry1996}. To define this notion, we first define \textit{left coset}, which is the set
+\begin{equation}
+	gH = \{ gh\ :\ h \in G \}.
+\end{equation}
+Then the \textit{quotient space} $G/H$ is the set
+\begin{equation}
+	G / H = \{ gH\ :\ g \in G \}.
+\end{equation}
+Common examples of homogeneous spaces are Euclidean space $\mathbb{E}^d \cong SE(d) / O(d)$ and the $d$-sphere $S^n \cong SO(n) / SO(n-1)$.
 
-Introduce Euclidean space $\mathbb{E}^d$, as the vector space $\mathbb{R}^d$ equipped with an inner product.
+Given a homogeneous space $G/H$, there is a natural projection map $\pi : G \to G/H$ defined as
+\begin{equation}
+\pi(g) = gH.
+\end{equation}
+The triple $(G, G/H, \pi)$ is known as a \textit{principal bundle}, where $G/H$ is called the \textit{base space} and $G$ the \textit{total space}.
 
 \subsection{The Maurer-Cartan form} \label{sec:The Maurer-Cartan form}
 
@@ -463,6 +506,8 @@ d \omega + \omega \wedge \omega = 0
 \end{equation}
 where we have used the fact that $dg$ is a matrix of closed $1$-forms, so that $d^2 g=0$, that the wedge product commutes with matrix multiplication, and $d(g^{-1} g) = 0$ to find an expression for $d g^{-1}$.
 
+A \textit{principal bundle} 
+
 \subsection{Sub-manifolds of homogeneous spaces} \label{sec:Sub-manifolds of homogeneous spaces}
 
 The exposition in this section follows closely that of \citep{clellandFrenetCartanMethod2017}. The Maurer-Cartan form and the Maurer-Cartan equation are particularly useful when studying sub-manifolds of homogeneous spaces. If $M \subset G/H$, let $\Phi : W \to M$ be a differentiable map, where $W$ is some $n$-dimensional manifold, where $\mathbb{T}^n$ is the $n$-dimensional torus, for some $n$. The \textit{pullback bundle} $\Phi^*G$ of the principal bundle $\pi : G \to G/H$ is defined as
@@ -496,7 +541,7 @@ where the definition of the Maurer-Cartan form Eq.~\ref{eq:Maurer-Cartan form}. 
 where used $D\tilde{\Phi} = d\tilde{\Phi}$. The following lemma will show that all information in $\Phi$ is encapsulated by $\xi$, up to global transformations $g \in G$.
 
 \begin{lemma}
-Let $W$ be an $n$-dimensional differentiable manifold, and let $\tilde{\Phi}_1, \tilde{\Phi}_2 : W \to G$ be two differentiable maps, and $\xi_i = \tilde{\Phi}^*_i \omega,\ i=1,2$. Then there exists a $g \in G$ such that
+Let $W$ be an $n$-dimensional smooth manifold, and let $\tilde{\Phi}_1, \tilde{\Phi}_2 : W \to G$ be two differentiable maps, and $\xi_i = \tilde{\Phi}^*_i \omega,\ i=1,2$. Then there exists a $g \in G$ such that
 \begin{equation} \label{eq:global transformations of Phi}
 \tilde{\Phi}_1(u) =  g \tilde{\Phi}_2(u), \quad \forall u\in U
 \end{equation}
@@ -1153,7 +1198,7 @@ must vanish, where $\ell(\xi)$ is again the reduced Lagrangian density for the s
 \begin{equation} \label{eq:hamiltons principle}
 \delta \int_W \mathcal{L}(\Phi, d \Phi)\ dt \wedge du = 0
 \end{equation}
-under variations $\Phi \to \Phi + \delta \Phi$, where $\delta \Phi(t,u) \in TSE(3)$ is a variational test function which must vanish at the temporal boundaries. We will now assume that the Lagrangian density can be written as a function $\mathcal{L} = \mathcal{L}(d \Phi)$, purely in terms of the tangent vectors $d \Phi$. Repeating similar steps as in Sec.~\ref{sec:Introduction - rigid body}, we vary $\xi = \Phi^{-1} d \Phi$ to get
+under variations $\Phi \to \Phi + \delta \Phi$, where $\delta \Phi(u,t) \in TSE(3)$ is a variational test function which must vanish at the temporal boundaries. We will now assume that the Lagrangian density can be written as a function $\mathcal{L} = \mathcal{L}(d \Phi)$, purely in terms of the tangent vectors $d \Phi$. Repeating similar steps as in Sec.~\ref{sec:Introduction - rigid body}, we vary $\xi = \Phi^{-1} d \Phi$ to get
 \begin{equation}
 \delta \xi = - \Phi^{-1} \delta \Phi \Phi^{-1} d \Phi + \Phi^{-1} \delta (d \Phi).
 \end{equation}
@@ -1502,9 +1547,9 @@ Thus far we have considered the material frame $E$ and the center-line $\mathbf{
 
 The configuration space of a filament can be found by `rotating away' the material frame $E(u)$ at each $u$. Therefore the appropriate Lie subgroup is $H = SO(3)$, and the configuration space is $SE(3) / SO(3) \cong \mathbb{E}^3$, where $\mathbb{E}^3$ is the three-dimensional Euclidean space. Conceptually, that $SE(3)/SO(3)$ represents the configuration space of the filament can be understood by recalling the definition of a homogeneous space. For any Lie group $G$ and Lie subgroup $H \subset G$ then $G/H$ is the set
 \begin{equation}
-G / H = \{ gH\ |\ g \in G \}
+G / H = \{ gH\ :\ g \in G \}
 \end{equation}
-where $gH = \{ gh\ |\ h \in G \}$ is the left coset. Now consider the case when $G = SE(3)$ and $H = SO(3)$. Let $g_1 = (\mathbf{r}, E_1)$ and $g_2 = (\mathbf{r}, E_2)$ denote two cross-sections that are located at the same point $\mathbf{r}$, but have two different material frames $E_1$ and $E_2$, and furthermore we can trivially identify these as elements $g_1, g_2 \in SE(3)$. As $E_1$ is related to $E_2$ by a rotation in $SO(3)$, we have that $g_1 H = g_2 H$. In other words, in the homogeneous space $SE(3)/SO(3)$, $g_1$ and $g_2$ belong to the same element $g_1 H = g_2 H \in SE(3)/SO(3)$. Therefore, a filament can mathematically be described as a Cosserat rod where we have, for each $u$, identified all material frames $E(u)$ at $\mathbf{r}(u)$ as belonging to the same equivalence~class. See Fig.~\ref{fig:cosserat rod and filament} for an illustration.
+where $gH = \{ gh\ :\ h \in G \}$ is the left coset. Now consider the case when $G = SE(3)$ and $H = SO(3)$. Let $g_1 = (\mathbf{r}, E_1)$ and $g_2 = (\mathbf{r}, E_2)$ denote two cross-sections that are located at the same point $\mathbf{r}$, but have two different material frames $E_1$ and $E_2$, and furthermore we can trivially identify these as elements $g_1, g_2 \in SE(3)$. As $E_1$ is related to $E_2$ by a rotation in $SO(3)$, we have that $g_1 H = g_2 H$. In other words, in the homogeneous space $SE(3)/SO(3)$, $g_1$ and $g_2$ belong to the same element $g_1 H = g_2 H \in SE(3)/SO(3)$. Therefore, a filament can mathematically be described as a Cosserat rod where we have, for each $u$, identified all material frames $E(u)$ at $\mathbf{r}(u)$ as belonging to the same equivalence~class. See Fig.~\ref{fig:cosserat rod and filament} for an illustration.
 
 Now let $\Phi : W \to SE(3)/SO(3)$ be the spatio-temporal configuration of the filament. As discussed in Sec.~\ref{sec:Sub-manifolds of homogeneous spaces}, we can write $\Phi$ as
 \begin{equation} \label{eq:phi and phi tilde}
@@ -1996,14 +2041,13 @@ We now consider the case of a twisting filament, as defined in Sec.~\ref{sec:twi
 
 We studied the kinodynamics of a Cosserat rod subject to constitutive and body forces and moments. Kinematically, we identified its configuration space as the special Euclidean group $SE(3)$ of translations and rotations on three-dimensional Euclidean space $\mathbb{E}^3$. Using the Euler-Poincaré theorem we then found conservative force and moment balance equations. Furthermore, we constructed a generalised Lagrange-D'Alembert principle from which arbitrary non-conservative dynamics can be derived. The resulting kinodynamic equations of motion were formulated in terms of a spatial reconstruction field $X = \{ \vec{\theta} ; \vec{\pi} \}$ and generalised momentum field $S$, which take values in the Lie algebra $\mathfrak{se}(3)$ and its dual $\mathfrak{se}(3)^*$ respectively. The configuration of the Cosserat rod is thus encoded in terms of Lie algebraic quantities, as opposed to a more typical approach of expressing it in terms of its center-line $\mathbf{r}$ and material frame $E$ directly, where the latter correspond to Lie group-valued quantities. We showed that the Lie algebraic formulation naturally leads to kinodynamics expressed in terms of the intrinsic geometry of the rod. Derivatives of $\mathbf{r}$ and $E$ must be taken to find the shear and spatial rate-of-change of the material frame, but are found directly in components of $X$ itself. Furthermore, the Lie algebraic formulation has a significant advantage as regards  numerics: Equations of motion in terms of $SE(3)$-quantities will in general lead to errors that push the system outside of the Lie group. For example, numerical errors will in general cause the material frame $E$ to longer be orthogonal. On the other hand, as $\mathfrak{se}(3)$ is a vector space, errors accrued in the simulation of $X$ and $S$ can not push them out of the Lie algebra. Therefore, regardless of numerical errors, $X$ will always exponentiate to a $SE(3)$-valued Cosserat rod configuration.
 
-Continuing, we proceeded to study the filament model, which we modelled as a Cosserat rod subject to kinematic constraints. We systematically derived its kinodynamic equations of motion in both the underdamped and overdamped limits. The filament model, which has a homogeneous configuration space $\mathbb{E}^3 \cong SE(3)/SO(3)$, is a paradigmatic example of how non Lie group-configured systems can be obtained by imposing kinematic constraints. In Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} we develop this further for general systems. We concluded the chapter by considering specific Cosserat rod models. In Sec.~\ref{sec:The hyperelastic Cosserat rod model} we derived the constitutive stress energy of a slender hyper-elastic tube, and through a coarse-graining procedure we approximated its kinodynamics as that of a Cosserat rod. In Sec.~\ref{sec:Dissipative and overdamped dynamics} we formulated the dynamics of a Cosserat rod subject to internal and external frictional forces, and derived the corresponding equations of motion in an overdamped limit. Chapter \ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} will build and develop many of the concepts introduced in this chapter, which will culminate in a framework to study the kinodynamics of general continuum systems with Lie group- or homogeneous configuration spaces.
-
+Continuing, we proceeded to study the filament model, which we modelled as a Cosserat rod subject to kinematic constraints. We systematically derived its kinodynamic equations of motion in both the underdamped and overdamped limits. The filament model, which has a homogeneous configuration space $\mathbb{E}^3 \cong SE(3)/SO(3)$, is a paradigmatic example of how non Lie group-configured systems can be obtained by imposing kinematic constraints. In Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} we develop this further for general systems. We concluded the chapter by considering specific Cosserat rod models. In Sec.~\ref{sec:The hyperelastic Cosserat rod model} we derived the constitutive stress energy of a slender hyper-elastic tube, and through a coarse-graining procedure we approximated its kinodynamics as that of a Cosserat rod. In Sec.~\ref{sec:Dissipative and overdamped dynamics} we formulated the dynamics of a Cosserat rod subject to internal and external frictional forces, and derived the corresponding equations of motion in an overdamped limit. Chapter \ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} will build and develop many of the concepts introduced in this chapter, which will culminate in a framework to study the kinodynamics of general continuum systems with Lie group- or homogeneous configuration spaces. 
 
 \chapter{Geometric continuum mechanics on Lie group- and homogeneous configuration spaces} \label{ch:Geometric continuum mechanics on homogeneous configuration spaces}
 
-In Ch.~\ref{ch:Cosserat rods}, we derived the kinodynamical equations of motion of the Cosserat rod and filament, systems in one material dimension with configuration space $SE(3)$ and $SE(3)/SO(3)$ respectively. In the subsequent section we provide a generalisation of Ch.~\ref{ch:Cosserat rods} to systems with general material bases spaces and homogeneous configuration spaces. We call this the \textit{geometrisation programme}. Mathematically, the geometrisation programme can be seen as a general field theory of Lie group- or homogeneous space-valued fields defined over topological manifolds. The derivations of the results are provided in Sec.~\ref{sec:Geometric kinematics} and Sec.~\ref{sec:Geometric dynamics}. 
+In Ch.~\ref{ch:Cosserat rods}, we derived the kinodynamical equations of motion of the Cosserat rod and filament, systems in one material dimension with configuration space $SE(3)$ and $SE(3)/SO(3)$ respectively. Here we generalise the results of Ch.~\ref{ch:Cosserat rods} to systems with general material bases spaces and homogeneous configuration spaces. We call this the \textit{geometrisation programme}. Mathematically, the geometrisation programme can be seen as a general field theory of Lie group- or homogeneous space-valued fields defined over topological manifolds. The derivations of the results are provided in Sec.~\ref{sec:Geometric kinematics} and Sec.~\ref{sec:Geometric dynamics}. To the best of our knowledge, these results are novel.
 
-We have separated the exposition of the results and their derivations, as the latter require a level of mathematical abstraction not necessary in the presentation of the geometrisation programme itself. The primary mathematical challenge stems from allowing arbitrary topologies in the material base space, which entails that it longer admits a global set of coordinates. An example of such a system would be a closed surface, like the membrane of a cell. This necessitated further geometrical abstraction that was not required in the case of the Cosserat rod. 
+We have separated the exposition of the programme and their derivations, as the latter require a level of mathematical abstraction not necessary in the presentation of the geometrisation programme itself. The primary mathematical challenge stems from allowing arbitrary topologies in the material base space, which entails that it longer admits a global set of coordinates. An example of such a system would be a closed surface, like the membrane of a cell. This necessitated further geometrical abstraction that was not required in the case of the Cosserat rod. 
 
 In Sec.~\ref{sec:geometrisation applications} we use the geometrisation programme to derive the equations of motion for a set of example systems. This section is called `\text{Applications}', meant to be understood in the sense that our general geometric framework is \emph{applied} to derive the kinodynamic theories of the given example systems. When these systems are well-established in the literature, we show that our framework recovers the correct equations of motion. Finally, in Sec.~\ref{sec:geometrisation discussion} we conclude with a summary and discussion on the geometrisation programme.
 
@@ -2533,7 +2577,7 @@ We start with the \textit{Lagrange-D'Alembert principle}, by adding an additiona
 \begin{equation} \label{eq:L with T in d dimensions}
 \delta \int_W L(d\Phi) + \int_W (\mathbf{T}(\Phi, d \Phi, \dots))(\delta \Phi) = 0
 \end{equation}
-where $\mathbf{T}$ is a $T^*G$-valued volume form we call the \textit{generalised volumetric force}, and is acting on $\delta \Phi \in TG$. Henceforth we will suppress its arguments and write $(\mathbf{T}(\Phi, d\Phi, \dots))(\delta \Phi) = \mathbf{T}(\delta \Phi)$. The second-term in Eq.~\ref{eq:L with T in d dimensions} is analogous to external forces in classical Euler-Poincaré theory for point-particles \citep{marleHenriPoincareNote2013, marsdenIntroductionMechanicsSymmetry2013}. In particular, compare Eq.~\ref{eq:L with T in d dimensions} with the integral Lagrange-D'Alembert principle for point-particles in \citep[Eq.~7.8.5]{marsdenIntroductionMechanicsSymmetry2013}.
+where $\mathbf{T}$ is a $T^*G$-valued volume form we call the \textit{generalised volumetric force}, and is acting on $\delta \Phi \in \Gamma(TG)$. Henceforth we will suppress its arguments and write $(\mathbf{T}(\Phi, d\Phi, \dots))(\delta \Phi) = \mathbf{T}(\delta \Phi)$. The second-term in Eq.~\ref{eq:L with T in d dimensions} is analogous to external forces in classical Euler-Poincaré theory for point-particles \citep{marleHenriPoincareNote2013, marsdenIntroductionMechanicsSymmetry2013}. In particular, compare Eq.~\ref{eq:L with T in d dimensions} with the integral Lagrange-D'Alembert principle for point-particles in \citep[Eq.~7.8.5]{marsdenIntroductionMechanicsSymmetry2013}.
 
 As before we want to express Eq.~\ref{eq:L with T in d dimensions} in reduced form. As in Sec.~\ref{sec:Body forces and non-conservative dynamics} we have that $\mathbf{T}(\delta \Phi) = \langle \eta, T \rangle$, where $T = L^*_\Phi \mathbf{T} = (\Phi^T)^{-1} \mathbf{T}$ is the generalised volumetric force and is a $\mathfrak{g}^*$-valued volume form, and $L^*_\Phi : T^*_\Phi G \to \mathfrak{g}^*$ is a mapping from the cotangent bundle to the dual Lie algebra defined as $\mathbf{T}( L_\Phi \eta ) = \langle L^*_\Phi \mathbf{T}, \eta \rangle$. From the reduced form of Eq.~\ref{eq:L with T in d dimensions}, and following the same steps in Eq.~\ref{eq:derivation of A eoms}, we get
 \begin{equation}
