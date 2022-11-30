@@ -3,7 +3,15 @@
 
 
 
-\chapter{Introduction} \label{sec:geometry introduction}
+\chapter{Preliminaries} \label{sec:geometry introduction}
+
+Here we give an account of the classical theory of microstructured materials, as well as some mathematical preliminaries, to lay the foundation of the geometric mechanics that will be developed in the subsequent chapters. In Sec.~\ref{sec:Classical Cosserat theory} we introduce our paradigmatic model system, the Cosserat rod, which will be geometrised in the subsequent chapter, and then further generalised in Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces}, culminating in what we call a \textit{generalised geometric Cosserat theory} (GGCT). In Sec.~\ref{sec:Mathematical preliminaries} we introduce the necessary mathematical tools required for the construction of the GGCT. In so doing, Sec.~\ref{sec:Mathematical preliminaries} will serve as a crash-course on the intrinsic geometry of sub-manifolds of Lie groups and homogeneous spaces.
+
+\section{Classical Cosserat theory} \label{sec:Classical Cosserat theory}
+
+\begin{comment}
+
+You dont need to do much of a lit review here. I think this should basically just be a more detail summary of the steps you will take in a programmatic way to get ot the GGMC.
 
 Start with the ubiquity of the technique.
 
@@ -42,29 +50,12 @@ By kinematics we mean that equations of motion that upon integration ensures tha
 
 % Could also think of more applications for active more soft matter issues.
 
-References:
-
-soft robotics \citep{rendaDiscreteCosseratApproach2018, graziosoGeometricallyExactModel2019, rendaDiscreteCosseratApproach2016, caasenbroodEnergyShapingControllersSoft2022, boyerMacrocontinuousComputedTorque2006, boyerMacrocontinuousDynamicsHyperredundant2012, rendaDynamicModelMultibending2014, verlSoftRoboticsTransferring2015, naughtonElasticaCompliantMechanics2021}
-
-cell membranes \citep{krishnaswamyCosserattypeModelRed1996, rangamaniSmallScaleMembrane2014}
-
-biological tissue \citep{sackBiologicalTissueMechanics2016, zhangModelingSimulationComplex2019}
-
-soft matter:
-
-active filaments \citep{laskarBrownianMicrohydrodynamicsActive2015, laskarFilamentActuationActive2017, kaczmarskiActiveFilamentsCurvature2022, pandeyFlowinducedNonequilibriumSelfassembly2016}
-
-filaments \citep{gazzolaForwardInverseProblems2018, goldsteinFrontProgagationPearling1996, goldsteinViscousNonlinearDynamics1998, goldsteinNonlinearDynamicsStiff1995}
-
-
-
-Many applicaitons in engineering and continuum mechanics:
- soils \citep{stefanouCosseratApproachLocalization2017}, polycrystalline \citep{forestCosseratModellingSize2000} and composite materials \citep{altenbachCosseratMedia2013}, granular and powder-like materials \citep{ebrahimianNumericalStudyInterface2021, mohanFrictionalCosseratModel1999, koteraCosseratContinuumTheory2000}, masonries \citep{stefanouThreedimensionalCosseratHomogenization2008}, cellular \citep{onckCosseratModelingCellular2002} or porous media and foams \citep{iesanDeformationPorousCosserat2011}, bones \citep{parkCosseratMicromechanicsHuman1986}, liquid
-crystals \citep{epsteinContinuousDistributionsInhomogeneities2001, gorielyRodTheoryLiquid2022}, as well as electromagnetic and ferromagnetic media \citep{ivanovaNewTheoryCosserat2022, pariaUnifiedTheoryMechanics1978, ivanovaModelingPhysicalFields}
 
 
 
 \section{Classical Cosserat theory} \label{sec:Classical Cosserat theory}
+
+\end{comment}
 
 Classical continuum mechanics study elastic materials as manifolds $\mathcal{M} \subset \mathbb{E}^3$ of point-continua $\mathbf{x} \in \mathcal{M}$, where $\mathbb{E}^3 \cong \mathbb{R}^3$ is 3-dimensional Euclidean space. Points in the material have three translational degrees of freedom, and the elastic response to displacements away from the rest configuration is determined by the symmetric Cauchy stress 2-tensor $\boldsymbol{\sigma}$. The momentum transport within the continuum is given by the \textit{Cauchy momentum equation}
 \begin{equation} \label{eq:Cauchy momentum equation}
@@ -74,7 +65,7 @@ where $\rho$ is the mass density, $\mathbf{v}$ is the flow velocity field, $\mat
 
 However, many systems have geometric properties that make them amenable to simplified treatments. Slender systems, for instance, are `thin' in one or more spatial dimensions. This often makes it feasible to model slender shells in two spatial dimensions and time, and slender rods in one spatial dimension and time. In such cases the continuum configuration of the bulk can then be suitably substituted with other, model-specific, internal degrees of freedom.
 
-The suite of models proposed by the Cosserat brothers \citep{cosseratTheoryDeformableBodies1909} in 1909 are one of the more prominent approaches by which one can study slender materials. Their approach is that of an extended continuum theory that, in addition to the manifold of point-continua $\mathcal{M}$, included a set of \textit{directors} (three-dimensional vectors) at each point $\mathbf{x} \in \mathcal{M}$. We thus refer to these systems as \textit{directed media}, as opposed to the undirected media of classical continuum mechanics. The physical interpretation of the directors are a matter of constitutive modelling. For three-dimensional continuum bodies, the directors could represent polar continua which has been used to study the properties of asymmetric Cauchy stress tensors, as in the case of liquid crystals~\citep{ericksenConservationLawsLiquid1961}.
+The suite of models proposed by the Cosserat brothers \citep{cosseratTheoryDeformableBodies1909} in 1909 are one of the more prominent approaches by which one can study slender materials. Their approach is that of an extended continuum theory that, in addition to the manifold of point-continua $\mathcal{M}$, included a set of \textit{directors} (three-dimensional vectors) at each point $\mathbf{x} \in \mathcal{M}$. We thus refer to these systems as \textit{directed} or \textit{microstructured media}, as opposed to the undirected media of classical continuum mechanics. The physical interpretation of the directors are a matter of constitutive modelling. For three-dimensional continuum bodies, the directors could represent polar continua which has been used to study the properties of asymmetric Cauchy stress tensors, as in the case of liquid crystals~\citep{ericksenConservationLawsLiquid1961}.
 
 When $\mathcal{M}$ is a lower-dimensional sub-manifold of $\mathbb{R}^3$, the polar continua would then often represent the substitutive internal degrees of freedom of the neglected bulk continuum. In the elastic theory of shells, a single director can model the material fibre running across its thickness, and for rods two directors are used to model the material fibres through the cross-section. We now continue to define the latter in detail.
 
@@ -190,7 +181,7 @@ where $R$ is a given fixed tubular radius of the Cosserat rod. Given a Cosserat 
 \end{equation}
 such that $\mathcal{M}$ is the image of $\mathbf{x}$. Here the material coordinate $X_3$ corresponds to the coordinate $u$. We see how the Cosserat rod can be viewed as the result of a coarse-graining procedure from the full three-dimensional continuum setting, replacing the cross section at each $u$ with two directors, thus reducing the spatial coordinates of the system from three to one.
 
-We now conclude this section by making some remarks, prefacing the discussions in subsequent chapters, on the geometric properties of the Cosserat rod. The kinematic equations of motion Eq.~\ref{eq:Cosserat rod r kinematic eom} and Eq.~\ref{eq:Cosserat rod e_i kinematic eom} shows explicitly that the rod moves according to infinitesimal translations $\mathbf{V}dt$ and rotations $\boldsymbol{\Omega} \times \mathbf{e}_i$ respectively. This entails that we can identify the kinematic structure of the Cosserat rod with the \textit{Lie group} of Euclidean transformations of translations and rotations $SE(3)$ \citep{simoGeometricallyexactRodModel1991, simoThreedimensionalFinitestrainRod1986}. In particular the rod itself can be parametrised in terms of sub-manifolds of $SE(3)$ and, as will be the main subject of Sec.~\ref{ch:Cosserat rods}, from which geometricised kinodynamical equations of motion can be derived programmatically. In the following section some mathematical foundations will be introduced, necessary for the subsequent chapters of this part of the thesis.
+We now conclude this section by making some remarks, prefacing the discussions in subsequent chapters, on the geometric properties of the Cosserat rod. The kinematic equations of motion Eq.~\ref{eq:Cosserat rod r kinematic eom} and Eq.~\ref{eq:Cosserat rod e_i kinematic eom} shows explicitly that the rod moves according to infinitesimal translations $\mathbf{V}dt$ and rotations $\boldsymbol{\Omega} \times \mathbf{e}_i$ respectively. This entails that we can identify the kinematic structure of the Cosserat rod with the \textit{Lie group} of Euclidean transformations of translations and rotations $SE(3)$ \citep{simoGeometricallyexactRodModel1991, simoThreedimensionalFinitestrainRod1986}. In particular the rod itself can be parametrised as a sub-manifold of $SE(3)$. From this formulation, as will be the main subject of Sec.~\ref{ch:Cosserat rods}, we can derive geometricised kinodynamical equations of motion. In Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} we generalise this procedure to continuum systems in arbitrary number of material dimensions and topologies, and with arbitrary Lie group microstructure. In the following section we will introduce the necessary mathematical tools required for this theoretical development.
 
 % {\color{red} I think this should reference some more beneficial properties of using Lie group, like the lack of coordinitisation and some rerefernec to parameterising using the Lie algebra / differential invariants. But I can add that later when I've written the subsequent mathematical subsections. }
 
@@ -213,7 +204,7 @@ We now conclude this section by making some remarks, prefacing the discussions i
 %- Note that these equations accurately remain invariant under rigid body transformation (just make sure to look up %the significance of this again).
 %- Note that the equations move according to Euclidean transformation, motivates the subsequent sections.
 
-\section{Mathematical preliminaries}
+\section{Mathematical preliminaries} \label{sec:Mathematical preliminaries}
 
 As will be further discussed in Ch.~\ref{ch:Cosserat rods}, directed media can be seen as either sub-manifolds of \textit{homogeneous spaces} or sub-manifolds of \textit{Lie groups}. Through this lens, a fully geometricised and non-coordinate form of the equations of motion of such systems can be derived. This section serves primarily to establish establish the mathematical foundation and rigour of the programme, and therefore has a level of mathematical abstraction higher than that of the subsequent chapters. The reader not interested in these details may proceed to Ch.~\ref{ch:Cosserat rods}, and return to this section intermittently to fill gaps in notation and conceptual knowledge. For a fuller treatment of the concepts introduced in this section the reader can consult the following references for further exposition \citep{clellandFrenetCartanMethod2017, kleinDevelopmentMathematics19th1979, marsdenIntroductionMechanicsSymmetry2013, marleHenriPoincareNote2013a}.
 
@@ -2652,7 +2643,7 @@ Sections \ref{sec:cosserat 3d bodies} and \ref{sec:cosserat surfaces} derive the
 
 \subsection{Three-dimensional Cosserat media}  \label{sec:cosserat 3d bodies}
 
-In Sec.~\ref{ch:Cosserat rods} we approximated the kinodynamics of a slender rod with the Cosserat rod model, which in that setting was seen as a coarse-graining of a three-dimensional slender rod into a one-dimensional deformable rod of rigid body cross-sections. In general however, classical Cosserat media can exist in up to three spatial dimensions, and their point-continua can have an arbitrary number of directors, as discussed in Sec.~\ref{sec:Classical Cosserat theory}. Here we consider a Cosserat \textit{body} in three material dimensions $(u, v, w)$ with two orthonormal directors, where the latter will be represented as material frames attached at each material point $(u, v, w)$. This is thus analogous to the Cosserat rod in three material dimensions. However, here the the micro-structure of the point-continua are not the result of a coarse-graining procedure, but rather represent true internal degrees of freedom. Examples of such systems include liquid crystals \citep{epsteinContinuousDistributionsInhomogeneities2001, gorielyRodTheoryLiquid2022} as well as electromagnetic and ferromagnetic media \citep{ivanovaNewTheoryCosserat2022, pariaUnifiedTheoryMechanics1978, ivanovaModelingPhysicalFields}.
+In Sec.~\ref{ch:Cosserat rods} we approximated the kinodynamics of a slender rod with the Cosserat rod model, which in that setting was seen as a coarse-graining of a three-dimensional slender rod into a one-dimensional deformable rod of rigid body cross-sections. In general however, classical Cosserat media can exist in up to three spatial dimensions, and their point-continua can have an arbitrary number of directors, as discussed in Ch.~\ref{sec:geometry introduction}. Here we consider a Cosserat \textit{body} in three material dimensions $(u, v, w)$ with two orthonormal directors, where the latter will be represented as material frames attached at each material point $(u, v, w)$. This is thus analogous to the Cosserat rod in three material dimensions. However, here the the micro-structure of the point-continua are not the result of a coarse-graining procedure, but rather represent true internal degrees of freedom. Examples of such systems include liquid crystals \citep{epsteinContinuousDistributionsInhomogeneities2001, gorielyRodTheoryLiquid2022} as well as electromagnetic and ferromagnetic media \citep{ivanovaNewTheoryCosserat2022, pariaUnifiedTheoryMechanics1978, ivanovaModelingPhysicalFields}.
 
 Let the material base space be a connected and bounded subset $M \subset \mathbb{R}^3$. For example $M = [0, L^u_0] \times [0, L^v_0] \times [0, L^w_0]$ would be an appropriate material base space for a system with a cuboidal rest configuration. As for the Cosserat rod, the total configuration space is $SE(3)$, and the the external and internal configuration spaces are $\mathbb{E}^3 = SE(3) / SO(3)$ and $SO(3)$ respectively. Let $\mathbf{u} = (u, v, w) : M \to \mathbb{R}^3$ be global material coordinates on the body, and let $\mathbf{r} : [0, T] \times M \to \mathbb{E}^3$ be the  spatial configuration of the continuum body at time $t$, and let $E(t,\mathbf{u}) = (\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3) \in SO(3)$ be the material frame at the material point $\mathbf{u}$ at time $t$. As before, we have
 \begin{equation}
