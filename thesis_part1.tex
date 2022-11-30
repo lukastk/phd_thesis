@@ -214,7 +214,7 @@ to the stationary quasipotential $V_{\infty}(x)$ in the basin of
 attraction of $\mathcal{A}$. For a system with multiple attractors
 $\mathcal{A}_{i}$, the global quasipotential is
 \begin{equation}
-V_{\infty}(x)=\min_{i}\left(V_{\infty}^{\mathcal{A}_{i}}(x)+C^{\mathcal{A}_{i}}\right)\label{eq:aggregated quasi-potential}
+V_{\infty}(x)=\min_{i}\left(V_{\infty}^{\mathcal{A}_{i}}(x)+C^{\mathcal{A}_{i}}\right)\label{eq:aggregated quasipotential}
 \end{equation}
 where $C^{\mathcal{A}_{i}}$ is an additive constant. The constants
 are fixed by requiring
@@ -910,7 +910,7 @@ force field. The instanton is in red with solid (dashed) segments
 showing motion against (along) the force field. The instanton is reflected
 about the horizontal axis for motion starting on the right, showing
 the inequivalence of fluctuational and relaxational paths for non-gradient
-dynamics. (b) The quasipotential, computed using Eq.~\ref{eq:aggregated quasi-potential},
+dynamics. (b) The quasipotential, computed using Eq.~\ref{eq:aggregated quasipotential},
 with a caustic at the unstable fixed point. (c) The value of the Lagrangian
 as a function of the Euclidean arc-length of the instanton. As in
 the potential case, the action vanishes to machine precision on segments
@@ -1103,7 +1103,7 @@ The instanton moves from the inner stable limit cycle at $r=1$ to the unstable l
 \begin{centering}
 \includegraphics[width=0.9\textwidth]{figs_part1/pyritz/fig3.jpeg}
 \par\end{centering}
-\caption{Instantons and quasi-potentials of the Egger model. The instantons
+\caption{Instantons and quasipotentials of the Egger model. The instantons
 are shown in red with solid (dashed) lines representing motion against
 (along) the vector field. The left and right panels are forward and
 reverse instantons. Isosurfaces of the quasipotential with respect
@@ -1779,7 +1779,7 @@ Furthermore, the difference in distribution between $\mathbb{P}_\mathbf{X}$ and 
 
 The band separation of the sampling method serves as an explanation for why the pCN method does not suffer from a curse of dimensionality as $N \to \infty$. As modes $k$ beyond some cutoff $k_|$ are approximately independently distributed normal random variables, the effective dimension of the target sampling space is $d k_|$, regardless of any choice of mode truncations $N > k_|$.
 
-Statements analogous to the above would apply if we instead considered the spectrum of the law of an unpinned It\^{o} diffusion, with sample space $C_{\mathbf{x}_0}^0([0,T])$, the set of stochastic paths starting at $\mathbf{x}_0$ with open end-point conditions at $t=T$. In that case, using identical arguments, we would find that the spectrum of the $\mathbb{P}_\mathbf{X}$ would resemble $\mathbb{P}_\mathbf{W}$ in the high-frequency band, where the latter is the law of the Wiener process. Below we will provide an analytical argument for the case of an unpinned It\^{o} diffusion.
+Statements analogous to the above would apply if we instead considered the spectrum of the law of an unpinned It\^{o} diffusion, with sample space $C_{\mathbf{x}_0}^0([0,T])$, the set of stochastic paths starting at $\mathbf{x}_0$ with open end-point conditions at $t=T$. In that case, using identical arguments, we would find that the spectrum of the $\mathbb{P}_\mathbf{X}$ resembles $\mathbb{P}_\mathbf{W}$ in the high-frequency band, where the latter is the law of the Wiener process. Below we will provide an analytical argument for the case of an unpinned It\^{o} diffusion.
 
 In the following we expand a unpinned Langevin processes of the form Eq. \ref{eq:ito diffusion equation} in the KKL basis of the Wiener process $\mathbf{W}$. For simplicity we only consider the $1$-dimensional case, but the results below readily generalises to higher dimensional processes. The KKL expansion of the $1$-dimensional Wiener process is
 \begin{equation} \label{eq:wiener kkl expansion}
@@ -2274,7 +2274,7 @@ We used the TMC to sample the TPE of the switch system. For temperature $\theta/
 
 In this chapter we applied some recent mathematical developments in the field of functional Markov chain Monte Carlo methods to study the transition paths of stochastic processes. We begun with an overview of probability theory over infinite-dimensional sample spaces, and showed that the formal notion of a path-space probability density can be understood rigorously using the classical Wiener measure. Using these mathematical foundations we then described the preconditioned Nicolson-Crank algorithm and used it to sample the transition path ensemble of a general It\^{o} diffusion equation with additive noise.
 
-A suitable reference Gaussian measure of a pinned It\^{o} diffusion is the Brownian bridge process, and we thus expanded transition paths in the Kosambi-Karhunen-Lo\`eve (KKL) basis of the Brownian bridge. We provided numerical and analytical evidence of a band separation in the KKL mode-space of a general It\^{o} diffusion with additive noise. The modes of the KKL expansion decouple in the high-frequency band, and statistically behave indistinguishably from that of Brownian motion. The only non-trivial statistics of an It\^{o} diffusion is thus encapsulated by the joint distributions of the lower-band modes. We used this band separation to construct an adapted step-size for the pCN algorithm, and we demonstrated improved autocorrelation times.
+A suitable reference Gaussian measure of a pinned It\^{o} diffusion is the Brownian bridge process, and we thus expanded transition paths in the Kosambi-Karhunen-Lo\`eve (KKL) basis of the Brownian bridge. We provided numerical and analytical evidence of a band separation in the KKL mode-space of a general It\^{o} diffusion with additive noise. The modes of the KKL expansion decouple in the high-frequency band, and statistically behave indistinguishably from that of Brownian motion. The only non-trivial statistics of an It\^{o} diffusion is thus encapsulated by the joint distributions of the lower-band modes. We used this band separation to construct an adapted step-size matrix for the pCN algorithm, and we demonstrated improved autocorrelation times.
 
 The main result of this chapter was the teleporter MCMC (TMC). In the most general sense, the TMC is a Metropolis-Hastings scheme that interpolates between a given MCMC scheme and an independence sampler, where we called the latter the teleportation measure, and is constructed so that the proposal states concentrate around the maxima of the target measure. Our main innovation was to define such a sampler on the transition path ensembles of It\^{o} processes. Using a semi-classical expansion of the path-probability density, we constructed approximate Gaussian measures around the maxima of the path measure. These formed the basis of the teleportation measure, and the resulting algorithm allowed for sampling TPEs with multiple dominant transition channels.
 

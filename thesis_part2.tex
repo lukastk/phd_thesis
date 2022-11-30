@@ -3,7 +3,7 @@
 
 
 
-\chapter{Introduction} \label{eq:geometry introduction}
+\chapter{Introduction} \label{sec:geometry introduction}
 
 Start with the ubiquity of the technique.
 
@@ -3550,7 +3550,7 @@ For the Cosserat surface, we considered an initial conditional of a flat sheet w
  
 \section{Conclusion}
  
-The purpose of geometric integrators are to preserve qualitative features of a system, in the numerical solution of their equations of motion. For the class of systems considered in this text, it is important to preserve spatial integrability. Failure to do so causes the spatio-temporal configuration of the system to be multi-valued. Furthermore, we have previously shown that errors in spatial integrability suffer exponential growth. In this chapter we constructed geometric integrators for this purpose.
+The purpose of geometric integrators are to preserve the qualitative features of a system in the numerical solutions of their equations of motion. For the class of systems considered in this text, it is important to preserve spatial integrability. Failure to do so causes the spatio-temporal configuration of the system to be multi-valued. Furthermore, we have previously shown that errors in spatial integrability suffer exponential growth. In this chapter we constructed geometric integrators for this purpose.
 
  The geometric integrators we derived can be compared with the Lie-Poisson integrators of \citep{munthe-kaasHighOrderRungeKutta1999, buddGeometricIntegrationNumerical1999, engoNumericalIntegrationLie2001}, defined on finite-dimensional systems. The primary point of difference is the presence of the translation terms $F_\alpha$ and $H$ in Eq.~\ref{eq:rewritten kinodynamic eoms}, which we take care to exponentiate in combination with the infinitesimal action of the adjoint $-\text{ad}_N$ and its dual $-\text{ad}^*_N$ respectively. These translational terms arise due to the presence of generalised constitutive and body forces (see Eq.~\ref{eq:F H defs}). Whilst a finite dimensional system can be subject to the latter, its finitude precludes constitutive dynamics (for example, recall the equations of motion of a rigid body Eq.~\ref{eq:euler poincare equation for rigid body}), whilst constitutive dynamics is a fundamental feature of any real continuum system. It is therefore prudent to construct geometric integrators that accommodates both terms in Eq.~\ref{eq:rewritten kinodynamic eoms}, and we gave numerical evidence of the importance of doing so in Sec.~\ref{sec:lie group integrators applications}. By carefully exponentiating the right-hand sides of the kinodynamic equations of motion Eq.~\ref{eq:combined, eoms}, we found expressions for geometric integrators for general Lie group and homogeneous space-continua. We then applied our general result to consider the special cases of $SO(3)$- and $SE(3)$-configured continua. The resulting geometric integrators were shown in numerical experiments to preserve the spatial integrability, and we compared their performance relative to non-geometric integrators.
  
