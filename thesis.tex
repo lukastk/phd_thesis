@@ -99,7 +99,11 @@
 %% Abstract:
 %%
 \abstract{%
-  My abstract ...
+
+The matter of this thesis is divided in two parts, both of which belong to disciplines that lie within the purview soft matter physics. In the first part, we study the infinite-dimensional probability space of stochastic differential equations. In particular, we study the ensemble of transition paths between meta-stable states of It\^{o} diffusions. We develop a suite of techniques to characterise the dominant transition channels of such systems, and study the character of the transition path ensemble as a function of varying diffusivity. 
+
+rare events
+
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -125,7 +129,8 @@
 %% Dedication:
 %%
 \dedication{%
-To me, myself and I, but most of all my friends.
+To my friends.
+%To me, myself and I, but most of all my friends.
 %To me, myself and I, but most of all, to my friends.
 %To me, myself and I.\footnote{But most of all, to my friends.}
 
@@ -175,19 +180,66 @@ To me, myself and I, but most of all my friends.
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-The research 
+This thesis explores two distinct topics. The first part concerns itself with the study of transition events in stochastic differential equations, both in regimes where these are ubiquitous as well as rare. The second part develops a geometrical theory of Cosserat materials \citep{cosseratTheoryDeformableBodies1909}, and further a generalised framework for studying continuum systems with configurations taking value in Lie groups or homogeneous spaces. Whilst substantially different, the two parts of this thesis do share a common trait in that they explore the geometry of spaces that possess an infinite-dimensional character. In essence, the research we present in the first part of the thesis is to quantitatively and qualitatively investigate the concentration of path-probability measures, defined over the infinite-dimensional space of stochastic transition paths. In the second part of this thesis, we consider systems with infinite degrees-of-freedom; that is, the systems are Lie group-valued \textit{manifolds} and we formulate their mechanics in terms of their intrinsic geometry. Below we will separately introduce the two parts of this thesis.
 
-two opposite ends of soft matter research. 
+\section*{Introduction to Part I}
 
-The deterministic dynamics
+- Many real life systems follow stochastic dynamics / langevin. refs
+- 
 
- and stochastics
- 
-As someone immersed in both, I do see similarities. the infinite dimensional character, functional spaces.
+Bolhuis:
+Studying transitions between stable states separated by unknown dynamical bottlenecks presents well known computational difficulties. Such transitions are rare events. Conventional methods for studying rare events in many body systems are based on transition state theory. First, one estimates the probability of visiting the dynamical bottleneckthe transition state~s!. Then the transmission coefficient and rate constant can be determined from a series of short trajectories initiated from the ensemble of states prepared at that bottleneck.1–4 The difficulty with this method is that it requires prior knowledge of the transition states. Without knowledge of the transition states, i.e., without an a priori conception of the mechanism or pathway for the process, this approach cannot be applied.
 
-For the part of the intro that is about mcmc, perhhaps steal the diffusibity intro.
+Bolhuis 2:
+DISPARITY OF TIMESCALES Often, dynamical processes of interest occur on timescales that are very long compared to the shortest significant timescale. For example, the dissociation of a weak acid in water might occur with a half-life of, say, 1 ms, while elementary steps of molecular motions in water occur in 1 fs. Similarly, timescales for folding the smallest of proteins are in the range of microseconds to milliseconds, whereas that for small-amplitude motions of amino acid side chains and water solvent is again 1 fs. This wide disparity of timescales can present serious computational challenges. For instance, consider a computed trajectory for a system containing a weak acid molecule and a bath of a few hundred water molecules. Within one or two orders of magnitude—depending on computing equipment and algorithm—1 s of computation time is required to advance the system for what would correspond to 1 fs of physical time. As such, typically 1012 s of computing time seems to be required to find one example of an event leading to acid dissociation. A representative sampling of pathways to dissociation would therefore seem to be an impractical computational task.
 
-stochastic spaces also have a geometry, hilbert space
+MPORTANCE SAMPLING The basic idea is a generalization of standard Monte Carlo procedures (20, 21, 24, 25) that focuses upon chains of states constituting dynamical trajectories (26) rather than upon individual states. In its standard form, a Monte Carlo calculation performs a random walk in configuration space. The walk is biased to ensure that the most important regions of configuration space are adequately sampled. Specifically, in a Monte Carlo random walk, configuration x is visited in proportion to its probability p(x). The walk may be initiated far from a typical configuration [i.e., x far from values of x where the weight from p(x) is largest], but after some equilibration period, the bias drives the system to those important regions of configuration space. This feature is crucial to the success of Monte Carlo sampling. It is called importance sampling and is illustrated in Figure 2. Importance sampling can be generalized to trajectory space, as we have done to create the methods of transition path sampling. Consider the ensemble of all trajectories that are, say, 1 ps long. Most of these trajectories will be localized near some basin of attraction—a long-lived collection of neighboring microstates. Rare transition state crossings will comprise a small subset of these 1-ps trajectories. For example, if the process of interest occurs roughly once every millisecond, then only one out of a billion 1-ps trajectories will exemplify that process. Transition path sampling provides an efficient means to sample such rare subensembles.
+
+Bolhuis 3:
+
+The kinetics of many important molecular processes, such as phase transitions, self-assembly, conformational changes, association/dissociation, and chemical reactions, are dominated
+by events that are rare on the molecular time scales.[1] Straightforward simulations of such events are very ineffective, due to the long timescales involved, which are often related to high free energy barriers between metastable states. In the past fifty years many simulation methods have been developed that enhance the sampling of the unlikely regions of the barrier (e.g., see refs. [2–9]) or enhance transitons between states (e.g., see refs. [10–12]). However, the effectiveness of this enhanced sampling often depends on choice of a good reaction coordinate. Failure to capture the correct reaction coordinate leads to wrong estimates of the barrier height, rate constants and mechanistic details.[13] Path-based approaches circumvent these problems by defining a dynamical trajectory connecting reactant and products states. Such paths can then be optimized to yield a minimum (free) energy pathway between the states. Well known examples of this approach include Nudged Elastic Band,[14–16]string method,[17,18] action minimization,[19] and dominant reaction pathway[20] techniques. For rough energy landscapes a more fruitful approach might be to sample from a distribution of dynamical paths. Transition path sampling (TPS) creates an ensemble of unbiased dynamical trajectories between the reactant and products states, through performing a random walk in trajectory space via a Metropolis Monte Carlo procedure.[
+
+
+Grafke:
+
+Small random perturbations often have a lasting effect on the long-time evolution of dynamical systems. For example, they give rise to transitions between otherwise stable equilibria, a phenomenon referred to as metastability that is observed in a wide variety of contexts, e.g. phase separation, population dynamics, chemical reactions, climate regimes, neuroscience, or fluid dynamics. Since the time-scale over which these transition events occurs is typically exponentially large in some control parameter (for example the noise amplitude), a brute-force simulation approach to compute these events quickly becomes infeasible. Fortunately, it is possible to exploit the fact that the mechanism of these transitions is often predictable when the random perturbations have small amplitude: with high probability the transitions occur by their path of maximum likelihood (PML), and knowledge of this PML also permits to estimate their rate. This is the essence of large deviation theory (LDT) [20], which applies in a wide variety of contexts. For example, systems whose evolution is governed by a stochastic (ordinary or partial) differential equation driven by a small noise or by a Markov jump process in which jumps occur often but lead to small changes of the system state, or slow/fast systems in which the fast variables are randomly driven and the slow ones feel these perturbations through the
+
+
+TPS introduction.
+
+FW -> "On the other hand, geometrical methods have revolutionized the field of classical
+mechanics since its inception, yielding some of the most important analytical techniques
+available in modern physics. These include Lie’s theory of dimensional reduction through
+symmetries, and the alternative formulation"
+
+However, cold limit not always physical. Ch 3 diffusivity dependenc ec
+
+Ch by Ch brreakdown.
+
+
+In the limit of zero diffusion. The theory of Freidlin, Wentzell and Graham \citep{wentzellSmallRandomPerturbations1970, graham1973statistical,graham1987macroscopic}
+gives asymptotic probability estimates of rare events in dynamical
+systems perturbed by small noise \citep{bolhuisTransitionPathSampling2002a, allen2005sampling, allen2009forward, ebenerInstantonBasedImportance2019b}.
+Specifically, Freidlin-Wentzell-Graham (FWG) theory yields estimates of the stationary
+distributions and mean first-passage times. Both these quantities
+are determined, in turn, by the asymptotic estimate of the probability
+of a stochastic trajectory to not deviate from a smooth path by more
+than a given amount in a given interval of time. The key result of
+FWG is that the limiting form of this probability,
+for small noise and small deviations, is given by a non-negative functional
+of the smooth path. This functional is known as the \textit{Freidlin-Wentzell action} and its minimum, for fixed initial and terminal states, determines
+both the stationary distributions and first-passage times. The smooth
+path minimising the action is often called the Freidlin-Wentzell instanton.
+The theory is applicable to dynamical systems of both gradient and
+non-gradient character and can so be used to study a wide variety
+of equilibrium and non-equilibrium systems modelled by Itô diffusions
+\citep{paninskiMostLikelyVoltage2006a, huangMolecularMathematicalBasis2012a, bouchet2016generalisation, maier1996scaling, wolynesNavigatingFoldingRoutes1995a, noltingBallsCupsQuasipotentials2016a, mangelBarrierTransitionsDriven1994a, gardnerConstructionGeneticToggle2000a, demarcoPhaseTransitionModel2001a, nelson1987stochastic}.
+
+
+
+
+The set of realisations of a stochastic process is a functional space, and probability measures over such spaces are therefore infinite-dimensional. The research we present in the first part of the thesis 
 
 These are \textit{global} in the sense of
 
@@ -195,54 +247,81 @@ In the first part of this thesis we study and develop methods for the study of t
 
 In Ch.~\ref{ch:Ritz methods for Freidlin-Wentzel-Graham actions} we began our by considering the transition path ensemble in the so-called Freidlin-Wentzell limit, which corresponds to a limit of vanishing diffusivity. {\color{red} In these regimes transition events between metastable states are rare.}
 
-
-In geometry part, you can talk about how intro, cosserat and geometry chapters serve as three successive dry runs of the same thing.
-
-
-%%%
+In the first part of this thesis, we study and develop tools for the study of the transition path ensemble. Beginning at a limit of zero temperature, in Ch.
 
 
 
-This thesis explores two distinct and vastly different topics. The first is the concept of digital literacy, which examines the impact of digital technology on education, communication, and the workplace. The second is the use of technology in health care, which looks at how digital technology can be used to improve patient care, communication, and collaboration among healthcare providers. Both topics are important and require further research in order to inform decisions and improve outcomes. By exploring both topics, this thesis will provide insight into the effects of digital technology in both education and health care, and how these two domains can be integrated to create a more efficient and effective experience.
+
+The fluctuating dynamics of many physical, chemical and biological
+systems are commonly modelled by stochastic differential equations
+expressed in Langevin or Itô forms \citep{kampenStochasticProcessesPhysics2011a, gardinerStochasticMethodsHandbook2010a, riskenFokkerPlanckEquationMethods2012a, bharucha-reidElementsTheoryMarkov2012a}.
+In such systems it is often of great interest to identify the typical
+pathways that stochastic paths take to transition from an initial
+to a final state, as for example in the nucleation of solids, the
+conformational changes in biomolecules, or shifts in ecological balance
+\citep{faccioliDominantPathwaysProtein2006a, demarcoPhaseTransitionModel2001a, gardnerConstructionGeneticToggle2000a, mangelBarrierTransitionsDriven1994a, wolynesNavigatingFoldingRoutes1995a, huangMolecularMathematicalBasis2012a, paninskiMostLikelyVoltage2006a, noltingBallsCupsQuasipotentials2016a, leeFindingMultipleReaction2017a}.
+Typically, such transition paths cluster around multiple pathways
+in the space of configurations and the relative probability of one
+or the other of these pathways depends on the drift, the diffusivity,
+and the duration allowed for the transition to take place \citep{onsagerFluctuationsIrreversibleProcesses1953a, bachFunctionalsPathsDiffusion1977a, itoProbabilisticConstructionLagrangean1978b, ikedaStochasticDifferentialEquations2014a}.
+As transitions are often rare events, direct simulations are not always
+practical and other means, analytical or numerical, are required to
+study them. Methods that allow for a full exploration of the space
+of transition pathways in stochastic dynamical systems, then, are
+of substantial theoretical and practical importance.
+
+The theory of large deviations \citep{wentzellSmallRandomPerturbations1970, stratonovichMarkovMethodsTheory1989a, grahamMacroscopicPotentialsBifurcations1989a, arnoldStochasticDifferentialEquations1974a}, the topic of Ch.~\ref{ch:Ritz methods for Freidlin-Wentzel-Graham actions},
+provides an analytical method for obtaining transition pathways -
+instantons - in regimes dominated by the drift and for very long durations
+of path. Experimental systems, however, are typically not in a regime
+where the diffusivity is asymptotically low and durations are asymptotically
+long \citep{gladrowExperimentalMeasurementRelative2021a}. While the
+relevance of including finite-temperature fluctuations around the
+instanton \citep{gelfandIntegrationFunctionalSpaces1960a} is increasingly
+recognized \citep{nickelsenNoiseCorrectionLarge2022, corazzaNormalizedGaussianPath2020b, luGaussianApproximationsTransition2017a},
+the physical implications of these fluctuations are far from being
+understood.
+
+In this chapter, we show that the competition between drift and diffusion
+in transition pathways can be studied using the semi-classical expansions
+of the path measure of the stochastic dynamics introduced in Sec.~\ref{sec:Teleporter MCMC}. We use a mixture of
+Gaussian measures to approximate the path measure around its local
+instantons. This allows us to demarcate and transcend the boundaries
+of the low diffusivity regime, without recourse to sampling the TPE directly using MCMC methods. We demonstrate this explicitly for
+a two-dimensional overdamped mechanical system, with both conservative
+and non-conservative forces. For this system we uncover a counterintuitive
+phenomenon where typical transition paths do not concentrate around
+the most probable path, even at low-to-intermediate diffusivities
+where the Gaussian approximation is still valid. To validate our results
+numerically, and to study the TPE at high-diffusivity regimes, we use the teleporter MCMC (TMC) method developed in Ch.~\ref{ch:Monte Carlo methods in Path Spaces},
+that allows for simultaneous exploration of multiple transition pathways. We
+find excellent agreement between the semi-classical expansion and
+numerical results for a large range of diffusivities and path durations. The results presented in this chapter was the result of collaborative work published as a pre-print in \citep{kikuchiDiffusivityDependenceTransition2022}, of which the author of this text was the primary contributor.
 
 
-Begin with paragraph where you muse
 
-Then paragraph where you briefly summarise what you do in both parts
-
-Then a chapter by chapter introduciton of each chapter.
-
-
-
-%%%%
-
-The theme of this  wide ranging
-
-\section*{Introduction to Part I}
 
 \section*{Introduction to Part II}
 
-The 
 
-Prempt the field MCMC and stochastic geometry stuff.
+
+
+
+
+In geometry part, you can talk about how intro, cosserat and geometry chapters serve as three successive dry runs of the same thing.
+
+"On the other hand, geometrical methods have revolutionized the field of classical
+mechanics since its inception, yielding some of the most important analytical techniques
+available in modern physics. These include Lie’s theory of dimensional reduction through
+symmetries, and the alternative formulation"
+
+
 
 Many systems in noneq where you have diffusions on lie groups.
 
 Mention what the difficulties are with the conventional methods.
 
 Maybe incorporate stuff from your talk in the geometry part of the intro. triangulasiont coordinitisation. It is general difficult to triangulate a principal fibre bundle.
-
-Although disparate, the two main topics of this thesis do have a potential synthesis. This will not be explored in detail here, but will be remarked on in conclusions.
-
-
-{\color{red} In the introduction, do not give a recap but instead try to just tell the abbreviated story of what you are doing. In the conclusion, you will summarise the steps taken in a similar manner, but there you'll emphasis the results that were found instead (as well as the subconclusion sections)}.
-
-For the MCMC part:
-
-In the first part of this thesis, we study and develop tools for the study of the transition path ensemble. Beginning at a limit of zero temperature, in Ch.
-
-\section*{asd}
-
 
 
 
@@ -278,215 +357,6 @@ A lot of the results have already been shown before (a lot of the stuff in the C
 in all the subsection conclusions, you will talk about further work. here you can summarise the further work.
 
 
-\section{Ritz}
-
-
-
-We have presented an efficient and accurate numerical method for computing
-most probable transitions paths and quasipotentials of rare diffusive
-events. The method directly minimises the Freidlin-Wentzell action
-and thus provides a unified approach for transition
-paths in both equilibrium and non-equilibrium systems. Our reparametrisation-invariant
-form of the action, derived using a Noether symmetry, is well-suited
-for numerical work and is a generalisation of the geometric action.
-This frees us from the constraints of the commonly used arc-length
-path parametrisation and offers the maximum flexibility in choosing
-the space of polynomials in which action is minimised. Thus our method
-is not limited to the Chebyshev polynomials in $[-1,1]$ used here
-but easily admits trigonometric polynomials and, more generally, any
-global basis. Numerical quadrature reduces the action to a multivariate
-function of coefficients of the path polynomial whose minimum is obtained
-by both gradient-free and gradient-based optimisation. This gives,
-simultaneously, both the minimum value of the action and the most
-probable path. This efficiency of the method allows us to repeatedly
-compute minimum action paths between an attractor and a point in its
-basin of attraction and, thereby, map out the quasipotential. The
-quasipotential in a non-equilibrium steady state has the same significance
-as the Gibbs distribution in equilibrium and our method provides a
-robust way of obtaining it without the need to numerically solve the
-Hamilton-Jacobi partial differential equation. 
-\begin{figure}
-\begin{center}
-\begin{tikzcd}[column sep=small, row sep=small]      
-& S[x] \arrow{ddl}[swap]{\delta} \arrow{ddr}{\mathcal{P}} &
-\\     &  &
-\\[2ex]     
-\delta S[x]=0  & & S(\alpha) \hspace{0.5cm}
-\end{tikzcd}
-\end{center}  
-\begin{center}
-\vspace{-0.6cm}
-\begin{tikzcd} 
-\arrow{d}[swap]{\mathcal{P}} &     \arrow{d}{\nabla} 
-\\[2ex]     
-\text{Discrete E-L} & \text{Ritz system} 
-\end{tikzcd} 
-\end{center}  
-
-%\begin{center}
-%\begin{tikzcd} [column sep=small, row sep=small]
-%\delta,\nabla,\pi \rightarrow \text{variation, extremization, %projection}
-%\end{tikzcd} 
-%\end{center}  
-
-\caption{Inequivalence of the direct and Euler-Lagrange routes to numerical
-action minimization. Here, $\delta$ $\rightarrow$ functional variation,
-$\mathcal{P}\rightarrow$ finite-dimensional projection, and $\nabla\rightarrow$
-function minimisation. On the left branch, the action is first varied
-to obtain the Euler-Lagrange equation and then projected onto a finite-dimensional
-basis for numerical solution. On the right branch, the action is first
-projected onto a finite-dimensional basis and then minimised to obtain
-the Ritz system. The finite-dimensional projection of the Euler-Lagrange
-equations is, in general, not identical to the Ritz system.}
-
-\centering{}\label{fig:discrete-el-versus-ritz}
-\end{figure}
-
-The direct method used here consists of a discretisation of the action
-followed by a search for the minimum in the resulting finite-dimensional
-space, expressed schematically in Fig. (\ref{fig:discrete-el-versus-ritz}).
-In contrast, the majority of methods impose the vanishing variation
-of the action and then search for the solution of the Euler-Lagrange
-equation in a finite-dimensional space. The resulting discretised
-Euler-Lagrange equations is, in general, not identical to the Ritz
-system; in other words, these two methods of reducing an infinite-dimensional
-problem to a finite-dimensional one are not equivalent. In contra st
-to mechanics, where Newton's equations of motion are considered primary
-and the action derived, here it is the tube probability and hence
-the Freidlin-Wentzell action that is primary and the Euler-Lagrange
-equation for the most probable path that is derived. It appears more
-natural to us to discretise the primary, rather than the derived,
-object directly. Our approach is algorithmically simple and the only
-adjustable parameters are the polynomial order $n$ and the quadrature
-order $n_{q}.$ This simplicity does not compromise accuracy or efficiency,
-as confirmed by our examples.  
-
-In subsequent chapters we will move beyond the Freidlin-Wentzell regime, which corresponds to the limit of zero diffusivity and infinite duration, to study transition paths in systems at finite temperatures and of varying durations. In this setting, the Ritz methods developed here can be applied to find finite-temperature instantons of the \textit{Onsager-Machlup action}. Although in this regime the action does not admit a on-shell form, as was the case for the Freidlin-Wentzell action.
-
-%The rapid convergence of the method holds promise for its application
-%to problems involving the stochastic dynamics of fields, with both
-%scalar and Lie group-valued order parameters. We also expect the method
-%to apply to stochastic dynamics with degenerate diffusion tensors
-%and to stochastic systems with inertia. 
-
-
-
-\section{MCMC}
-
-In this chapter we applied some recent mathematical developments in the field of functional Markov chain Monte Carlo methods to study the transition paths of stochastic processes. We begun with an overview of probability theory over infinite-dimensional sample spaces, and showed that the formal notion of a path-space probability density can be understood rigorously using the classical Wiener measure. Using these mathematical foundations we then described the preconditioned Nicolson-Crank algorithm and used it to sample the transition path ensemble of a general It\^{o} diffusion equation with additive noise.
-
-A suitable reference Gaussian measure of a pinned It\^{o} diffusion is the Brownian bridge process, and we thus expanded transition paths in the Kosambi-Karhunen-Lo\`eve (KKL) basis of the Brownian bridge. We provided numerical and analytical evidence of a band separation in the KKL mode-space of a general It\^{o} diffusion with additive noise. The modes of the KKL expansion decouple in the high-frequency band, and statistically behave indistinguishably from that of Brownian motion. The only non-trivial statistics of an It\^{o} diffusion is thus encapsulated by the joint distributions of the lower-band modes. We used this band separation to construct an adapted step-size for the pCN algorithm, and we demonstrated improved autocorrelation times.
-
-The main result of this chapter was the teleporter MCMC (TMC). In the most general sense, the TMC is a Metropolis-Hastings scheme that interpolates between a given MCMC scheme and an independence sampler, where we called the latter the teleportation measure, and is constructed so that the proposal states concentrate around the maxima of the target measure. Our main innovation was to define such a sampler on the transition path ensembles of It\^{o} processes. Using a semi-classical expansion of the path-probability density, we constructed approximate Gaussian measures around the maxima of the path measure. These formed the basis of the teleportation measure, and the resulting algorithm allowed for sampling TPEs with multiple dominant transition channels.
-
-There are a number of promising future directions. We showed some results that the band separation of It\^{o} processes in KKL mode-space could be exploited to moderately improve autocorrelation times. However, further work can be undertaken to combine the KKL expansion with a multi-level MCMC method \citep{gilesMultilevelMonteCarlo2008, dodwellHierarchicalMultilevelMarkov2015, jansenMultilevelMonteCarlo2020, rohrbachMultilevelSimulationHardsphere2022}. Briefly, we can coarse-grain the system in a series of mode truncations $N_1 < N_2 < \dots N_{M_\text{multi}}$. By running the pCN at the lowest-dimensional chain, we can then upsample via the multi-level scheme to generate samples on the highest-dimensional chain. We would use the band structure of the KKL expansion to engineer upsampling proposals adapted to the system.
-
-Finally, we can consider extending the pCN and TMC to study higher-dimensional settings. The purview of this chapter was the sampling of stochastic transition paths $\mathbf{X}(t)$. Here, $t \in [0, T]$ is an index over a time domain, and the trajectory itself is a map $t \mapsto \mathbf{X}(t)$. In general, we could consider stochastic processes with two or more indices $(t, \mathbf{u}) \mapsto \mathbf{X}(t, \mathbf{u})$, where $\mathbf{u} \in M$ is here a spatial coordinate, that takes values in some $n$-dimensional topological space $M$. Examples of such systems are the stochastic field theories prominent in soft matter physics   \citep{catesTheoriesBinaryFluid2018, tiribocchiActiveModelScalar2015, stenhammarContinuumTheoryPhase2013, wittkowskiScalarF4Field2014, deanLangevinEquationDensity1996}. We will provide a brief sketch of the necessary steps required to sample the transition path ensemble of such systems. As a first example we could consider \textit{Model A} \citep{catesActiveFieldTheories2019}
-\begin{equation}
-	\partial_t \phi = - \mu \frac{\delta F}{\delta \phi} + \sqrt{2 D} \xi 
-\end{equation}
-where $\phi = \phi(t, \mathbf{r})$ is a scalar field defined on $M$, $\frac{\delta}{\delta \phi}$ is the functional derivative and $\xi$ is space-time white noise, and $F$ is a free energy functional. A typical choice of $F$ is the $\phi^4$ free energy
-\begin{equation}
-	F[\phi] = \int_M \left( \frac{a}{2} \phi^2 + \frac{b}{4} \phi^4 + \frac{\kappa}{2} (\nabla \phi)^2 \right) d \mathbf{r}.
-\end{equation}
-Removing the $\phi^4$ term leads to the \textit{Ohrnstein-Uhlenbeck} (OU) \citep{gardinerHandbookStochasticMethods1990} field equation
-\begin{equation} \label{eq:OU process field}
-	\partial_t \phi^\text{OU} = - \mu (a \phi^\text{OU} - \nabla^2 \phi^\text{OU}) + \sqrt{2D} \xi.
-\end{equation}
-Now, if we expand paths in a Fourier basis as $\phi \propto \sum_\mathbf{q} \phi^\text{OU}_\mathbf{q} e^{i \mathbf{q} \cdot \mathbf{r}}$, we get decoupled stochastic equations of motion for each Fourier mode
-\begin{equation}
-	\partial_t \phi^\text{OU}_\mathbf{q} = - \mu (a + \kappa q^2) \phi^\text{OU}_\mathbf{q} + \sqrt{2D} \xi.
-\end{equation}
-We see that the Fourier modes of the $\phi^\text{OU}$ process behave like decoupled $1$-dimensional OU processes. Now, it is clear that the OU field is a form of Gaussian process. If we presume that the field-probability measure of a general Model A system has a density with respect the OU field, it would be possible to construct a pCN scheme analogous to the ones describes in this chapter by expanding $\phi$ in the KKL basis of $\phi^\text{OU}$. The latter would require a generalised KKL expansion for fields, which have been discussed in \citep{wangKarhunenLoeveExpansionsTheir2008}, as well as a closed-form expression for the KKL basis of OU bridge processes, which were given here \citep{corlayPropertiesOrnsteinUhlenbeckBridge2014a}.
-
-\section{Diffusion}
-
-
-For a system with two competing transition pathways,
-we have studied how the dominant transition pathway depends on both
-the temperature and the total duration. To quantify the relative importance
-of the competing pathways, we have constructed semi-analytical approximators
-which are valid in the low-to-intermediate temperature regime. We
-have validated our approximators via comparison with a continuous-time
-MCMC method that is dimensionally robust and efficiently samples systems
-with multiple reactive pathways.
-
-Our results show that even in the low-to-intermediate temperature
-regime the global instanton, or most probable path, itself is not
-sufficient to determine the dominant transition pathway. Rather, it
-is vital that fluctuations around this path be incorporated. This
-has a simple one-dimensional equivalent: For a probability density
-$p(x)\sim\exp(-V(x))$ for some potential $V(x)$ with relative
-minima $x_{\alpha}$, the probabilistically most relevant minimum
-is not the global one, but that with the largest well probability,
-i.e.$~$the $x_{\alpha}$ that maximizes $P(\,\mathrm{well~around~}x_{\alpha}\,)\sim e^{-V(x_{\alpha})}\sqrt{{2\pi}/{V''(x_{\alpha})}}$,
-where we use a quadratic Taylor approximation of $V$ around $x_{\alpha}$.
-The most probable well is thus determined by an interplay of $e^{-V(x_{\alpha})}$
-(which corresponds to the instanton probability $e^{-S_{\text{OM}}[\mathbf{x}^{[\alpha]}]}$)
-and $\sqrt{{2\pi}/{V''(x_{\alpha})}}$ (which corresponds to the regularised
-normalisation constant $\mathcal{Z}^{[\alpha]}$).
-
-In this chapter we considered a paradigmatic example system with
-two competing transition pathways. The method of instantons is an
-established technique in theoretical chemistry and statistical physics
-\citep{eMinimumActionMethod2004a, weinanStringMethodStudy2002, grafke_instanton_2015, grafke_numerical_2019, schorlepp_gelfandyaglom_2021, dematteis_experimental_2019, ferreApproximateOptimalControls2021a, kikuchiRitzMethodTransition2020a, heymannGeometricMinimumAction2008a},
-and the method of Gaussian mixtures presented here scales as $O(d^{2})$
-with the number of degrees of freedom $d$. It is
-therefore feasible to apply the methods we developed here to more
-realistic many-particle systems to study e.g.~nucleation pathways
-\citep{weinanStringMethodStudy2002, lutskoHowCrystalsForm2019a, rein_ten_wolde_numerical_1996}
-or conformational rearrangements in macromolecules \citep{ren_transition_2005, fujisakiOnsagerMachlupActionbased2010a, fujisakiMultiscaleEnhancedPath2013a, gartnerModelingSimulationsPolymers2019}.
-
-Our quantification here of the finite-temperature breakdown of instanton
-theories is important for relating such theories to experiments, which
-are always at finite temperatures. Our insights into path-space probability
-distributions for diffusive stochastic dynamics, together with our
-MCMC method, will therefore be valuable for going beyond the regime
-of asymptotically low diffusivity in both large deviations theory
-\citep{wentzellSmallRandomPerturbations1970, heymannGeometricMinimumAction2008a, gartnerModelingSimulationsPolymers2019}
-and the study of rare events \citep{grafkeSharpAsymptoticEstimates2021}.
-
-
-\section{part II intro}
-
-\section{Cosserat rod}
-
-
-We studied the kinodynamics of a Cosserat rod subject to constitutive and body forces and moments. Kinematically, we identified its configuration space as the special Euclidean group $SE(3)$ of translations and rotations on three-dimensional Euclidean space $\mathbb{E}^3$. Using the Euler-Poincaré theorem we then found conservative force and moment balance equations. Furthermore, we constructed a generalised Lagrange-D'Alembert principle from which arbitrary non-conservative dynamics can be derived. The resulting kinodynamic equations of motion were formulated in terms of a spatial reconstruction field $X = \{ \vec{\theta} ; \vec{\pi} \}$ and generalised momentum field $S$, which take values in the Lie algebra $\mathfrak{se}(3)$ and its dual $\mathfrak{se}(3)^*$ respectively. The configuration of the Cosserat rod is thus encoded in terms of Lie algebraic quantities, as opposed to a more typical approach of expressing it in terms of its center-line $\mathbf{r}$ and material frame $E$ directly, where the latter correspond to Lie group-valued quantities. We showed that the Lie algebraic formulation naturally leads to kinodynamics expressed in terms of the intrinsic geometry of the rod. Derivatives of $\mathbf{r}$ and $E$ must be taken to find the shear and spatial rate-of-change of the material frame, but are found directly in components of $X$ itself. Furthermore, the Lie algebraic formulation has a significant advantage as regards  numerics: Equations of motion in terms of $SE(3)$-quantities will in general lead to errors that push the system outside of the Lie group. For example, numerical errors will in general cause the material frame $E$ to longer be orthogonal. On the other hand, as $\mathfrak{se}(3)$ is a vector space, errors accrued in the simulation of $X$ and $S$ can not push them out of the Lie algebra. Therefore, regardless of numerical errors, $X$ will always exponentiate to a $SE(3)$-valued Cosserat rod configuration.
-
-Continuing, we proceeded to study the filament model, which we modelled as a Cosserat rod subject to kinematic constraints. We systematically derived its kinodynamic equations of motion in both the underdamped and overdamped limits. The filament model, which has a homogeneous configuration space $\mathbb{E}^3 \cong SE(3)/SO(3)$, is a paradigmatic example of how non Lie group-configured systems can be obtained by imposing kinematic constraints. In Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} we develop this further for general systems. We concluded the chapter by considering specific Cosserat rod models. In Sec.~\ref{sec:The hyperelastic Cosserat rod model} we derived the constitutive stress energy of a slender hyper-elastic tube, and through a coarse-graining procedure we approximated its kinodynamics as that of a Cosserat rod. In Sec.~\ref{sec:Dissipative and overdamped dynamics} we formulated the dynamics of a Cosserat rod subject to internal and external frictional forces, and derived the corresponding equations of motion in an overdamped limit. Chapter \ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} will build and develop many of the concepts introduced in this chapter, which will culminate in a framework to study the kinodynamics of general continuum systems with Lie group- or homogeneous configuration spaces. 
-
-
-
-\section{Geometrisation}
-
-
-In this chapter we presented a framework to formulate and study the kinodynamics of continuum systems with configuration spaces that are Lie groups $G$, or homogeneous spaces $\mathbb{X}$, which we built by extrapolating from the geometric features of the Cosserat rod derivation, presented in Ch.~\ref{ch:Cosserat rods}. Specifically, our framework can be seen as a generalised mechanics of microstructured continuum bodies, and from it we recovered the kinodynamics of Cosserat rods, sheets and bodies, as well as that of classical continuum mechanics. However, we also showed that its application as a theoretical framework extended beyond this interpretation, as we further applied it to Cosserat rods in Minkowski space, to a non-linear $\sigma$ field theory and Cosserat rods on $2$-spheres. In so doing we aimed to show the ease-of-use, as well as the wide applicability of the programme.
-
-In full generality, the broad of class of system we considered were $G$- and $\mathbb{X}$-valued fields on topological manifolds $M$. We called this field the spatio-temporal configuration $\Phi$. However, our equations of motions of were not formulated in terms of $\Phi$. Rather, the field configuration was encoded in terms Lie algebraic quantities $X_\alpha$, which - via the exponential map - integrate to $\Phi$. From this perspective, the geometrisation programme is a framework using which we can derive Lie algebraic kinodynamical equations of motion of $G$- and $\mathbb{X}$-field theories.
-
-One of the main motivations for formulating the kinodynamics of a system on the corresponding Lie algebra of its configuration space is that this naturally lends itself to studying the system in terms of its intrinsic geometry. As opposed to finite-dimensional systems, which do not admit the notion of a constitutive force, for any realistic continuum system the intrinsic geometry must couple to the dynamics. That is, constitutive forces are functions of the derivative $d \Phi \in TG$, which is a vector field on $G$, rather than $\Phi$ itself. Now, the tangent bundle $TG$ of any Lie group admits a trivialisation to the tangent space at the identity, the Lie algebra. The cornerstone of the geometrisation programme was to use this trivialisation to express all vector and covector fields as Lie algebra-valued fields. In a reductive, albeit simplified, manner of speaking: This allowed us to express kinodynamics directly in terms of $X_\alpha \sim d \Phi$, thus avoiding having to take the derivative $d \Phi$.
-
-There are multiple promising future research directions. In this chapter we focused primarily on constructing the framework itself, and we `applied' it in the sense that we used the framework to show that it yielded the correct kinodynamics of a variety of known (and new) systems. In future research we aim to add to the literature of active continua \citep{laskarBrownianMicrohydrodynamicsActive2015, laskarFilamentActuationActive2017, kaczmarskiActiveFilamentsCurvature2022, pandeyFlowinducedNonequilibriumSelfassembly2016}, in particular we aim to study activity on surfaces \citep{krishnaswamyCosserattypeModelRed1996, rangamaniSmallScaleMembrane2014, ericksenLiquidCrystalsCosserat1974, powersDynamicsFilamentsMembranes2010}. The analytical and numerical challenges of such systems will be a testing ground for the formalism developed in this chapter.
-
-Notably, and in contrast to the first part of this thesis, we have only considered deterministic dynamics here. One major avenue for theoretical research is to incorporate stochasticity into the geometrisation programme. Developments in this direction have been made as regards to filaments and polymer chains \citep{chirikjianStochasticElasticaExcludedVolume2008, bawendiWienerIntegralModel1985, kleinertPathIntegralsQuantum2009, liverpoolProbabilityDistributionWormlike1995}. In the spirit of the programme outlined in this text, we would characterise and carefully define stochasticity on Lie group continua \citep{chirikjianStochasticProcessesLie2012}. In particular, we would aim to generalise the notion of detailed balance to general $G$- and $\mathbb{X}$-configured continuum system. For example, it may be possible to accomplish this by reformulating the dynamics from the Lagrangian to the Hamiltonian perspective, of which the former was used in this text. Then, assuming that the statistics of the system configuration is that of a Boltzmann distribution, we can derive the conditions for detailed balance. This is analogous to how detailed balance is derived in stochastic field theories \citep{catesActiveFieldTheories2019}. Furthermore, we note that if our ambitions of constructing MCMC methods to sample field theories come to fruition, then these could be used to sample the configurations of the stochastic continua described here.
-
-Finally, there is substantial work to be done in constructing geometric numerical integrators adapted to $G$- and $\mathbb{X}$-configured continua. There is already an extensive literature on such integrators for finite-dimensional systems \citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022a}. In the following chapter we will derive the first instance of a geometric integrator defined on the general continuum we have defined in this chapter.
-
-
-\section{Integrators}
-
-
-
-The purpose of geometric integrators are to preserve qualitative features of a system, in the numerical solution of their equations of motion. For the class of systems considered in this text, it is important to preserve spatial integrability. Failure to do so causes the spatio-temporal configuration of the system to be multi-valued. Furthermore, we have previously shown that errors in spatial integrability suffer exponential growth. In this chapter we constructed geometric integrators for this purpose.
-
- The geometric integrators we derived can be compared with the Lie-Poisson integrators of \citep{munthe-kaasHighOrderRungeKutta1999, buddGeometricIntegrationNumerical1999, engoNumericalIntegrationLie2001}, defined on finite-dimensional systems. The primary point of difference is the presence of the translation terms $F_\alpha$ and $H$ in Eq.~\ref{eq:rewritten kinodynamic eoms}, which we take care to exponentiate in combination with the infinitesimal action of the adjoint $-\text{ad}_N$ and its dual $-\text{ad}^*_N$ respectively. These translational terms arise due to the presence of generalised constitutive and body forces (see Eq.~\ref{eq:F H defs}). Whilst a finite dimensional system can be subject to the latter, its finitude precludes constitutive dynamics (for example, recall the equations of motion of a rigid body Eq.~\ref{eq:euler poincare equation for rigid body}), whilst constitutive dynamics is a fundamental feature of any real continuum system. It is therefore prudent to construct geometric integrators that accommodates both terms in Eq.~\ref{eq:rewritten kinodynamic eoms}, and we gave numerical evidence of the importance of doing so in Sec.~\ref{sec:lie group integrators applications}. By carefully exponentiating the right-hand sides of the kinodynamic equations of motion Eq.~\ref{eq:combined, eoms}, we found expressions for geometric integrators for general Lie group and homogeneous space-continua. We then applied our general result to consider the special cases of $SO(3)$- and $SE(3)$-configured continua. The resulting geometric integrators were shown in numerical experiments to preserve the spatial integrability, and we compared their performance relative to non-geometric integrators.
- 
- Our work in this chapter can be seen as a contribution to the literature on geometric integrators, where we have applied it in a continuum setting. There is an extensive literature on which to draw on for future work \citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022a, munthe-kaasHighOrderRungeKutta1999, buddGeometricIntegrationNumerical1999, engoNumericalIntegrationLie2001}. For example, whilst the integrators we propose here successfully preserve geometric properties, errors still acccrue within the sub-manifold of configurations that abide by spatial integrability. Such errors can be reduced, for example, using \textit{Runge–Kutta–Munthe–Kaas methods} \citep{munthe-kaasRungeKuttaMethodsLie1998, kaasHighOrderRungeKutta1999}, which generalise Runge-Kutta methods \citep{ascherComputerMethodsOrdinary1998} to Lie group-configured systems.
-
-
-\section{asdas}
-
 
 
 
@@ -511,73 +381,22 @@ The purpose of geometric integrators are to preserve qualitative features of a s
 \chapter*{Summary}
 \addcontentsline{toc}{chapter}{Summary}
  
-The research presented in this thesis divides into two parts. In the first part, we studied and developed methods for studying the transition path ensemble of It\^{o} diffusion equations. In the second part, we developed a geometric theory of continuum mechanics of systems with Lie group- or homogeneous configuration spaces. Below we summarise the main results of each chapter of the two research steams discussed in this thesis.
+The research presented in this thesis divides into two parts. In the first part, we studied and developed methods for studying the transition path ensemble of It\^{o} diffusion equations. In the second part, we developed a geometric theory of continuum mechanics of systems with Lie group- or homogeneous configuration spaces. Below we summarise the main results of each chapter of the two research streams discussed in this thesis.
 
 
 In Ch.~\ref{ch:Ritz methods for Freidlin-Wentzel-Graham actions} we began our exploration of the transition path ensemble by considering the Freidlin-Wentzell limit, which corresponds to a limit of vanishing diffusivity. We presented numerical methods for computing most probable transition paths and quasi-potentials of general It\^{o} diffusion equations with additive noise. The method directly minimises the Freidlin-Wentzell action, which allowed for flexibility in choosing the path parametrisation. It uses numerical quadrature to reduce the action to a multivariate function, whose minimum is obtained by either gradient-free and gradient-based optimisation. This provides both the minimum action path and quasipotential. The direct method consisted of a discretisation of the Freidlin-Wentzell action, followed by a search for the minimum in the resulting finite-dimensional space. This approach is algorithmically simple and we showed its accuracy and efficiency on.a number of benchmark problems.
 
 In Ch.~\ref{ch:Monte Carlo methods in Path Spaces} we considered the TPE at finite temperatures. We applied recent mathematical developments in the field of functional Markov chain Monte Carlo methods to the sampling of stochastic transition pathways. On this foundation, we developed an MCMC scheme designed to sample TPEs with multiple competing transition channels, which we called the teleporter MCMC. The method was based on a semi-classical expansion of the path-probability measure around the dominant transition pahs of the distribution, with which we constructed independence samplers allowing for the MCMC to intermittently `teleport' between transition channels. Akin to the Ritz method of the Ch.~\ref{ch:Ritz methods for Freidlin-Wentzel-Graham actions}, the MCMC procedures were discretised using a global spectral basis. Speficially, we expanded stochastic paths in the Kosambi-Karhunen-Lo\`eve of the Brownian bridge process. We showed that spectrum of modes in this expansion can be separated into high- and low-frequency bands, where only the lower-band modes are non-trivially distributed, whilst the statistics of the latter is indistinguishable from that of free diffusion. Future research directions may involve devising multi-level MCMC schemes designed around band-structure of the KKL-based methods we developed in this chapter. Furthermore, we may consider extending the algorithm to sample transition path ensembles of field theories. 
 
-In Ch.~\ref{ch:Diffusivity dependence of transition paths} we studied the concentration of competing transition channels in the transition path ensemble, as a function of diffusivity. Using two model systems, we showed that the dominant transition channel does not in general coincide with most probable paths of the path measure, even in a low-to-intermediate temperature regime. We approximated the TPE as mixed Gaussian measures using the semi-classical expansions developed in the previous chapter, using which we constructed semi-analytical approximators of channel rate probabilities. In the regime of validity of these approximators, we showed that the relative dominance of transition channels is a conspiracy between the path-probability of the instanton, which reflecting the energetic cost of transition, and Gaussian normalisation constants, reflecting the fluctuations around the instanton.
+In Ch.~\ref{ch:Diffusivity dependence of transition paths} we studied the concentration of competing transition channels in the transition path ensemble, as a function of diffusivity. Using two model systems, we showed that the dominant transition channel does not in general coincide with most probable paths of the path measure, even in a low-to-intermediate temperature regime. We approximated the TPE as mixed Gaussian measures using the semi-classical expansions developed in the previous chapter, using which we constructed semi-analytical approximators of channel rate probabilities. In the regime of validity of these approximators, we showed that the relative dominance of transition channels is a conspiracy between the path-probability of the instanton, reflecting the energetic cost of transition, and Gaussian normalisation constants, reflecting the fluctuations around the instanton.
 
-In Ch.~\ref{eq:geometry introduction} we began our study of the geometric continuum mechanics of systems with Lie group- or homogeneous configuration spaces. We reviewed the classical theories that our work builds on, and developed the necessary mathematical tools for the treatment of the following chapters. These mathematical preliminaries, though dense, by itself served as a 
+In Ch.~\ref{eq:geometry introduction} we began our study of the geometric continuum mechanics of systems with Lie group- or homogeneous configuration spaces. We reviewed the classical theories that our work builds on, and developed the necessary mathematical tools for the results of the subsequent chapters. Of these, the mathematical preliminaries, though dense, by itself foreshadows and serves as a dry-run for the geometrical treatment that was to come.
 
- introduced the physical context and mathematical tools necessary 
+In Ch.~\ref{ch:Cosserat rods} we derived the kinematic and dynamic - in short, kinodynamic - equations of Cosserat rods and filaments. These were chosen as paradigmatic examples of systems with Lie group- and homogeneous configuration spaces, and served as a foundation for the generalisations of the chapter that followed. We identified the configuration space of the Cosserat rod as the special Euclidean group $SE(3)$, and used the Euler-Poincaré theorem to find conservative force and moment balance equations. Furthermore, we constructed a generalised Lagrange-D'Alembert principle from which arbitrary non-conservative dynamics can be derived, and expressed the resulting kinodynamic equations of motion in terms of a spatial reconstruction field $X$ and generalised momentum field $S$, which are defined on the Lie algebra and its dual respectively. This Lie algebraic formulation was shown to naturally lead to kinodynamics expressed in terms of the intrinsic geometry of the rod. We then studied the filament model, which we devised as a Cosserat rod subject to kinematic constraints, and found its kinodynamic equations of motion. We thus demonstrated how systems with homogeneous configuration spaces can be obtained by imposing kinematic constraints on Lie group-configured systems.
 
-began our study of the geometric continuum mechanics of systems with Lie group- or homogeneous configuration spaces. Here 
+In Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} we studied generalised Cosserat systems, which we defined as continuum bodies with a material base of general topology, and Lie group- or homogeneous configuration spaces. We formulated a general theory of the kinodynamics of such systems, which we called a generalised geometric Cosserat theory (GGCT). The cornerstone of the programme was to use the exponential map to relate the spatio-temporal configuraiton of the system to Lie algebra-valued reconstruction fields. This allowed us to express the kinodynamics of generalised Cosserat systems directly in terms of its intrinsic geometry. We applied the GGCT to derive the kinodynamic equations of motion for a variety of known and new systems, which included the classical suite of Cosserat surfaces and bodies, Cosserat rods on spheres and in Minkowski space, as well as an application for non-linear $\sigma$ field theory.
 
-
-In Ch.~\ref{ch:Cosserat rods} we began our study of the geometric continuum mechanics of systems with Lie group- or homogeneous configuration spaces. 
-
-This chapter has focused on the kinodynamics of Cosserat rods and filaments. We identified the configuration space of a Cosserat rod as the special Euclidean group $SE(3)$, and used the Euler-Poincaré theorem to find conservative force and moment balance equations. Furthermore, we constructed a generalised Lagrange-D'Alembert principle from which arbitrary non-conservative dynamics can be derived, and expressed the resulting kinodynamic equations of motion in terms of a spatial reconstruction field $X$ and generalised momentum field $S$. This Lie algebraic formulation was shown to naturally lead to kinodynamics expressed in terms of the intrinsic geometry of the rod. We then studied the filament model, which we modelled as a Cosserat rod subject to kinematic constraints. We derived its kinodynamic equations of motion in both the underdamped and overdamped limits, and discussed how non Lie group-configured systems can be obtained by imposing kinematic constraints. Finally, we considered specific Cosserat rod models, such as a slender hyper-elastic tube, and a Cosserat rod subject to internal and external frictional forces.
-
-
-This paper studied the kinodynamics of a Cosserat rod, a type of rod that is subject to constitutive and body forces and moments. We identified the configuration space of the rod as the special Euclidean group $SE(3)$, and used the Euler-Poincaré theorem to derive conservative force and moment balance equations. We also constructed a generalised Lagrange-D'Alembert principle from which arbitrary non-conservative dynamics can be derived. The kinodynamic equations were then formulated in terms of a spatial reconstruction field $X$ and generalised momentum field $S$, which take values in the Lie algebra $\mathfrak{se}(3)$ and its dual $\mathfrak{se}(3)^*$ respectively. This Lie algebraic formulation leads to kinodynamics expressed in terms of the intrinsic geometry of the rod and has a significant advantage regarding numerics. As $\mathfrak{se}(3)$ is a vector space, errors accrued in the simulation of $X$ and $S$ can not push them out of the Lie algebra, unlike a typical approach of expressing the configuration of the rod in terms of its centre-line $\mathbf{r}$ and material frame 
-
-
-In this chapter, the filament model was studied and modelled as a Cosserat rod subject to kinematic constraints. It was shown that non Lie group-configured systems can be obtained by imposing kinematic constraints, and specific Cosserat rod models were considered. The constitutive stress energy of a slender hyper-elastic tube was derived, and its kinodynamics was approximated as that of a Cosserat rod. Additionally, the dynamics of a Cosserat rod subject to internal and external frictional forces was formulated, and the corresponding equations of motion were derived in an overdamped limit. 
-
-In the next chapter, the concepts introduced in this chapter will be built and developed further, culminating in a framework to study the kinodynamics of general continuum systems with Lie group- or homogeneous configuration spaces.
-
-\section{part II intro}
-
-\section{Cosserat rod}
-
-
-We studied the kinodynamics of a Cosserat rod subject to constitutive and body forces and moments. Kinematically, we identified its configuration space as the special Euclidean group $SE(3)$ of translations and rotations on three-dimensional Euclidean space $\mathbb{E}^3$. Using the Euler-Poincaré theorem we then found conservative force and moment balance equations. Furthermore, we constructed a generalised Lagrange-D'Alembert principle from which arbitrary non-conservative dynamics can be derived. The resulting kinodynamic equations of motion were formulated in terms of a spatial reconstruction field $X = \{ \vec{\theta} ; \vec{\pi} \}$ and generalised momentum field $S$, which take values in the Lie algebra $\mathfrak{se}(3)$ and its dual $\mathfrak{se}(3)^*$ respectively. The configuration of the Cosserat rod is thus encoded in terms of Lie algebraic quantities, as opposed to a more typical approach of expressing it in terms of its center-line $\mathbf{r}$ and material frame $E$ directly, where the latter correspond to Lie group-valued quantities. We showed that the Lie algebraic formulation naturally leads to kinodynamics expressed in terms of the intrinsic geometry of the rod. Derivatives of $\mathbf{r}$ and $E$ must be taken to find the shear and spatial rate-of-change of the material frame, but are found directly in components of $X$ itself. Furthermore, the Lie algebraic formulation has a significant advantage as regards  numerics: Equations of motion in terms of $SE(3)$-quantities will in general lead to errors that push the system outside of the Lie group. For example, numerical errors will in general cause the material frame $E$ to longer be orthogonal. On the other hand, as $\mathfrak{se}(3)$ is a vector space, errors accrued in the simulation of $X$ and $S$ can not push them out of the Lie algebra. Therefore, regardless of numerical errors, $X$ will always exponentiate to a $SE(3)$-valued Cosserat rod configuration.
-
-Continuing, we proceeded to study the filament model, which we modelled as a Cosserat rod subject to kinematic constraints. We systematically derived its kinodynamic equations of motion in both the underdamped and overdamped limits. The filament model, which has a homogeneous configuration space $\mathbb{E}^3 \cong SE(3)/SO(3)$, is a paradigmatic example of how non Lie group-configured systems can be obtained by imposing kinematic constraints. In Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} we develop this further for general systems. We concluded the chapter by considering specific Cosserat rod models. In Sec.~\ref{sec:The hyperelastic Cosserat rod model} we derived the constitutive stress energy of a slender hyper-elastic tube, and through a coarse-graining procedure we approximated its kinodynamics as that of a Cosserat rod. In Sec.~\ref{sec:Dissipative and overdamped dynamics} we formulated the dynamics of a Cosserat rod subject to internal and external frictional forces, and derived the corresponding equations of motion in an overdamped limit. Chapter \ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} will build and develop many of the concepts introduced in this chapter, which will culminate in a framework to study the kinodynamics of general continuum systems with Lie group- or homogeneous configuration spaces. 
-
-
-
-\section{Geometrisation}
-
-
-In this chapter we presented a framework to formulate and study the kinodynamics of continuum systems with configuration spaces that are Lie groups $G$, or homogeneous spaces $\mathbb{X}$, which we built by extrapolating from the geometric features of the Cosserat rod derivation, presented in Ch.~\ref{ch:Cosserat rods}. Specifically, our framework can be seen as a generalised mechanics of microstructured continuum bodies, and from it we recovered the kinodynamics of Cosserat rods, sheets and bodies, as well as that of classical continuum mechanics. However, we also showed that its application as a theoretical framework extended beyond this interpretation, as we further applied it to Cosserat rods in Minkowski space, to a non-linear $\sigma$ field theory and Cosserat rods on $2$-spheres. In so doing we aimed to show the ease-of-use, as well as the wide applicability of the programme.
-
-In full generality, the broad of class of system we considered were $G$- and $\mathbb{X}$-valued fields on topological manifolds $M$. We called this field the spatio-temporal configuration $\Phi$. However, our equations of motions of were not formulated in terms of $\Phi$. Rather, the field configuration was encoded in terms Lie algebraic quantities $X_\alpha$, which - via the exponential map - integrate to $\Phi$. From this perspective, the geometrisation programme is a framework using which we can derive Lie algebraic kinodynamical equations of motion of $G$- and $\mathbb{X}$-field theories.
-
-One of the main motivations for formulating the kinodynamics of a system on the corresponding Lie algebra of its configuration space is that this naturally lends itself to studying the system in terms of its intrinsic geometry. As opposed to finite-dimensional systems, which do not admit the notion of a constitutive force, for any realistic continuum system the intrinsic geometry must couple to the dynamics. That is, constitutive forces are functions of the derivative $d \Phi \in TG$, which is a vector field on $G$, rather than $\Phi$ itself. Now, the tangent bundle $TG$ of any Lie group admits a trivialisation to the tangent space at the identity, the Lie algebra. The cornerstone of the geometrisation programme was to use this trivialisation to express all vector and covector fields as Lie algebra-valued fields. In a reductive, albeit simplified, manner of speaking: This allowed us to express kinodynamics directly in terms of $X_\alpha \sim d \Phi$, thus avoiding having to take the derivative $d \Phi$.
-
-There are multiple promising future research directions. In this chapter we focused primarily on constructing the framework itself, and we `applied' it in the sense that we used the framework to show that it yielded the correct kinodynamics of a variety of known (and new) systems. In future research we aim to add to the literature of active continua \citep{laskarBrownianMicrohydrodynamicsActive2015, laskarFilamentActuationActive2017, kaczmarskiActiveFilamentsCurvature2022, pandeyFlowinducedNonequilibriumSelfassembly2016}, in particular we aim to study activity on surfaces \citep{krishnaswamyCosserattypeModelRed1996, rangamaniSmallScaleMembrane2014, ericksenLiquidCrystalsCosserat1974, powersDynamicsFilamentsMembranes2010}. The analytical and numerical challenges of such systems will be a testing ground for the formalism developed in this chapter.
-
-Notably, and in contrast to the first part of this thesis, we have only considered deterministic dynamics here. One major avenue for theoretical research is to incorporate stochasticity into the geometrisation programme. Developments in this direction have been made as regards to filaments and polymer chains \citep{chirikjianStochasticElasticaExcludedVolume2008, bawendiWienerIntegralModel1985, kleinertPathIntegralsQuantum2009, liverpoolProbabilityDistributionWormlike1995}. In the spirit of the programme outlined in this text, we would characterise and carefully define stochasticity on Lie group continua \citep{chirikjianStochasticProcessesLie2012}. In particular, we would aim to generalise the notion of detailed balance to general $G$- and $\mathbb{X}$-configured continuum system. For example, it may be possible to accomplish this by reformulating the dynamics from the Lagrangian to the Hamiltonian perspective, of which the former was used in this text. Then, assuming that the statistics of the system configuration is that of a Boltzmann distribution, we can derive the conditions for detailed balance. This is analogous to how detailed balance is derived in stochastic field theories \citep{catesActiveFieldTheories2019}. Furthermore, we note that if our ambitions of constructing MCMC methods to sample field theories come to fruition, then these could be used to sample the configurations of the stochastic continua described here.
-
-Finally, there is substantial work to be done in constructing geometric numerical integrators adapted to $G$- and $\mathbb{X}$-configured continua. There is already an extensive literature on such integrators for finite-dimensional systems \citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022a}. In the following chapter we will derive the first instance of a geometric integrator defined on the general continuum we have defined in this chapter.
-
-
-\section{Integrators}
-
-
-
-The purpose of geometric integrators are to preserve qualitative features of a system, in the numerical solution of their equations of motion. For the class of systems considered in this text, it is important to preserve spatial integrability. Failure to do so causes the spatio-temporal configuration of the system to be multi-valued. Furthermore, we have previously shown that errors in spatial integrability suffer exponential growth. In this chapter we constructed geometric integrators for this purpose.
-
- The geometric integrators we derived can be compared with the Lie-Poisson integrators of \citep{munthe-kaasHighOrderRungeKutta1999, buddGeometricIntegrationNumerical1999, engoNumericalIntegrationLie2001}, defined on finite-dimensional systems. The primary point of difference is the presence of the translation terms $F_\alpha$ and $H$ in Eq.~\ref{eq:rewritten kinodynamic eoms}, which we take care to exponentiate in combination with the infinitesimal action of the adjoint $-\text{ad}_N$ and its dual $-\text{ad}^*_N$ respectively. These translational terms arise due to the presence of generalised constitutive and body forces (see Eq.~\ref{eq:F H defs}). Whilst a finite dimensional system can be subject to the latter, its finitude precludes constitutive dynamics (for example, recall the equations of motion of a rigid body Eq.~\ref{eq:euler poincare equation for rigid body}), whilst constitutive dynamics is a fundamental feature of any real continuum system. It is therefore prudent to construct geometric integrators that accommodates both terms in Eq.~\ref{eq:rewritten kinodynamic eoms}, and we gave numerical evidence of the importance of doing so in Sec.~\ref{sec:lie group integrators applications}. By carefully exponentiating the right-hand sides of the kinodynamic equations of motion Eq.~\ref{eq:combined, eoms}, we found expressions for geometric integrators for general Lie group and homogeneous space-continua. We then applied our general result to consider the special cases of $SO(3)$- and $SE(3)$-configured continua. The resulting geometric integrators were shown in numerical experiments to preserve the spatial integrability, and we compared their performance relative to non-geometric integrators.
- 
- Our work in this chapter can be seen as a contribution to the literature on geometric integrators, where we have applied it in a continuum setting. There is an extensive literature on which to draw on for future work \citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022a, munthe-kaasHighOrderRungeKutta1999, buddGeometricIntegrationNumerical1999, engoNumericalIntegrationLie2001}. For example, whilst the integrators we propose here successfully preserve geometric properties, errors still acccrue within the sub-manifold of configurations that abide by spatial integrability. Such errors can be reduced, for example, using \textit{Runge–Kutta–Munthe–Kaas methods} \citep{munthe-kaasRungeKuttaMethodsLie1998, kaasHighOrderRungeKutta1999}, which generalise Runge-Kutta methods \citep{ascherComputerMethodsOrdinary1998} to Lie group-configured systems.
-
-
-\section{asdas}
+In Ch.~\ref{ch:Geometric numerical integrators} we developed geometric integrators for generalised Cosserat systems. We saw this as an application of Lie group integration theory to the infinite-dimensional setting of continuum systems. We demonstrated that our integrators preserve spatial integrability using the example of a Cosserat surface, and compared their performance to standard non-geometrical numeric integrators. We also showed that other qualitative features, like the closure of a rod, are preserved by our integrators.
 
 
 
@@ -595,7 +414,7 @@ The purpose of geometric integrators are to preserve qualitative features of a s
 \cleardoublepage
 \phantomsection
 \addcontentsline{toc}{chapter}{References}
-\bibliographystyle{plainnat}
+%\bibliographystyle{plainnat}
 
 \bibliographystyle{unsrtnat}
 %\bibliography{refs/parti, refs/partii, refs/fluctuations_around_instantons, refs/nucleation, refs/path-integrals, refs/rare_events, refs/diffus_refs1, refs/diffus_refs2}

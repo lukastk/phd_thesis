@@ -54,7 +54,7 @@ of the asymptotic estimate of the stationary distribution, \emph{i.e.
 route of solving the Hamilton-Jacobi equation \citep{cameron2012finding, yang2019computing, dahiyaOrderedLineIntegral2018a}.
 Our method is simple to use, converges rapidly, and is applicable
 to both equilibrium and non-equilibrium problems. Its implementation
-is freely available on GitHub as the open-source Python library PyRitz. 
+is freely available on GitHub as the open-source Python library PyRitz \citep{lukaskikuchiPyRitz2022}. The results presented in this chapter was the result of collaborative work published in \citep{kikuchiRitzMethodTransition2020a}, of which the author of this text was the primary contributor.
 
 The remainder of this chapter is organized as follows. In the next section,
 we recall key results of Freidlin-Wentzell theory from dual perspectives
@@ -1210,7 +1210,7 @@ We have presented an efficient and accurate numerical method for computing
 most probable transitions paths and quasipotentials of rare diffusive
 events. The method directly minimises the Freidlin-Wentzell action
 and thus provides a unified approach for transition
-paths in both equilibrium and non-equilibrium systems. Our reparametrisation-invariant
+paths in both equilibrium and non-equilibrium systems in the zero-temperature limit. Our reparametrisation-invariant
 form of the action, derived using a Noether symmetry, is well-suited
 for numerical work and is a generalisation of the geometric action.
 This frees us from the constraints of the commonly used arc-length
@@ -2296,7 +2296,7 @@ Now, if we expand paths in a Fourier basis as $\phi \propto \sum_\mathbf{q} \phi
 \begin{equation}
 	\partial_t \phi^\text{OU}_\mathbf{q} = - \mu (a + \kappa q^2) \phi^\text{OU}_\mathbf{q} + \sqrt{2D} \xi.
 \end{equation}
-We see that the Fourier modes of the $\phi^\text{OU}$ process behave like decoupled $1$-dimensional OU processes. Now, it is clear that the OU field is a form of Gaussian process. If we presume that the field-probability measure of a general Model A system has a density with respect the OU field, it would be possible to construct a pCN scheme analogous to the ones describes in this chapter by expanding $\phi$ in the KKL basis of $\phi^\text{OU}$. The latter would require a generalised KKL expansion for fields, which have been discussed in \citep{wangKarhunenLoeveExpansionsTheir2008}, as well as a closed-form expression for the KKL basis of OU bridge processes, which were given here \citep{corlayPropertiesOrnsteinUhlenbeckBridge2014a}.
+We see that the Fourier modes of the $\phi^\text{OU}$ process behave like decoupled $1$-dimensional OU processes. Now, it is clear that the OU field is a form of Gaussian process. If we presume that the field-probability measure of a general Model A system has a density with respect the OU field, it would be possible to construct a pCN scheme analogous to the ones describes in this chapter by expanding $\phi$ in the KKL basis of $\phi^\text{OU}$. The latter would require a generalised KKL expansion for fields, which have been discussed in \citep{wangKarhunenLoeveExpansionsTheir2008}, as well as a closed-form expression for the KKL basis of OU bridge processes, which were given here \citep{corlayPropertiesOrnsteinUhlenbeckBridge2014a}. Finally, we note that such a generalisation of our MCMC methods would be applicable to the general class of continuum systems we treat in the second part of this thesis, if we include stochasticity in the latter.
 
 
 
@@ -2349,8 +2349,7 @@ where the Gaussian approximation is still valid. To validate our results
 numerically, and to study the TPE at high-diffusivity regimes, we use the teleporter MCMC (TMC) method developed in Ch.~\ref{ch:Monte Carlo methods in Path Spaces},
 that allows for simultaneous exploration of multiple transition pathways. We
 find excellent agreement between the semi-classical expansion and
-numerical results for a large range of diffusivities and path durations.
-We now detail our results.
+numerical results for a large range of diffusivities and path durations. The results presented in this chapter was the result of collaborative work published as a pre-print in \citep{kikuchiDiffusivityDependenceTransition2022}, of which the author of this text was the primary contributor.
 
 \section{The transition path ensemble}
 
