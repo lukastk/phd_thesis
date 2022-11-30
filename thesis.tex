@@ -100,7 +100,13 @@
 %%
 \abstract{%
 
-The matter of this thesis is divided in two parts, both of which belong to disciplines that lie within the purview soft matter physics. In the first part, we study the infinite-dimensional probability space of stochastic differential equations. In particular, we study the ensemble of transition paths between meta-stable states of It\^{o} diffusions. We develop a suite of techniques to characterise the dominant transition channels of such systems, and study the character of the transition path ensemble as a function of varying diffusivity. 
+The matter of this thesis is divided in two parts, both of which belong to disciplines that lie within the purview soft matter physics. In the first part, we study the infinite-dimensional probability space of stochastic differential equations. In particular, we study the transition path ensemble (TPE), the set of transition paths between meta-stable states of It\^{o} diffusions. In the limit of vanishing diffusivity, the Freidlin-Wentzell action characterises the asymptotic character of the path-probability distribution over the TPE. We develop spectral Ritz methods to efficiently find minimisers of this action, and to construct quasipotentials of steady-state distributions, and we test our algorithm on a number of benchmark systems. To study the TPE in the finite temperature regime, we develop an MCMC algorithm to sample the infinite-dimensional space of transition paths, which we call the \textit{teleporter MCMC}.
+
+
+ to find the minimisers of large deviation principle that  the asymptotics
+
+
+ We develop a suite of techniques to characterise the dominant transition channels of such systems, and study the character of the transition path ensemble as a function of varying diffusivity. 
 
 rare events
 
@@ -212,41 +218,19 @@ iesanDeformationPorousCosserat2011}. There are also many examples in nature of a
 
 In contrast to rigid bodies, which we can only subject to external forcing, a continuum system admits the notion of a \textit{stress}. That is, the dynamics of continua are \textit{constitutive}, and force fields that arise due to internal stresses are functions not of the deformations themselves, but its rate-of-change. For continua without microstructure, connections can be made between continuum mechanics and standard concepts in Riemannian geometry. For example, the rate of deformation can be related to a Lie derivative of the Riemannian metric \citep{marsdenMathematicalFoundationsElasticity1994}. As the relevant dynamical quantities for constitutive continuum mechanics are defined in terms the derivatives of their deformations, it may be convenient to parameterise its mechanics in terms of its intrinsic geometry. An extensive literature on such geometrisations exist for the case of systems without microstructure \citep{marsdenMathematicalFoundationsElasticity1994, wangIntroductionRationalElasticity1973, wangGeometricStructuresSimple1967, greenMechanicsNonlinearMaterials1957, lublinerMethodVirtualPower, nollMathematicalTheoryMechanical1958}. Though Cosserat theory, and microstructured models in general, are used widely, there is no extensive literature on equivalent geometrised theories for such systems. In \citep{yamaokaContinuumDynamicsVector2010} a formulation analogous to the Riemannian approach applied to Cosserat media, using a vector bundle construction.
 
-However there is a more natural geometrical formulation for Cosserat materials. Namely, we can identify a \textit{Lie group structure} in their kinematic configuration spaces. Such approaches have been exemplified previously in \citep{giusteriSimulationViscoelasticCosserat2021, giusteriImportanceEffectivenessRepresenting, chirikjianStochasticElasticaExcludedVolume2008, holmMatrixGstrands2014}. There, a Cosserat rod with a rigid-body cross-section was kinematically parameterised as a sub-manifold of $SE(3)$, the Lie group of translations and rotations on three-dimensional Euclidean space. This formulation naturally lends itself to formulating the kinematics and dynamics, which we will abbreviate as \textit{kinodynamics} \citep{donaldKinodynamicMotionPlanning1993, donaldProvablyGoodApproximation1995} henceforth, in terms of the corresponding \textit{Lie algebra} $\mathfrak{se}(3)$, using the Lie group-Lie algebra correspondence. The resulting kinodynamic equations of motion are encapsulate the intrinsic geometry of both the external and internal degrees of freedom of the Cosserat rod.
+However there is a more natural geometrical formulation for Cosserat materials. Namely, we can identify a \textit{Lie group structure} in their kinematic configuration spaces. Such approaches have been exemplified previously in \citep{giusteriSimulationViscoelasticCosserat2021, giusteriImportanceEffectivenessRepresenting, chirikjianStochasticElasticaExcludedVolume2008, holmMatrixGstrands2014}. There, a Cosserat rod with a rigid-body cross-section was kinematically parameterised as a curve in $SE(3)$, the Lie group of translations and rotations on three-dimensional Euclidean space. This formulation naturally lends itself to formulating the kinematics and dynamics, which we will abbreviate as \textit{kinodynamics} \citep{donaldKinodynamicMotionPlanning1993, donaldProvablyGoodApproximation1995} henceforth, in terms of the corresponding \textit{Lie algebra} $\mathfrak{se}(3)$, using the Lie group-Lie algebra correspondence. The resulting kinodynamic equations of motion encapsulate the intrinsic geometry of both the external and internal degrees of freedom of the Cosserat rod.
 
-In the second part of this thesis, we will construct a general theory of the geometric mechanics of continuum systems with configuration spaces  
+In the second part of this thesis, we will construct a general theory of the geometric mechanics of a broad class of microstructured continuum systems. Specifically, we will consider continua with configuration spaces that are Lie groups, as well as \textit{homogeneous spaces}\footnote{See Sec.~\ref{sec:Mathematical preliminaries} for a definition.}. We call these \textit{generalised Cosserat systems}, and we will refer to our theoretical study of this class of systems as a \textit{generalised geometric Cosserat theory} (GGCT). This class encompasses and goes beyond the entire suite of possible Cosserat models. Mathematically, we will show that the GGCT can be seen as a field theory, defined on arbitrary topological base manifolds, and takes values in general Lie groups or homogeneous spaces. The kinodynamic formulation of these fields are then derived in terms of the Lie algebraic structure of their configuration spaces. In numerical simulations, the benefit of our geometric approach is that constitutive dynamics can now be formulated without the need of triangulating the configurational manifold of the system, otherwise known as finite-element methods (FEM) \citep{hughesFiniteElementMethod2012}. 
 
-the kinematical configuration space of Cosserat materials can be identified with 
+In Ch.~\ref{sec:geometry introduction} we will introduce the classical theory of Cosserat materials. In particular, we focus on the Cosserat rod, which we will treat carefully in the subsequent chapter. We will also introduce the necessary mathematical formalism required for the GGCT. These mathematical preliminaries will also serve as an introduction to the theory of sub-manifolds of Lie groups and homogeneous spaces.
 
+In Ch.~\ref{ch:Cosserat rods} we study in detail the Cosserat rod and the filament, the corresponding non-microstructured system. As in \citep{giusteriSimulationViscoelasticCosserat2021, giusteriImportanceEffectivenessRepresenting, chirikjianStochasticElasticaExcludedVolume2008, holmMatrixGstrands2014}, we parameterise the Cosserat rod as a curve in $SE(3)$, and use the Lie group-Lie algebra map to construct a corresponding curve in the Lie algebra $\mathfrak{se}(3)$. We also provide additional mathematical context, identifying the Lie algebraic kinematic configuration as the \textit{Maurer-Cartan form} (MC), a Lie algebra-valued $1$-form. The kinematic equations of motion are then found as a result of the \textit{Maurer-Cartan equations}, which enforce the integrability of the MC form. We then derive the conservative and constitutive dynamics of the Cosserat rod using the \textit{Euler-Poincar\'e theorem} \citep{marsdenIntroductionMechanicsSymmetry2013, marleHenriPoincareNote2013a}. By constructing a generalised Lagrange-D'Alembert principle, we then derive generalised non-conservative dynamics. We will conceptualise the filament as a kinematically constrained Cosserat rod, analogous to forming a homogeneous space from the quotient $G/H$, of a Lie group $G$ and a Lie subgroup $H \subset G$. Drawing on the methods already developed for the Cosserat rod, we then derive the full kinodynamic equations of motion of the filament. In addition to the geometrised theory we provide here, we will also derive and specify some physical models as applications of our theory.
 
-coordinatised apoprach  \citep{naughtonElasticaCompliantMechanics2021}
+In Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} we present and derive (in that order) the generalised geometric Cosserat theory. The theory is largely constructed analogously as a generalisation of the treatment in Ch.~\ref{ch:Cosserat rods}, and conceptually we use the Cosserat rod and filament as an pedagogical device to understand generalised Cosserat systems with Lie group- and homogeneous configuration spaces respectively. We conclude this chapter with a chapter on applications of the GGCT. We considered the classical cases of the Cosserat rod, surface and body, as well as Cosserat rod on spheres and Minkowski space. To illustrate the connection between the GGCT and field theories, we also applied it to study the $O(n)$ non-linear $\sigma$ field theory (NLSM) \citep{ketovQuantumNonlinearSigmaModels2013}. Using our example systems, we aim to demonstrate the generality of the programme, but also emphasise the its relative ease-of-use. 
 
-A broader programme exists in the continuum
-
-on the system are not only functions of the deformations, but the \textit{derivatives}
-
+Finally, in Ch.~\ref{ch:Geometric numerical integrators} we refine the GGCT for numerical applications. We begin by observing that the right-hand sides of the kinodynamic equations of motion can be identified as a Lie algebra action on itself. This allows us to formulate \textit{geometric integrators}, designed to qualitatively preserve geometric features in numerical simulations. We contextualise our work as an application of \textit{Lie group integration} theory  \citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022a}, applied in the infinite-dimensional setting of continuum systems. We apply our geometric integrators to show that they successfully outperform standard PDE integrators in preserving the geometric features of the system.
 
 
-
- in the case of soft materials, 
-
-Furthermore many have internal degrees of freedom.
-
-Classical theory of Cosserat brothers
-
-The dynamics of such a system primarily deals with \textit{stresses}, which are the constitutive forces acting on such a system. In contrast to rigid body mechanics, such forces do not primarily act on displacements (or deformations) $\delta \mathbf{r}$ of the system, but rather the \textit{derivatives} of the deformations. That is, constitutive mechanics is expressed in terms of the inteinsic geomery of the ssytem. If we see the system as a manifold, then this should mean that we can apprporiately model the system within the language of differential geometry. For undirected media, there is a clear corespondence, The rate of deformation tensor is just the Lie derivative of the Riemannian metric on space, and that the Cauchy-Green tensor is the pull-back of the Riemannian metric on space by the deformation. \citep{marsdenMathematicalFoundationsElasticity1994} efforts to extend this to continuum system with microstructure were taken in \citep{yamaokaContinuumDynamicsVector2010}, using a vector bundle construction. 
-
-here we take a different approach. Lie group structure. Integrability. This is a generalisation of the kind of continuum mechanics dicussed by marsedne, but in the continuum setting.
-
-
-
-There have been attempts and formualtion 
-
-, the amount of deformation of solids is relatively small and does not affect their overall shape. However, in the case of soft materials, there is the potential for significant distortions.
-
-Macroscopically, solids and liquids are usually seen as continuous entities that can deform over time. While in classical engineering applications, the deformation of solids remain small enough so that their geometry is not dramatically affected, soft materials can exhibit very large distortions. 
-
-\citep{marsdenMathematicalFoundationsElasticity1994, wangIntroductionRationalElasticity1973, wangGeometricStructuresSimple1967, greenMechanicsNonlinearMaterials1957, lublinerMethodVirtualPower, nollMathematicalTheoryMechanical1958}
 
 
 \begin{comment}
@@ -283,180 +267,6 @@ Many applicaitons in engineering and continuum mechanics:
 crystals \citep{epsteinContinuousDistributionsInhomogeneities2001, gorielyRodTheoryLiquid2022}, as well as electromagnetic and ferromagnetic media \citep{ivanovaNewTheoryCosserat2022, pariaUnifiedTheoryMechanics1978, ivanovaModelingPhysicalFields}
 
 \end{comment}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-in general non-equilibrium we formualte
-
-Introduction. In its earliest manifestations [1], the Cauchy stress tensor eij was
-considered to be symmetric in its indices. This, in turn, was a consequence of the
-assumption that if no external force couples were acting on a deformable body then the
-balance of angular momentum would imply that symmetry. However, Poisson [2] did
-comment on the meaning of asymmetry in his own research.
- In Kelvin and Tate’s Treatise on Natural Philosophy [3], their discussion of planar
-elasticity actually managed to derive some two-dimensional equations for deformation
-that were consistent with what the Cosserat brothers obtained later for three dimensions.
-Love’s monumental treatise on elasticity [4] also discussed the role of asymmetry in the
-stress tensor.
- Some time later, in his examination of the elastic properties of crystals that grew out
-of the modeling of such media by molecules, Waldemar Voigt [5, 6] left open the
-possibility that there might be internal couple-stresses that acted on the molecules of the
-lattice. Indeed, although the atomic models that would compose crystal lattices out of
-atomic ions that might also impart electromagnetic polarizability to the medium would
-come later in history, Voigt was basically correct in his assumption. For instance, an
-external magnetic field will induce couple stresses in a paramagnetic solid. Such internal
-couple stresses would then induce an asymmetry in the Cauchy stress tensor.
- Other researchers to consider the possibility of asymmetric stress tensors were
-Larmor [7], in the context of the propagation of waves in “gyrostatically loaded”
-materials, which related to some of the dynamical theories of the electromagnetic “ether”
-that preceded Maxwell’s work, and Combebiac [8], in the context of general models for
-elasticity. 
-The Cosserat brothers, Eugène and François, first published some of their thoughts on
-asymmetric stress and couple-stresses as an appendix to the definitive text on mechanics
-by Koenigs [9]. They then produced their seminal work [10] in 1909, in which their
-stated objective was not so much to explore asymmetric elasticity as to explore the
-application to continuum mechanics of the geometry of moving frames that Darboux had
-defined the simplest notions of in his landmark treatise on the geometry of surfaces.
-Furthermore, they were going to build the variational theory of deformable bodies upon
-the foundations of the action of the group of Euclidian rigid motions and action
-functionals that were invariant under that action. Of course, they were still historically
-previous to the work of Cartan on the geometry of moving frames, as well as the work of
-Noether on the relations between symmetries of the action functional and conserved
-currents. Thus, to a modern reader those limitations can be somewhat discouraging,
-along with the daunting obesity of the mathematical notation, which involved writing out
-each separate coordinate in the partial derivatives and notating matrices by nine
-individual variables, as well as the objections of the engineers that the book also
-contained no applications of the abstract method to tangible examples. 
-
-Directed 
-
-There are theories in terms of directed media vector bundles
-
- Studies on the
-directed medium were actively pursued in the 1960s, for example, by Ericksen [1], Toupin
-[2], and Eringen and ¸Suhubi [3], and in recent years have been investigated from many point
-of views such as elasto-plasticity [4, 5], advanced materials [6] and biomechanics [7, 8]. In
-contrast, since about the 1960s, the elastic theory has been reconstructed using differential
-geometry, for example, by Green and Rivilin [9], Noll [10] and Wang [11]. A modern text by
-Marsden and Hughes [12] helps us to consider the geometrical settings of elasticity (see also
-an early textbook [13]). In this study, we develop the dynamics of the directed medium based
-on the fiber bundle theory in differential geometry
-
-%Cosserat theories are being used to describe an increasing number of physical phenomena. For example, Green, Naghdi and their coworkers have developed Cosserat theories for many applications which include: shells (Naghdi, 1972); rods (Green et aI., I 974a,b); fluid jets and sheets (Naghdi, 1979); electromagnetic effects in shells (Green and Naghdi, 1983) and rods (Green and Naghdi, 1985); turbulence (Marshall and Naghdi, 1989a,b); microcrack growth (Marshall et aI., 1991); composite materials (Green and Naghdi, 1991); and a model of dislocations in three-dimensional plasticity theory (Naghdi and Srinivasa, 1993a,b). In addition, a computer search of the Compendex and Inspec data bases indicates that Cosserat theories are also being used to describe: finite elements (Simo and Fox, 1989), (Simo et aI., 1989) and (Simo et aI., 1990); shearbanding and liquefaction in granular materials (Vardoulakis, 1989); fracture of bone (Lakes et aI., 1990); size effects in rocks (Sulem and Vardoulakis, 1990) and foams (Lakes, 1993); liquid bridges subjected to microgravity (Meseguer and Perales, 1992); grain rotations in granular media (Alehossein and Muhlhaus, 1994); suppression of localization in plasticity (De Borst, 1991; Iordache and Willam, 1995); fracture scaling parameters of inhomogeneous microstructure in composites (Cairns et a!., 1995); micromechanics of inclusions (Cheng and He, 1995) and failure of welds (Craine and Newman, 1996)
-
-
-
-
-A wide range of structures exhibit properties of softness and slenderness, from biological materials like cilia \citep{guMagneticCiliaCarpets2020} and cellular membranes \citep{krishnaswamyCosserattypeModelRed1996}, to strands of DNA \citep{corazzaUnravelingLoopingEfficiency2022} and hydrogels \citep{rajanMechanicsViscoelasticBuckling2019}. In this instance `soft' refers to the constitutive properties of the material, like that of rubber or biological tissue, and `slender' refers to its geometrical thinness.
-
-- Also include references to research that have been done using cosserat theory.
-
-
-
-In geometry part, you can talk about how intro, cosserat and geometry chapters serve as three successive dry runs of the same thing.
-
-"On the other hand, geometrical methods have revolutionized the field of classical
-mechanics since its inception, yielding some of the most important analytical techniques
-available in modern physics. These include Lie’s theory of dimensional reduction through
-symmetries, and the alternative formulation"
-
-
-
-Many systems in noneq where you have diffusions on lie groups.
-
-Mention what the difficulties are with the conventional methods.
-
-Maybe incorporate stuff from your talk in the geometry part of the intro. triangulasiont coordinitisation. It is general difficult to triangulate a principal fibre bundle.
-
-
-
-In contrats
-
-
-References:
-
-
-
-
-
-
-In Ch.~\ref{sec:geometry introduction} we began our study of the geometric continuum mechanics of systems with Lie group- or homogeneous configuration spaces. We reviewed the classical theories that our work builds on, and developed the necessary mathematical tools for the results of the subsequent chapters. Of these, the mathematical preliminaries, though dense, by itself foreshadows and serves as a dry-run for the geometrical treatment that was to come.
-
-In Ch.~\ref{ch:Cosserat rods} we derived the kinematic and dynamic - in short, kinodynamic - equations of Cosserat rods and filaments. These were chosen as paradigmatic examples of systems with Lie group- and homogeneous configuration spaces, and served as a foundation for the generalisations of the chapter that followed. We identified the configuration space of the Cosserat rod as the special Euclidean group $SE(3)$, and used the Euler-Poincaré theorem to find conservative force and moment balance equations. Furthermore, we constructed a generalised Lagrange-D'Alembert principle from which arbitrary non-conservative dynamics can be derived, and expressed the resulting kinodynamic equations of motion in terms of a spatial reconstruction field $X$ and generalised momentum field $S$, which are defined on the Lie algebra and its dual respectively. This Lie algebraic formulation was shown to naturally lead to kinodynamics expressed in terms of the intrinsic geometry of the rod. We then studied the filament model, which we devised as a Cosserat rod subject to kinematic constraints, and found its kinodynamic equations of motion. We thus demonstrated how systems with homogeneous configuration spaces can be obtained by imposing kinematic constraints on Lie group-configured systems.
-
-In Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} we studied generalised Cosserat systems, which we defined as continuum bodies with a material base of general topology, and Lie group- or homogeneous configuration spaces. We formulated a general theory of the kinodynamics of such systems, which we called a generalised geometric Cosserat theory (GGCT). The cornerstone of the programme was to use the exponential map to relate the spatio-temporal configuraiton of the system to Lie algebra-valued reconstruction fields. This allowed us to express the kinodynamics of generalised Cosserat systems directly in terms of its intrinsic geometry. We applied the GGCT to derive the kinodynamic equations of motion for a variety of known and new systems, which included the classical suite of Cosserat surfaces and bodies, Cosserat rods on spheres and in Minkowski space, as well as an application for non-linear $\sigma$ field theory.
-
-In Ch.~\ref{ch:Geometric numerical integrators} we developed geometric integrators for generalised Cosserat systems. We saw this as an application of Lie group integration theory to the infinite-dimensional setting of continuum systems. We demonstrated that our integrators preserve spatial integrability using the example of a Cosserat surface, and compared their performance to standard non-geometrical numeric integrators. We also showed that other qualitative features, like the closure of a rod, are preserved by our integrators.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%% Introduce soft and slender matter and give examples.
-% Todo:
-% - Include soft robotics as example
-
-
-
-
-
-We develop a general geometric theory of the kinematics and dynamics of $G$ or $G/H$-valued systems. We show in particular that the continuum mechanics of all directed media, otherwise known as Cosserat media, can be unified in description using this framework. As a special case, we also recover classical (undirected) continuum mechanics, expressed in Cartan's theory of moving frames.
-
----
-
-Make it clear what is new: The general geometric framework and the Lie group integrators, as well as the presentation of all of the various Cosserat theories through the same framework.
-
-Whilst the connection between Lie groups and mechanics has long been studied \citep{marsdenIntroductionMechanicsSymmetry2013}, here we provide a theory of mechanics Lie group-valued continua.
-
-At a level of abstraction sufficient to describe all Cosserat theories, but also more general systems. For example, the framework is amenable to relativistic systems as well.
-
-A lot of the results have already been shown before (a lot of the stuff in the Cosserat rod section in particular). The main purpose is to show how it all falls out of the a unified framework, and also works as a review article to some extent.
-
-
- In this thesis, we 
- 
- In the second part of this thesis
- 
- Mention that the two parts can be combined by deriving stochastic dynamics for part 2 systems and the field stuff for part 1.
-
-in all the subsection conclusions, you will talk about further work. here you can summarise the further work.
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
