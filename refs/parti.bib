@@ -116,6 +116,25 @@
   doi = {10.3367/UFNe.0183.201301e.0087}
 }
 
+@article{arjunUnbiasedAtomisticInsight2019,
+  title = {Unbiased Atomistic Insight in the Competing Nucleation Mechanisms of Methane Hydrates},
+  author = {Arjun, null and Berendsen, Thom A. and Bolhuis, Peter G.},
+  year = {2019},
+  month = sep,
+  journal = {Proceedings of the National Academy of Sciences of the United States of America},
+  volume = {116},
+  number = {39},
+  pages = {19305--19310},
+  issn = {1091-6490},
+  doi = {10.1073/pnas.1906502116},
+  abstract = {Methane hydrates have important industrial and climate implications, yet their formation via homogeneous nucleation under natural, moderate conditions is poorly understood. Obtaining such understanding could lead to improved control of crystallization, as well as insight into polymorph selection in general, but is hampered by limited experimental resolution. Direct molecular dynamics simulations using atomistic force fields could provide such insight, but are not feasible for moderate undercooling, due to the rare event nature of nucleation. Instead, we harvest ensembles of the rare unbiased nucleation trajectories by employing transition path sampling. We find that with decreasing undercooling the mechanism shifts from amorphous to crystalline polymorph formation. At intermediate temperature the 2 mechanisms compete. Reaction coordinate analysis reveals the amount of a specific methane cage type is crucial for crystallization, while irrelevant for amorphous solids. Polymorph selection is thus governed by kinetic accessibility of the correct cage type and, moreover, occurs at precritical nucleus sizes, apparently against Ostwald's step rule. We argue that these results are still in line with classical nucleation theory. Our findings illuminate how selection between competing methane hydrate polymorphs occurs and might generalize to other hydrates and molecular crystal formation.},
+  langid = {english},
+  pmcid = {PMC6765301},
+  pmid = {31501333},
+  keywords = {gas hydrates,molecular dynamics,polymorph selection,transition path sampling},
+  file = {/Users/lukastk/AppData/Zotero/storage/25AN88CW/Arjun et al. - 2019 - Unbiased atomistic insight in the competing nuclea.pdf}
+}
+
 @book{arnoldStochasticDifferentialEquations1974a,
   title = {Stochastic {{Differential Equations}}: {{Theory}} and {{Applications}}},
   shorttitle = {Stochastic {{Differential Equations}}},
@@ -377,6 +396,23 @@
   abstract = {We present and study a Langevin MCMC approach for sampling nonlinear diffusion bridges. The method is based on recent theory concerning stochastic partial differential equations (SPDEs) reversible with respect to the target bridge, derived by applying the Langevin idea on the bridge pathspace. In the process, a Random-Walk Metropolis algorithm and an Independence Sampler are also obtained. The novel algorithmic idea of the paper is that proposed moves for the MCMC algorithm are determined by discretising the SPDEs in the time direction using an implicit scheme, parametrised by \texttheta{} {$\in$} [0,1]. We show that the resulting infinite-dimensional MCMC sampler is well-defined only if \texttheta{} = 1/2, when the MCMC proposals have the correct quadratic variation. Previous Langevin-based MCMC methods used explicit schemes, corresponding to \texttheta{} = 0. The significance of the choice \texttheta{} = 1/2 is inherited by the finite-dimensional approximation of the algorithm used in practice. We present numerical results illustrating the phenomenon and the theory that explains it. Diffusion bridges (with additive noise) are representative of the family of laws defined as a change of measure from Gaussian distributions on arbitrary separable Hilbert spaces; the analysis in this paper can be readily extended to target laws from this family and an example from signal processing illustrates this fact.},
   langid = {english},
   file = {/Users/lukastk/AppData/Zotero/storage/33SV8I42/Beskos et al. - 2008 - MCMC METHODS FOR DIFFUSION BRIDGES.pdf}
+}
+
+@article{bestMicroscopicInterpretationFolding2016,
+  title = {Microscopic Interpretation of Folding {$\phi$}-Values Using the Transition Path Ensemble},
+  author = {Best, Robert B. and Hummer, Gerhard},
+  year = {2016},
+  month = mar,
+  journal = {Proceedings of the National Academy of Sciences of the United States of America},
+  volume = {113},
+  number = {12},
+  pages = {3263--3268},
+  issn = {0027-8424},
+  doi = {10.1073/pnas.1520864113},
+  abstract = {{$\phi$}-Value analysis remains the only experimental method that can give detailed structural information on protein folding transition states. Calculating {$\phi$}-values from simulations is therefore an important validation of inferred folding mechanisms but has remained challenging. We describe a novel method for computing {$\phi$}-values from folding transition paths, motivated by transition path theory. In addition to rendering an average {$\phi$}-value, our approach can characterize pathway heterogeneity by resolving {$\phi$} into contributions from individual transition paths. This method should be applicable not just to protein folding but to other complex self-assembly processes including protein binding or nucleic acid folding., All-atom molecular dynamics simulations now allow us to create movies of proteins folding and unfolding. However, it is difficult to assess the accuracy of the folding mechanisms observed because experiments cannot yet directly resolve events occurring along the transition paths between unfolded and folded states. Protein folding {$\phi$}-values provide residue-resolved information about folding mechanisms by comparing the effects of mutations on folding rates and stability, but determining {$\phi$}-values by separately simulating mutant proteins would be computationally demanding and prone to large statistical errors. Here we use transition path theory to develop a method for computing {$\phi$}-values directly from the transition path ensemble, without the need for additional simulations. This path-based approach uses the full transition path information available from equilibrium folding and unfolding trajectories, or from transition path sampling, and does not require identification of folding transition states. Applying our approach to a set of simulations of 10 small proteins by Shaw and coworkers [Lindorff-Larsen K, Piana S, Dror RO, Shaw DE (2011) Science 334(6055):517\textendash 520; Piana S, Lindorff-Larsen K, Shaw DE (2011) Biophys J 100(9):L47\textendash L49; and Piana S, Lindorff-Larsen K, Shaw DE (2013) Proc Natl Acad Sci USA 110(15):5915\textendash 5920], we find good agreement with experiments in most cases where data are available. We can further resolve the contributions to fractional {$\phi$}-values coming from partial contact formation versus transition path heterogeneity. Although in some cases, there is substantial heterogeneity of folding mechanism, in others, such as Ubiquitin, the mechanism is strongly conserved.},
+  pmcid = {PMC4812701},
+  pmid = {26957599},
+  file = {/Users/lukastk/AppData/Zotero/storage/BCI5AEB8/Best and Hummer - 2016 - Microscopic interpretation of folding ϕ-values usi.pdf}
 }
 
 @article{bestReactionCoordinatesRates2005a,
@@ -703,6 +739,22 @@
   abstract = {Gradient-quadratic and fixed-point iteration algorithms and appropriate values for their control parameters are derived for finding all modes of a Gaussian mixture, a problem with applications in clustering and regression. The significance of the modes found is quantified locally by Hessian-based error bars and globally by the entropy as sparseness measure.},
   keywords = {Algorithm design and analysis,Bars,Bayesian methods,Clustering algorithms,Covariance matrix,Entropy,Gaussian distribution,Hidden Markov models,Machine learning algorithms,Speech analysis},
   file = {/Users/lukastk/AppData/Zotero/storage/RVJ7QEP7/888716.html}
+}
+
+@article{carterConstrainedReactionCoordinate1989,
+  title = {Constrained Reaction Coordinate Dynamics for the Simulation of Rare Events},
+  author = {Carter, E. A. and Ciccotti, Giovanni and Hynes, James T. and Kapral, Raymond},
+  year = {1989},
+  month = apr,
+  journal = {Chemical Physics Letters},
+  volume = {156},
+  number = {5},
+  pages = {472--477},
+  issn = {0009-2614},
+  doi = {10.1016/S0009-2614(89)87314-2},
+  abstract = {A computationally efficient molecular dynamics method for estimating the rates of rare events that occur by activated processes is described. The system is constrained at ``bottleneck'' regions on a general many-body reaction coordinate in order to generate a biased configurational distribution. Suitable reweighting of this biased distribution, along with correct momentum distribution sampling, provides a new ensemble, the constrained-reaction-coordinate-dynamics ensemble, with which to study rare events of this type. Applications to chemical reaction rates are made.},
+  langid = {english},
+  file = {/Users/lukastk/AppData/Zotero/storage/LS2ZFLEC/S0009261489873142.html}
 }
 
 @misc{catesActiveFieldTheories2019,
@@ -1923,6 +1975,22 @@
   langid = {english}
 }
 
+@article{geisslerAutoionizationLiquidWater2001,
+  title = {Autoionization in Liquid Water},
+  author = {Geissler, P. L. and Dellago, C. and Chandler, D. and Hutter, J. and Parrinello, M.},
+  year = {2001},
+  month = mar,
+  journal = {Science (New York, N.Y.)},
+  volume = {291},
+  number = {5511},
+  pages = {2121--2124},
+  issn = {0036-8075},
+  doi = {10.1126/science.1056991},
+  abstract = {The dissociation of a water molecule in liquid water is the fundamental event in acid-base chemistry, determining the pH of water. Because of the short time scales and microscopic length scales involved, the dynamics of this autoionization have not been directly probed by experiment. Here, the autoionization mechanism is revealed by sampling and analyzing ab initio molecular dynamics trajectories. We identify the rare fluctuations in solvation energies that destabilize an oxygen-hydrogen bond. Through the transfer of protons along a hydrogen bond "wire," the nascent ions separate by three or more neighbors. If the hydrogen bond wire connecting the two ions is subsequently broken, a metastable charge-separated state is visited. The ions may then diffuse to large separations. If, however, the hydrogen bond wire remains unbroken, the ions recombine rapidly. Because of their concomitant large electric fields, the transient ionic species produced in this case may provide an experimentally detectable signal of the dynamics we report.},
+  langid = {english},
+  pmid = {11251111}
+}
+
 @book{gelfandCalculusVariations2012a,
   title = {Calculus of {{Variations}}},
   author = {Gelfand, I. M. and Fomin, S. V.},
@@ -2311,6 +2379,22 @@
   address = {{California}}
 }
 
+@article{grubmullerPredictingSlowStructural1995,
+  title = {Predicting Slow Structural Transitions in Macromolecular Systems: {{Conformational}} Flooding},
+  shorttitle = {Predicting Slow Structural Transitions in Macromolecular Systems},
+  author = {Grubm{\"u}ller, Helmut},
+  year = {1995},
+  month = sep,
+  journal = {Physical Review E},
+  volume = {52},
+  number = {3},
+  pages = {2893--2906},
+  publisher = {{American Physical Society}},
+  doi = {10.1103/PhysRevE.52.2893},
+  abstract = {We present a method to predict complex structural (conformational) transitions in irregular or disordered macromolecular systems, such as proteins or glasses, at the atomic level. Our method aims at rare events, which currently cannot be predicted with traditional molecular dynamics (MD) simulations, since these currently are limited to time scales shorter than a few nanoseconds. Given an initial conformation of the system, our method identifies one or more product states, which may be separated from the initial state by free energy barriers that are large on the scale of thermal energy. It also provides an approximate reaction path, which can be used to determine barrier heights or reaction rates with the usual techniques. The method employs an artificial potential that destabilizes the initial conformation and, thereby, lowers free energy barriers of structural transitions. As a result, transitions are accelerated and may be observed in MD simulations. An analytical estimate for the acceleration factor is given. The method is applied to two test systems, an argon microcluster and a simplified protein model. By these studies we demonstrated that our method is capable of shortening mean transition times from 0.5 {$\mu$}s (argon cluster) and 1.4 ns (protein model) to a few picoseconds. These results suggest that our method is particularly well suited to study biochemically relevant conformational motions in proteins at a microsecond time scale.},
+  file = {/Users/lukastk/AppData/Zotero/storage/P6Y2GNHM/Grubmüller - 1995 - Predicting slow structural transitions in macromol.pdf}
+}
+
 @article{hairerAnalysisSPDEsArising2005a,
   title = {Analysis of {{SPDEs}} Arising in Path Sampling. {{Part I}}: {{The Gaussian}} Case},
   shorttitle = {Analysis of {{SPDEs}} Arising in Path Sampling. {{Part I}}},
@@ -2382,6 +2466,22 @@
   author = {Hamming, Richard},
   year = {2012},
   publisher = {{Courier Corporation, New York}}
+}
+
+@article{hanNewMonteCarlo1992,
+  title = {A New {{Monte Carlo}} Method for Estimating Free Energy and Chemical Potential},
+  author = {Han, Kyu-Kwang},
+  year = {1992},
+  month = may,
+  journal = {Physics Letters A},
+  volume = {165},
+  number = {1},
+  pages = {28--32},
+  issn = {0375-9601},
+  doi = {10.1016/0375-9601(92)91048-V},
+  abstract = {A new Monte Carlo method of computing the free energy difference between two systems is presented. A universally usable optimal formula of the non-Boltzmann sampling is derived on a theoretical basis. The new technique is designed to sample both ensembles of interest at one simulation. Applications to the free energy difference between two different simple fluids and to the chemical potential of a Lennard-Jones fluid show that the new method is economical as well as reliable. The method can be extended to sampling several ensembles at a time.},
+  langid = {english},
+  file = {/Users/lukastk/AppData/Zotero/storage/XHMPVP47/037596019291048V.html}
 }
 
 @article{hansen_cma-espycma_2019,
@@ -3013,6 +3113,21 @@
   doi = {10.1088/0305-4470/31/16/003},
   abstract = {The fluctuation theorem of Gallavotti and Cohen holds for finite systems undergoing Langevin dynamics. In such a context all non-trivial ergodic theory issues are bypassed, and the theorem takes a particularly simple form. As a particular case, we obtain a nonlinear fluctuation\textendash dissipation theorem valid for equilibrium systems perturbed by arbitrarily strong fields.},
   langid = {english}
+}
+
+@article{laioEscapingFreeenergyMinima2002,
+  title = {Escaping Free-Energy Minima},
+  author = {Laio, Alessandro and Parrinello, Michele},
+  year = {2002},
+  month = oct,
+  journal = {Proceedings of the National Academy of Sciences},
+  volume = {99},
+  number = {20},
+  pages = {12562--12566},
+  publisher = {{Proceedings of the National Academy of Sciences}},
+  doi = {10.1073/pnas.202427399},
+  abstract = {We introduce a powerful method for exploring the properties of the multidimensional free energy surfaces (FESs) of complex many-body systems by means of coarse-grained non-Markovian dynamics in the space defined by a few collective coordinates. A characteristic feature of these dynamics is the presence of a history-dependent potential term that, in time, fills the minima in the FES, allowing the efficient exploration and accurate determination of the FES as a function of the collective coordinates. We demonstrate the usefulness of this approach in the case of the dissociation of a NaCl molecule in water and in the study of the conformational changes of a dialanine in solution.},
+  file = {/Users/lukastk/AppData/Zotero/storage/N7UEZTD6/Laio and Parrinello - 2002 - Escaping free-energy minima.pdf}
 }
 
 @book{landau1959classical,
@@ -3663,6 +3778,21 @@
   langid = {english}
 }
 
+@article{moqadamLocalInitiationConditions2018,
+  title = {Local Initiation Conditions for Water Autoionization},
+  author = {Moqadam, Mahmoud and Lervik, Anders and Riccardi, Enrico and Venkatraman, Vishwesh and Alsberg, Bj{\o}rn K{\aa}re and {van Erp}, Titus S.},
+  year = {2018},
+  month = may,
+  journal = {Proceedings of the National Academy of Sciences},
+  volume = {115},
+  number = {20},
+  pages = {E4569-E4576},
+  publisher = {{Proceedings of the National Academy of Sciences}},
+  doi = {10.1073/pnas.1714070115},
+  abstract = {The pH of liquid water is determined by the infrequent process in which water molecules split into short-lived hydroxide and hydronium ions. This reaction is difficult to probe experimentally and challenging to simulate. One of the open questions is whether the local water structure around a slightly stretched OH bond is actually initiating the eventual breakage of this bond or whether this event is driven by a global ordering that involves many water molecules far away from the reaction center. Here, we investigated the self-ionization of water at room temperature by rare-event ab initio molecular dynamics and obtained autoionization rates and activation energies in good agreement with experiments. Based on the analysis of thousands of molecular trajectories, we identified a couple of local order parameters and show that if a bond stretch occurs when all these parameters are around their ideal range, the chance for the first dissociation step (double-proton jump) increases from  1 0 -7 10-7  to  0.4 0.4 . Understanding these initiation triggers might ultimately allow the steering of chemical reactions.},
+  file = {/Users/lukastk/AppData/Zotero/storage/EYUTERLA/Moqadam et al. - 2018 - Local initiation conditions for water autoionizati.pdf}
+}
+
 @article{moretteDefinitionApproximationFeynman1951,
   title = {On the {{Definition}} and {{Approximation}} of {{Feynman}}'s {{Path Integrals}}},
   author = {Morette, C{\'e}cile},
@@ -3981,6 +4111,19 @@
   langid = {english},
   keywords = {Mathematics / Differential Equations / General,Mathematics / Probability \& Statistics / General,Mathematics / Probability \& Statistics / Stochastic Processes,Science / Mechanics / Solids,Science / Physics / Mathematical \& Computational,Technology \& Engineering / Mechanical},
   file = {/Users/lukastk/AppData/Zotero/storage/TE4L92WR/Pavliotis - 2014 - Stochastic Processes and Applications Diffusion P.pdf}
+}
+
+@book{petersReactionRateTheory2017,
+  title = {Reaction {{Rate Theory}} and {{Rare Events}}},
+  author = {Peters, Baron},
+  year = {2017},
+  month = mar,
+  publisher = {{Elsevier Science}},
+  abstract = {Reaction Rate Theory and Rare Events bridges the historical gap between these subjects because the increasingly multidisciplinary nature of scientific research often requires an understanding of both reaction rate theory and the theory of other rare events. The book discusses collision theory, transition state theory, RRKM theory, catalysis, diffusion limited kinetics, mean first passage times, Kramers theory, Grote-Hynes theory, transition path theory, non-adiabatic reactions, electron transfer, and topics from reaction network analysis. It is an essential reference for students, professors and scientists who use reaction rate theory or the theory of rare events. In addition, the book discusses transition state search algorithms, tunneling corrections, transmission coefficients, microkinetic models, kinetic Monte Carlo, transition path sampling, and importance sampling methods. The unified treatment in this book explains why chemical reactions and other rare events, while having many common theoretical foundations, often require very different computational modeling strategies.},
+  googlebooks = {EllCMQAACAAJ},
+  isbn = {978-0-444-56349-1},
+  langid = {english},
+  keywords = {Science / Chemistry / Physical \& Theoretical,Technology \& Engineering / Chemical \& Biochemical}
 }
 
 @article{pinskiNovelHybridMonte2021a,
@@ -4737,6 +4880,24 @@
   issn = {0021-9606},
   doi = {10.1063/1.2833040},
   abstract = {An algorithm is proposed to calculate the minimum energy path (MEP). The algorithm is based on a variational formulation in which the MEP is characterized as the curve minimizing a certain functional. The algorithm performs this minimization using a preconditioned steepest-descent scheme with a reparametrization step to enforce a constraint on the curve parametrization.}
+}
+
+@article{veitshansProteinFoldingKinetics1997a,
+  title = {Protein Folding Kinetics: Timescales, Pathways and Energy Landscapes in Terms of Sequence-Dependent Properties},
+  shorttitle = {Protein Folding Kinetics},
+  author = {Veitshans, Thomas and Klimov, Dmitri and Thirumalai, Devarajan},
+  year = {1997},
+  month = feb,
+  journal = {Folding and Design},
+  volume = {2},
+  number = {1},
+  pages = {1--22},
+  issn = {1359-0278},
+  doi = {10.1016/S1359-0278(97)00002-3},
+  abstract = {Background Recent experimental and theoretical studies have revealed that protein folding kinetics can be quite complex and diverse depending on various factors such as size of the protein sequence and external conditions. For example, some proteins fold apparently in a kinetically two-state manner, whereas others follow complex routes to the native state. We have set out to provide a theoretical basis for understanding the diverse behavior seen in the refolding kinetics of proteins in terms of properties that are intrinsic to the sequence. Results: The folding kinetics of a number of sequences for off-lattice continuum models of proteins is studied using Langevin simulations at two different values of the friction coefficient. We show for these models that there is a remarkable correlation between folding time, {$\tau$}F, and {$\sigma$}=(T\texttheta{} \textendash{} TF)/T\texttheta, where T\texttheta{} and TF are the equilibrium collapse and folding transition temperatures, respectively. The microscopic dynamics reveals that several scenarios for the kinetics of refolding arise depending on the range of values of {$\sigma$}. For relatively small {$\sigma$}, the chain reaches the native conformation by a direct native conformation nucleation collapse (NCNC) mechanism without being trapped in any detectable intermediates. For moderate and large values of {$\sigma$}, the kinetics is described by the kinetic partitioning mechanism, according to which a fraction of molecules {$\Phi$} (kinetic partition factor) reach the native conformation via the NCNC mechanism. The remaining fraction attains the native state by off-pathway processes that involve trapping in several misfolded structures. The rate-determining step in the off-pathway processes is the transition from the misfolded structures to the native state. The partition factor {$\Phi$} is also determined by {$\sigma$}: the smaller the value of {$\sigma$}, the larger is {$\Phi$}. The qualitative aspects of our results are found to be independent of the friction coefficient. The simulation results and theoretical arguments are used to obtain estimates for timescales for folding via the NCNC mechanism in small proteins, those with less than about 70 amino acid residues. Conclusions We have shown that the various scenarios for folding of proteins, and possibly other biomolecules, can be classified solely in terms of {$\sigma$}. Proteins with small values of {$\sigma$} reach the native conformation via a nucleation collapse mechanism and their energy landscape is characterized by having one dominant native basin of attraction (NBA). On the other hand, proteins with large {$\sigma$} get trapped in competing basins of attraction (CBAs) in which they adopt misfolded structures. Only a small fraction of molecules access the native state rapidly when {$\sigma$} is large. For these sequences, the majority of the molecules approach the native state by a three-stage multipathway mechanism in which the rate-determining step involves a transition from one of the CBAs to the NBA.},
+  langid = {english},
+  keywords = {collapse and folding transition temperature,kinetic partitioning mechanism,native conformation nucleation collapse,protein folding,three-stage multipathway mechanism},
+  file = {/Users/lukastk/AppData/Zotero/storage/3B85PLHV/Veitshans et al. - 1997 - Protein folding kinetics timescales, pathways and.pdf;/Users/lukastk/AppData/Zotero/storage/J3FJQBH9/S1359027897000023.html}
 }
 
 @book{wangKarhunenLoeveExpansionsTheir2008,

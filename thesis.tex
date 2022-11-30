@@ -28,7 +28,7 @@
 \documentclass[]{cam-thesis}
 
 % Citations using numbers
-\usepackage[sort,numbers]{natbib}
+\usepackage[sort&compress,numbers]{natbib}
 %\usepackage[numbers]{natbib}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -180,131 +180,48 @@ To my friends.
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-This thesis explores two distinct topics. The first part concerns itself with the study of transition events in stochastic differential equations, both in regimes where these are ubiquitous as well as rare. The second part develops a geometrical theory of Cosserat materials \citep{cosseratTheoryDeformableBodies1909}, and further a generalised framework for studying continuum systems with configurations taking value in Lie groups or homogeneous spaces. Whilst substantially different, the two parts of this thesis do share a common trait in that they explore the geometry of spaces that possess an infinite-dimensional character. In essence, the research we present in the first part of the thesis is to quantitatively and qualitatively investigate the concentration of path-probability measures, defined over the infinite-dimensional space of stochastic transition paths. In the second part of this thesis, we consider systems with infinite degrees-of-freedom; that is, the systems are Lie group-valued \textit{manifolds} and we formulate their mechanics in terms of their intrinsic geometry. Below we will separately introduce the two parts of this thesis.
+This thesis explores two distinct topics. The first part concerns itself with the study of transition events in stochastic differential equations, both in regimes where these are ubiquitous as well as rare. The second part develops a geometrical theory of Cosserat materials \citep{cosseratTheoryDeformableBodies1909}, and further a generalised framework for studying continuum systems with configurations taking value in Lie groups or homogeneous spaces. Whilst substantially different, the two parts of this thesis do share a common trait in that they explore the geometry of spaces that possess an infinite-dimensional character. In essence, the research we present in the first part of the thesis aimed to quantitatively and qualitatively investigate the concentration of path-probability measures, defined over the infinite-dimensional space of stochastic transition paths. In the second part of this thesis, we consider systems with infinite degrees-of-freedom; that is, the systems are Lie group-valued \textit{manifolds} and we formulate their mechanics in terms of their intrinsic geometry. Below we will separately introduce the two parts of this thesis.
 
 \section*{Introduction to Part I}
 
-- Many real life systems follow stochastic dynamics / langevin. refs
-- 
+Randomness is important on all scales in nature, and is ubiquitous in the mesoscopic scales of soft matter physics. Rich phenomena in physical, chemical and biological systems often emerge out of the interplay between stochastic and deterministic forces, as for example in the nucleation of solids, the conformational changes in biomolecules, or shifts in ecological balance \citep{faccioliDominantPathwaysProtein2006a, demarcoPhaseTransitionModel2001a, gardnerConstructionGeneticToggle2000a, mangelBarrierTransitionsDriven1994a, wolynesNavigatingFoldingRoutes1995a, huangMolecularMathematicalBasis2012a, paninskiMostLikelyVoltage2006a, noltingBallsCupsQuasipotentials2016a, leeFindingMultipleReaction2017a}. Mathematically, many systems of this kind can be modelled as overdamped Langevin dynamics, otherwise known as It\^{o} diffusions \citep{kampenStochasticProcessesPhysics2011a, gardinerStochasticMethodsHandbook2010a, riskenFokkerPlanckEquationMethods2012a, bharucha-reidElementsTheoryMarkov2012a}. The stochastic trajectories of such random processes tend concentrate around attractors in state-space, determined by the drift-field of the dynamics, which for conservative systems correspond to energetic minima. The influence of the stochastic forces renders the otherwise stable fixed points meta-stable, such that transitions between points or regions of meta-stability have finite probability. The set of all such transition paths between given meta-stable states is known as the transition path ensemble (TPE) \citep{bolhuisTransitionPathSampling2002a}. In Langevin models, the configuration of the system is often a reaction coordinate, and the characteristic pathways and rate constants of transition events are the main object of study \citep{dellagoCalculationReactionRate1999a, arjunUnbiasedAtomisticInsight2019, geisslerAutoionizationLiquidWater2001, carterConstrainedReactionCoordinate1989, laioEscapingFreeenergyMinima2002, bestMicroscopicInterpretationFolding2016, arjunUnbiasedAtomisticInsight2019}.
 
-Bolhuis:
-Studying transitions between stable states separated by unknown dynamical bottlenecks presents well known computational difficulties. Such transitions are rare events. Conventional methods for studying rare events in many body systems are based on transition state theory. First, one estimates the probability of visiting the dynamical bottleneckthe transition state~s!. Then the transmission coefficient and rate constant can be determined from a series of short trajectories initiated from the ensemble of states prepared at that bottleneck.1–4 The difficulty with this method is that it requires prior knowledge of the transition states. Without knowledge of the transition states, i.e., without an a priori conception of the mechanism or pathway for the process, this approach cannot be applied.
+However transition events often occur on time-scales much larger than those of the dynamics itself \citep{petersReactionRateTheory2017, bolhuisTransitionPathSamplinga, grafkeLongTermEffects2017}. For example, the molecular dynamics of proteins are orders of magnitude smaller than the time-scale under which it unfolds \citep{veitshansProteinFoldingKinetics1997a}. In other words, transitions are \textit{rare events} for many relevant systems. Where analytical methods are intractable, numerical methods must be used to sample the transition path ensemble. However, it is in general not feasible to sample the TPE using standard stochastic integrators or molecular dynamics simulatons, due to the disparate time-scales of the target sample space and the dynamics. The study of the TPE must be approached via other means.
 
-Bolhuis 2:
-DISPARITY OF TIMESCALES Often, dynamical processes of interest occur on timescales that are very long compared to the shortest significant timescale. For example, the dissociation of a weak acid in water might occur with a half-life of, say, 1 ms, while elementary steps of molecular motions in water occur in 1 fs. Similarly, timescales for folding the smallest of proteins are in the range of microseconds to milliseconds, whereas that for small-amplitude motions of amino acid side chains and water solvent is again 1 fs. This wide disparity of timescales can present serious computational challenges. For instance, consider a computed trajectory for a system containing a weak acid molecule and a bath of a few hundred water molecules. Within one or two orders of magnitude—depending on computing equipment and algorithm—1 s of computation time is required to advance the system for what would correspond to 1 fs of physical time. As such, typically 1012 s of computing time seems to be required to find one example of an event leading to acid dissociation. A representative sampling of pathways to dissociation would therefore seem to be an impractical computational task.
+One such method is through the large deviation theory of to Freidlin, Wentzell and Graham \citep{wentzellSmallRandomPerturbations1970, graham1973statistical, graham1987macroscopic}, which studies the TPE in the limit of vanishing noise, the so-called \textit{Freidlin-Wentzell limit}. The exponential scaling of transition rates in the noise-strength parameter can then be estimated by finding the global minimiser of an action functional. This minimiser, known as the \textit{instanton}, is the `least unlikely` pathway that the system will take in transition events, and any deviation from this path are exponentially suppressed in probability. However the limit of vanishing noise is unrealistic for many real physical systems, and some qualitative features of the transition paths may only emerge at finite temperatures \cite{pinskiTransitionPathsMolecules2010b}. In these regimes, sampling techniques must be used to sample the functional probability distribution over the TPE. Prominent examples of sampling methods are the \textit{transition path sampling} (TPS) \citep{dellagoTransitionPathSampling1998a, dellagoCalculationReactionRate1999a, dellagoEfficientTransitionPath1998, bolhuisTransitionPathSamplinga, bolhuisTransitionPathSampling2002a} and \textit{forward flux sampling} (FFS) \citep{escobedoTransitionPathSampling2009, allenForwardFluxSamplingtype2006, hussainStudyingRareEvents2020}. % Could add some stuff about the challenge of sampling multiple transiiton pathways.
 
-MPORTANCE SAMPLING The basic idea is a generalization of standard Monte Carlo procedures (20, 21, 24, 25) that focuses upon chains of states constituting dynamical trajectories (26) rather than upon individual states. In its standard form, a Monte Carlo calculation performs a random walk in configuration space. The walk is biased to ensure that the most important regions of configuration space are adequately sampled. Specifically, in a Monte Carlo random walk, configuration x is visited in proportion to its probability p(x). The walk may be initiated far from a typical configuration [i.e., x far from values of x where the weight from p(x) is largest], but after some equilibration period, the bias drives the system to those important regions of configuration space. This feature is crucial to the success of Monte Carlo sampling. It is called importance sampling and is illustrated in Figure 2. Importance sampling can be generalized to trajectory space, as we have done to create the methods of transition path sampling. Consider the ensemble of all trajectories that are, say, 1 ps long. Most of these trajectories will be localized near some basin of attraction—a long-lived collection of neighboring microstates. Rare transition state crossings will comprise a small subset of these 1-ps trajectories. For example, if the process of interest occurs roughly once every millisecond, then only one out of a billion 1-ps trajectories will exemplify that process. Transition path sampling provides an efficient means to sample such rare subensembles.
-
-Bolhuis 3:
-
-The kinetics of many important molecular processes, such as phase transitions, self-assembly, conformational changes, association/dissociation, and chemical reactions, are dominated
-by events that are rare on the molecular time scales.[1] Straightforward simulations of such events are very ineffective, due to the long timescales involved, which are often related to high free energy barriers between metastable states. In the past fifty years many simulation methods have been developed that enhance the sampling of the unlikely regions of the barrier (e.g., see refs. [2–9]) or enhance transitons between states (e.g., see refs. [10–12]). However, the effectiveness of this enhanced sampling often depends on choice of a good reaction coordinate. Failure to capture the correct reaction coordinate leads to wrong estimates of the barrier height, rate constants and mechanistic details.[13] Path-based approaches circumvent these problems by defining a dynamical trajectory connecting reactant and products states. Such paths can then be optimized to yield a minimum (free) energy pathway between the states. Well known examples of this approach include Nudged Elastic Band,[14–16]string method,[17,18] action minimization,[19] and dominant reaction pathway[20] techniques. For rough energy landscapes a more fruitful approach might be to sample from a distribution of dynamical paths. Transition path sampling (TPS) creates an ensemble of unbiased dynamical trajectories between the reactant and products states, through performing a random walk in trajectory space via a Metropolis Monte Carlo procedure.[
+In this first part of the thesis we offer some contributions to the study of the transition path ensemble of general overdamped Langevin systems, in both the Freidlin-Wentzell limit and at finite temperatures. In Ch.~\ref{ch:Ritz methods for Freidlin-Wentzel-Graham actions} we develop global methods of numerically minimising the Freidlin-Wentzell action. 
 
 
-Grafke:
-
-Small random perturbations often have a lasting effect on the long-time evolution of dynamical systems. For example, they give rise to transitions between otherwise stable equilibria, a phenomenon referred to as metastability that is observed in a wide variety of contexts, e.g. phase separation, population dynamics, chemical reactions, climate regimes, neuroscience, or fluid dynamics. Since the time-scale over which these transition events occurs is typically exponentially large in some control parameter (for example the noise amplitude), a brute-force simulation approach to compute these events quickly becomes infeasible. Fortunately, it is possible to exploit the fact that the mechanism of these transitions is often predictable when the random perturbations have small amplitude: with high probability the transitions occur by their path of maximum likelihood (PML), and knowledge of this PML also permits to estimate their rate. This is the essence of large deviation theory (LDT) [20], which applies in a wide variety of contexts. For example, systems whose evolution is governed by a stochastic (ordinary or partial) differential equation driven by a small noise or by a Markov jump process in which jumps occur often but lead to small changes of the system state, or slow/fast systems in which the fast variables are randomly driven and the slow ones feel these perturbations through the
-
-
-TPS introduction.
-
-FW -> "On the other hand, geometrical methods have revolutionized the field of classical
-mechanics since its inception, yielding some of the most important analytical techniques
-available in modern physics. These include Lie’s theory of dimensional reduction through
-symmetries, and the alternative formulation"
-
-However, cold limit not always physical. Ch 3 diffusivity dependenc ec
-
-Ch by Ch brreakdown.
-
-
-In the limit of zero diffusion. The theory of Freidlin, Wentzell and Graham \citep{wentzellSmallRandomPerturbations1970, graham1973statistical,graham1987macroscopic}
-gives asymptotic probability estimates of rare events in dynamical
-systems perturbed by small noise \citep{bolhuisTransitionPathSampling2002a, allen2005sampling, allen2009forward, ebenerInstantonBasedImportance2019b}.
-Specifically, Freidlin-Wentzell-Graham (FWG) theory yields estimates of the stationary
-distributions and mean first-passage times. Both these quantities
-are determined, in turn, by the asymptotic estimate of the probability
-of a stochastic trajectory to not deviate from a smooth path by more
-than a given amount in a given interval of time. The key result of
-FWG is that the limiting form of this probability,
-for small noise and small deviations, is given by a non-negative functional
-of the smooth path. This functional is known as the \textit{Freidlin-Wentzell action} and its minimum, for fixed initial and terminal states, determines
-both the stationary distributions and first-passage times. The smooth
-path minimising the action is often called the Freidlin-Wentzell instanton.
-The theory is applicable to dynamical systems of both gradient and
-non-gradient character and can so be used to study a wide variety
-of equilibrium and non-equilibrium systems modelled by Itô diffusions
-\citep{paninskiMostLikelyVoltage2006a, huangMolecularMathematicalBasis2012a, bouchet2016generalisation, maier1996scaling, wolynesNavigatingFoldingRoutes1995a, noltingBallsCupsQuasipotentials2016a, mangelBarrierTransitionsDriven1994a, gardnerConstructionGeneticToggle2000a, demarcoPhaseTransitionModel2001a, nelson1987stochastic}.
+we began our exploration of the transition path ensemble by considering the Freidlin-Wentzell limit, which corresponds to a limit of vanishing diffusivity. We presented numerical methods for computing most probable transition paths and quasi-potentials of general It\^{o} diffusion equations with additive noise. The method directly minimises the Freidlin-Wentzell action, which allowed for flexibility in choosing the path parametrisation. It uses numerical quadrature to reduce the action to a multivariate function, whose minimum is obtained by either gradient-free and gradient-based optimisation. This provides both the minimum action path and quasipotential. The direct method consisted of a discretisation of the Freidlin-Wentzell action, followed by a search for the minimum in the resulting finite-dimensional space. This approach is algorithmically simple and we showed its accuracy and efficiency on.a number of benchmark problems.
 
 
 
+In Ch.~\ref{ch:Monte Carlo methods in Path Spaces}
 
-The set of realisations of a stochastic process is a functional space, and probability measures over such spaces are therefore infinite-dimensional. The research we present in the first part of the thesis 
+ For the latter we develop a novel Markov-Chain Monte Carlo scheme defined on the infinite-dimensional space of stochastic transition paths, designed to robustly sample multiple dominant transition channels on which the path distribution concentrates. We also apply these methods to study the temperature-dependence of the TPE of a paradigmatic model system. We show how that the competition of stochastic fluctuation against drift can lead to the unintuitive result of energetically unfavourable transition channels to 
 
-These are \textit{global} in the sense of
 
-In the first part of this thesis we study and develop methods for the study of transition paths
-
-In Ch.~\ref{ch:Ritz methods for Freidlin-Wentzel-Graham actions} we began our by considering the transition path ensemble in the so-called Freidlin-Wentzell limit, which corresponds to a limit of vanishing diffusivity. {\color{red} In these regimes transition events between metastable states are rare.}
-
-In the first part of this thesis, we study and develop tools for the study of the transition path ensemble. Beginning at a limit of zero temperature, in Ch.
+we considered the TPE at finite temperatures. We applied recent mathematical developments in the field of functional Markov chain Monte Carlo methods to the sampling of stochastic transition pathways. On this foundation, we developed an MCMC scheme designed to sample TPEs with multiple competing transition channels, which we called the teleporter MCMC. The method was based on a semi-classical expansion of the path-probability measure around the dominant transition pahs of the distribution, with which we constructed independence samplers allowing for the MCMC to intermittently `teleport' between transition channels. Akin to the Ritz method of the Ch.~\ref{ch:Ritz methods for Freidlin-Wentzel-Graham actions}, the MCMC procedures were discretised using a global spectral basis. Speficially, we expanded stochastic paths in the Kosambi-Karhunen-Lo\`eve of the Brownian bridge process. We showed that spectrum of modes in this expansion can be separated into high- and low-frequency bands, where only the lower-band modes are non-trivially distributed, whilst the statistics of the latter is indistinguishable from that of free diffusion. Future research directions may involve devising multi-level MCMC schemes designed around band-structure of the KKL-based methods we developed in this chapter. Furthermore, we may consider extending the algorithm to sample transition path ensembles of field theories. 
 
 
 
+In Ch.~\ref{ch:Diffusivity dependence of transition paths}
 
-The fluctuating dynamics of many physical, chemical and biological
-systems are commonly modelled by stochastic differential equations
-expressed in Langevin or Itô forms \citep{kampenStochasticProcessesPhysics2011a, gardinerStochasticMethodsHandbook2010a, riskenFokkerPlanckEquationMethods2012a, bharucha-reidElementsTheoryMarkov2012a}.
-In such systems it is often of great interest to identify the typical
-pathways that stochastic paths take to transition from an initial
-to a final state, as for example in the nucleation of solids, the
-conformational changes in biomolecules, or shifts in ecological balance
-\citep{faccioliDominantPathwaysProtein2006a, demarcoPhaseTransitionModel2001a, gardnerConstructionGeneticToggle2000a, mangelBarrierTransitionsDriven1994a, wolynesNavigatingFoldingRoutes1995a, huangMolecularMathematicalBasis2012a, paninskiMostLikelyVoltage2006a, noltingBallsCupsQuasipotentials2016a, leeFindingMultipleReaction2017a}.
-Typically, such transition paths cluster around multiple pathways
-in the space of configurations and the relative probability of one
-or the other of these pathways depends on the drift, the diffusivity,
-and the duration allowed for the transition to take place \citep{onsagerFluctuationsIrreversibleProcesses1953a, bachFunctionalsPathsDiffusion1977a, itoProbabilisticConstructionLagrangean1978b, ikedaStochasticDifferentialEquations2014a}.
-As transitions are often rare events, direct simulations are not always
-practical and other means, analytical or numerical, are required to
-study them. Methods that allow for a full exploration of the space
-of transition pathways in stochastic dynamical systems, then, are
-of substantial theoretical and practical importance.
+ that the relative dominance of transition channels is a conspiracy between the path-probability of the instanton, reflecting the energetic cost of transition, and Gaussian normalisation constants, reflecting the fluctuations around the instanton.
 
-The theory of large deviations \citep{wentzellSmallRandomPerturbations1970, stratonovichMarkovMethodsTheory1989a, grahamMacroscopicPotentialsBifurcations1989a, arnoldStochasticDifferentialEquations1974a}, the topic of Ch.~\ref{ch:Ritz methods for Freidlin-Wentzel-Graham actions},
-provides an analytical method for obtaining transition pathways -
-instantons - in regimes dominated by the drift and for very long durations
-of path. Experimental systems, however, are typically not in a regime
-where the diffusivity is asymptotically low and durations are asymptotically
-long \citep{gladrowExperimentalMeasurementRelative2021a}. While the
-relevance of including finite-temperature fluctuations around the
-instanton \citep{gelfandIntegrationFunctionalSpaces1960a} is increasingly
-recognized \citep{nickelsenNoiseCorrectionLarge2022, corazzaNormalizedGaussianPath2020b, luGaussianApproximationsTransition2017a},
-the physical implications of these fluctuations are far from being
-understood.
 
-In this chapter, we show that the competition between drift and diffusion
-in transition pathways can be studied using the semi-classical expansions
-of the path measure of the stochastic dynamics introduced in Sec.~\ref{sec:Teleporter MCMC}. We use a mixture of
-Gaussian measures to approximate the path measure around its local
-instantons. This allows us to demarcate and transcend the boundaries
-of the low diffusivity regime, without recourse to sampling the TPE directly using MCMC methods. We demonstrate this explicitly for
-a two-dimensional overdamped mechanical system, with both conservative
-and non-conservative forces. For this system we uncover a counterintuitive
-phenomenon where typical transition paths do not concentrate around
-the most probable path, even at low-to-intermediate diffusivities
-where the Gaussian approximation is still valid. To validate our results
-numerically, and to study the TPE at high-diffusivity regimes, we use the teleporter MCMC (TMC) method developed in Ch.~\ref{ch:Monte Carlo methods in Path Spaces},
-that allows for simultaneous exploration of multiple transition pathways. We
-find excellent agreement between the semi-classical expansion and
-numerical results for a large range of diffusivities and path durations. The results presented in this chapter was the result of collaborative work published as a pre-print in \citep{kikuchiDiffusivityDependenceTransition2022}, of which the author of this text was the primary contributor.
+we studied the concentration of competing transition channels in the transition path ensemble, as a function of diffusivity. Using two model systems, we showed that the dominant transition channel does not in general coincide with most probable paths of the path measure, even in a low-to-intermediate temperature regime. We approximated the TPE as mixed Gaussian measures using the semi-classical expansions developed in the previous chapter, using which we constructed semi-analytical approximators of channel rate probabilities. In the regime of validity of these approximators, we showed that the relative dominance of transition channels is a conspiracy between the path-probability of the instanton, reflecting the energetic cost of transition, and Gaussian normalisation constants, reflecting the fluctuations around the instanton.
+
 
 
 
 
 \section*{Introduction to Part II}
 
+A wide range of structures exhibit properties of softness and slenderness, from biological materials like cilia \citep{guMagneticCiliaCarpets2020} and cellular membranes \citep{krishnaswamyCosserattypeModelRed1996}, to strands of DNA \citep{corazzaUnravelingLoopingEfficiency2022} and hydrogels \citep{rajanMechanicsViscoelasticBuckling2019}. In this instance `soft' refers to the constitutive properties of the material, like that of rubber or biological tissue, and `slender' refers to its geometrical thinness.
 
-
+- Also include references to research that have been done using cosserat theory.
 
 
 
@@ -325,13 +242,34 @@ Maybe incorporate stuff from your talk in the geometry part of the intro. triang
 
 
 
+
+
+In Ch.~\ref{eq:geometry introduction} we began our study of the geometric continuum mechanics of systems with Lie group- or homogeneous configuration spaces. We reviewed the classical theories that our work builds on, and developed the necessary mathematical tools for the results of the subsequent chapters. Of these, the mathematical preliminaries, though dense, by itself foreshadows and serves as a dry-run for the geometrical treatment that was to come.
+
+In Ch.~\ref{ch:Cosserat rods} we derived the kinematic and dynamic - in short, kinodynamic - equations of Cosserat rods and filaments. These were chosen as paradigmatic examples of systems with Lie group- and homogeneous configuration spaces, and served as a foundation for the generalisations of the chapter that followed. We identified the configuration space of the Cosserat rod as the special Euclidean group $SE(3)$, and used the Euler-Poincaré theorem to find conservative force and moment balance equations. Furthermore, we constructed a generalised Lagrange-D'Alembert principle from which arbitrary non-conservative dynamics can be derived, and expressed the resulting kinodynamic equations of motion in terms of a spatial reconstruction field $X$ and generalised momentum field $S$, which are defined on the Lie algebra and its dual respectively. This Lie algebraic formulation was shown to naturally lead to kinodynamics expressed in terms of the intrinsic geometry of the rod. We then studied the filament model, which we devised as a Cosserat rod subject to kinematic constraints, and found its kinodynamic equations of motion. We thus demonstrated how systems with homogeneous configuration spaces can be obtained by imposing kinematic constraints on Lie group-configured systems.
+
+In Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} we studied generalised Cosserat systems, which we defined as continuum bodies with a material base of general topology, and Lie group- or homogeneous configuration spaces. We formulated a general theory of the kinodynamics of such systems, which we called a generalised geometric Cosserat theory (GGCT). The cornerstone of the programme was to use the exponential map to relate the spatio-temporal configuraiton of the system to Lie algebra-valued reconstruction fields. This allowed us to express the kinodynamics of generalised Cosserat systems directly in terms of its intrinsic geometry. We applied the GGCT to derive the kinodynamic equations of motion for a variety of known and new systems, which included the classical suite of Cosserat surfaces and bodies, Cosserat rods on spheres and in Minkowski space, as well as an application for non-linear $\sigma$ field theory.
+
+In Ch.~\ref{ch:Geometric numerical integrators} we developed geometric integrators for generalised Cosserat systems. We saw this as an application of Lie group integration theory to the infinite-dimensional setting of continuum systems. We demonstrated that our integrators preserve spatial integrability using the example of a Cosserat surface, and compared their performance to standard non-geometrical numeric integrators. We also showed that other qualitative features, like the closure of a rod, are preserved by our integrators.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %%%% Introduce soft and slender matter and give examples.
 % Todo:
 % - Include soft robotics as example
 
-A wide range of structures exhibit properties of softness and slenderness, from biological materials like cilia \citep{guMagneticCiliaCarpets2020} and cellular membranes \citep{krishnaswamyCosserattypeModelRed1996}, to strands of DNA \citep{corazzaUnravelingLoopingEfficiency2022} and hydrogels \citep{rajanMechanicsViscoelasticBuckling2019}. In this instance `soft' refers to the constitutive properties of the material, like that of rubber or biological tissue, and `slender' refers to its geometrical thinness.
 
-- Also include references to research that have been done using cosserat theory.
 
 %Cosserat theories are being used to describe an increasing number of physical phenomena. For example, Green, Naghdi and their coworkers have developed Cosserat theories for many applications which include: shells (Naghdi, 1972); rods (Green et aI., I 974a,b); fluid jets and sheets (Naghdi, 1979); electromagnetic effects in shells (Green and Naghdi, 1983) and rods (Green and Naghdi, 1985); turbulence (Marshall and Naghdi, 1989a,b); microcrack growth (Marshall et aI., 1991); composite materials (Green and Naghdi, 1991); and a model of dislocations in three-dimensional plasticity theory (Naghdi and Srinivasa, 1993a,b). In addition, a computer search of the Compendex and Inspec data bases indicates that Cosserat theories are also being used to describe: finite elements (Simo and Fox, 1989), (Simo et aI., 1989) and (Simo et aI., 1990); shearbanding and liquefaction in granular materials (Vardoulakis, 1989); fracture of bone (Lakes et aI., 1990); size effects in rocks (Sulem and Vardoulakis, 1990) and foams (Lakes, 1993); liquid bridges subjected to microgravity (Meseguer and Perales, 1992); grain rotations in granular media (Alehossein and Muhlhaus, 1994); suppression of localization in plasticity (De Borst, 1991; Iordache and Willam, 1995); fracture scaling parameters of inhomogeneous microstructure in composites (Cairns et a!., 1995); micromechanics of inclusions (Cheng and He, 1995) and failure of welds (Craine and Newman, 1996)
 

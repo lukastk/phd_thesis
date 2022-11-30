@@ -134,7 +134,7 @@ S[x(t)]=\lim_{\delta\to0}\lim_{\varepsilon\to0}-\varepsilon\ln P\left[\sup_{0\le
 \]
 The limits must be taken in the order above as they do not commute.
 Eq.~\ref{eq:FW-LDP} is a large deviation principle for trajectories
-of Itô processes, due to Wentzell and Freidlin and Graham \citep{touchetteLargeDeviationApproach2009}.
+of Itô processes, due to Wentzell and Freidlin and Graham \citep{touchetteLargeDeviationApproach2009}. This limit is often referred to as the \textit{Freidlin-Wentzell limit}.
 
 For reasons described below, it is of interest to obtain the mode
 of the tube probability over the set of continuous paths
@@ -1952,7 +1952,7 @@ Many applications of MCMC methods involve state-spaces that consist of large or 
         \label{fig:example_2D_dist_with_TMC}
     \end{subfigure}
     \caption[ ]
-    {\small MCMC samples of a $2$-dimensional distribution with two segregated regions of high probability. (a) An illustration of an RMW scheme that fails to mix between the two regions. (b) An illustration of the TMC scheme, that teleports between the two regions to sample both simultaneously. }
+    {\small MCMC samples of a $2$-dimensional distribution with two segregated regions of high probability. (a) An illustration of an RMW scheme that fails to mix between the two regions. (b) An illustration of the TMC scheme, that `teleports' between the two regions to sample both simultaneously. }
 \end{figure*} 
 
 %consisting of a weighted mixture of two multi-variate Gaussians. If the means of the two Gaussians are sufficiently displaced from each other, and if their variances are such that they have negligible overlap, then we expect slow mixing to be likely during sampling. Fig.~\ref{fig:example_2D_dist_with_RMW} illustrates an example of an RMW sampling a mixture of two $2$-dimensional multi-variate Gaussians. Whilst the chain will thoroughly sample the local vicinity of its current state, it might only rarely traverse between the Gaussians. The resulting sample might not be representative of the target measure, as it is incorrectly skewed towards one of the two Gaussians. 
@@ -2310,10 +2310,7 @@ systems are commonly modelled by stochastic differential equations
 expressed in Langevin or Itô forms \citep{kampenStochasticProcessesPhysics2011a, gardinerStochasticMethodsHandbook2010a, riskenFokkerPlanckEquationMethods2012a, bharucha-reidElementsTheoryMarkov2012a}.
 In such systems it is often of great interest to identify the typical
 pathways that stochastic paths take to transition from an initial
-to a final state, as for example in the nucleation of solids, the
-conformational changes in biomolecules, or shifts in ecological balance
-\citep{faccioliDominantPathwaysProtein2006a, demarcoPhaseTransitionModel2001a, gardnerConstructionGeneticToggle2000a, mangelBarrierTransitionsDriven1994a, wolynesNavigatingFoldingRoutes1995a, huangMolecularMathematicalBasis2012a, paninskiMostLikelyVoltage2006a, noltingBallsCupsQuasipotentials2016a, leeFindingMultipleReaction2017a}.
-Typically, such transition paths cluster around multiple pathways
+to a final state \citep{faccioliDominantPathwaysProtein2006a, demarcoPhaseTransitionModel2001a, gardnerConstructionGeneticToggle2000a, mangelBarrierTransitionsDriven1994a, wolynesNavigatingFoldingRoutes1995a, huangMolecularMathematicalBasis2012a, paninskiMostLikelyVoltage2006a, noltingBallsCupsQuasipotentials2016a, leeFindingMultipleReaction2017a}.  Typically, such transition paths cluster around multiple pathways
 in the space of configurations and the relative probability of one
 or the other of these pathways depends on the drift, the diffusivity,
 and the duration allowed for the transition to take place \citep{onsagerFluctuationsIrreversibleProcesses1953a, bachFunctionalsPathsDiffusion1977a, itoProbabilisticConstructionLagrangean1978b, ikedaStochasticDifferentialEquations2014a}.
