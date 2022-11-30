@@ -200,19 +200,106 @@ In Ch.~\ref{ch:Diffusivity dependence of transition paths}, the final chapter of
 \section*{\large Geometric mechanics of microstructured soft matter}
 \addcontentsline{toc}{section}{Geometric mechanics of microstructured soft matter}
 
-Solids and liquids are generally viewed from a macroscopic perspective as continuous materials that can continuously deform in time. In \textit{infinitesimal strain theory} \citep{landauTheoryElasticityVolume1986}, the deformations are assumed small enough to not significantly affect the overall shape. However, in the case of soft materials, 
+Solids and liquids are generally viewed from a macroscopic perspective as continuous materials that can continuously deform in time. In \textit{infinitesimal strain theory} \citep{landauTheoryElasticityVolume1986}, the deformations are assumed small enough to not significantly affect the overall shape. However, this assumption does not hold soft matter materials, that are often highly deformable \citep{volokhMechanicsSoftMaterials2019}. Furthermore, beyond the spatial extension of the continuum body, many systems relevant to soft matter physics \citep{krishnaswamyCosserattypeModelRed1996, rangamaniSmallScaleMembrane2014, sackBiologicalTissueMechanics2016, zhangModelingSimulationComplex2019, corazzaUnravelingLoopingEfficiency2022} also have internal degrees of freedom, which we call \textit{microstructure}. The classical account of microstructured continuum mechanics was given in the seminal work of the Cosserat brothers \cite{cosseratTheoryDeformableBodies1909} in 1909. There, they introduced the notion of a what is now called a \textit{Cosserat material}: A continuum body $\mathcal{M} \subset \mathbb{E}^3$, where there are $n$ deformable vectors, known as \textit{directors}, attached at each point $p \in \mathcal{M}$. For such systems, they derived the mechanical equation of motion of the spatial continuum body $\mathcal{M}$ as well as the $n$ director-fields on $\mathcal{M}$. This formalism is applicable to many physical systems. The shell of a cell membranes can be modelled as a mid-surface in Euclidean space, with a single director that point towards and away from the inner and outer shell boundaries respectively \citep{krishnaswamyCosserattypeModelRed1996, rangamaniSmallScaleMembrane2014}. The corresponding one-dimensional model is the Cosserat rod, which consists of a center-line curve and two director fields representing the deformation of its cross-section. Such models are prominently used in soft robotics \citep{rendaDiscreteCosseratApproach2018, graziosoGeometricallyExactModel2019, rendaDiscreteCosseratApproach2016, caasenbroodEnergyShapingControllersSoft2022, boyerMacrocontinuousComputedTorque2006, boyerMacrocontinuousDynamicsHyperredundant2012, rendaDynamicModelMultibending2014, verlSoftRoboticsTransferring2015, naughtonElasticaCompliantMechanics2021}, the modelling of muscles and ligaments \citep{sackBiologicalTissueMechanics2016, zhangModelingSimulationComplex2019}, and three-dimensional Cosserat models are frequently used in material science \citep{stefanouCosseratApproachLocalization2017,
+forestCosseratModellingSize2000,
+altenbachCosseratMedia2013,
+ebrahimianNumericalStudyInterface2021,
+mohanFrictionalCosseratModel1999,
+koteraCosseratContinuumTheory2000,
+stefanouThreedimensionalCosseratHomogenization2008,
+onckCosseratModelingCellular2002,
+iesanDeformationPorousCosserat2011}. There are also many examples in nature of active filaments \citep{moultonElasticSecretsChameleon2016, oliveriTheoryDurotacticAxon2021, kierTonguesTentaclesTrunks1985, moultonMultiscaleIntegrationEnvironmental2020}, which are slender rods \citep{kirchhoffUeberGleichgewichtUnd1859, dillKirchhoffTheoryRods1992, gorielyNonlinearDynamicsFilaments2000} that have internal configurations \citep{kaczmarskiActiveFilamentsCurvature2022}.
+
+In contrast to rigid bodies, which we can only subject to external forcing, a continuum system admits the notion of a \textit{stress}. That is, the dynamics of continua are \textit{constitutive}, and force fields that arise due to internal stresses are functions not of the deformations themselves, but its rate-of-change. For continua without microstructure, connections can be made between continuum mechanics and standard concepts in Riemannian geometry. For example, the rate of deformation can be related to a Lie derivative of the Riemannian metric \citep{marsdenMathematicalFoundationsElasticity1994}. As the relevant dynamical quantities for constitutive continuum mechanics are defined in terms the derivatives of their deformations, it may be convenient to parameterise its mechanics in terms of its intrinsic geometry. An extensive literature on such geometrisations exist for the case of systems without microstructure \citep{marsdenMathematicalFoundationsElasticity1994, wangIntroductionRationalElasticity1973, wangGeometricStructuresSimple1967, greenMechanicsNonlinearMaterials1957, lublinerMethodVirtualPower, nollMathematicalTheoryMechanical1958}. Though Cosserat theory, and microstructured models in general, are used widely, there is no extensive literature on equivalent geometrised theories for such systems. In \citep{yamaokaContinuumDynamicsVector2010} a formulation analogous to the Riemannian approach applied to Cosserat media, using a vector bundle construction.
+
+However there is a more natural geometrical formulation for Cosserat materials. Namely, we can identify a \textit{Lie group structure} in their kinematic configuration spaces. Such approaches have been exemplified previously in \citep{giusteriSimulationViscoelasticCosserat2021, giusteriImportanceEffectivenessRepresenting, chirikjianStochasticElasticaExcludedVolume2008, holmMatrixGstrands2014}. There, a Cosserat rod with a rigid-body cross-section was kinematically parameterised as a sub-manifold of $SE(3)$, the Lie group of translations and rotations on three-dimensional Euclidean space. This formulation naturally lends itself to formulating the kinematics and dynamics, which we will abbreviate as \textit{kinodynamics} \citep{donaldKinodynamicMotionPlanning1993, donaldProvablyGoodApproximation1995} henceforth, in terms of the corresponding \textit{Lie algebra} $\mathfrak{se}(3)$, using the Lie group-Lie algebra correspondence. The resulting kinodynamic equations of motion are encapsulate the intrinsic geometry of both the external and internal degrees of freedom of the Cosserat rod.
+
+In the second part of this thesis, we will construct a general theory of the geometric mechanics of continuum systems with configuration spaces  
+
+the kinematical configuration space of Cosserat materials can be identified with 
+
+
+coordinatised apoprach  \citep{naughtonElasticaCompliantMechanics2021}
+
+A broader programme exists in the continuum
+
+on the system are not only functions of the deformations, but the \textit{derivatives}
+
+
+
+
+ in the case of soft materials, 
 
 Furthermore many have internal degrees of freedom.
 
 Classical theory of Cosserat brothers
 
-The dynamics of such a system primarily deals with \textit{stresses}, which are the constitutive forces acting on such a system. In contrast to rigid body mechanics, such forces do not primarily act on displacements of the 
+The dynamics of such a system primarily deals with \textit{stresses}, which are the constitutive forces acting on such a system. In contrast to rigid body mechanics, such forces do not primarily act on displacements (or deformations) $\delta \mathbf{r}$ of the system, but rather the \textit{derivatives} of the deformations. That is, constitutive mechanics is expressed in terms of the inteinsic geomery of the ssytem. If we see the system as a manifold, then this should mean that we can apprporiately model the system within the language of differential geometry. For undirected media, there is a clear corespondence, The rate of deformation tensor is just the Lie derivative of the Riemannian metric on space, and that the Cauchy-Green tensor is the pull-back of the Riemannian metric on space by the deformation. \citep{marsdenMathematicalFoundationsElasticity1994} efforts to extend this to continuum system with microstructure were taken in \citep{yamaokaContinuumDynamicsVector2010}, using a vector bundle construction. 
+
+here we take a different approach. Lie group structure. Integrability. This is a generalisation of the kind of continuum mechanics dicussed by marsedne, but in the continuum setting.
+
+
 
 There have been attempts and formualtion 
 
 , the amount of deformation of solids is relatively small and does not affect their overall shape. However, in the case of soft materials, there is the potential for significant distortions.
 
 Macroscopically, solids and liquids are usually seen as continuous entities that can deform over time. While in classical engineering applications, the deformation of solids remain small enough so that their geometry is not dramatically affected, soft materials can exhibit very large distortions. 
+
+\citep{marsdenMathematicalFoundationsElasticity1994, wangIntroductionRationalElasticity1973, wangGeometricStructuresSimple1967, greenMechanicsNonlinearMaterials1957, lublinerMethodVirtualPower, nollMathematicalTheoryMechanical1958}
+
+
+\begin{comment}
+Lit review:
+
+\citep{parkCosseratMicromechanicsHuman1986, ivanovaNewTheoryCosserat2022, pariaUnifiedTheoryMechanics1978, ivanovaModelingPhysicalFields, gorielyRodTheoryLiquid2022}
+
+
+% modelling of muscles and ligaments
+
+\citep{stefanouCosseratApproachLocalization2017}, polycrystalline \citep{forestCosseratModellingSize2000} and composite materials \citep{altenbachCosseratMedia2013}, granular and powder-like materials \citep{ebrahimianNumericalStudyInterface2021, mohanFrictionalCosseratModel1999, koteraCosseratContinuumTheory2000}, masonries \citep{stefanouThreedimensionalCosseratHomogenization2008}, cellular \citep{onckCosseratModelingCellular2002} or porous media and foams \citep{iesanDeformationPorousCosserat2011}, bones \citep{parkCosseratMicromechanicsHuman1986}, liquid
+crystals \citep{epsteinContinuousDistributionsInhomogeneities2001, gorielyRodTheoryLiquid2022}, as well as electromagnetic and ferromagnetic media \citep{ivanovaNewTheoryCosserat2022, pariaUnifiedTheoryMechanics1978, ivanovaModelingPhysicalFields}
+
+\citep{krishnaswamyCosserattypeModelRed1996, rangamaniSmallScaleMembrane2014}
+
+ many systems relevant to soft matter physics 
+
+\citep{ericksenLiquidCrystalsCosserat1974}
+
+soft robotics 
+
+cell membranes \citep{krishnaswamyCosserattypeModelRed1996, rangamaniSmallScaleMembrane2014}
+
+biological tissue \citep{sackBiologicalTissueMechanics2016, zhangModelingSimulationComplex2019}
+
+soft matter: 
+
+active filaments \citep{laskarBrownianMicrohydrodynamicsActive2015, laskarFilamentActuationActive2017, kaczmarskiActiveFilamentsCurvature2022, pandeyFlowinducedNonequilibriumSelfassembly2016}
+
+filaments \citep{gazzolaForwardInverseProblems2018, goldsteinFrontProgagationPearling1996, goldsteinViscousNonlinearDynamics1998, goldsteinNonlinearDynamicsStiff1995}
+
+Many applicaitons in engineering and continuum mechanics:
+ soils \citep{stefanouCosseratApproachLocalization2017}, polycrystalline \citep{forestCosseratModellingSize2000} and composite materials \citep{altenbachCosseratMedia2013}, granular and powder-like materials \citep{ebrahimianNumericalStudyInterface2021, mohanFrictionalCosseratModel1999, koteraCosseratContinuumTheory2000}, masonries \citep{stefanouThreedimensionalCosseratHomogenization2008}, cellular \citep{onckCosseratModelingCellular2002} or porous media and foams \citep{iesanDeformationPorousCosserat2011}, bones \citep{parkCosseratMicromechanicsHuman1986}, liquid
+crystals \citep{epsteinContinuousDistributionsInhomogeneities2001, gorielyRodTheoryLiquid2022}, as well as electromagnetic and ferromagnetic media \citep{ivanovaNewTheoryCosserat2022, pariaUnifiedTheoryMechanics1978, ivanovaModelingPhysicalFields}
+
+\end{comment}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 in general non-equilibrium we formualte
 
@@ -272,7 +359,6 @@ on the fiber bundle theory in differential geometry
 
 %Cosserat theories are being used to describe an increasing number of physical phenomena. For example, Green, Naghdi and their coworkers have developed Cosserat theories for many applications which include: shells (Naghdi, 1972); rods (Green et aI., I 974a,b); fluid jets and sheets (Naghdi, 1979); electromagnetic effects in shells (Green and Naghdi, 1983) and rods (Green and Naghdi, 1985); turbulence (Marshall and Naghdi, 1989a,b); microcrack growth (Marshall et aI., 1991); composite materials (Green and Naghdi, 1991); and a model of dislocations in three-dimensional plasticity theory (Naghdi and Srinivasa, 1993a,b). In addition, a computer search of the Compendex and Inspec data bases indicates that Cosserat theories are also being used to describe: finite elements (Simo and Fox, 1989), (Simo et aI., 1989) and (Simo et aI., 1990); shearbanding and liquefaction in granular materials (Vardoulakis, 1989); fracture of bone (Lakes et aI., 1990); size effects in rocks (Sulem and Vardoulakis, 1990) and foams (Lakes, 1993); liquid bridges subjected to microgravity (Meseguer and Perales, 1992); grain rotations in granular media (Alehossein and Muhlhaus, 1994); suppression of localization in plasticity (De Borst, 1991; Iordache and Willam, 1995); fracture scaling parameters of inhomogeneous microstructure in composites (Cairns et a!., 1995); micromechanics of inclusions (Cheng and He, 1995) and failure of welds (Craine and Newman, 1996)
 
-\citep{marsdenMathematicalFoundationsElasticity1994, wangIntroductionRationalElasticity1973, wangGeometricStructuresSimple1967, greenMechanicsNonlinearMaterials1957, lublinerMethodVirtualPower, yamaokaContinuumDynamicsVector2010, nollMathematicalTheoryMechanical1958}
 
 
 
@@ -304,29 +390,12 @@ In contrats
 
 References:
 
-soft robotics \citep{rendaDiscreteCosseratApproach2018, graziosoGeometricallyExactModel2019, rendaDiscreteCosseratApproach2016, caasenbroodEnergyShapingControllersSoft2022, boyerMacrocontinuousComputedTorque2006, boyerMacrocontinuousDynamicsHyperredundant2012, rendaDynamicModelMultibending2014, verlSoftRoboticsTransferring2015, naughtonElasticaCompliantMechanics2021}
-
-cell membranes \citep{krishnaswamyCosserattypeModelRed1996, rangamaniSmallScaleMembrane2014}
-
-biological tissue \citep{sackBiologicalTissueMechanics2016, zhangModelingSimulationComplex2019}
-
-soft matter: 
-
-active filaments \citep{laskarBrownianMicrohydrodynamicsActive2015, laskarFilamentActuationActive2017, kaczmarskiActiveFilamentsCurvature2022, pandeyFlowinducedNonequilibriumSelfassembly2016}
-
-filaments \citep{gazzolaForwardInverseProblems2018, goldsteinFrontProgagationPearling1996, goldsteinViscousNonlinearDynamics1998, goldsteinNonlinearDynamicsStiff1995}
-
-
-
-Many applicaitons in engineering and continuum mechanics:
- soils \citep{stefanouCosseratApproachLocalization2017}, polycrystalline \citep{forestCosseratModellingSize2000} and composite materials \citep{altenbachCosseratMedia2013}, granular and powder-like materials \citep{ebrahimianNumericalStudyInterface2021, mohanFrictionalCosseratModel1999, koteraCosseratContinuumTheory2000}, masonries \citep{stefanouThreedimensionalCosseratHomogenization2008}, cellular \citep{onckCosseratModelingCellular2002} or porous media and foams \citep{iesanDeformationPorousCosserat2011}, bones \citep{parkCosseratMicromechanicsHuman1986}, liquid
-crystals \citep{epsteinContinuousDistributionsInhomogeneities2001, gorielyRodTheoryLiquid2022}, as well as electromagnetic and ferromagnetic media \citep{ivanovaNewTheoryCosserat2022, pariaUnifiedTheoryMechanics1978, ivanovaModelingPhysicalFields}
 
 
 
 
 
-In Ch.~\ref{eq:geometry introduction} we began our study of the geometric continuum mechanics of systems with Lie group- or homogeneous configuration spaces. We reviewed the classical theories that our work builds on, and developed the necessary mathematical tools for the results of the subsequent chapters. Of these, the mathematical preliminaries, though dense, by itself foreshadows and serves as a dry-run for the geometrical treatment that was to come.
+In Ch.~\ref{sec:geometry introduction} we began our study of the geometric continuum mechanics of systems with Lie group- or homogeneous configuration spaces. We reviewed the classical theories that our work builds on, and developed the necessary mathematical tools for the results of the subsequent chapters. Of these, the mathematical preliminaries, though dense, by itself foreshadows and serves as a dry-run for the geometrical treatment that was to come.
 
 In Ch.~\ref{ch:Cosserat rods} we derived the kinematic and dynamic - in short, kinodynamic - equations of Cosserat rods and filaments. These were chosen as paradigmatic examples of systems with Lie group- and homogeneous configuration spaces, and served as a foundation for the generalisations of the chapter that followed. We identified the configuration space of the Cosserat rod as the special Euclidean group $SE(3)$, and used the Euler-Poincaré theorem to find conservative force and moment balance equations. Furthermore, we constructed a generalised Lagrange-D'Alembert principle from which arbitrary non-conservative dynamics can be derived, and expressed the resulting kinodynamic equations of motion in terms of a spatial reconstruction field $X$ and generalised momentum field $S$, which are defined on the Lie algebra and its dual respectively. This Lie algebraic formulation was shown to naturally lead to kinodynamics expressed in terms of the intrinsic geometry of the rod. We then studied the filament model, which we devised as a Cosserat rod subject to kinematic constraints, and found its kinodynamic equations of motion. We thus demonstrated how systems with homogeneous configuration spaces can be obtained by imposing kinematic constraints on Lie group-configured systems.
 
