@@ -3,11 +3,30 @@
 
 
 
-\chapter{Introduction}
+\chapter{Introduction} \label{eq:geometry introduction}
+
+Start with the ubiquity of the technique.
+
+Then say that there is recently some study into the geometrisaiton of the cosserat rod (giusteri). 
+
+There is also extended literature on lie group mechanics (marsden), and integrators.
+
+Here we build a theory that is a synthesis of all of these. We start with cosserat, then generalise, and then we also build lie integrators.
+
+Continuum mechanics are well-studied in engeineering, as well as cosserat systems with internal degrees of freedom. Simultaneously, there is a wide literature on geometric formulation of finite-dimensinoal systems, as well as on geometric integrators. The primary work of this text is to synthesise these two in a programmatic framework.
+
+A wide range of structures exhibit properties of softness and slenderness, from biological materials like cilia \citep{guMagneticCiliaCarpets2020} and cellular membranes \citep{krishnaswamyCosserattypeModelRed1996}, to strands of DNA \citep{corazzaUnravelingLoopingEfficiency2022} and hydrogels \citep{rajanMechanicsViscoelasticBuckling2019}. In this instance `soft' refers to the constitutive properties of the material, like that of rubber or biological tissue, and `slender' refers to its geometrical thinness.
+
+- Also include references to research that have been done using cosserat theory.
+
+%Cosserat theories are being used to describe an increasing number of physical phenomena. For example, Green, Naghdi and their coworkers have developed Cosserat theories for many applications which include: shells (Naghdi, 1972); rods (Green et aI., I 974a,b); fluid jets and sheets (Naghdi, 1979); electromagnetic effects in shells (Green and Naghdi, 1983) and rods (Green and Naghdi, 1985); turbulence (Marshall and Naghdi, 1989a,b); microcrack growth (Marshall et aI., 1991); composite materials (Green and Naghdi, 1991); and a model of dislocations in three-dimensional plasticity theory (Naghdi and Srinivasa, 1993a,b). In addition, a computer search of the Compendex and Inspec data bases indicates that Cosserat theories are also being used to describe: finite elements (Simo and Fox, 1989), (Simo et aI., 1989) and (Simo et aI., 1990); shearbanding and liquefaction in granular materials (Vardoulakis, 1989); fracture of bone (Lakes et aI., 1990); size effects in rocks (Sulem and Vardoulakis, 1990) and foams (Lakes, 1993); liquid bridges subjected to microgravity (Meseguer and Perales, 1992); grain rotations in granular media (Alehossein and Muhlhaus, 1994); suppression of localization in plasticity (De Borst, 1991; Iordache and Willam, 1995); fracture scaling parameters of inhomogeneous microstructure in composites (Cairns et a!., 1995); micromechanics of inclusions (Cheng and He, 1995) and failure of welds (Craine and Newman, 1996)
+
 
 {\color{red} Something more should be said here, prefacing the geometricisation programme. Below are some notes and random scribbles.}
 
-We provide a general framework with which to derive the kinodynamical - kinematic and dynamical - equations of motion of continuum system with both internal and external degrees of freedom. For instance, the purview of continuum mechanics is the dynamics of sub-manifolds of $\mathbb{E}^3$. Continuum mechanics thus considers systems where the external configuration space is $\mathbb{E}^3$, but there are no internal degrees of freedom. Our framework can generalise these dynamics to settings where the point-continua have internal degrees of freedom, such as orientation or spin.
+We provide a general framework with which to derive the - kinodynamical - kinematic and dynamical - equations of motion of continuum system with both internal and external degrees of freedom. For instance, the purview of continuum mechanics is the dynamics of sub-manifolds of $\mathbb{E}^3$. Continuum mechanics thus considers systems where the external configuration space is $\mathbb{E}^3$, but there are no internal degrees of freedom. Our framework can generalise these dynamics to settings where the point-continua have internal degrees of freedom, such as orientation or spin.
+
+\textit{Kinodynamics}, which is a term we borrowed from the field of robotics \citep{donaldKinodynamicMotionPlanning1993, donaldProvablyGoodApproximation1995}, refers to the combined 
 
 Extending the continuum mechanics analogy, we can consider a system that is a sub-manifold $M_\text{ext} \subset \mathbb{X}$ of some homogeneous space $\mathbb{X}$, corresponding to the external degrees of freedom of the system. Each point-continua $M_\text{ext} $ can also have an internal configuration, which can take values in some Lie group $H$. When we can write $\mathbb{X} = G / H$, then the configuration of the whole system described as $M \subset G$, which includes both external and internal degrees of freedom. We call this class of system \textit{generalised Cosserat media}. An example is that of a Cosserat rod, which is a $1$-dimensional rod embedded in $3$-dimensional Euclidean space, where at each material point along the rod there is attached an orthonormal frame $(\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3)$. We thus have $\mathbb{X} = \mathbb{E}^3 = SE(3) / SO(3)$, and $H = SO(3)$, and $G = SE(3)$. We also consider the case when the total kinematic configuration space is not a Lie group.
   
@@ -25,7 +44,7 @@ References:
 
 soft robotics \citep{rendaDiscreteCosseratApproach2018, graziosoGeometricallyExactModel2019, rendaDiscreteCosseratApproach2016, caasenbroodEnergyShapingControllersSoft2022, boyerMacrocontinuousComputedTorque2006, boyerMacrocontinuousDynamicsHyperredundant2012, rendaDynamicModelMultibending2014, verlSoftRoboticsTransferring2015, naughtonElasticaCompliantMechanics2021}
 
-cell membranes \citep{krishnaswamyCosserattypeModelRed1996a, rangamaniSmallScaleMembrane2014}
+cell membranes \citep{krishnaswamyCosserattypeModelRed1996, rangamaniSmallScaleMembrane2014}
 
 biological tissue \citep{sackBiologicalTissueMechanics2016, zhangModelingSimulationComplex2019}
 
@@ -33,7 +52,7 @@ soft matter:
 
 active filaments \citep{laskarBrownianMicrohydrodynamicsActive2015, laskarFilamentActuationActive2017, kaczmarskiActiveFilamentsCurvature2022, pandeyFlowinducedNonequilibriumSelfassembly2016}
 
-filaments \citep{gazzolaForwardInverseProblems, goldsteinFrontProgagationPearling1996, goldsteinViscousNonlinearDynamics1998, goldsteinNonlinearDynamicsStiff1995}
+filaments \citep{gazzolaForwardInverseProblems2018, goldsteinFrontProgagationPearling1996, goldsteinViscousNonlinearDynamics1998, goldsteinNonlinearDynamicsStiff1995}
 
 
 
@@ -42,22 +61,20 @@ Many applicaitons in engineering and continuum mechanics:
 crystals \citep{epsteinContinuousDistributionsInhomogeneities2001, gorielyRodTheoryLiquid2022}, as well as electromagnetic and ferromagnetic media \citep{ivanovaNewTheoryCosserat2022, pariaUnifiedTheoryMechanics1978, ivanovaModelingPhysicalFields}
 
 
-Notation Appendix \ref{app:glossary of notation}
-
 
 \section{Classical Cosserat theory} \label{sec:Classical Cosserat theory}
 
-Classical continuum mechanics study elastic materials as manifolds $M \subset \mathbb{E}$ of point-continua $\mathbf{x} \in M$, where $\mathbb{E} \cong \mathbb{R}^3$ is 3-dimensional Euclidean space. Points in the material have three translational degrees of freedom, and the elastic response to displacements away from the rest configuration is determined by the symmetric Cauchy stress 2-tensor $\boldsymbol{\sigma}$. The momentum transport within the continuum is given by the \textit{Cauchy momentum equation}
+Classical continuum mechanics study elastic materials as manifolds $\mathcal{M} \subset \mathbb{E}^3$ of point-continua $\mathbf{x} \in \mathcal{M}$, where $\mathbb{E}^3 \cong \mathbb{R}^3$ is 3-dimensional Euclidean space. Points in the material have three translational degrees of freedom, and the elastic response to displacements away from the rest configuration is determined by the symmetric Cauchy stress 2-tensor $\boldsymbol{\sigma}$. The momentum transport within the continuum is given by the \textit{Cauchy momentum equation}
 \begin{equation} \label{eq:Cauchy momentum equation}
 \rho \frac{D \mathbf{v} }{D t} = \nabla \cdot \boldsymbol{\sigma} + \mathbf{f}
 \end{equation}
-where $\rho$ is the mass density, $\mathbf{v}$ is the flow velocity field, $\mathbf{f}$ are body forces per unit volume (e.g. gravity $\mathbf{f} = \rho \mathbf{g}$), and $D/Dt$ the material derivative. Eq.~\eqref{eq:Cauchy momentum equation} is a non-linear PDE in three spatial dimensions and time. In the treatment of a given system, these equations of motion must thus be satisfied at each material point $\mathbf{x} \in M$ as well as obey necessary conditions at the boundaries $\partial M$ of the body.
+where $\rho$ is the mass density, $\mathbf{v}$ is the flow velocity field, $\mathbf{f}$ are body forces per unit volume (e.g. gravity $\mathbf{f} = \rho \mathbf{g}$), and $D/Dt$ the material derivative. Eq.~\eqref{eq:Cauchy momentum equation} is a non-linear PDE in three spatial dimensions and time. In the treatment of a given system, these equations of motion must thus be satisfied at each material point $\mathbf{x} \in \mathcal{M}$ as well as obey necessary conditions at the boundaries $\partial \mathcal{M}$ of the body.
 
 However, many systems have geometric properties that make them amenable to simplified treatments. Slender systems, for instance, are `thin' in one or more spatial dimensions. This often makes it feasible to model slender shells in two spatial dimensions and time, and slender rods in one spatial dimension and time. In such cases the continuum configuration of the bulk can then be suitably substituted with other, model-specific, internal degrees of freedom.
 
-The suite of models proposed by the Cosserat brothers \citep{cosseratTheoryDeformableBodies1909} in 1909 are one of the more prominent approaches by which one can study slender materials. Their approach is that of an extended continuum theory that, in addition to the manifold of point-continua $M$, included a set of \textit{directors} (three-dimensional vectors) at each point $\mathbf{x} \in M$. We thus refer to these systems as \textit{directed media}, as opposed to the undirected media of classical continuum mechanics. The physical interpretation of the directors are a matter of constitutive modelling. For three-dimensional continuum bodies, the directors could represent polar continua which has been used to study the properties of asymmetric Cauchy stress tensors, as in the case of liquid crystals~\citep{ericksenConservationLawsLiquid1961}.
+The suite of models proposed by the Cosserat brothers \citep{cosseratTheoryDeformableBodies1909} in 1909 are one of the more prominent approaches by which one can study slender materials. Their approach is that of an extended continuum theory that, in addition to the manifold of point-continua $\mathcal{M}$, included a set of \textit{directors} (three-dimensional vectors) at each point $\mathbf{x} \in \mathcal{M}$. We thus refer to these systems as \textit{directed media}, as opposed to the undirected media of classical continuum mechanics. The physical interpretation of the directors are a matter of constitutive modelling. For three-dimensional continuum bodies, the directors could represent polar continua which has been used to study the properties of asymmetric Cauchy stress tensors, as in the case of liquid crystals~\citep{ericksenConservationLawsLiquid1961}.
 
-When $M$ is a lower-dimensional sub-manifold of $\mathbb{R}^3$, the polar continua would then often represent the substitutive internal degrees of freedom of the neglected bulk continuum. In the elastic theory of shells, a single director can model the material fibre running across its thickness, and for rods two directors are used to model the material fibres through the cross-section. We now continue to define the latter in detail.
+When $\mathcal{M}$ is a lower-dimensional sub-manifold of $\mathbb{R}^3$, the polar continua would then often represent the substitutive internal degrees of freedom of the neglected bulk continuum. In the elastic theory of shells, a single director can model the material fibre running across its thickness, and for rods two directors are used to model the material fibres through the cross-section. We now continue to define the latter in detail.
 
 \begin{figure}[t]
 \centering
@@ -123,7 +140,7 @@ When $M$ is a lower-dimensional sub-manifold of $\mathbb{R}^3$, the polar contin
     \label{fig:Examples of Cosserat deformations}
 \end{figure*}
 
-A Cosserat rod can be defined as a curve in Euclidean space $\mathbf{r}(u) \in \mathbb{R}^3,\ u \in [0, L_0]$, known as the \textit{center-line} and where $L_0$ is (in a dynamical setting) the \textit{rest-length} of the rod, and an orthogonal triad $E(u) = \begin{pmatrix} \mathbf{e}_1(u) & \mathbf{e}_2(u) & \mathbf{e}_3(u) \end{pmatrix} \in \mathbb{R}^3$. The \textit{material frame} $E(u)$ represents the, in general ellipsoidal, cross-section of the rod at each \textit{material point} $u$ along the center-line. The vectors $\mathbf{e}_2(u)$ and $\mathbf{e}_3(u)$ are the aforementioned directors of the Cosserat rod, which can vary in length and represent the semi-minor and semi-major axes of the cross-section at $u$. The vector $\mathbf{e}_1(u)$ is normal to the cross-section at $u$ and is defined as $\mathbf{e}_1(u) = (\mathbf{e}_2(u) \times \mathbf{e}_3(u)) / |\mathbf{e}_2(u) \times \mathbf{e}_3(u)|$, where $\times$ is the 3-dimensional cross-product and $|\cdot|$ is the standard norm in Euclidean space.
+A Cosserat rod can be defined as a curve in Euclidean space $\mathbf{r}(u) \in \mathbb{E}^3,\ u \in [0, L_0]$, known as the \textit{center-line} and where $L_0$ is (in a dynamical setting) the \textit{rest-length} of the rod, and an orthogonal triad $E(u) = \begin{pmatrix} \mathbf{e}_1(u) & \mathbf{e}_2(u) & \mathbf{e}_3(u) \end{pmatrix}$. The \textit{material frame} $E(u)$ represents the, in general ellipsoidal, cross-section of the rod at each \textit{material point} $u$ along the center-line. The vectors $\mathbf{e}_2(u)$ and $\mathbf{e}_3(u)$ are the aforementioned directors of the Cosserat rod, which can vary in length and represent the semi-minor and semi-major axes of the cross-section at $u$. The vector $\mathbf{e}_1(u)$ is normal to the cross-section at $u$ and is defined as $\mathbf{e}_1(u) = (\mathbf{e}_2(u) \times \mathbf{e}_3(u)) / |\mathbf{e}_2(u) \times \mathbf{e}_3(u)|$, where $\times$ is the 3-dimensional cross-product and $|\cdot|$ is the standard norm in Euclidean space.
 
 The deformations and rotations of the center-line and material frame comprise the full kinematic degrees of freedom of the Cosserat rod. Often in applications the cross-section is approximated to be of constant shape along the rod, in which case the we restrict the directors to be inextensible and orthogonal, and thus $E(u)$ is then an orthonormal triad. See Fig.~\ref{fig:Cosserat kinematic degrees of freedom} for an illustration of a Cosserat rod with circular cross-section. In the literature this class of Cosserat rod is known as a \textit{special Cosserat rod} \citep{antmanSpecialCosseratTheory1995, rubinCosseratRods2000, altenbachCosseratMedia2013}. Henceforth, unless stated otherwise, by Cosserat rod we mean a special Cosserat rod.
 
@@ -161,15 +178,15 @@ where $\mathbf{F}$ are the constitutive forces acting on the rod, $\mathbf{f}$ t
 
 We note here that up until this point we have considered an open Cosserat rod where $\mathbf{r}(0,t) \neq \mathbf{r}(L_0,t)$. The dynamics of a closed Cosserat rod, for which the center-line and frame are periodic functions of $u$, are identical with the exception of the omission of the boundary conditions Eq.~\ref{eq:Cosserat rod F bc} and Eq.~\ref{eq:Cosserat rod M bc}.
 
-Equation \ref{eq:Cosserat rod dynamical equations of motion} can be derived directly from the balance laws of classical continuum mechanics, as shown in \citep{parkerDerivationNonlinearRod1984, rubinCosseratRods2000}, under the kinematic assumption that the cross-sections traced out by the directors correspond to the bulk of a three-dimensional tube of undirected point-continua. For illustrative purposes this kinematic assumption deserves further elaboration. In precise mathematical language, let $M \subset \mathbb{E}$ and let $\mathbf{x} : D \to M$ be the \textit{material coordinate} function from the domain
+Equation \ref{eq:Cosserat rod dynamical equations of motion} can be derived directly from the balance laws of classical continuum mechanics, as shown in \citep{parkerDerivationNonlinearRod1984, rubinCosseratRods2000}, under the kinematic assumption that the cross-sections traced out by the directors correspond to the bulk of a three-dimensional tube of undirected point-continua. For illustrative purposes this kinematic assumption deserves further elaboration. In precise mathematical language, let $\mathcal{M} \subset \mathbb{E}$ and let $\mathbf{x} : D \to \mathcal{M}$ be the \textit{material coordinate} function from the domain
 \begin{equation}
 D = \{ (X_1, X_2, X_3)\ :\ X_1^2 + X_2^2 = R^2\ \text{and}\ X_3 \in [0,L_0]  \}
 \end{equation}
-where $R$ is a given fixed tubular radius of the Cosserat rod. Given a Cosserat rod configuration $(\mathbf{r},\ E)$, we define $M$ via the material coordinate function as
+where $R$ is a given fixed tubular radius of the Cosserat rod. Given a Cosserat rod configuration $(\mathbf{r},\ E)$, we define $\mathcal{M}$ via the material coordinate function as
 \begin{equation}
 \mathbf{x}(\mathbf{X}) = \mathbf{r}(X_3) + X_j \mathbf{e}_j,\ j=2,3
 \end{equation}
-such that $M$ is the image of $\mathbf{x}$. Here the material coordinate $X_3$ corresponds to the coordinate $u$. We see how the Cosserat rod can be viewed as the result of a coarse-graining procedure from the full three-dimensional continuum setting, replacing the cross section at each $u$ with two directors, thus reducing the spatial coordinates of the system from three to one.
+such that $\mathcal{M}$ is the image of $\mathbf{x}$. Here the material coordinate $X_3$ corresponds to the coordinate $u$. We see how the Cosserat rod can be viewed as the result of a coarse-graining procedure from the full three-dimensional continuum setting, replacing the cross section at each $u$ with two directors, thus reducing the spatial coordinates of the system from three to one.
 
 We now conclude this section by making some remarks, prefacing the discussions in subsequent chapters, on the geometric properties of the Cosserat rod. The kinematic equations of motion Eq.~\ref{eq:Cosserat rod r kinematic eom} and Eq.~\ref{eq:Cosserat rod e_i kinematic eom} shows explicitly that the rod moves according to infinitesimal translations $\mathbf{V}dt$ and rotations $\boldsymbol{\Omega} \times \mathbf{e}_i$ respectively. This entails that we can identify the kinematic structure of the Cosserat rod with the \textit{Lie group} of Euclidean transformations of translations and rotations $SE(3)$ \citep{simoGeometricallyexactRodModel1991, simoThreedimensionalFinitestrainRod1986}. In particular the rod itself can be parametrised in terms of sub-manifolds of $SE(3)$ and, as will be the main subject of Sec.~\ref{ch:Cosserat rods}, from which geometricised kinodynamical equations of motion can be derived programmatically. In the following section some mathematical foundations will be introduced, necessary for the subsequent chapters of this part of the thesis.
 
@@ -241,7 +258,7 @@ This can be generalised for smooth manifolds. Let $M$ be a smooth $d$-dimensiona
 \begin{equation} \label{eq:df action}
 (df(X))(p) = X_p(f).
 \end{equation}
-Here $df$ is an example of a \textit{scalar-valued $1$-form}. Analogously, scalar functions $f \in C^\infty(M)$ are known as \textit{scalar-valued $0$-forms}. Scalar-valued $p$-form are linear maps $\prod_{i=1}^p TM \to \mathbb{R}$, where $\prod$ signifies the repeated Cartesian product. The operator $d$ is the \textit{exterior derivative}, which in general maps $p$-forms to $(p+1)$-forms. Any $(p+1)$-form that can be written as the exterior derivative of a $p$-form is referred to as \textit{exact}. Conversely, any $p$-form $\phi$ that satisfies $d \phi = 0$ is \textit{closed}. Locally, closed $p$-forms are always exact, which is known as the \textit{Poincaré lemma}. 
+Here $df$ is an example of a \textit{scalar-valued $1$-form}. Analogously, scalar functions $f \in C^\infty(M)$ are known as \textit{scalar-valued $0$-forms}. Scalar-valued $p$-form are linear maps $\prod_{i=1}^p TM \to \mathbb{R}$, where $\prod$ signifies the repeated Cartesian product. We will therefore often The operator $d$ is the \textit{exterior derivative}, which in general maps $p$-forms to $(p+1)$-forms. Any $(p+1)$-form that can be written as the exterior derivative of a $p$-form is referred to as \textit{exact}. Conversely, any $p$-form $\phi$ that satisfies $d \phi = 0$ is \textit{closed}. Locally, closed $p$-forms are always exact, which is known as the \textit{Poincaré lemma}. As $1$-forms $\phi$ are maps $\phi : TM \to \mathbb{R}$, we will often refer to them as \textit{covector fields}. We write $\phi \in \Gamma(T*M)$ and $\phi(p) \in T^*M$.
  
 Let $x^i : U \to \mathbb{R},\ i=1,\dots,d$ be coordinate functions for some neighbourhood $U \subset M$. Then $df$ can then be locally expressed in in $U$ as
 \begin{equation} \label{eq:df expansion}
@@ -601,9 +618,7 @@ Note that for many systems the kinematic configuration space will be an entire L
 
 \subsection{Vector and matrix operations}
 
-We conclude the mathematical preliminaries with a list of some useful vector and matrix operations, that will be used frequently throughout this part of the thesis. 
-
-In three-dimensional space, there is a natural isomorphism between $3$-vectors and anti-symmetric $3 \times 3$-matrices. This isomorphism is known as the \text{hat map}. For a column vector $\vec{v} \in \mathbb{R}^3$, the corresponding anti-symmetric matrix $\hat{v}$ is defined as
+We conclude the mathematical preliminaries with a list of some useful vector and matrix operations, that will be used frequently throughout this part of the thesis.  In three-dimensional space, there is a natural isomorphism between $3$-vectors and anti-symmetric $3 \times 3$-matrices. This isomorphism is known as the \text{hat map}. For a column vector $\vec{v} \in \mathbb{R}^3$, the corresponding anti-symmetric matrix $\hat{v}$ is defined as
 \begin{equation} \label{eq:hat map}
 \hat{v} =  \begin{pmatrix}
 0 & -a_3 & v_2 \\
@@ -626,9 +641,9 @@ The fundamental matrix representation of an element $Y \in \mathfrak{se}(3)$ of 
 \end{equation}
 where $\vec{a}, \vec{m} \in \mathbb{R}^3$ and $\vec{0} \in \mathbb{R}^3$x, and we write this in short-hand notation as $Y = \{ \vec{a} ; \vec{m} \}$. Similarly, for $Z \in \mathfrak{se}(3)^*$, we write
 \begin{equation}
-	Z := \{ \vec{b} ; \vec{n} \} = \begin{pmatrix}
+	Z := \{ \vec{b} ; \vec{n} \}^* = \begin{pmatrix}
 		0 & \vec{b}^T \\
-		\vec{0} & \vec{n}
+		\vec{0} & \vec{n}^T
 	\end{pmatrix}.
 \end{equation}
 
@@ -654,19 +669,15 @@ For $\vec{x} \in \mathbb{R}^d$ and $y : \mathbb{R}^{p \times q} \to \mathbb{R}$ 
 
 \chapter{Cosserat rod models and geometric mechanics} \label{ch:Cosserat rods}
 
-{ \color{red} Add some remarks that what you will do here builds up to a generalised version in the subsequent chapter. 
+We begin our study of geometric mechanics with the Cosserat rod. At any material point along its length, we will identify the configuration space of the material point with group of translations and rotations on three-dimensional Euclidean space $SE(3)$. We then use the Lie group-Lie algebra correspondence to construct a Maurer-Cartan form $\xi$ that encapsulates the kinematic configuration of the Cosserat rod. By imposing integrability conditions on $\xi$, we find kinematic equations of motion defined on the Lie algebra. We then proceed to derive the dynamical equations of motion are then found using the \textit{Euler-Poincaré theorem}. General non-conservative and non-constitutive dynamics are then derived from a generalised Lagrange-D'Alembert principle. As a result, we formulate the kinematics and general dynamics of a Cosserat rod, expressed in terms of its intrinsic geometry. Borrowing a term from robotics, we call the combined study of kinematics and dynamics \textit{kinodynamics} \citep{donaldKinodynamicMotionPlanning1993, donaldProvablyGoodApproximation1995}. The formulation of conservative and constitutive kinodynamics of a Cosserat rod have been presented previously in \citep{giusteriSimulationViscoelasticCosserat2021, giusteriImportanceEffectivenessRepresenting}. In Sec.~\ref{sec:cosserat rod applications} we then illustrate the usage of the Cosserat rod in physics in some example settings. In Sec.~\ref{sec:Mechanics of kinematically constrained Cosserat rods} we study \textit{filaments}, which are formulated as Cosserat rods under kinematic constraints. The results presented here on the filament, as well as the Cosserat rod, will serve as paradigmatic examples of the generalised geometrised mechanics which is the main topic of discussion in Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces}.
 
-Introduce the term kinodynamics again} 
-
-
+Before we study the kinodynamics of Cosserat rods, we first consider the case of a free rigid body which undergo translations and rotations. We will first formulate the Lagrangian mechanics of the rigid body, expressing it in terms of its kinematic configuration space $SE(3)$, the group of special Euclidean transformations. We then construct a reduced Lagrangian density that take values in the corresponding Lie algebra $\textit{se}(3)$. The canonical example of this procedure is the rotating free rigid body and was introduced in \citep{marsdenIntroductionMechanicsSymmetry2013, holmEulerPoincareEquations1998, cendraLagrangianReductionEuler1999}, which we here generalise here to include translation. We can consider the rigid body, which is a finite-dimensional system, a `Cosserat point'. Therefore, it will serve as a useful foundation for the study of Cosserat rods.
 
 \section{Geometric mechanics of a rigid body} \label{sec:Introduction - rigid body}
 
-Before we study the kinodynamics of Cosserat rods, we first consider the case of a free rigid body which undergo translations and rotations (equivalent to a `Cosserat point particle'). We will first formulate the Lagrangian mechanics of the rigid body, expressing it in terms of its kinematic configuration space $SE(3)$, the group of special Euclidean transformations. We then construct a reduced Lagrangian density that take values in the corresponding Lie algebra $\textit{se}(3)$. The canonical example of this procedure is the rotating free rigid body and was introduced in \citep{marsdenIntroductionMechanicsSymmetry2013, holmEulerPoincareEquations1998, cendraLagrangianReductionEuler1999}, which we here generalise to include translation.
-
 We consider mechanics in $\mathbb{R}^3$, starting from the point-of-view of some observer with a \textit{fixed} or \textit{spatial} frame $B = (\mathbf{b}_1\ \mathbf{b}_2\ \mathbf{b}_3) \in \mathbb{R}^{3 \times 3}$. As we are working in Euclidean space, we will make use of the isomorphism $\mathbb{R}^3 \cong T\mathbb{R}^3$. Vectors $\mathbf{v} \in \mathbb{R}^3$ will be expressed in terms of their components in the fixed frame as $\mathbf{v} = \tilde{v}_i \mathbf{b}_i$, where the tilde denotes the fixed frame.
 
-Let $\mathscr{M} \subset \mathbb{R}^3$ be the \textit{reference configuration} of a rigid body, let $\mathbf{X} \in M$ denote the \textit{material coordinates} of $\mathscr{M}$, and let $\rho^V_0(\mathbf{X})$ be the mass density per unit material volume of the rigid body at $\mathbf{X}$. We define the material coordinates to be in the centre-of-mass frame, such that $\int_\mathscr{M} \rho^V_0(\mathbf{X}) X_i d^3 X = 0,\ i=1,2,3$.
+Let $\mathcal{M} \subset \mathbb{R}^3$ be the \textit{reference configuration} of a rigid body, let $\mathbf{X} \in M$ denote the \textit{material coordinates} of $\mathcal{M}$, and let $\rho^V_0(\mathbf{X})$ be the mass density per unit material volume of the rigid body at $\mathbf{X}$. We define the material coordinates to be in the centre-of-mass frame, such that $\int_\mathcal{M} \rho^V_0(\mathbf{X}) X_i d^3 X = 0,\ i=1,2,3$.
  
 \begin{figure}[t]
 \centering
@@ -677,7 +688,7 @@ Let $\mathscr{M} \subset \mathbb{R}^3$ be the \textit{reference configuration} o
 
 At time $t$ the location of the material point at $\mathbf{X}$ is given by $\mathbf{x}(\mathbf{X}, t)$. The latter can be related to the former as
 \begin{equation} \label{eq:rigid body movement}
-\mathbf{x}(\mathbf{X}, t) = \mathbf{r}(t) + R(t) \mathbf{X}, \quad  \mathbf{X} \in \mathscr{M}
+\mathbf{x}(\mathbf{X}, t) = \mathbf{r}(t) + R(t) \mathbf{X}, \quad  \mathbf{X} \in \mathcal{M}
 \end{equation}
 where $\mathbf{r}(t)$ is the location of the centre-of-mass and $R(t)$ is the rotation of the rigid body relative to its reference configuration. Now consider the second term in Eq. \ref{eq:rigid body movement},
 \begin{equation}
@@ -770,7 +781,7 @@ We note that the derivations above would simplify to some extent if we let the f
 Now we will consider the dynamics of the rigid body. We will start with the Euler-Lagrange equations defined on the Lie group, and then show the corresponding action principle defined on the Lie algebra. The kinetic energy of the rigid body is given by
 \begin{equation}  \label{eq:rigid body kinetic energy}
 \begin{aligned}
-\mathcal{K}(\dot{\Phi}) & = \frac{1}{2} \int_\mathscr{M} \rho^V_0(\mathbf{X}) |\dot{\mathbf{x}}(\mathbf{X})|^2  d^3 X
+\mathcal{K}(\dot{\Phi}) & = \frac{1}{2} \int_\mathcal{M} \rho^V_0(\mathbf{X}) |\dot{\mathbf{x}}(\mathbf{X})|^2  d^3 X
 \end{aligned}
 \end{equation}
 which is here written explicitly as a function of $\dot{\Phi}$. To see this note that
@@ -796,7 +807,7 @@ under variations $\Phi(t) \to \Phi(t) + \delta \Phi (t)$, where $\delta \Phi (t)
 We have that
 \begin{equation} \label{eq:rigid body kinetic energy 2}
 \begin{aligned}
-\mathcal{K}(\dot{\Phi}) & = \frac{1}{2} m |\dot{\mathbf{r}}|^2 + \frac{1}{2} \int_\mathscr{M} \rho^V_0(\mathbf{X}) | \dot{R} \mathbf{X}|^2 d^3 X
+\mathcal{K}(\dot{\Phi}) & = \frac{1}{2} m |\dot{\mathbf{r}}|^2 + \frac{1}{2} \int_\mathcal{M} \rho^V_0(\mathbf{X}) | \dot{R} \mathbf{X}|^2 d^3 X
 \end{aligned}
 \end{equation}
 where we have used that $\int_M \rho^V_0(\mathbf{X}) \mathbf{X} d^3 X = 0$. Now, since
@@ -850,7 +861,7 @@ Eq.~\ref{eq:kinematics of rigid body} and Eq.~\ref{eq:dynamic eoms for rigid bod
 %We note that Eq.~\ref{eq:rigid body kinetic energy 2} is invariant under left-translation by a rigid body transformation $\Psi = (\mathbf{t} ; \tilde{R} ) \in SE(3)$. Explicitly, we have
 %\begin{equation}
 %\begin{aligned}
-%\mathcal{K}(\Psi \dot{\Phi}) & = \frac{1}{2} m | \tilde{R} \mathbf{r} + \mathbf{t} )|^2 + \frac{1}{2} \int_\mathscr{M} \rho^V_0(\mathbf{X}) | \tilde{R} \dot{R} \mathbf{X}|^2 d^3 X \\
+%\mathcal{K}(\Psi \dot{\Phi}) & = \frac{1}{2} m | \tilde{R} \mathbf{r} + \mathbf{t} )|^2 + \frac{1}{2} \int_\mathcal{M} \rho^V_0(\mathbf{X}) | \tilde{R} \dot{R} \mathbf{X}|^2 d^3 X \\
 %& = \frac{1}{2} m | \dot{\mathbf{r}} |^2 + \frac{1}{2} \int_\mathscr{M} \rho^V_0(\mathbf{X}) | \dot{R} \mathbf{X}|^2 d^3 X = \mathcal{K}(\dot{\Phi}).
 %\end{aligned}
 %\end{equation}
@@ -1116,7 +1127,7 @@ In practice, in order to simulate a closed filament we must thus first construct
 
 \subsubsection*{Constitutive dynamics} \label{sec:Cosserat rod constitutive dynamics}
 
-Thus far we have considered the Cosserat rod abstractly as a sub-manifold of $SE(3)$. Physically, the Cosserat rod is a kinematic approximation of a deformable and slender tube. Let $\mathscr{M} = D \times [0, L_0] \subset \mathbb{R}^3$ be the reference configuration of such a tube, where $D \subset \mathbb{R}^2$ is the cross-section of the tube and is of arbitrary shape. Let $\mathbf{X} \in \mathscr{M}$ denote the material coordinates of $\mathscr{M}$, such that $X_1 \in [0, L_0]$ and $(X_2, X_3) \in \mathscr{D}$ and for simplicity let $\rho^V_0$ be a constant mass density per unit material volume at each $\mathbf{X}$. At time $t$ the location of the material point at $\mathbf{X}$ is given by $\mathbf{x}(\mathbf{X}, t)$, which are the deformed coordinates. We define $(X_2, X_3)$ to be in the centre-of-mass of the cross-section, such that $\int_{\mathscr{D}} X_\gamma d X_2 d X_3 = 0,\ \gamma = 2,3$.
+Thus far we have considered the Cosserat rod abstractly as a sub-manifold of $SE(3)$. Physically, we can see the the Cosserat rod as a kinematic approximation of a deformable and slender tube. Let $\mathcal{M} = D \times [0, L_0] \subset \mathbb{R}^3$ be the reference configuration of such a tube, where $D \subset \mathbb{R}^2$ is the cross-section of the tube and is of arbitrary shape. Let $\mathbf{X} \in \mathcal{M}$ denote the material coordinates of $\mathcal{M}$, such that $X_1 \in [0, L_0]$ and $(X_2, X_3) \in \mathscr{D}$ and for simplicity let $\rho^V_0$ be a constant mass density per unit material volume at each $\mathbf{X}$. At time $t$ the location of the material point at $\mathbf{X}$ is given by $\mathbf{x}(\mathbf{X}, t)$, which are the deformed coordinates. We define $(X_2, X_3)$ to be in the centre-of-mass of the cross-section, such that $\int_{\mathscr{D}} X_\gamma d X_2 d X_3 = 0,\ \gamma = 2,3$.
 
 The Cosserat rod models the slender deformable tube under the kinematic assumption that the material fibres that run radially from the center of $\mathcal{D}$ to its edge are fixed. In other words we impose that
 \begin{equation} \label{eq:cosserat rod kinematic assumption}
@@ -1128,11 +1139,11 @@ As in Sec.~\ref{sec:Introduction - rigid body} we formulate the dynamics of the 
 
 We assume that the dynamics is defined by a Lagrangian density of the form $\mathcal{L}(\Phi, d \Phi)$, and that its kinetic energy term is given by
 \begin{equation} \label{eq:lagrangian of tube}
-\int_0^{L_0} \mathcal{K}(\dot{\Phi})\ du = \frac{1}{2} \int_\mathscr{M} \rho^{V}_0 | \dot{\mathbf{x}} |^2\ d^3 X
+\int_0^{L_0} \mathcal{K}(\dot{\Phi})\ du = \frac{1}{2} \int_\mathcal{M} \rho^{V}_0 | \dot{\mathbf{x}} |^2\ d^3 X
 \end{equation} 
 where $\mathcal{K}$ is the kinetic energy density along the material coordinate $u$. Substituting in Eq.~\ref{eq:cosserat rod kinematic assumption} we get
 \begin{equation} \label{eq:K intermediate result 1}
-\int_0^{L_0} \mathcal{K}(\dot{\Phi})\ du = \frac{1}{2} \int_0^{L_0} \rho_0 |\mathbf{V}|^2 du + \frac{1}{2} \rho_0^V \int_\mathscr{M} \mathbf{V} \cdot \dot{\mathbf{e}}_\gamma X_\gamma d^3 X  + \frac{1}{2} \rho_0^V \int_\mathscr{M} |X_\gamma \dot{\mathbf{e}}_\gamma|^2 d^3 X
+\int_0^{L_0} \mathcal{K}(\dot{\Phi})\ du = \frac{1}{2} \int_0^{L_0} \rho_0 |\mathbf{V}|^2 du + \frac{1}{2} \rho_0^V \int_\mathcal{M} \mathbf{V} \cdot \dot{\mathbf{e}}_\gamma X_\gamma d^3 X  + \frac{1}{2} \rho_0^V \int_\mathcal{M} |X_\gamma \dot{\mathbf{e}}_\gamma|^2 d^3 X
 \end{equation} 
 where $\rho_0 = A \rho^{V}_0$ is the mass density per unit material length, and $A = \int_D d X_2 dX_3$ is the area of the cross-section, and we have used $\dot{\mathbf{r}} = \mathbf{V}$. The second term in Eq.~\ref{eq:K intermediate result 1} vanishes when the integral over $D$ is evaluated. To evaluate the third term, let $\bar{\mathbf{X}} = X_\gamma \mathbf{e}_\gamma$, and note that $\mathbf{e}_i = \boldsymbol{\Omega} \times \mathbf{e}_i$, and so
 \begin{equation}
@@ -1140,7 +1151,7 @@ where $\rho_0 = A \rho^{V}_0$ is the mass density per unit material length, and 
 \end{equation}
 where we used $(E\vec{\Omega}) \times (E\vec{\bar{X}}) = E (\vec{\Omega} \times \vec{\bar{X}})$. As $|(\vec{\Omega} \times \vec{\bar{X}})|^2$ is a quadratic form in $\vec{\Omega}$, we can write
 \begin{equation}
-\frac{1}{2} \rho_0^V \int_\mathscr{M} |X_\gamma \dot{\mathbf{e}}_\gamma|^2 d^3 X = \frac{1}{2} \int_0^{L_0} \vec{\Omega}^T \mathbb{I} \vec{\Omega} du
+\frac{1}{2} \rho_0^V \int_\mathcal{M} |X_\gamma \dot{\mathbf{e}}_\gamma|^2 d^3 X = \frac{1}{2} \int_0^{L_0} \vec{\Omega}^T \mathbb{I} \vec{\Omega} du
 \end{equation}
 where $\mathbb{I}$ is the cross-sectional moment-of-inertia per unit material length. We can thus write the kinetic energy of the Cosserat rod as $K(N) = \int_0^{L_0} \mathcal{K}(N) du$ where 
 \begin{equation} \label{eq:reduced kinetic energy}
@@ -1530,309 +1541,18 @@ In the next section we will consider kinematically constrained Cosserat rods, an
 
 We conclude this section with the remark that it is it is possible to view the mathematical formalism that we have developed from a field-theoretic lens. The spatio-temporal configuration $\Phi$ can be seen as a $SE(3)$-valued field defined over the base space $M = [0, L_0]$. The kinodynamic equations of motion are then the field equations, defined in terms of the Lie algebra.
 
-% Inherently, this is made possible by the fact that the tangent bundle $TG$ of a Lie group $G$ has a natural trivialisation as $TG \cong G \times \mathfrak{g}$.
+% Inherently, this is made possible by the fact that the tangent bundle $TG$ of a Lie group $G$ has a natural trivialisation as $TG \cong G \times \mathfrak{g}$
 
-\section{Mechanics of kinematically constrained Cosserat rods} \label{sec:Mechanics of kinematically constrained Cosserat rods}
+\section{Applications} \label{sec:cosserat rod applications}
 
-\begin{figure}[t]
-\centering
-        \includegraphics[width=0.9\textwidth]{figs_part2/sec7.5_kinematically_constrained_cosserat_rods/cosserat_rod_to_filament.pdf}
-        \caption{(Left) A Cosserat rod, with configuration space $SE(3)$. (Right) A filament, with configuration space in $SE(3)/SO(3) \cong \mathbb{E}^3$.}
-        \label{fig:cosserat rod and filament}
-\end{figure}
+Here we give a few examples of Cosserat rod models as applied in physics. In Sec.~\ref{sec:The hyperelastic Cosserat rod model} we derive, from first principles, the constitutive dynamics of a coarse-grained slender rod. Using the results of the previous section, we then approximate the kinodynamics of the slender rod using the Cosserat rod. In Sec.~\ref{sec:Dissipative and overdamped dynamics} we discuss Cosserat rods under the influence frictional forces. We formulate the equations of motion in both the underdamped and overdamped limits. Finally, in Sec.~\ref{sec:Overdamped and inextensible Cosserat rods} we derive the system of equations that describe an inextensible Cosserat rod, in the overdamped limit.
 
-Thus far we have considered the material frame $E$ and the center-line $\mathbf{r}$ as independent degrees of freedom, modelling a rod that can shear and twist in addition to bending and extending. In many applications it suffices to consider pure center-line dynamics where the cross-section does not shear \citep{eloyKinematicsMostEfficient2012, tornbergSimulatingDynamicsInteractions2004, goldsteinNonlinearDynamicsStiff1995, sodaDynamicsStiffChains1973, nordgrenComputationMotionElastic1974, hasimotoSolitonVortexFilament1972}. We shall refer to these systems as \textit{filaments}, and can be seen as a Cosserat rod model with a kinematically constrained material frame. As we will show, kinematic constraints can often be implemented by first identifying an appropriate Lie subgroup $H \subset SE(3)$ such that the homogeneous space $SE(3) / H$ is the kinematically constrained configuration space, and then by making a `gauge choice' $h(u) \in H$ which fixes a parametrisation of $SE(3) / H$. In addition to the filament, we will also consider the case of a \textit{twisting filament}, where the cross-section is allowed to twist around the center-line \citep{powersDynamicsFilamentsMembranes2010, parkerDerivationNonlinearRod1984a, goldsteinViscousNonlinearDynamics1998}.
+\subsection{Hyperelastic slender rod} \label{sec:The hyperelastic Cosserat rod model}
 
-\subsection{Kinematic constraints and gauge freedoms} \label{sec:Kinematic constraints and gauge freedoms}
+In many applications the conservative part of the constitutive dynamics arise from a potential of the form Eq.~\ref{eq:U quadratic form} \citep{NonlinearProblemsElasticity2005, wangOptimalControlSoft2021a, gargSlenderBodyTheory2022, tillRealtimeDynamicsSoft2019}, where the potential $\mathcal{U}$ is a quadratic form in $X$, with coefficients given by the symmetric and positive-definite stiffness matrix $\mathsf{K} \in \mathbb{R}^{6 \times 6}$. Here we derive the form of $\mathsf{K}$ from first principles, given constitutive assumptions on the material that the rod is composed of. Specifically, we use the Cosserat to approximate the continuum mechanics of a slender rod of hyper-elastic \textit{Saint Venant-Kirchoff} material \cite{basarNonlinearContinuumMechanics2013}.
 
-The configuration space of a filament can be found by `rotating away' the material frame $E(u)$ at each $u$. Therefore the appropriate Lie subgroup is $H = SO(3)$, and the configuration space is $SE(3) / SO(3) \cong \mathbb{E}^3$, where $\mathbb{E}^3$ is the three-dimensional Euclidean space. Conceptually, that $SE(3)/SO(3)$ represents the configuration space of the filament can be understood by recalling the definition of a homogeneous space. For any Lie group $G$ and Lie subgroup $H \subset G$ then $G/H$ is the set
-\begin{equation}
-G / H = \{ gH\ :\ g \in G \}
-\end{equation}
-where $gH = \{ gh\ :\ h \in G \}$ is the left coset. Now consider the case when $G = SE(3)$ and $H = SO(3)$. Let $g_1 = (\mathbf{r}, E_1)$ and $g_2 = (\mathbf{r}, E_2)$ denote two cross-sections that are located at the same point $\mathbf{r}$, but have two different material frames $E_1$ and $E_2$, and furthermore we can trivially identify these as elements $g_1, g_2 \in SE(3)$. As $E_1$ is related to $E_2$ by a rotation in $SO(3)$, we have that $g_1 H = g_2 H$. In other words, in the homogeneous space $SE(3)/SO(3)$, $g_1$ and $g_2$ belong to the same element $g_1 H = g_2 H \in SE(3)/SO(3)$. Therefore, a filament can mathematically be described as a Cosserat rod where we have, for each $u$, identified all material frames $E(u)$ at $\mathbf{r}(u)$ as belonging to the same equivalence~class. See Fig.~\ref{fig:cosserat rod and filament} for an illustration.
-
-Now let $\Phi : W \to SE(3)/SO(3)$ be the spatio-temporal configuration of the filament. As discussed in Sec.~\ref{sec:Sub-manifolds of homogeneous spaces}, we can write $\Phi$ as
-\begin{equation} \label{eq:phi and phi tilde}
-\Phi = \pi \circ \tilde{\Phi}
-\end{equation}
-where $\circ$ denotes compositions of maps and $\pi : SE(3) \to SE(3)/SO(3)$ relates elements in $SE(3)$ to elements in the homogeneous space and can be defined as
-\begin{equation}
-\pi( (\mathbf{r} ; E) ) = \mathbf{r},
-\end{equation}
-and $\tilde{\Phi} : W \to SE(3)$ is a \textit{framing}, or an \textit{adapted frame field}, of $\Phi$ \citep{clellandFrenetCartanMethod2017}, and is a Lie group-valued function on $W$ that satisfies Eq.~\ref{eq:phi and phi tilde}.
-
-We can map any framing $\tilde{\Phi}$ to a spatio-temporal filament configuration $\Phi$ using Eq.~\ref{eq:phi and phi tilde}. Note however that this map is not injective. Let $h : W \to SO(3)$ be an arbitrary $SO(3)$-valued smooth function and let $\tilde{\Phi}_1 : W \to SE(3)$ and $\tilde{\Phi}_2 : W \to SE(3)$, then if $\tilde{\Phi}_1(t,u) = h(t,u) \tilde{\Phi}_2(t,u)$ maps to the same $\Phi$. Any given choice of $\tilde{\Phi}$ is called a \textit{framing} of $\Phi$ \citep{clellandFrenetCartanMethod2017}. There is thus a \textit{gauge freedom} in the choice of $\tilde{\Phi}$.
-
-In principle, the kinodynamical equations for a Cosserat rod Eq.~\ref{eq:all eoms} apply to the filament as well. We could initialise Eq.~\ref{eq:all eoms} with some $\tilde{\Phi}(u, 0)$ that maps to the true initial condition $\Phi(u, 0)$, then simulate the equations of motion to find $\tilde{\Phi}(t,u)$, and then finally use Eq.~\ref{eq:phi and phi tilde} to find $\Phi(t, u)$. In this case, it is important that all constitutive and body forces and moments only couple to the center-line $\mathbf{r}$, and not the material frame $E$. For example, for conservative constitutive dynamics we could have a potential energy density $\mathcal{U} \propto \kappa^2$, where $\kappa$ is the scalar curvature of the center-line defined in Eq.~\ref{eq:scalar curvature}.
-
-However, the above would mean simulating equations of motion of higher-dimensionality than the system in question, where the extra degrees of freedom (the material frame) are non-physical. In the following we will instead choose a particular \textit{gauge} and form an injective map between $\tilde{\Phi}$ and $\Phi$. In other words, by choosing a gauge we choose a particular prescription for how to frame a given space-curve. Beyond the fact that the resulting dynamics will be defined directly on the lower dimensional $SE(3)/SO(3)$ rather than $SE(3)$, it is also often easier to formulate constitutive dynamics given a particular framing, rather than formulating it in terms of the degrees of freedom of a general Cosserat rod. The programmatic construction of such gauges is better known as the \textit{theory of moving frames} \citep{cartanTheorieGroupesFinis1938, levyReviewElieCartan1935}. We note that the terminological use of `gauge', although well-motivated in this context, is not standard in the theory of moving frames.
-
-All gauge choices are ultimately mathematically equivalent, however some choices are more practically useful than others. Our procedure to construct a gauge will be to write the material frame $E = (\mathbf{e}_1\ \mathbf{e}_2\ \mathbf{e}_3)$ as a function of the center-line $\mathbf{r}$. Thus one-to-one map between $\Phi$ and $\tilde{\Phi}$ is formed. As a first step towards finding an appropriate gauge, we set
-\begin{equation} \label{eq:e1 tangent to r}
-\mathbf{e}_1 = \frac{\mathbf{r}'}{h}
-\end{equation}
-where $h = |\mathbf{r}'|$, such that $\mathbf{e}_1$ is a unit-vector tangent to $\mathbf{r}$ at $u$. This means that given $\mathbf{e}_1$ we can write the center-line as
-\begin{equation} \label{eq:r from e1}
-\mathbf{r}(t, u) = \mathbf{r}(0, t) + \int_0^u h \mathbf{e}_1 du.
-\end{equation} 
-There is now a remaining $SO(2)$ gauge freedom in specifying the material frame vectors $\mathbf{e}_2$ and $\mathbf{e}_3$. In the gauges found in the literature \citep{bishopThereMoreOne1975a, mansfieldUseRotationMinimizing2019, clellandFrenetCartanMethod2017, carrollImprovingFrenetFrame2013, seligCharacterisationFrenetSerret2013}, most abide Eq.~\ref{eq:e1 tangent to r}, and are thus all related by an $SO(2)$ gauge transformation of $\mathbf{e}_2$ and $\mathbf{e}_3$.
-
-\subsubsection*{The Frenet-Serret gauge}
-
-In the \textit{Frenet-Serret} gauge \citep{frenetCourbesDoubleCourbure1852, serretQuelquesFormulesRelatives1851}, we set
-\begin{equation} \label{eq:e2 in frenet-serret}
-\mathbf{e}_2 = \frac{\mathbf{e}_1'}{\kappa}
-\end{equation}
-where $\kappa = |\mathbf{e}_1'|$ is the scalar curvature, such that $\mathbf{e}_2(u)$ is a unit-vector pointing in the direction of the center-line $\mathbf{r}(t,u)$ curves towards at time $t$. Eq.~\ref{eq:e2 in frenet-serret} fully specifies the frame, as $\mathbf{e}_3 = \mathbf{e}_1 \times \mathbf{e}_2$. In this context $\mathbf{e}_1$, $\mathbf{e}_2$ and $\mathbf{e}_3$ are called the tangent, normal and binormal vectors respectively. co
-
-Now recall the equations of motion of $\mathbf{r}$ and $\mathbf{e}_i$ along $u$, given by Eq.~\ref{eq:dr and de}, which we write as
-\begin{subequations}
-\begin{align}
-\mathbf{r}' & = \mathbf{e}_i \theta_i \\
-\mathbf{e}_j' & = \mathbf{e}_i \hat{\pi}_{ij}.
-\end{align}
-\end{subequations}
-Since $\mathbf{r}' = h \mathbf{e}_1$ we have that
-\begin{equation} \label{eq:theta for filament}
-\vec{\theta} = (h\ 0\ 0)^T,
-\end{equation}
-and as $\mathbf{e}_1' = \kappa \mathbf{e}_2$ we have that $\hat{\pi}_{21} = - \hat{\pi}_{12} = \kappa$ and $\hat{\pi}_{31} = -\hat{\pi}_{13} = 0$. This leaves only one more possible parameter $\hat{\pi}_{23} = -\hat{\pi}_{32}$, to which we assign the scalar parameter $\tau$, known as the \textit{torsion}. We thus have
-\begin{equation} \label{eq:pi for filament}
-\hat{\pi} = \begin{pmatrix}
-0 & - \kappa & 0 \\
-\kappa & 0 & - \tau \\
-0 & \tau & 0.
-\end{pmatrix}
-\end{equation}
-or, in vector form, $\vec{\pi} = (\tau\ 0\ \kappa)^T$. Finally, we get the \textit{Frenet-Serret equations}
-\begin{equation} \label{eq:frennet-serret equations}
-\begin{matrix}
-\mathbf{e}_1' & = & & \kappa \mathbf{e}_2 & \\
-\mathbf{e}_2' & = & - \kappa \mathbf{e}_1 & + & \tau \mathbf{e}_3 & \\
-\mathbf{e}_3' & = &  & \tau \mathbf{e}2  &
-\end{matrix}
-\end{equation}
-which together with Eq.~\ref{eq:r from e1} reconstructs the framing $\tilde{\Phi} \cong (\mathbf{r}, E)$, from which get the filament configuration $\Phi \cong \mathbf{r}$.
-
-We see that by choosing a gauge, we have effectively constrained the spatial configuration $X$ to only take values in a subset $V \subset \mathfrak{se}(3)$, where $X = X(h, \kappa, \tau)$ is now parametrised by the three scalars $(h, \kappa, \tau)$ that are functions of space and time. Note that $V$ is not a Lie subalgebra. This constraint establishes an injective mapping between $V$-valued fields $X : W \to V$ and $\mathbb{E}^3$-valued fields $\Phi : W \to \mathbb{E}^3$. In this context $(h, \kappa, \tau)$ are known as the \textit{differential invariants} of the filament, as they uniquely define the filament up to rigid body transformations.
-
-We should stress that in the mathematical literature, the purview of the theory of moving frames are in general space curves (rather than space-time curves). Furthermore, in that context the metric $h$ along the center-line is of little importance (and is usually not referred to as a differential invariant), and thus the arc-length parameterisation is preferred. Eq.~\ref{eq:frennet-serret equations} is therefore more commonly written in terms of arc-length derivatives
-\begin{equation} \label{eq:frennet-serret equations arc-length}
-\begin{matrix}
-\partial_s \mathbf{e}_1 & = & & \tilde{\kappa} \mathbf{e}_2 & \\
-\partial_s \mathbf{e}_2 & = & - \tilde{\kappa} \mathbf{e}_1 & + & \tilde{\tau} \mathbf{e}_3 & \\
-\partial_s \mathbf{e}_3 & = &  & \tilde{\tau} \mathbf{e}2  &
-\end{matrix}
-\end{equation}
-where $\tilde{\kappa} = h \kappa$ and $\tilde{\tau} = h \tau$ are the scalar curvature and torsion in the arc-length parameterisation.
-
-Intuitively, we can visualise the motion of $(\mathbf{r}, E)$ as a function of $u$, for fixed $t$, in the Frenet-Serret gauge as follows. We can imagine an airplane which is travelling in the direction of $\mathbf{e}_1$ and with the floor of the plane aligned with $\mathbf{e}_3$. Its trajectory traces out a center-line $\mathbf{r}(u)$, at `speed' $h$. The Frenet-Serret frame corresponds to a plane that navigates \textit{pitching} (at a rate $\kappa$) and \textit{rolling} (at a rate $\tau$), but never \textit{yaws}.
-
-We now consider the kinematics along time $t$. The same kinematic equations of motion Eq.~\ref{eq:kinematic equations of motion in the moving frame} for the Cosserat rod still apply. However, substituting $\vec{\theta} = (h\ 0\ 0)^T$ and $\vec{\pi} = (\tau\ 0\ \kappa)^T$ into Eq.~\ref{eq:kinematic equations of motion in the moving frame} we find the following constraints
-\begin{subequations} \label{eq:angular velocity in frenet-serret}
-\begin{align}
-\Omega_1 & = (\Omega_3 \tau - \Omega_2') / \kappa \\
-\Omega_2 & = - h^{-1} (D_u \vec{V})_3 \\
-\Omega_3 & = h^{-1} (D_u \vec{V})_2.
-\end{align}
-\end{subequations}
-It is intuitive that the angular velocity of the filament, with a cross-section constrained to be aligned with the center-line, is completely determined as a function of the differential invariants and the translational velocity $\vec{V}$. Eq.~\ref{eq:angular velocity in frenet-serret}, together with Eq.~\ref{eq:kinematic equations of motion in the moving frame}, completely specify the kinematics of the filament. Just as we have three scalar parameters $(h, \kappa, \tau)$ that determine the spatial configuration of the filament, the temporal evolution is determined by the three scalars in $\vec{V} = (V_1\ V_2\ V_3)$. Using Eq.~\ref{eq:kinematic equations of motion in the moving frame} and Eq.~\ref{eq:angular velocity in frenet-serret}, we can write the kinematic equations of motion for the filament compactly as
-\begin{subequations} \label{eq:filament kinematic equtions of motion}
-\begin{align}
-\dot{h} & = V_1' - \kappa V_2 \\
-\dot{\kappa} & = \Omega_3' + \tau \Omega_2 \\
-\dot{\tau} & = \Omega_1' - \kappa \Omega_2 \\
-\end{align}
-\end{subequations}
-where $\vec{\Omega}$ is given by Eq.~\ref{eq:angular velocity in frenet-serret}. The temporal evolution of the filament is thus specified by the velocity field $\vec{V}$ alone.
-
-%\subsubsection{The Bishop gauge}
-
-%The \textit{Bishop} gauge \citep{bishopThereMoreOne1975a, carrollImprovingFrenetFrame2013} is an alternative to the Frenet-Serret frame.
-
-\subsubsection*{The twisting filament} \label{sec:twisting filament}
-
-We can model a filament that can twist around its center-line by keeping the $SO(2)$ gauge freedom of $(\mathbf{e}_2, \mathbf{e}_3)$ and promoting it to a kinematic degree of freedom. The resulting degrees of freedom are then $\vec{\theta} = (h\ 0\ 0)^T$ as before and $\vec{\pi}$ has all three of its components. The resulting constraints on $\vec{\Omega}$ are then
-\begin{subequations} \label{eq:angular velocity for twisting filament}
-\begin{align}
-\Omega_2 & = - h^{-1} (D_u \vec{V})_3 \\
-\Omega_3 & = h^{-1} (D_u \vec{V})_2.
-\end{align}
-\end{subequations}
-instead of Eq.~\ref{eq:angular velocity in frenet-serret}. The resulting kinematic equations of motion are thus
-\begin{subequations} \label{eq:twisting filament kinematic equtions of motion}
-\begin{align}
-\dot{h} & = V_1' - \kappa V_2 \\
-\dot{\vec{\pi}} & = D_u \vec{\Omega}
-\end{align}
-\end{subequations}
-The temporal evolution of the twisting filament is thus specified by the rate of twist $\Omega_1$ and the velocity field $\vec{V}$.
-
-In our airplane analogy, the twisting filament travels (again, as a function of $u$ for fixed $t$) by rolling (at a rate $\pi_1$), yawing (at a rate $\pi_2$) and pitches (at a rate $\pi_3$).
-
-\subsection{Kinematically constrained dynamics} \label{sec:Kinematically constrained dynamics (cosserat rod)}
-
-The formulation of the dynamics for kinematically constrained rods carries through less programmatically than in the case of the Cosserat rod. In general, extra care must be taken formulating the dynamics when the configuration space is a homogeneous space $G / H$. Issues of under- or over-determination in the equations of motion may arise due to the fact that $\text{dim}(G/H) < \text{dim}(G)$ if $\text{dim}(H) \neq 0$.
-
-\subsubsection*{Filament dynamics}
-
-For a filament, though its configuration space is $SE(3)/SO(3) \cong \mathbb{E}^3$ rather than $SE(3)$ as for the Cosserat rod, $SE(3)$ acts \textit{transitively} on $\mathbb{E}^3$. By which we mean that for any two elements $\mathbf{x}, \mathbf{y} \in \mathbb{E}^3$, there exists an element $g \in SE(3)$ such that $\mathbf{y} = g \mathbf{x}$. As before, we can define a Lagrangian density $\mathcal{L} : SE(3) \times TSE(3) \to \mathbb{R}$, with reduction $\ell : \mathfrak{se}(3) \to \mathbb{R}$, or use the Lagrange-D'Alembert principle as the starting point. The derivation of the dynamics then proceed as before in Sec.~\ref{sec:Cosserat rod dynamics}, and we find the same general equations of motion Eq.~\ref{eq:all eoms}.
-
-However, issues arise as the dimension of the Lie algebra $\text{dim}(\mathfrak{se}(3)) = 6$ is larger than the configuration space $\text{dim}(\mathbb{E}^3) = 3$. This is in principle partially ameliorated by choosing a gauge, such as the Frenet-Serret gauge, but if this is done naively then the resulting equations of motion are untenable. Consider the dynamical equations of motion that would result if we consider a filament with the Frenet-Serret frame, starting from the Lagrange-D'Alembert principle Eq.~\ref{eq:lagrange-dalembert for non-monogenic constitutive forces and body forces}. As before, we let $S = \frac{\partial \mathcal{K}}{\partial N}$, where the reduced kinetic energy $\mathcal{K}$ of the Cosserat rod was derived in Eq.~\ref{eq:reduced kinetic energy} and we repeat it here
-\begin{equation}
-\mathcal{K}(N)  = \frac{1}{2} \rho_0 |\vec{V}|^2 +  \frac{1}{2} \vec{\Omega}^T \mathbb{I} \vec{\Omega}.
-\end{equation}
-Consider now, in particular, the moment balance equation for the filament
-\begin{equation} \label{eq:moment balance filament wrong}
-D_t \vec{L} = D_u \vec{M} + \vec{\theta} \times \vec{F} + \vec{m},
-\end{equation}
-where $\vec{L} = \mathbb{I} \vec{\Omega}$. Due to Eq.~\ref{eq:angular velocity in frenet-serret}, $\vec{\Omega}$ is not an independent degree of freedom, but a function of $\vec{V}$ and the differential invariants. Therefore Eq.~\ref{eq:moment balance filament wrong} over-determines the system, and is in general an intractable constraint.
-
-To address this issue, we first note that it stems from the particular method by which we have parametrised the filament. In the fixed frame, the dynamics of the filament can be unambiguously written as
-\begin{equation} \label{eq:fixed frame filament dynamics}
-\rho_0 \ddot{\mathbf{r}} = \mathbf{F}' + \mathbf{f}
-\end{equation}
-where we used $\mathbf{P} = \rho_0 \dot{\mathbf{r}}$, which can be seen as the $1$-dimensional analogue of the Cauchy momentum equation in the Lagrangian point-of-view, where $\mathbf{F}$ would correspond to the \textit{first Piola-Kirchhoff stress tensor} in continuum dynamics.
-
-In the geometric formulation presented here, we parametrise the filament in terms of its intrinsic geometry $\kappa$ and $\tau$, which corresponds to a given framing, rather than its center-line $\mathbf{r}(t,u)$ as in Eq.~\ref{eq:fixed frame filament dynamics}. This means that we must consider how the forces on the filament corresponds to moments on the moving frame $(\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3)$. However, as the filament is ultimately described as a center-line, the model does not accommodate the angular momentum of its frame as an independent degree of freedom. In the literature the issue of Eq.~\ref{eq:moment balance filament wrong} is avoided by taking the overdamped limit modelling a filament immersed in a highly viscous fluid \citep{eloyKinematicsMostEfficient2012, tornbergSimulatingDynamicsInteractions2004, goldsteinNonlinearDynamicsStiff1995, sodaDynamicsStiffChains1973, nordgrenComputationMotionElastic1974, hasimotoSolitonVortexFilament1972, powersDynamicsFilamentsMembranes2010, goldsteinViscousNonlinearDynamics1998}, or by considering filament statics \citep{parkerDerivationNonlinearRod1984a}. Here, we avoid this limit and present a derivation of inertial filament dynamics.
-
-Let $\mathcal{K}(N)  = \frac{1}{2} \rho_0 |\vec{V}|^2$, so that we get $S = \{ \vec{P} ; \vec{0} \}$ where $\vec{P} = \rho_0 \vec{V}$, therefore implicitly assuming the angular momentum of the filament to be negligible. The moment balance equation then becomes
-\begin{equation} \label{eq:moment balance filament}
-0 = D_u \vec{M} + \vec{\theta} \times \vec{F} + \vec{m}.
-\end{equation}
-To find self-consistent constitutive dynamics, we consider moment balance in the absence of external moments $\vec{m} = 0$, to find
-\begin{subequations} \label{eq:filament force constraints}
-\begin{align}
-0 &  = (D_u \vec{M})_1 \\
-F_2 & = h^{-1} (D_u \vec{M})_3 \\
-F_3 & = - h^{-1} (D_u \vec{M})_2.
-\end{align}
-\end{subequations}
-Thus we see that combined we can only independently specify three of the six force and moment components in total. The kinodynamical equations of motion for the filament are thus
-\begin{subequations} \label{eq:filament dynamic equtions of motion}
-\begin{align}
-\dot{h} & = V_1' - \kappa V_2 \\
-\dot{\kappa} & = \Omega_3' + \tau \Omega_2 \\
-\dot{\tau} & = \Omega_1' - \kappa \Omega_2 \\
-D_t \vec{P} & = D_u \vec{F} + \vec{f},
-\end{align}
-\end{subequations}
-where the material derivatives are computed as before, using $\vec{\pi} = (\tau\ 0\ \kappa)$ and $\vec{\Omega}$ given by Eq.~\ref{eq:angular velocity in frenet-serret}, and where the force must obey the conditions Eq.~\ref{eq:filament force constraints}. We note that $\vec{M}$ does not appear explicitly in the dynamics, and we can indeed in theory write down the three arbitrary constitutive force components $\vec{F}$, which would induce a moment via Eq.~\ref{eq:filament force constraints} that has no impact on the dynamics. This is however not how the constitutive forces and moments are defined in practice, as we will now show.
-
-We now move on to treat conservative constitutive dynamics. As discussed in \citep{levyReviewElieCartan1935}, when the Lie algebra, that acts transitively on the configuration space, is of a higher dimension than the configuration space the resulting Lagrangian dynamics (i.e. conservative dynamics) is under-determined. For a Cosserat rod we have $Q = \frac{\partial \mathcal{U}}{\partial X} = \{ \vec{F} ; \vec{M} \}^*$ which results in Eq.~\ref{eq:F_i and M_i from U}. In contrast, as $\vec{\theta} = (h\ 0\ 0)^T$ and $\vec{\pi} = (\tau\ 0\ \kappa)^T$ for a filament, the only components that are determined for a general constitutive $\mathcal{U}$ are
-\begin{subequations} \label{eq:F1, M2 and M3 for filament}
-\begin{align}
-F_1 & =  \frac{\partial \mathcal{U}}{\partial h} \\
-M_1 & =  \frac{\partial \mathcal{U}}{\partial \tau} \\
-M_3 & =  \frac{\partial \mathcal{U}}{\partial \kappa} 
-\end{align}
-\end{subequations}
-leaving $M_2$, $F_2$ and $F_3$ undetermined by $\mathcal{U}$. However we see that by having chosen a gauge, these force and moment components are given by moment balance Eq.~\ref{eq:filament force constraints}. The conservative constitutive forces and moments on a filament are thus determined by Eq.~\ref{eq:F1, M2 and M3 for filament} and Eq.~\ref{eq:filament force constraints} together. Note that it was necessary to let $M_1$, $F_2$ and $F_3$ be undetermined by $\mathcal{U}$, rather than setting $M_1 = F_2 = F_3 = 0$, which would conflict with moment balance. The above is consistent with the force and moment balance equations found for the filament in the overdamped setting \citep{powersDynamicsFilamentsMembranes2010} and in statics \citep{parkerDerivationNonlinearRod1984a}.
-
-It is standard for filament dynamics to associate an energetic cost to the square of the curvature and extension $\mathcal{U} = \frac{1}{2} \epsilon \kappa^2$.  From Eq.~\ref{eq:F1, M2 and M3 for filament} and Eq.~\ref{eq:filament force constraints} we then find, expressed in a non-moving frame
-\begin{equation} \label{eq:bernoulli moment for filament}
-\mathbf{M} = \epsilon \kappa \mathbf{e}_3
-\end{equation}
-where $\epsilon$ is the bending stiffness. Eq.~\ref{eq:bernoulli moment for filament} agree with classical Bernoulli-Euler beam theory \citep{ powersDynamicsFilamentsMembranes2010, sodaDynamicsStiffChains1973, nordgrenComputationMotionElastic1974}. Note that as the notion of torsion $\tau$ appears from the gauge choice, rather than representing a physical property of the filament, a $\tau^2$ term is usually not included in $\mathcal{U}$. Therefore $M_1 = M_2 = 0$ for a filament in the Frenet-Serret frame in practice.
-
-In the overdamped limit, the results of Sec.~\ref{sec:Dissipative and overdamped dynamics} and Eq.~\ref{eq:overdamped equations of motion in moving frame} applies as before, under the constraints Eq.~\ref{eq:theta for filament} and Eq.~\ref{eq:pi for filament}, Eq.~\ref{eq:angular velocity in frenet-serret} and Eq.~\ref{eq:filament force constraints}. Setting $\vec{f} = - \gamma_T \vec{V}$ we get
-\begin{subequations} \label{eq:filament overdamped equtions of motion}
-\begin{align}
-\dot{h} & = V_1' - \kappa V_2 \\
-\dot{\kappa} & = \Omega_3' + \tau \Omega_2 \\
-\dot{\tau} & = \Omega_1' - \kappa \Omega_2 \\
-\vec{V} & = \mu_T D_u \vec{F},
-\end{align}
-\end{subequations}
-where $\mu_T = \gamma_T^{-1}$.
-
-\subsubsection*{Twisting filament dynamics}
-
-For a twisting filament, the angular velocity component $\Omega_1$ is now a dynamic degree of freedom, and we therefore permit angular momentum along the tangential direction. We assume the principal axes of the moment of inertia $\mathbb{I}$ coincide with the moving frame $\mathbf{e}_i,\ i=1,2,3$, and that the angular momentum is negligible along the normal and binormal directions, setting $\vec{L} = ( \mathbb{I}^{(1)} \Omega_1\ 0\ 0 )^T$, where $\mathbb{I}^{(1)}$ is the eigenvalue of $\mathbb{I}$ along $\mathbf{e}_1$. The resulting kinodynamical equations of motion are
-\begin{subequations} \label{eq:twisting filament dynamic equtions of motion}
-\begin{align}
-\dot{h} & = V_1' - \kappa V_2 \\
-\dot{\pi} & = D_u \vec{\Omega} \\
-D_t \vec{P} & = D_u \vec{F} + \vec{f} \\
-\mathbb{I}^{(1)} \dot{\Omega}_1 & = (D_u \vec{M})_1 + m_1
-\end{align}
-\end{subequations}
-where the constraints on the force are
-\begin{subequations} \label{eq:twisting filament force constraints}
-\begin{align}
-F_2 & = h^{-1} (D_u \vec{M})_3 \\
-F_3 & = - h^{-1} (D_u \vec{M})_2,
-\end{align}
-\end{subequations}
-which should be compared with Eq.~\ref{eq:filament dynamic equtions of motion} and Eq.~\ref{eq:filament force constraints}. For conservative constitutive we now have the relations
-\begin{subequations} \label{eq:F1 and M for twisting filament}
-\begin{align}
-F_1 & =  \frac{\partial \mathcal{U}}{\partial h} \\
-M_i & =  \frac{\partial \mathcal{U}}{\partial \pi_i}.
-\end{align}
-\end{subequations}
-
-
-\begin{comment}
-\subsubsection*{Inextensible Cosserat rods and filaments}
-
-A Cosserat rod is \textit{inextensible} if it satisfies the kinematic constraint $\dot{h} = 0$. 
-
-
-We will now consider the case of an inextensible Cosserat rod in the
-overdamped limit, under the influence of a constitutive force $\vec{F}$.
-For an inextensible rod, the tangential component of the force, tangent
-to the center-line $\mathbf{r}$, is a constraining tension that enforces $\mathbf{r}'\cdot\mathbf{r}'=\boldsymbol{\theta}\cdot\boldsymbol{\theta}=1$.
-Using Eq. \ref{eq:theta eom} and Eq. \ref{eq:V overdamped} we find
-that the force must satisfy
-
-\begin{equation}
-\vec{\theta}^{T}D_{u}^{2}\vec{F}=0.\label{eq:Ft constraint}
-\end{equation}
-Equation \ref{eq:Ft constraint} should be seen as a constraint on
-$F_{1}$. Though in practice it is often more covenient to consider
-a tension force $\vec{T}$ separate from the rest of the constitutive
-dynamics $\vec{F}$, such that the total force on the filament be
-$\tilde{\vec{F}}=\vec{F}+\vec{T}$. As a tensional force must act
-tangentially along the filament, we must have $\vec{T}\propto\vec{\theta}$,
-and so we write $\vec{T}=T\vec{\theta}$. The tension force will enforce
-the condition $\partial_{t}(\vec{\theta}^{T}\vec{\theta})=2\dot{\vec{\theta}}^{T}\vec{\theta}=0$.
-From Eq. \ref{eq:Ft constraint} we find
-\begin{equation}
-\vec{\theta}^{T}\partial_{u}^{2}(\vec{F}+T\vec{\theta})=0\label{eq:tension}
-\end{equation}
-which is a non-linear 2nd order ODE for $T$. Note that using Eq.
-\ref{eq:tension} renders the component of the force tangent to the
-center-line $F_{\theta}=\boldsymbol{\theta}\cdot\mathbf{F}$ redundant
-and has no effect on the system. Using $\theta_{i}\theta_{i}=1$ and
-$\partial_{u}(\theta_{i}\theta_{i})=2\theta_{i}'\theta_{i}=0$, Eq.
-\ref{eq:tension} simplifes to
-\begin{equation}
-(\partial_{u}^{2}-H)T=-\vec{\theta}^{T}D_{u}^{2}\vec{F}\label{eq:tension eq}
-\end{equation}
-where $H=-\theta_{i}\theta_{i}''+2\theta_{i}\hat{\pi}_{ij}\theta_{j}'-\theta_{i}\hat{\pi}_{ij}\hat{\pi}_{jk}\theta_{k}$.
-In numerical experiments Eq. \ref{eq:tension} would have to be solved
-at each time-step to compute the tensional force.
-
-For a special Cosserat rod or filament the constraint simplifies to
-$\theta_{1}=h=1$, implying $\dot{h}=0$. Furthermore, $F_{1}=F_{\theta}$
-is now tangent to the center-line. The equation for $T$ simplifies
-to
-\begin{equation}
-(\partial_{s}^{2}-(\pi_{2}^{2}+\pi_{3}^{2}))T=-\nabla_{u}^{2}F_{1}
-\end{equation}
-and $\mathbf{T}=T\mathbf{e}_{1}$. Note that the tangential component
-of the force $F_{1}$ is redundant here, and can be safely set to
-zero.
-\end{comment}
-
-
-\section{The hyperelastic Cosserat rod model} \label{sec:The hyperelastic Cosserat rod model}
-
-In many applications the conservative part of the constitutive dynamics arise from a potential of the form Eq.~\ref{eq:U quadratic form} \citep{NonlinearProblemsElasticity2005, wangOptimalControlSoft2021a, gargSlenderBodyTheory2022, tillRealtimeDynamicsSoft2019}, where the potential $\mathcal{U}$ is a quadratic form in $X$, with coefficients given by the symmetric and positive-definite stiffness matrix $\mathsf{K} \in \mathbb{R}^{6 \times 6}$. Here we derive the form of $\mathsf{K}$ from first principles, given constitutive assumptions on the material that the rod is composed of. Specifically, we model the Cosserat rod as a slender tube of hyper-elastic \textit{Saint Venant-Kirchoff} material \cite{basarNonlinearContinuumMechanics2013}, but the derivation carries through regardless of what constitutive assumption.
-
-We consider a straight rod $\mathscr{M}=\mathscr{D} \times [0,L_{0}]$ at rest, where $\mathscr{D}$ is a disc of arbitrary shape, and $L_{0}$ is the length of the rod.
-As before, $\mathbf{X}$ is the material coordinate on $\mathscr{M}$, and we align $X_{1}\in[0,L_{0}]$ along the length of the rod, and $(X_{2},X_{3})\in\mathscr{D}$. We will use $u = X_1$ and $X_1$ interchangeably. Deformations of $\mathscr{M}$ are given by $\mathbf{x}(\mathbf{X})$, which we will refer to as the \textit{deformed coordinate}. The material and deformed coordinates can be related as
+We consider a straight rod $\mathcal{M}=\mathscr{D} \times [0,L_{0}]$ at rest, where $\mathscr{D}$ is a disc of arbitrary shape, and $L_{0}$ is the length of the rod.
+As before, $\mathbf{X}$ is the material coordinate on $\mathcal{M}$, and we align $X_{1}\in[0,L_{0}]$ along the length of the rod, and $(X_{2},X_{3})\in\mathscr{D}$. We will use $u = X_1$ and $X_1$ interchangeably. Deformations of $\mathcal{M}$ are given by $\mathbf{x}(\mathbf{X})$, which we will refer to as the \textit{deformed coordinate}. The material and deformed coordinates can be related as
 \begin{equation}
 d\mathbf{x}= \mathcal{P} d\mathbf{X}
 \end{equation}
@@ -1940,7 +1660,7 @@ The resulting constitutive force and moments are
 \end{subequations}
 We see that in this constitutive model, the force $\vec{F}$ acts on the center-line such as to align with its material frame. In other words, if the material frame is shearing, then the center-line will bend such as to be tangent to $\mathbf{e}_1$. If the material frame is rotating along $u$, which corresponds to a non-zero $\vec{\pi}$, then the moment $\vec{M}$ acts so as to render it non-rotating.  We thus see that a shearing material frame \textit{induces} bend. This effect happens despite the fact that $\vec{\theta}$ and $\vec{\pi}$ do not couple in $\mathcal{U}$, which inherently due to the geometric non-linearities in the kinematics of the Cosserat rod. Conversely, a bending center-line which is aligned with the material frame will induce shear. Note that there is no direct energetic cost for the bending of the center-line itself (as $\mathcal{U}$ is not a function of the scalar curvature $\kappa$), however the energetic cost of shearing, combined with the energetic cost of a rotating material frame, conspire together so as to straighten segments of the rod that bend.
 
-\section{Dissipative and overdamped dynamics} \label{sec:Dissipative and overdamped dynamics}
+\subsection{Dissipative and overdamped dynamics} \label{sec:Dissipative and overdamped dynamics}
 
 Equation \ref{eq:dynamics in terms of V and L with body forces} allows us to model general dissipative dynamics. We consider the case of a Cosserat rod that suffers both internal and external friction
 \begin{subequations} 
@@ -2014,7 +1734,7 @@ D_t \vec{\theta} & = D_u \left[ \mu_T D_u \vec{F} \right] \label{eq:overdamped c
 \end{subequations}
 where $\mu_{T,R} = \gamma_{T,R}^{-1}$, which would be the overdamped equations of motion of a Cosserat rod immersed in a viscous medium. 
 
-\subsection{Inextensible rods}
+\subsection{Overdamped and inextensible Cosserat rods} \label{sec:Overdamped and inextensible Cosserat rods}
 
 We will now consider applying the kinematic constraint of \textit{inextensibility} to a Cosserat rod in the overdamped limit. We will assume $\mu_T$ is a diagonal matrix and can thus be treated as a scalar constant. As in \citep{powersDynamicsFilamentsMembranes2010, goldsteinNonlinearDynamicsStiff1995, nordgrenComputationMotionElastic1974}, we enforce inextensibility by adding a constitutive tension $\vec{T}$ along the direction tangent to the center-line. To simplify our calculations, we will decompose the constitutive force as $\vec{F}_\text{tot} = \vec{F} + \vec{T}$. AS $\boldsymbol{\theta}$ is a vector pointing in the tangential direction, we will also let $\vec{T} = T \vec{\theta}$, where $T$ is a scalar function. Now, $T$ must now be chosen such that the constraint $\mathbf{r}' \cdot \mathbf{r}' = \boldsymbol{\theta} \cdot \boldsymbol{\theta} = 1$ is enforced. Now, we have
 \begin{equation}
@@ -2036,6 +1756,303 @@ We now consider the case of a twisting filament, as defined in Sec.~\ref{sec:twi
 \begin{equation}
 	\left( \partial_u^2 - (\pi_2^2 + \pi_3^2) \right) T = - (D_u^2 \vec{F})_1.
 \end{equation}
+
+
+\section{Mechanics of kinematically constrained Cosserat rods} \label{sec:Mechanics of kinematically constrained Cosserat rods}
+
+\begin{figure}[t]
+\centering
+        \includegraphics[width=0.9\textwidth]{figs_part2/sec7.5_kinematically_constrained_cosserat_rods/cosserat_rod_to_filament.pdf}
+        \caption{(Left) A Cosserat rod, with configuration space $SE(3)$. (Right) A filament, with configuration space in $SE(3)/SO(3) \cong \mathbb{E}^3$.}
+        \label{fig:cosserat rod and filament}
+\end{figure}
+
+Thus far we have considered the material frame $E$ and the center-line $\mathbf{r}$ as independent degrees of freedom, modelling a rod that can shear and twist in addition to bending and extending. In many applications it suffices to consider pure center-line dynamics where the cross-section does not shear \citep{eloyKinematicsMostEfficient2012, tornbergSimulatingDynamicsInteractions2004, goldsteinNonlinearDynamicsStiff1995, sodaDynamicsStiffChains1973, nordgrenComputationMotionElastic1974, hasimotoSolitonVortexFilament1972}. We shall refer to these systems as \textit{filaments}, and can be seen as a Cosserat rod model with a kinematically constrained material frame. As we will show, kinematic constraints can often be implemented by first identifying an appropriate Lie subgroup $H \subset SE(3)$ such that the homogeneous space $SE(3) / H$ is the kinematically constrained configuration space, and then by making a `gauge choice' $h(u) \in H$ which fixes a parametrisation of $SE(3) / H$. In addition to the filament, we will also consider the case of a \textit{twisting filament}, where the cross-section is allowed to twist around the center-line \citep{powersDynamicsFilamentsMembranes2010, parkerDerivationNonlinearRod1984, goldsteinViscousNonlinearDynamics1998}.
+
+\subsection{Kinematic constraints and gauge freedoms} \label{sec:Kinematic constraints and gauge freedoms}
+
+The configuration space of a filament can be found by `rotating away' the material frame $E(u)$ at each $u$. Therefore the appropriate Lie subgroup is $H = SO(3)$, and the configuration space is $SE(3) / SO(3) \cong \mathbb{E}^3$, where $\mathbb{E}^3$ is the three-dimensional Euclidean space. Conceptually, that $SE(3)/SO(3)$ represents the configuration space of the filament can be understood by recalling the definition of a homogeneous space. For any Lie group $G$ and Lie subgroup $H \subset G$ then $G/H$ is the set
+\begin{equation}
+G / H = \{ gH\ :\ g \in G \}
+\end{equation}
+where $gH = \{ gh\ :\ h \in G \}$ is the left coset. Now consider the case when $G = SE(3)$ and $H = SO(3)$. Let $g_1 = (\mathbf{r}, E_1)$ and $g_2 = (\mathbf{r}, E_2)$ denote two cross-sections that are located at the same point $\mathbf{r}$, but have two different material frames $E_1$ and $E_2$, and furthermore we can trivially identify these as elements $g_1, g_2 \in SE(3)$. As $E_1$ is related to $E_2$ by a rotation in $SO(3)$, we have that $g_1 H = g_2 H$. In other words, in the homogeneous space $SE(3)/SO(3)$, $g_1$ and $g_2$ belong to the same element $g_1 H = g_2 H \in SE(3)/SO(3)$. Therefore, a filament can mathematically be described as a Cosserat rod where we have, for each $u$, identified all material frames $E(u)$ at $\mathbf{r}(u)$ as belonging to the same equivalence~class. See Fig.~\ref{fig:cosserat rod and filament} for an illustration.
+
+Now let $\Phi : W \to SE(3)/SO(3)$ be the spatio-temporal configuration of the filament. As discussed in Sec.~\ref{sec:Sub-manifolds of homogeneous spaces}, we can write $\Phi$ as
+\begin{equation} \label{eq:phi and phi tilde}
+\Phi = \pi \circ \tilde{\Phi}
+\end{equation}
+where $\circ$ denotes compositions of maps and $\pi : SE(3) \to SE(3)/SO(3)$ relates elements in $SE(3)$ to elements in the homogeneous space and can be defined as
+\begin{equation}
+\pi( (\mathbf{r} ; E) ) = \mathbf{r},
+\end{equation}
+and $\tilde{\Phi} : W \to SE(3)$ is a \textit{framing}, or an \textit{adapted frame field}, of $\Phi$ \citep{clellandFrenetCartanMethod2017}, and is a Lie group-valued function on $W$ that satisfies Eq.~\ref{eq:phi and phi tilde}.
+
+We can map any framing $\tilde{\Phi}$ to a spatio-temporal filament configuration $\Phi$ using Eq.~\ref{eq:phi and phi tilde}. Note however that this map is not injective. Let $h : W \to SO(3)$ be an arbitrary $SO(3)$-valued smooth function and let $\tilde{\Phi}_1 : W \to SE(3)$ and $\tilde{\Phi}_2 : W \to SE(3)$, then if $\tilde{\Phi}_1(t,u) = h(t,u) \tilde{\Phi}_2(t,u)$ maps to the same $\Phi$. Any given choice of $\tilde{\Phi}$ is called a \textit{framing} of $\Phi$ \citep{clellandFrenetCartanMethod2017}. There is thus a \textit{gauge freedom} in the choice of $\tilde{\Phi}$.
+
+In principle, the kinodynamical equations for a Cosserat rod Eq.~\ref{eq:all eoms} apply to the filament as well. We could initialise Eq.~\ref{eq:all eoms} with some $\tilde{\Phi}(u, 0)$ that maps to the true initial condition $\Phi(u, 0)$, then simulate the equations of motion to find $\tilde{\Phi}(t,u)$, and then finally use Eq.~\ref{eq:phi and phi tilde} to find $\Phi(t, u)$. In this case, it is important that all constitutive and body forces and moments only couple to the center-line $\mathbf{r}$, and not the material frame $E$. For example, for conservative constitutive dynamics we could have a potential energy density $\mathcal{U} \propto \kappa^2$, where $\kappa$ is the scalar curvature of the center-line defined in Eq.~\ref{eq:scalar curvature}.
+
+However, the above would mean simulating equations of motion of higher-dimensionality than the system in question, where the extra degrees of freedom (the material frame) are non-physical. In the following we will instead choose a particular \textit{gauge} and form an injective map between $\tilde{\Phi}$ and $\Phi$. In other words, by choosing a gauge we choose a particular prescription for how to frame a given space-curve. Beyond the fact that the resulting dynamics will be defined directly on the lower dimensional $SE(3)/SO(3)$ rather than $SE(3)$, it is also often easier to formulate constitutive dynamics given a particular framing, rather than formulating it in terms of the degrees of freedom of a general Cosserat rod. The programmatic construction of such gauges is better known as the \textit{theory of moving frames} \citep{cartanTheorieGroupesFinis1938, levyReviewElieCartan1935}. We note that the terminological use of `gauge', although well-motivated in this context, is not standard in the theory of moving frames.
+
+All gauge choices are ultimately mathematically equivalent, however some choices are more practically useful than others. Our procedure to construct a gauge will be to write the material frame $E = (\mathbf{e}_1\ \mathbf{e}_2\ \mathbf{e}_3)$ as a function of the center-line $\mathbf{r}$. Thus one-to-one map between $\Phi$ and $\tilde{\Phi}$ is formed. As a first step towards finding an appropriate gauge, we set
+\begin{equation} \label{eq:e1 tangent to r}
+\mathbf{e}_1 = \frac{\mathbf{r}'}{h}
+\end{equation}
+where $h = |\mathbf{r}'|$, such that $\mathbf{e}_1$ is a unit-vector tangent to $\mathbf{r}$ at $u$. This means that given $\mathbf{e}_1$ we can write the center-line as
+\begin{equation} \label{eq:r from e1} 
+\mathbf{r}(t, u) = \mathbf{r}(0, t) + \int_0^u h \mathbf{e}_1 du.
+\end{equation} 
+There is now a remaining $SO(2)$ gauge freedom in specifying the material frame vectors $\mathbf{e}_2$ and $\mathbf{e}_3$. In the gauges found in the literature \citep{bishopThereMoreOne1975, mansfieldUseRotationMinimizing2019, clellandFrenetCartanMethod2017, carrollImprovingFrenetFrame2013, seligCharacterisationFrenetSerret2013}, most abide Eq.~\ref{eq:e1 tangent to r}, and are thus all related by an $SO(2)$ gauge transformation of $\mathbf{e}_2$ and $\mathbf{e}_3$.
+
+\subsubsection*{The Frenet-Serret gauge}
+
+In the \textit{Frenet-Serret} gauge \citep{frenetCourbesDoubleCourbure1852, serretQuelquesFormulesRelatives1851}, we set
+\begin{equation} \label{eq:e2 in frenet-serret}
+\mathbf{e}_2 = \frac{\mathbf{e}_1'}{\kappa}
+\end{equation}
+where $\kappa = |\mathbf{e}_1'|$ is the scalar curvature, such that $\mathbf{e}_2(u)$ is a unit-vector pointing in the direction of the center-line $\mathbf{r}(t,u)$ curves towards at time $t$. Eq.~\ref{eq:e2 in frenet-serret} fully specifies the frame, as $\mathbf{e}_3 = \mathbf{e}_1 \times \mathbf{e}_2$. In this context $\mathbf{e}_1$, $\mathbf{e}_2$ and $\mathbf{e}_3$ are called the tangent, normal and binormal vectors respectively. co
+
+Now recall the equations of motion of $\mathbf{r}$ and $\mathbf{e}_i$ along $u$, given by Eq.~\ref{eq:dr and de}, which we write as
+\begin{subequations}
+\begin{align}
+\mathbf{r}' & = \mathbf{e}_i \theta_i \\
+\mathbf{e}_j' & = \mathbf{e}_i \hat{\pi}_{ij}.
+\end{align}
+\end{subequations}
+Since $\mathbf{r}' = h \mathbf{e}_1$ we have that
+\begin{equation} \label{eq:theta for filament}
+\vec{\theta} = (h\ 0\ 0)^T,
+\end{equation}
+and as $\mathbf{e}_1' = \kappa \mathbf{e}_2$ we have that $\hat{\pi}_{21} = - \hat{\pi}_{12} = \kappa$ and $\hat{\pi}_{31} = -\hat{\pi}_{13} = 0$. This leaves only one more possible parameter $\hat{\pi}_{23} = -\hat{\pi}_{32}$, to which we assign the scalar parameter $\tau$, known as the \textit{torsion}. We thus have
+\begin{equation} \label{eq:pi for filament}
+\hat{\pi} = \begin{pmatrix}
+0 & - \kappa & 0 \\
+\kappa & 0 & - \tau \\
+0 & \tau & 0.
+\end{pmatrix}
+\end{equation}
+or, in vector form, $\vec{\pi} = (\tau\ 0\ \kappa)^T$. Finally, we get the \textit{Frenet-Serret equations}
+\begin{equation} \label{eq:frennet-serret equations}
+\begin{matrix}
+\mathbf{e}_1' & = & & \kappa \mathbf{e}_2 & \\
+\mathbf{e}_2' & = & - \kappa \mathbf{e}_1 & + & \tau \mathbf{e}_3 & \\
+\mathbf{e}_3' & = &  & \tau \mathbf{e}2  &
+\end{matrix}
+\end{equation}
+which together with Eq.~\ref{eq:r from e1} reconstructs the framing $\tilde{\Phi} \cong (\mathbf{r}, E)$, from which get the filament configuration $\Phi \cong \mathbf{r}$.
+
+We see that by choosing a gauge, we have effectively constrained the spatial configuration $X$ to only take values in a subset $V \subset \mathfrak{se}(3)$, where $X = X(h, \kappa, \tau)$ is now parametrised by the three scalars $(h, \kappa, \tau)$ that are functions of space and time. Note that $V$ is not a Lie subalgebra. This constraint establishes an injective mapping between $V$-valued fields $X : W \to V$ and $\mathbb{E}^3$-valued fields $\Phi : W \to \mathbb{E}^3$. In this context $(h, \kappa, \tau)$ are known as the \textit{differential invariants} of the filament, as they uniquely define the filament up to rigid body transformations.
+
+We should stress that in the mathematical literature, the purview of the theory of moving frames are in general space curves (rather than space-time curves). Furthermore, in that context the metric $h$ along the center-line is of little importance (and is usually not referred to as a differential invariant), and thus the arc-length parameterisation is preferred. Eq.~\ref{eq:frennet-serret equations} is therefore more commonly written in terms of arc-length derivatives
+\begin{equation} \label{eq:frennet-serret equations arc-length}
+\begin{matrix}
+\partial_s \mathbf{e}_1 & = & & \tilde{\kappa} \mathbf{e}_2 & \\
+\partial_s \mathbf{e}_2 & = & - \tilde{\kappa} \mathbf{e}_1 & + & \tilde{\tau} \mathbf{e}_3 & \\
+\partial_s \mathbf{e}_3 & = &  & \tilde{\tau} \mathbf{e}2  &
+\end{matrix}
+\end{equation}
+where $\tilde{\kappa} = h \kappa$ and $\tilde{\tau} = h \tau$ are the scalar curvature and torsion in the arc-length parameterisation.
+
+Intuitively, we can visualise the motion of $(\mathbf{r}, E)$ as a function of $u$, for fixed $t$, in the Frenet-Serret gauge as follows. We can imagine an airplane which is travelling in the direction of $\mathbf{e}_1$ and with the floor of the plane aligned with $\mathbf{e}_3$. Its trajectory traces out a center-line $\mathbf{r}(u)$, at `speed' $h$. The Frenet-Serret frame corresponds to a plane that navigates \textit{pitching} (at a rate $\kappa$) and \textit{rolling} (at a rate $\tau$), but never \textit{yaws}.
+
+We now consider the kinematics along time $t$. The same kinematic equations of motion Eq.~\ref{eq:kinematic equations of motion in the moving frame} for the Cosserat rod still apply. However, substituting $\vec{\theta} = (h\ 0\ 0)^T$ and $\vec{\pi} = (\tau\ 0\ \kappa)^T$ into Eq.~\ref{eq:kinematic equations of motion in the moving frame} we find the following constraints
+\begin{subequations} \label{eq:angular velocity in frenet-serret}
+\begin{align}
+\Omega_1 & = (\Omega_3 \tau - \Omega_2') / \kappa \\
+\Omega_2 & = - h^{-1} (D_u \vec{V})_3 \\
+\Omega_3 & = h^{-1} (D_u \vec{V})_2.
+\end{align}
+\end{subequations}
+It is intuitive that the angular velocity of the filament, with a cross-section constrained to be aligned with the center-line, is completely determined as a function of the differential invariants and the translational velocity $\vec{V}$. Eq.~\ref{eq:angular velocity in frenet-serret}, together with Eq.~\ref{eq:kinematic equations of motion in the moving frame}, completely specify the kinematics of the filament. Just as we have three scalar parameters $(h, \kappa, \tau)$ that determine the spatial configuration of the filament, the temporal evolution is determined by the three scalars in $\vec{V} = (V_1\ V_2\ V_3)$. Using Eq.~\ref{eq:kinematic equations of motion in the moving frame} and Eq.~\ref{eq:angular velocity in frenet-serret}, we can write the kinematic equations of motion for the filament compactly as
+\begin{subequations} \label{eq:filament kinematic equtions of motion}
+\begin{align}
+\dot{h} & = V_1' - \kappa V_2 \\
+\dot{\kappa} & = \Omega_3' + \tau \Omega_2 \\
+\dot{\tau} & = \Omega_1' - \kappa \Omega_2 \\
+\end{align}
+\end{subequations}
+where $\vec{\Omega}$ is given by Eq.~\ref{eq:angular velocity in frenet-serret}. The temporal evolution of the filament is thus specified by the velocity field $\vec{V}$ alone.
+
+%\subsubsection{The Bishop gauge}
+
+%The \textit{Bishop} gauge \citep{bishopThereMoreOne1975, carrollImprovingFrenetFrame2013} is an alternative to the Frenet-Serret frame.
+
+\subsubsection*{The twisting filament} \label{sec:twisting filament}
+
+We can model a filament that can twist around its center-line by keeping the $SO(2)$ gauge freedom of $(\mathbf{e}_2, \mathbf{e}_3)$ and promoting it to a kinematic degree of freedom. The resulting degrees of freedom are then $\vec{\theta} = (h\ 0\ 0)^T$ as before and $\vec{\pi}$ has all three of its components. The resulting constraints on $\vec{\Omega}$ are then
+\begin{subequations} \label{eq:angular velocity for twisting filament}
+\begin{align}
+\Omega_2 & = - h^{-1} (D_u \vec{V})_3 \\
+\Omega_3 & = h^{-1} (D_u \vec{V})_2.
+\end{align}
+\end{subequations}
+instead of Eq.~\ref{eq:angular velocity in frenet-serret}. The resulting kinematic equations of motion are thus
+\begin{subequations} \label{eq:twisting filament kinematic equtions of motion}
+\begin{align}
+\dot{h} & = V_1' - \kappa V_2 \\
+\dot{\vec{\pi}} & = D_u \vec{\Omega}
+\end{align}
+\end{subequations}
+The temporal evolution of the twisting filament is thus specified by the rate of twist $\Omega_1$ and the velocity field $\vec{V}$.
+
+In our airplane analogy, the twisting filament travels (again, as a function of $u$ for fixed $t$) by rolling (at a rate $\pi_1$), yawing (at a rate $\pi_2$) and pitches (at a rate $\pi_3$).
+
+\subsection{Kinematically constrained dynamics} \label{sec:Kinematically constrained dynamics (cosserat rod)}
+
+The formulation of the dynamics for kinematically constrained rods carries through less programmatically than in the case of the Cosserat rod. In general, extra care must be taken formulating the dynamics when the configuration space is a homogeneous space $G / H$. Issues of under- or over-determination in the equations of motion may arise due to the fact that $\text{dim}(G/H) < \text{dim}(G)$ if $\text{dim}(H) \neq 0$.
+
+\subsubsection*{Filament dynamics}
+
+For a filament, though its configuration space is $SE(3)/SO(3) \cong \mathbb{E}^3$ rather than $SE(3)$ as for the Cosserat rod, $SE(3)$ acts \textit{transitively} on $\mathbb{E}^3$. By which we mean that for any two elements $\mathbf{x}, \mathbf{y} \in \mathbb{E}^3$, there exists an element $g \in SE(3)$ such that $\mathbf{y} = g \mathbf{x}$. As before, we can define a Lagrangian density $\mathcal{L} : SE(3) \times TSE(3) \to \mathbb{R}$, with reduction $\ell : \mathfrak{se}(3) \to \mathbb{R}$, or use the Lagrange-D'Alembert principle as the starting point. The derivation of the dynamics then proceed as before in Sec.~\ref{sec:Cosserat rod dynamics}, and we find the same general equations of motion Eq.~\ref{eq:all eoms}.
+
+However, issues arise as the dimension of the Lie algebra $\text{dim}(\mathfrak{se}(3)) = 6$ is larger than the configuration space $\text{dim}(\mathbb{E}^3) = 3$. This is in principle partially ameliorated by choosing a gauge, such as the Frenet-Serret gauge, but if this is done naively then the resulting equations of motion are untenable. Consider the dynamical equations of motion that would result if we consider a filament with the Frenet-Serret frame, starting from the Lagrange-D'Alembert principle Eq.~\ref{eq:lagrange-dalembert for non-monogenic constitutive forces and body forces}. As before, we let $S = \frac{\partial \mathcal{K}}{\partial N}$, where the reduced kinetic energy $\mathcal{K}$ of the Cosserat rod was derived in Eq.~\ref{eq:reduced kinetic energy} and we repeat it here
+\begin{equation}
+\mathcal{K}(N)  = \frac{1}{2} \rho_0 |\vec{V}|^2 +  \frac{1}{2} \vec{\Omega}^T \mathbb{I} \vec{\Omega}.
+\end{equation}
+Consider now, in particular, the moment balance equation for the filament
+\begin{equation} \label{eq:moment balance filament wrong}
+D_t \vec{L} = D_u \vec{M} + \vec{\theta} \times \vec{F} + \vec{m},
+\end{equation}
+where $\vec{L} = \mathbb{I} \vec{\Omega}$. Due to Eq.~\ref{eq:angular velocity in frenet-serret}, $\vec{\Omega}$ is not an independent degree of freedom, but a function of $\vec{V}$ and the differential invariants. Therefore Eq.~\ref{eq:moment balance filament wrong} over-determines the system, and is in general an intractable constraint.
+
+To address this issue, we first note that it stems from the particular method by which we have parametrised the filament. In the fixed frame, the dynamics of the filament can be unambiguously written as
+\begin{equation} \label{eq:fixed frame filament dynamics}
+\rho_0 \ddot{\mathbf{r}} = \mathbf{F}' + \mathbf{f}
+\end{equation}
+where we used $\mathbf{P} = \rho_0 \dot{\mathbf{r}}$, which can be seen as the $1$-dimensional analogue of the Cauchy momentum equation in the Lagrangian point-of-view, where $\mathbf{F}$ would correspond to the \textit{first Piola-Kirchhoff stress tensor} in continuum dynamics.
+
+In the geometric formulation presented here, we parametrise the filament in terms of its intrinsic geometry $\kappa$ and $\tau$, which corresponds to a given framing, rather than its center-line $\mathbf{r}(t,u)$ as in Eq.~\ref{eq:fixed frame filament dynamics}. This means that we must consider how the forces on the filament corresponds to moments on the moving frame $(\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3)$. However, as the filament is ultimately described as a center-line, the model does not accommodate the angular momentum of its frame as an independent degree of freedom. In the literature the issue of Eq.~\ref{eq:moment balance filament wrong} is avoided by taking the overdamped limit modelling a filament immersed in a highly viscous fluid \citep{eloyKinematicsMostEfficient2012, tornbergSimulatingDynamicsInteractions2004, goldsteinNonlinearDynamicsStiff1995, sodaDynamicsStiffChains1973, nordgrenComputationMotionElastic1974, hasimotoSolitonVortexFilament1972, powersDynamicsFilamentsMembranes2010, goldsteinViscousNonlinearDynamics1998}, or by considering filament statics \citep{parkerDerivationNonlinearRod1984}. Here, we avoid this limit and present a derivation of inertial filament dynamics.
+
+Let $\mathcal{K}(N)  = \frac{1}{2} \rho_0 |\vec{V}|^2$, so that we get $S = \{ \vec{P} ; \vec{0} \}$ where $\vec{P} = \rho_0 \vec{V}$, therefore implicitly assuming the angular momentum of the filament to be negligible. The moment balance equation then becomes
+\begin{equation} \label{eq:moment balance filament}
+0 = D_u \vec{M} + \vec{\theta} \times \vec{F} + \vec{m}.
+\end{equation}
+To find self-consistent constitutive dynamics, we consider moment balance in the absence of external moments $\vec{m} = 0$, to find
+\begin{subequations} \label{eq:filament force constraints}
+\begin{align}
+0 &  = (D_u \vec{M})_1 \\
+F_2 & = h^{-1} (D_u \vec{M})_3 \\
+F_3 & = - h^{-1} (D_u \vec{M})_2.
+\end{align}
+\end{subequations}
+Thus we see that combined we can only independently specify three of the six force and moment components in total. The kinodynamical equations of motion for the filament are thus
+\begin{subequations} \label{eq:filament dynamic equtions of motion}
+\begin{align}
+\dot{h} & = V_1' - \kappa V_2 \\
+\dot{\kappa} & = \Omega_3' + \tau \Omega_2 \\
+\dot{\tau} & = \Omega_1' - \kappa \Omega_2 \\
+D_t \vec{P} & = D_u \vec{F} + \vec{f},
+\end{align}
+\end{subequations}
+where the material derivatives are computed as before, using $\vec{\pi} = (\tau\ 0\ \kappa)$ and $\vec{\Omega}$ given by Eq.~\ref{eq:angular velocity in frenet-serret}, and where the force must obey the conditions Eq.~\ref{eq:filament force constraints}. We note that $\vec{M}$ does not appear explicitly in the dynamics, and we can indeed in theory write down the three arbitrary constitutive force components $\vec{F}$, which would induce a moment via Eq.~\ref{eq:filament force constraints} that has no impact on the dynamics. This is however not how the constitutive forces and moments are defined in practice, as we will now show.
+
+We now move on to treat conservative constitutive dynamics. As discussed in \citep{levyReviewElieCartan1935}, when the Lie algebra, that acts transitively on the configuration space, is of a higher dimension than the configuration space the resulting Lagrangian dynamics (i.e. conservative dynamics) is under-determined. For a Cosserat rod we have $Q = \frac{\partial \mathcal{U}}{\partial X} = \{ \vec{F} ; \vec{M} \}^*$ which results in Eq.~\ref{eq:F_i and M_i from U}. In contrast, as $\vec{\theta} = (h\ 0\ 0)^T$ and $\vec{\pi} = (\tau\ 0\ \kappa)^T$ for a filament, the only components that are determined for a general constitutive $\mathcal{U}$ are
+\begin{subequations} \label{eq:F1, M2 and M3 for filament}
+\begin{align}
+F_1 & =  \frac{\partial \mathcal{U}}{\partial h} \\
+M_1 & =  \frac{\partial \mathcal{U}}{\partial \tau} \\
+M_3 & =  \frac{\partial \mathcal{U}}{\partial \kappa} 
+\end{align}
+\end{subequations}
+leaving $M_2$, $F_2$ and $F_3$ undetermined by $\mathcal{U}$. However we see that by having chosen a gauge, these force and moment components are given by moment balance Eq.~\ref{eq:filament force constraints}. The conservative constitutive forces and moments on a filament are thus determined by Eq.~\ref{eq:F1, M2 and M3 for filament} and Eq.~\ref{eq:filament force constraints} together. Note that it was necessary to let $M_1$, $F_2$ and $F_3$ be undetermined by $\mathcal{U}$, rather than setting $M_1 = F_2 = F_3 = 0$, which would conflict with moment balance. The above is consistent with the force and moment balance equations found for the filament in the overdamped setting \citep{powersDynamicsFilamentsMembranes2010} and in statics \citep{parkerDerivationNonlinearRod1984}.
+
+It is standard for filament dynamics to associate an energetic cost to the square of the curvature and extension $\mathcal{U} = \frac{1}{2} \epsilon \kappa^2$.  From Eq.~\ref{eq:F1, M2 and M3 for filament} and Eq.~\ref{eq:filament force constraints} we then find, expressed in a non-moving frame
+\begin{equation} \label{eq:bernoulli moment for filament}
+\mathbf{M} = \epsilon \kappa \mathbf{e}_3
+\end{equation}
+where $\epsilon$ is the bending stiffness. Eq.~\ref{eq:bernoulli moment for filament} agree with classical Bernoulli-Euler beam theory \citep{ powersDynamicsFilamentsMembranes2010, sodaDynamicsStiffChains1973, nordgrenComputationMotionElastic1974}. Note that as the notion of torsion $\tau$ appears from the gauge choice, rather than representing a physical property of the filament, a $\tau^2$ term is usually not included in $\mathcal{U}$. Therefore $M_1 = M_2 = 0$ for a filament in the Frenet-Serret frame in practice.
+
+In the overdamped limit, the results of Sec.~\ref{sec:Dissipative and overdamped dynamics} and Eq.~\ref{eq:overdamped equations of motion in moving frame} applies as before, under the constraints Eq.~\ref{eq:theta for filament} and Eq.~\ref{eq:pi for filament}, Eq.~\ref{eq:angular velocity in frenet-serret} and Eq.~\ref{eq:filament force constraints}. Setting $\vec{f} = - \gamma_T \vec{V}$ we get
+\begin{subequations} \label{eq:filament overdamped equtions of motion}
+\begin{align}
+\dot{h} & = V_1' - \kappa V_2 \\
+\dot{\kappa} & = \Omega_3' + \tau \Omega_2 \\
+\dot{\tau} & = \Omega_1' - \kappa \Omega_2 \\
+\vec{V} & = \mu_T D_u \vec{F},
+\end{align}
+\end{subequations}
+where $\mu_T = \gamma_T^{-1}$.
+
+\subsubsection*{Twisting filament dynamics}
+
+For a twisting filament, the angular velocity component $\Omega_1$ is now a dynamic degree of freedom, and we therefore permit angular momentum along the tangential direction. We assume the principal axes of the moment of inertia $\mathbb{I}$ coincide with the moving frame $\mathbf{e}_i,\ i=1,2,3$, and that the angular momentum is negligible along the normal and binormal directions, setting $\vec{L} = ( \mathbb{I}^{(1)} \Omega_1\ 0\ 0 )^T$, where $\mathbb{I}^{(1)}$ is the eigenvalue of $\mathbb{I}$ along $\mathbf{e}_1$. The resulting kinodynamical equations of motion are
+\begin{subequations} \label{eq:twisting filament dynamic equtions of motion}
+\begin{align}
+\dot{h} & = V_1' - \kappa V_2 \\
+\dot{\pi} & = D_u \vec{\Omega} \\
+D_t \vec{P} & = D_u \vec{F} + \vec{f} \\
+\mathbb{I}^{(1)} \dot{\Omega}_1 & = (D_u \vec{M})_1 + m_1
+\end{align}
+\end{subequations}
+where the constraints on the force are
+\begin{subequations} \label{eq:twisting filament force constraints}
+\begin{align}
+F_2 & = h^{-1} (D_u \vec{M})_3 \\
+F_3 & = - h^{-1} (D_u \vec{M})_2,
+\end{align}
+\end{subequations}
+which should be compared with Eq.~\ref{eq:filament dynamic equtions of motion} and Eq.~\ref{eq:filament force constraints}. For conservative constitutive we now have the relations
+\begin{subequations} \label{eq:F1 and M for twisting filament}
+\begin{align}
+F_1 & =  \frac{\partial \mathcal{U}}{\partial h} \\
+M_i & =  \frac{\partial \mathcal{U}}{\partial \pi_i}.
+\end{align}
+\end{subequations}
+
+
+\begin{comment}
+\subsubsection*{Inextensible Cosserat rods and filaments}
+
+A Cosserat rod is \textit{inextensible} if it satisfies the kinematic constraint $\dot{h} = 0$. 
+
+
+We will now consider the case of an inextensible Cosserat rod in the
+overdamped limit, under the influence of a constitutive force $\vec{F}$.
+For an inextensible rod, the tangential component of the force, tangent
+to the center-line $\mathbf{r}$, is a constraining tension that enforces $\mathbf{r}'\cdot\mathbf{r}'=\boldsymbol{\theta}\cdot\boldsymbol{\theta}=1$.
+Using Eq. \ref{eq:theta eom} and Eq. \ref{eq:V overdamped} we find
+that the force must satisfy
+
+\begin{equation}
+\vec{\theta}^{T}D_{u}^{2}\vec{F}=0.\label{eq:Ft constraint}
+\end{equation}
+Equation \ref{eq:Ft constraint} should be seen as a constraint on
+$F_{1}$. Though in practice it is often more covenient to consider
+a tension force $\vec{T}$ separate from the rest of the constitutive
+dynamics $\vec{F}$, such that the total force on the filament be
+$\tilde{\vec{F}}=\vec{F}+\vec{T}$. As a tensional force must act
+tangentially along the filament, we must have $\vec{T}\propto\vec{\theta}$,
+and so we write $\vec{T}=T\vec{\theta}$. The tension force will enforce
+the condition $\partial_{t}(\vec{\theta}^{T}\vec{\theta})=2\dot{\vec{\theta}}^{T}\vec{\theta}=0$.
+From Eq. \ref{eq:Ft constraint} we find
+\begin{equation}
+\vec{\theta}^{T}\partial_{u}^{2}(\vec{F}+T\vec{\theta})=0\label{eq:tension}
+\end{equation}
+which is a non-linear 2nd order ODE for $T$. Note that using Eq.
+\ref{eq:tension} renders the component of the force tangent to the
+center-line $F_{\theta}=\boldsymbol{\theta}\cdot\mathbf{F}$ redundant
+and has no effect on the system. Using $\theta_{i}\theta_{i}=1$ and
+$\partial_{u}(\theta_{i}\theta_{i})=2\theta_{i}'\theta_{i}=0$, Eq.
+\ref{eq:tension} simplifes to
+\begin{equation}
+(\partial_{u}^{2}-H)T=-\vec{\theta}^{T}D_{u}^{2}\vec{F}\label{eq:tension eq}
+\end{equation}
+where $H=-\theta_{i}\theta_{i}''+2\theta_{i}\hat{\pi}_{ij}\theta_{j}'-\theta_{i}\hat{\pi}_{ij}\hat{\pi}_{jk}\theta_{k}$.
+In numerical experiments Eq. \ref{eq:tension} would have to be solved
+at each time-step to compute the tensional force.
+
+For a special Cosserat rod or filament the constraint simplifies to
+$\theta_{1}=h=1$, implying $\dot{h}=0$. Furthermore, $F_{1}=F_{\theta}$
+is now tangent to the center-line. The equation for $T$ simplifies
+to
+\begin{equation}
+(\partial_{s}^{2}-(\pi_{2}^{2}+\pi_{3}^{2}))T=-\nabla_{u}^{2}F_{1}
+\end{equation}
+and $\mathbf{T}=T\mathbf{e}_{1}$. Note that the tangential component
+of the force $F_{1}$ is redundant here, and can be safely set to
+zero.
+\end{comment}
+
+
 
 \section{Conclusion}
 
@@ -2121,7 +2138,7 @@ To reconstruct the spatio-temporal configuration $\Phi$ at a time $t$ from the M
 \end{equation}
 which can be integrated using a matrix ODE solver. Specifically, for a given material point $\mathbf{u}$ and initial condition $\Phi(\bar{t}, \mathbf{u}_0)$, to find $\Phi(\bar{t}, \mathbf{u})$ we must integrate Eq.~\ref{eq:spatial reconstruction of Phi} at fixed $\bar{t}$ along some curve $\gamma : [0,1] \to M$, such that $\gamma(0) = \mathbf{u}_0$ and $\gamma(1) = \mathbf{u}$. See Appendix \ref{app:Reconstructing the spatio-temporal configuration} for details on how to construct $\Phi(\mathbf{u}_0, t)$.
 
- Due to the spatial integrability conditions Eq.~\ref{eq:(summary) spatial integrability condition}, the result of integrating Eq.~\ref{eq:spatial reconstruction of Phi} is independent of the shape $\gamma$, for fixed end-points. For details on reconstructing $\Phi$ from $X_\alpha$ and $N$, see Appendix \ref{app:Reconstructing the spatio-temporal configuration}. If the spatial reconstruction fields $X_\alpha$ do not satisfy spatial integrability, then solutions of Eq.~\ref{eq:spatial reconstruction of Phi} are no longer path-independent. Effectively, this means that the map $(t, \mathbf{u}) \mapsto \Phi(t, \mathbf{u})$ is not single-valued. Instead $\Phi$ is a functional $\Phi[\gamma_\mathbf{u}]$ of curves $\gamma_\mathbf{u} : [0,1] \to M$ satisfying $\gamma_\mathbf{u}(0) = \mathbf{u}_0$ and $\gamma_\mathbf{u}(1) = \mathbf{u}$, along which $X_\alpha$ are integrated (see Appendix \ref{app:Reconstructing the spatio-temporal configuration} for details), where $\mathbf{u}_0$ is some material point at which initial conditions of the exponentiation is specified.
+ Due to the spatial integrability conditions Eq.~\ref{eq:(summary) spatial integrability condition}, the result of integrating Eq.~\ref{eq:spatial reconstruction of Phi} is independent of the shape $\gamma$, for fixed end-points. For details on reconstructing $\Phi$ from $X_\alpha$ and $N$, see Appendix \ref{app:Reconstructing the spatio-temporal configuration}. If the spatial reconstruction fields $X_\alpha$ do not satisfy spatial integrability, then solutions of Eq.~\ref{eq:spatial reconstruction of Phi} are no longer path-independent. Effectively, this means that the map $(t, \mathbf{u}) \mapsto \Phi(t, \mathbf{u})$ is not single-valued. Instead $\Phi$ is a functional $\Phi[\gamma_\mathbf{u}]$ of curves $\gamma_\mathbf{u} : [0,1] \to M$ satisfying $\gamma_\mathbf{u}(0) = \mathbf{u}_0$ and $\gamma_\mathbf{u}(1) = \mathbf{u}$, along which $X_\alpha$ are integrated,\footnote{See Appendix \ref{app:Reconstructing the spatio-temporal configuration} for details} where $\mathbf{u}_0$ is some material point at which initial conditions of the exponentiation is specified.
 
 Under the assumption that the generalised velocity field is a smooth function of $\mathbf{u}$, the kinematic equations of motion preserve the spatial integrability condition. However, numerical errors in the spatial integrability will in general accrue in simulations. Let
 \begin{equation} \label{eq:spatial integrability residual}
@@ -2157,13 +2174,13 @@ where $n \in T^*M$ is a normal covector field that is tangent to the material bo
 \end{subequations}
 which we call the dual generalised material derivatives along time and the $\alpha$th material directions respectively. To give an intuitive example that illustrates the implementation of Eq.~\ref{eq:geometric dynamic bcs}, we can consider the case where $M = [0, L_0^1] \times [0, L_0^2] \times \dots \times [0, L_0^d]$ and $L_0^\alpha \in \mathbb{R}^+$. Then from Eq.~\ref{eq:geometric dynamic bcs} we would have that $Q^\alpha = 0$ on $u^\alpha = 0, L^\alpha_0$. In physical applications $S$ is always related linearly to $N$, and the kinodynamic equations of motion thus close by solving for $N = N(S)$. The total number of degrees of freedom of the system is thus $2d$, which are encoded in the spatial reconstruction fields $X_\alpha$ and $N$.
 
-Note that in general the generalised body force $T$ is a function of the spatio-temporal configuration $\Phi$. In this case we must reconstruct $\Phi$ from the spatial reconstruction fields $X_\alpha$ to compute $T$ at any time $t$. See Appendix \ref{app:Reconstructing the spatio-temporal configuration from the Maurer-Cartan form} for a detailed algorithm.
+Note that in general the generalised body force $T$ is a function of the spatio-temporal configuration $\Phi$. In this case we must reconstruct $\Phi$ from the spatial reconstruction fields $X_\alpha$ to compute $T$ at any time $t$. See Appendix \ref{app:Reconstructing the spatio-temporal configuration} for a detailed algorithm.
 
 For many physical systems we often care about formulating purely constitutive and conservative dynamics. In this case the stress can be derived from a potential energy. As we did in Sec.~\ref{sec:The hyperelastic Cosserat rod model} for the Cosserat rod, the starting point would be to formulate a Lagrangian density $\mathcal{L}(\Phi, d \Phi)$. If the dynamics is purely constitutive, then the Lagrangian can not be a function of the global state $\Phi$. Rather, only deformations $d \Phi$ energetically. Therefore the Lagrangian is only a function of the tangent space of $G$, and we write it as $\mathcal{L}(d \Phi)$. In such cases, $\mathcal{L}(d \Phi)$ admits a reduced form $\ell(\xi)$, that satisfies $\ell(\xi) = \mathcal{L}(d \Phi)$ when $\xi = \Phi^{-1} d \Phi$. Often, the reduced Lagrangian can be written in the form
 \begin{equation}
 \ell(\xi) = \mathcal{K}(N) - \mathcal{U}(X_\alpha).
 \end{equation}
-Applying the Euler-Poincaré theorem, we arrive at the same equations Eq.~\ref{eq:geometrised dynamic eoms} with the body force absent and where the generalised internal stresses are given by
+Applying the Euler-Poincaré theorem, we arrive at the same equations as Eq.~\ref{eq:(summary) dynamical equations of motion} with the body force absent and where the generalised internal stresses are given by
 \begin{equation}
 Q^\alpha = - \frac{\partial \ell }{\partial X_\alpha} = \frac{\partial \mathcal{U}}{\partial X_\alpha}.
 \end{equation}
@@ -2214,10 +2231,10 @@ Choosing a gauge is equivalent to prescribing a one-to-one map between spatio-te
 
 In general, the choice of gauge will result in only $n-r$ components of the Maurer-Cartan form $\xi$ to be independent, which in turn means that the kinematic equations of motion yields $r$ constraints. See Eq.~\ref{eq:angular velocity in frenet-serret} for an example. Care must be taken to ensure to eliminate superfluous dynamic degrees of freedom. In Sec.~\ref{sec:Kinematically constrained dynamics (cosserat rod)} we did this by setting $S_{ij} = 0$ for every vanishing component $N_{ij}=0$ of the generalised velocity. In turn, this will lead to $r$ constraints on the generalised stress from the dynamical equations of motion Eq.~\ref{eq:(summary) dynamical equations of motion}. These $r$ constrains are consistent with the fact that we cannot specify $n$ generalised forces independently for a system with only $n-r$ degrees of freedom.
 
-Though all gauge choices are theoretically equivalent, some are more `natural' than others. In the case of the filament, a $1$-dimensional sub-manifold of $\mathbb{E}^3$, we have the Frenet-Serret, as well as the \textit{Bishop} \citep{bishopThereMoreOne1975a, carrollImprovingFrenetFrame2013}, frames. A generalisation of natural moving frames to arbitrary sub-manifolds of $\mathbb{E}^d$ can be found in \citep{cartanGeometryRiemannianSpaces1983, cartanTheorieGroupesFinis1937, levyReviewElieCartan1935}. A further generalisation of the theory of moving frames to arbitrary sub-manifolds of Lie groups can be found in \citep{olverSurveyMovingFrames2005, felsMovingCoframesPractical1998, felsMovingCoframesII1999, olverModernDevelopmentsTheory}.
+Though all gauge choices are theoretically equivalent, some are more `natural' than others. In the case of the filament, a $1$-dimensional sub-manifold of $\mathbb{E}^3$, we have the Frenet-Serret, as well as the \textit{Bishop} \citep{bishopThereMoreOne1975, carrollImprovingFrenetFrame2013}, frames. A generalisation of natural moving frames to arbitrary sub-manifolds of $\mathbb{E}^d$ can be found in \citep{cartanGeometryRiemannianSpaces1983, cartanTheorieGroupesFinis1938, levyReviewElieCartan1935}. A further generalisation of the theory of moving frames to arbitrary sub-manifolds of Lie groups can be found in \citep{olverSurveyMovingFrames2005, felsMovingCoframesPractical1998, felsMovingCoframesII1999, olverModernDevelopmentsTheory}.
 
 
-%In Appendix \ref{app:Moving frames for sub-manifolds of SE(d)}, we recount the generalisation of natural moving frames to arbitrary sub-manifolds of $\mathbb{E}^d$ by Cartan \citep{cartanGeometryRiemannianSpaces1983, cartanTheorieGroupesFinis1937, levyReviewElieCartan1935}. A further generalisation of the theory of moving frames to arbitrary sub-manifolds of Lie groups can be found in \citep{olverSurveyMovingFrames2005, felsMovingCoframesPractical1998, felsMovingCoframesII1999, olverModernDevelopmentsTheory}.
+%In Appendix \ref{app:Moving frames for sub-manifolds of SE(d)}, we recount the generalisation of natural moving frames to arbitrary sub-manifolds of $\mathbb{E}^d$ by Cartan \citep{cartanGeometryRiemannianSpaces1983, cartanTheorieGroupesFinis1938, levyReviewElieCartan1935}. A further generalisation of the theory of moving frames to arbitrary sub-manifolds of Lie groups can be found in \citep{olverSurveyMovingFrames2005, felsMovingCoframesPractical1998, felsMovingCoframesII1999, olverModernDevelopmentsTheory}.
 
 \subsection{Summary and discussion} \label{sec:geometrisation discussion}
 
@@ -2237,7 +2254,7 @@ The geometrisation programme can be summarised as follows. We can model a given 
 
 \item Define the generalised stresses $Q^\alpha$ and generalised body force $T$. The conservative  part of the constitutive dynamics can be derived by defining a potential energy density $\mathcal{U}(\partial_\alpha \Phi)$, with reduction $\mathcal{U}(X_\alpha)$. The generalised stresses are then $Q^\alpha = \frac{\partial \mathcal{U}}{\partial X_\alpha}$.
 
-\item Write down the dynamic equations of motion Eq.~\ref{eq:(summary) dynamical equations of motion} of the system, formulated on the dual Lie algebra $\mathfrak{g}^*$. Note that if the generalised body force $T$ is $\Phi$-dependent, then $\Phi$ must be reconstructed from $X_\alpha$ to compute $T$ (see Appendix \ref{app:Reconstructing the spatio-temporal configuration from the Maurer-Cartan form} for a detailed algorithm).
+\item Write down the dynamic equations of motion Eq.~\ref{eq:(summary) dynamical equations of motion} of the system, formulated on the dual Lie algebra $\mathfrak{g}^*$. Note that if the generalised body force $T$ is $\Phi$-dependent, then $\Phi$ must be reconstructed from $X_\alpha$ to compute $T$ (see Appendix \ref{app:Reconstructing the spatio-temporal configuration} for a detailed algorithm).
 
 \item If the stabiliser $H$ satisfies $\text{dim}(H) = r > 0$, then kinematic constraints should be applied to eliminate the $r$ superfluous degrees of freedom.
 
@@ -2250,14 +2267,14 @@ Combined, the kinodynamic equations of the motion can be written as the system o
 \mathcal{D}^*_t S & = \mathcal{D}^*_\alpha Q^\alpha + T
 \end{align}
 \end{subequations}
-that close under $S = \frac{\partial \mathcal{K}}{\partial N}$, subject to the kinodynamic conditions
+that close under $S = \frac{\partial \mathcal{K}}{\partial N}$, subject to the conditions
 \begin{subequations} \label{eq:combined, kinodynamic condition}
 	\begin{align}
 		\partial_\beta X_\alpha & = \mathcal{D}_\alpha X_\beta \label{eq:combined, spatial integrability} \\
 		n_\alpha Q^\alpha & = 0, \quad \text{on } \partial M \label{eq:combined, boundary conditions} 
 	\end{align}
 \end{subequations}
-where $\alpha = 1, \dots, d-1$ and $\beta = \alpha+1, \dots, d$ and where Eq.~\ref{eq:combined, spatial integrability} are the spatial integrability conditions and Eq.~\ref{eq:combined, boundary conditions} are boundary conditions on the generalised stress on $\partial M$. The differential operators in Eq.~\ref{eq:combined, eoms} and Eq.~\ref{eq:combined, kinodynamic condition} are defined as
+where $\alpha = 1, \dots, d-1$ and $\beta = \alpha+1, \dots, d$, which are spatial integrability conditions and a boundary condition on the generalised stress. The differential operators in Eq.~\ref{eq:combined, eoms} and Eq.~\ref{eq:combined, kinodynamic condition} are defined as
 \begin{subequations} \label{eq:combined, generalised material derivatives}
 	\begin{align}
 		\mathcal{D}_t & = \partial_t + \text{ad}_N \\
@@ -2631,7 +2648,7 @@ Sections \ref{sec:cosserat 3d bodies} and \ref{sec:cosserat surfaces} derive the
 
 \subsection{Three-dimensional Cosserat media}  \label{sec:cosserat 3d bodies}
 
-In Sec.~\ref{ch:Cosserat rods} we approximated the kinodynamics of a slender tube with the Cosserat rod model, which in that setting was seen as a coarse-graining of the tube into a $1$-dimensional deformable rod of rigid body cross-sections. In general however, classical Cosserat media can exist in up to three spatial dimensions, and their point-continua can have an arbitrary number of directors, as discussed in Sec.~\ref{sec:Classical Cosserat theory}. Here we consider a Cosserat \textit{body} in three material dimensions $(u, v, w)$ with two orthonormal directors, where the latter will be represented as material frames attached at each material point $(u, v, w)$. This is thus analogous to the Cosserat rod in three material dimensions. However, here the the micro-structure of the point-continua are not the result of a coarse-graining procedure, but rather represent true internal degrees of freedom. Examples of such systems include liquid crystals \citep{epsteinContinuousDistributionsInhomogeneities2001, gorielyRodTheoryLiquid2022} as well as electromagnetic and ferromagnetic media \citep{ivanovaNewTheoryCosserat2022, pariaUnifiedTheoryMechanics1978, ivanovaModelingPhysicalFields}.
+In Sec.~\ref{ch:Cosserat rods} we approximated the kinodynamics of a slender rod with the Cosserat rod model, which in that setting was seen as a coarse-graining of the tube into a $1$-dimensional deformable rod of rigid body cross-sections. In general however, classical Cosserat media can exist in up to three spatial dimensions, and their point-continua can have an arbitrary number of directors, as discussed in Sec.~\ref{sec:Classical Cosserat theory}. Here we consider a Cosserat \textit{body} in three material dimensions $(u, v, w)$ with two orthonormal directors, where the latter will be represented as material frames attached at each material point $(u, v, w)$. This is thus analogous to the Cosserat rod in three material dimensions. However, here the the micro-structure of the point-continua are not the result of a coarse-graining procedure, but rather represent true internal degrees of freedom. Examples of such systems include liquid crystals \citep{epsteinContinuousDistributionsInhomogeneities2001, gorielyRodTheoryLiquid2022} as well as electromagnetic and ferromagnetic media \citep{ivanovaNewTheoryCosserat2022, pariaUnifiedTheoryMechanics1978, ivanovaModelingPhysicalFields}.
 
 Let the material base space be a connected and bounded subset $M \subset \mathbb{R}^3$. For example $M = [0, L^u_0] \times [0, L^v_0] \times [0, L^w_0]$ would be an appropriate material base space for a system with a cuboidal rest configuration. As for the Cosserat rod, the total configuration space is $SE(3)$, and the the external and internal configuration spaces are $\mathbb{E}^3 = SE(3) / SO(3)$ and $SO(3)$ respectively. Let $\mathbf{u} = (u, v, w) : M \to \mathbb{R}^3$ be global material coordinates on the body, and let $\mathbf{r} : [0, T] \times M \to \mathbb{E}^3$ be the  spatial configuration of the continuum body at time $t$, and let $E(t,\mathbf{u}) = (\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3) \in SO(3)$ be the material frame at the material point $\mathbf{u}$ at time $t$. As before, we have
 \begin{equation}
@@ -2755,7 +2772,7 @@ we can thus identify $(\hat{\pi}_\alpha)_{ij} = \Gamma^i_{j \alpha}$, and $D_\al
 
 \subsection{Cosserat surfaces} \label{sec:cosserat surfaces}
 
-We consider a thin shell with reference configuration $\mathscr{M} = [-L_0^1/2, L_0^1/2] \times [0, L_0^2] \times [0, L_0^3]$, material coordinates $\mathbf{X} \in \mathscr{M}$ and with constant mass density per unit material volume $\rho^V_0$. We assume that the body is slender along the first spatial dimension, meaning that $L_0^1$ is small relative to $L_0^2$ and $L_0^3$. At time $t$ the location of the material point at $\mathbf{X}$ is given by $\mathbf{x}(\mathbf{X}, t)$, which are the deformed coordinates. We also define $X_1$ such that $\int_\mathscr{M} X_1 d \mathbf{X} = 0$.
+We consider a thin shell with reference configuration $\mathcal{M} = [-L_0^1/2, L_0^1/2] \times [0, L_0^2] \times [0, L_0^3]$, material coordinates $\mathbf{X} \in \mathcal{M}$ and with constant mass density per unit material volume $\rho^V_0$. We assume that the body is slender along the first spatial dimension, meaning that $L_0^1$ is small relative to $L_0^2$ and $L_0^3$. At time $t$ the location of the material point at $\mathbf{X}$ is given by $\mathbf{x}(\mathbf{X}, t)$, which are the deformed coordinates. We also define $X_1$ such that $\int_\mathcal{M} X_1 d \mathbf{X} = 0$.
 
 \begin{figure}[t]
 \centering
@@ -2764,7 +2781,7 @@ We consider a thin shell with reference configuration $\mathscr{M} = [-L_0^1/2, 
         \label{fig:cosserat surface}
 \end{figure}
 
-As we did in Sec.~\ref{sec:Cosserat rod constitutive dynamics} for a slender tube, we will now kinematically approximate the thin shell with a Cosserat system of lower dimensionality. We consider a Cosserat surface, with material base space $M = [0, L_0^2] \times [0, L_0^3]$, and we denote its material coordinates as $(u, v) = (X_2, X_3)$. A single inextensible director $\mathbf{e}_1$ is attached at each material point $(u,v)$. Then, the Cosserat surface approximates the slender body under the kinematic assumption that the fibres along $\mathbf{e}_1$ are rigid bodies. In other words we have
+As we did in Sec.~\ref{sec:Cosserat rod constitutive dynamics} for a slender rod, we will now kinematically approximate the thin shell with a Cosserat system of lower dimensionality. We consider a Cosserat surface, with material base space $M = [0, L_0^2] \times [0, L_0^3]$, and we denote its material coordinates as $(u, v) = (X_2, X_3)$. A single inextensible director $\mathbf{e}_1$ is attached at each material point $(u,v)$. Then, the Cosserat surface approximates the slender body under the kinematic assumption that the fibres along $\mathbf{e}_1$ are rigid bodies. In other words we have
 \begin{equation} \label{eq:thin shell kinematic assumption}
 \mathbf{x}(\mathbf{X}, t) = \mathbf{r}(t, u, v) + X_1 \mathbf{e}_1.
 \end{equation}
@@ -3118,33 +3135,33 @@ where $i = 1,2,3$ and $\tilde{D}_\tau = \partial_\tau + \hat{\tilde{\Omega}}$ an
 
 %\subsection{The $O(N)$ non-linear $\sigma$ model} \label{sec:The O(3) non-linear sigma model}
 
-\subsection{$O(N)$-NLSM field theory} \label{sec:The O(3) non-linear sigma model}
+\subsection{$O(n)$-NLSM field theory} \label{sec:The O(3) non-linear sigma model}
 
-Here we give an example of the geometrisation programme applied to a field theory. We consider a field $\vec{n} : W \to S^N \subset \mathbb{R}^N$, where $W$ is the base space and $\vec{n}$ is a unit-vector in $\mathbb{R}^N$ for all $p \in W$. We call $S^N \subset \mathbb{R}^N$ the \textit{target manifold} of the field theory. We let $W = \mathbb{M}^{1,d}$, which is the $(d+1)$-dimensional Minkowski space, although what follows is easily generalisable to Euclidean space or any arbitrary base space.  
+Here we give an example of the geometrisation programme applied to a field theory. We consider a field $\vec{p} : W \to S^N \subset \mathbb{R}^N$, where $W$ is the base space and $\vec{np}$ is a unit-vector in $\mathbb{R}^N$ for all $p \in W$. We call $S^N \subset \mathbb{R}^N$ the \textit{target manifold} of the field theory. We let $W = \mathbb{M}^{1,d}$, which is the $(d+1)$-dimensional Minkowski space, although what follows is easily generalisable to Euclidean space or any arbitrary base space.  
  We define coordinates $(t, u^1, u^2, \dots, u^d)$ on $\mathbb{M}^{1,d}$, and we will write partial derivatives as $\partial_\gamma,\ \gamma=0,1,\dots,d$, where $\partial_0 = \frac{\partial}{\partial t}$ and $\partial_\alpha = \frac{\partial}{\partial u^\alpha},\ \alpha=1,\dots,d$.
 
-The \textit{$O(N)$ non-linear $\sigma$ model} (NLSM)\citep{ketovQuantumNonlinearSigmaModels2013} is defined by the Lagrangian density
-\begin{equation} \label{eq:O(N) model}
-\mathcal{L} = \frac{1}{2} \eta^{\gamma \kappa} (\partial_\gamma \vec{n})^T (\partial_\kappa \vec{n}) 
+The \textit{$O(n)$ non-linear $\sigma$ model} (NLSM) \citep{ketovQuantumNonlinearSigmaModels2013} is defined by the Lagrangian density
+\begin{equation} \label{eq:O(n) model}
+\mathcal{L} = \frac{1}{2} \eta^{\gamma \kappa} (\partial_\gamma \vec{p})^T (\partial_\kappa \vec{p}) 
 \end{equation}
 which is expressed in some local coordinate chart of $\mathbb{M}^{1,d}$, where $\eta$ is the Minkowski metric on $\mathbb{M}^{1,d}$ with signature $(1,d)$.
 
-Let the $SO(N)$-valued field $\Phi : \mathbb{M}^{1,d} \to SO(3)$ satisfy $\vec{n} = \Phi \vec{n}_0$ where $\vec{n}_0 \in S^N$ is some constant reference vector. We can then rewrite Eq.~\ref{eq:O(N) model} as
+Let the $SO(n)$-valued field $\Phi : \mathbb{M}^{1,d} \to SO(3)$ satisfy $\vec{p} = \Phi \vec{p}_0$ where $\vec{p}_0 \in S^N$ is some constant reference vector. We can then rewrite Eq.~\ref{eq:O(n) model} as
 \begin{equation}
-\mathcal{L} = \frac{1}{2} \eta^{\gamma \kappa} (\partial_\gamma \Phi \vec{n}_0)^T (\partial_\kappa \Phi  \vec{n}_0) 
+\mathcal{L} = \frac{1}{2} \eta^{\gamma \kappa} (\partial_\gamma \Phi \vec{p}_0)^T (\partial_\kappa \Phi  \vec{p}_0) 
 \end{equation}
 Now, we have
 \begin{equation}
 \begin{aligned}
-(\partial_\gamma \Phi \vec{n}_0)^T (\partial_\kappa \Phi  \vec{n}_0) & = (\Phi^{-1} \partial_\gamma \Phi \vec{n}_0)^T (\Phi^{-1} \partial_\kappa \Phi  \vec{n}_0) \\
-& = (\hat{Z}_\gamma \vec{n}_0)^T (\hat{Z}_\kappa \vec{n}_0)
+(\partial_\gamma \Phi \vec{p}_0)^T (\partial_\kappa \Phi  \vec{p}_0) & = (\Phi^{-1} \partial_\gamma \Phi \vec{p}_0)^T (\Phi^{-1} \partial_\kappa \Phi  \vec{p}_0) \\
+& = (\hat{Z}_\gamma \vec{p}_0)^T (\hat{Z}_\kappa \vec{p}_0)
 \end{aligned}
 \end{equation}
-for all $\gamma,\kappa = 1,\dots, d$, where we have defined $\hat{Z}_\gamma = \Phi^{-1} \partial_\gamma \Phi \in \mathfrak{so}(N)$. As before we will  be making use of the hat-map to convert anti-symmetric $3\times 3$-matrices $\hat{Z}_\gamma$ to $3$-vectors $\vec{Z}_\gamma$. Let us now assume that the coordinates are defined such that $\eta = \text{diag}(-1, 1, \dots, 1)$, where the speed-of-light constant has been set to unity $c=1$. The Lagrangian then has a reduced form
+for all $\gamma,\kappa = 1,\dots, d$, where we have defined $\hat{Z}_\gamma = \Phi^{-1} \partial_\gamma \Phi \in \mathfrak{so}(n)$. As before we will  be making use of the hat-map to convert anti-symmetric $3\times 3$-matrices $\hat{Z}_\gamma$ to $3$-vectors $\vec{Z}_\gamma$. Let us now assume that the coordinates are defined such that $\eta = \text{diag}(-1, 1, \dots, 1)$, where the speed-of-light constant has been set to unity $c=1$. The Lagrangian then has a reduced form
 \begin{equation}
 \ell(\xi) = - \frac{1}{2} \vec{N}^T \mathsf{N}_0 \vec{N} + \frac{1}{2} \sum_{\alpha=1}^d \vec{X}_\alpha^T \mathsf{N}_0 \vec{X}_\alpha
 \end{equation}
-where $\vec{N} = \vec{Z}_0$ and $\vec{X}_\alpha = \vec{Z}_\alpha,\ \alpha = 1, \dots, d$ and $\mathsf{N}_0 = \hat{n}_0^T \hat{n}_0$ and we have used $|\hat{Z}_\gamma \vec{n}_0 | = |\vec{Z}_\gamma \times  \vec{n}_0 | = | \hat{n}_0 \vec{Z}_\gamma  |$.
+where $\vec{N} = \vec{Z}_0$ and $\vec{X}_\alpha = \vec{Z}_\alpha,\ \alpha = 1, \dots, d$ and $\mathsf{N}_0 = \hat{n}_0^T \hat{n}_0$ and we have used $|\hat{Z}_\gamma \vec{p}_0 | = |\vec{Z}_\gamma \times  \vec{p}_0 | = | \hat{n}_0 \vec{Z}_\gamma  |$.
 
 We can then readily apply the geometrisation programme to the system, to get the field equations of motion
 \begin{subequations} 
@@ -3153,13 +3170,13 @@ We can then readily apply the geometrisation programme to the system, to get the
 (\partial_t + \hat{N}) \vec{S} & = \sum_{\alpha=1}^d (\partial_\alpha + \hat{X}_\alpha) \vec{Q}^\alpha  \label{eq:dynamic field equations}
 \end{align}
 \end{subequations}
-where $\vec{N} = \vec{Z}_0$, $\vec{X}_\alpha = \vec{Z}_\alpha,\ \alpha = 1, \dots, d$, $S = \frac{\partial \ell}{\partial N}$ and $Q^\alpha = \frac{\partial \ell}{\partial X_\alpha}$. The spatial reconstruction fields $X_\alpha$ must satisfy the spatial integrability conditions
+where $\vec{p} = \vec{Z}_0$, $\vec{X}_\alpha = \vec{Z}_\alpha,\ \alpha = 1, \dots, d$, $S = \frac{\partial \ell}{\partial N}$ and $Q^\alpha = \frac{\partial \ell}{\partial X_\alpha}$. The spatial reconstruction fields $X_\alpha$ must satisfy the spatial integrability conditions
 \begin{equation}
 \partial_\beta X_\alpha = \mathcal{D}_\alpha X_\beta
 \end{equation}
 at all times $t$, where $\alpha = 1, \dots, d-1$ and $\beta = \alpha+1, \dots, d$.
 
-Note that only two of the three components of $S$ are independently determined by Eq.~\ref{eq:dynamic field equations}, as $\mathsf{N}_0$ is only a rank 2 matrix. To see this let $\vec{n}_0 = (1\ 0\ 0)^T$ such that $\mathsf{N}_0 = \text{diag}(0,1,1)$. We then have that $\vec{S} = (0, N_2, N_3)$ and $Q^\alpha = (0, X_2, X_3)$. This reflects the fact that rotations of $\vec{n}$ around its own axis is a gauge freedom in our formulation of the $O(N)$ non-linear $\sigma$ model.
+Note that only two of the three components of $S$ are independently determined by Eq.~\ref{eq:dynamic field equations}, as $\mathsf{N}_0$ is only a rank 2 matrix. To see this let $\vec{p}_0 = (1\ 0\ 0)^T$ such that $\mathsf{N}_0 = \text{diag}(0,1,1)$. We then have that $\vec{S} = (0, N_2, N_3)$ and $Q^\alpha = (0, X_2, X_3)$. This reflects the fact that rotations of $\vec{p}$ around its own axis is a gauge freedom in our formulation of the $O(n)$ non-linear $\sigma$ model.
 
 
 \begin{comment}
@@ -3210,43 +3227,23 @@ In this chapter we presented a framework to formulate and study the kinodynamics
 
 In full generality, the broad of class of system we considered were $G$- and $\mathbb{X}$-valued fields on topological manifolds $M$. We called this field the spatio-temporal configuration $\Phi$. However, our equations of motions of were not formulated in terms of $\Phi$. Rather, the field configuration was encoded in terms Lie algebraic quantities $X_\alpha$, which - via the exponential map - integrate to $\Phi$. From this perspective, the geometrisation programme is a framework using which we can derive Lie algebraic kinodynamical equations of motion of $G$- and $\mathbb{X}$-field theories.
 
-The primary motivation for formulating the kinodynamics of a system on the corresponding Lie algebra of its configuration space is that this naturally lends itself to studying the system in terms of its intrinsic geometry. We can see this explicitly for the Cosserat rod. The components of its spatial reconstruction field $X$ encodes all the properties of its intrinsic geometry, such as the spatial rate-of-change of the material frame, and its shear relative to its center-line. Furthermore, in simulations, our formulation guarantees that simulated trajectories in the Lie algebra correspond to spatio-temporal configurations $\Phi$ that are Lie group-valued. Simulating a systme in terms of $\Phi$ itself would require an arduous triangulisation procedure of the geometry, and numerical errors would in general break the Lie group structure of numerical representation of the state. We therefore argue that our method provides both a more numerically robust, analytically fruitful, as well as more convenient method for studying this class of systems.
+One of the main motivations for formulating the kinodynamics of a system on the corresponding Lie algebra of its configuration space is that this naturally lends itself to studying the system in terms of its intrinsic geometry. As opposed to finite-dimensional systems, which do not admit the notion of a constitutive force, for any realistic continuum system the intrinsic geometry must couple to the dynamics. That is, constitutive forces are functions of the derivative $d \Phi \in TG$, which is a vector field on $G$, rather than $\Phi$ itself. Now, the tangent bundle $TG$ of any Lie group admits a trivialisation to the tangent space at the identity, the Lie algebra. The cornerstone of the geometrisation programme was to use this trivialisation to express all vector and covector fields as Lie algebra-valued fields. In a reductive, albeit simplified, manner of speaking: This allowed us to express kinodynamics directly in terms of $X_\alpha \sim d \Phi$, thus avoiding having to take the derivative $d \Phi$.
+
+Future work may involve several parallel lines of research. In this chapter we focused primarily on constructing the framework itself, and we `applied' it in the sense that we used the framework to show that it yielded the correct kinodynamics of a variety of known (and new) systems. In future research we aim to add to the literature of active continua \citep{laskarBrownianMicrohydrodynamicsActive2015, laskarFilamentActuationActive2017, kaczmarskiActiveFilamentsCurvature2022, pandeyFlowinducedNonequilibriumSelfassembly2016}, in particular we aim to study activity on surfaces \citep{krishnaswamyCosserattypeModelRed1996, rangamaniSmallScaleMembrane2014, ericksenLiquidCrystalsCosserat1974, powersDynamicsFilamentsMembranes2010}. The analytical and numerical challenges of such systems will be a testing ground for the formalism developed in this chapter.
+
+Notably, and in contrast to the first part of this thesis, we have only considered deterministic dynamics here. One major avenue for theoretical research is to incorporate stochasticity into the geometrisation programme. Developments in this direction have been made as regards to filaments and polymer chains \citep{chirikjianStochasticElasticaExcludedVolume2008, bawendiWienerIntegralModel1985, kleinertPathIntegralsQuantum2009, liverpoolProbabilityDistributionWormlike1995}. In the spirit of the programme outlined in this text, we would characterise and carefully define stochasticity on Lie group continua \citep{chirikjianStochasticProcessesLie2012}. In particular, we would aim to generalise the notion of detailed balance to general $G$- and $\mathbb{X}$-configured continuum system. For example, it may be possible to accomplish this by reformulating the dynamics from the Lagrangian to the Hamiltonian perspective, of which the former was used in this text. Then, assuming that the statistics of the system configuration is that of a Boltzmann distribution, we can derive the conditions for detailed balance. This is analogous to how detailed balance is derived in stochastic field theories \citep{catesActiveFieldTheories2019}. Furthermore, we note that if our ambitions of constructing MCMC methods to sample field theories come to fruition, then these could be used to sample the configurations of the stochastic continua described here.
+
+Finally, there is substantial work to be done in constructing geometric numerical integrators adapted to $G$- and $\mathbb{X}$-configured continua. There is already an extensive literature on such integrators for finite-dimensional systems \citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022a}. In the following chapter we will derive the first instance of a geometric integrator defined on the general continuum we have defined in this chapter.
 
 
 
-We considered both constitutive and body dynamics, where we derived the generalised force balance equations for the former using the Euler-Poincaré theorem.
-
-We studied the kinodynamics of a Cosserat rod subject to constitutive and body forces and moments. Kinematically, we identified its configuration space as the special Euclidean group $SE(3)$ of translations and rotations on three-dimensional Euclidean space $\mathbb{E}^3$. Using the Euler-Poincaré theorem we then found conservative force and moment balance equations. Furthermore, we constructed a generalised Lagrange-D'Alembert principle from which arbitrary non-conservative dynamics can be derived. The resulting kinodynamic equations of motion were formulated in terms of a spatial reconstruction field $X = \{ \vec{\theta} ; \vec{\pi} \}$ and generalised momentum field $S$, which take values in the Lie algebra $\mathfrak{se}(3)$ and its dual $\mathfrak{se}(3)^*$ respectively. The configuration of the Cosserat rod is thus encoded in terms of Lie algebraic quantities, as opposed to a more typical approach of expressing it in terms of its center-line $\mathbf{r}$ and material frame $E$ directly, where the latter correspond to Lie group-valued quantities. We showed that the Lie algebraic formulation naturally leads to kinodynamics expressed in terms of the intrinsic geometry of the rod. Derivatives of $\mathbf{r}$ and $E$ must be taken to find the shear and spatial rate-of-change of the material frame, but are found directly in components of $X$ itself. Furthermore, the Lie algebraic formulation has a significant advantage as regards  numerics: Equations of motion in terms of $SE(3)$-quantities will in general lead to errors that push the system outside of the Lie group. For example, numerical errors will in general cause the material frame $E$ to longer be orthogonal. On the other hand, as $\mathfrak{se}(3)$ is a vector space, errors accrued in the simulation of $X$ and $S$ can not push them out of the Lie algebra. Therefore, regardless of numerical errors, $X$ will always exponentiate to a $SE(3)$-valued Cosserat rod configuration.
-
-Continuing, we proceeded to study the filament model, which we modelled as a Cosserat rod subject to kinematic constraints. We systematically derived its kinodynamic equations of motion in both the underdamped and overdamped limits. The filament model, which has a homogeneous configuration space $\mathbb{E}^3 \cong SE(3)/SO(3)$, is a paradigmatic example of how non Lie group-configured systems can be obtained by imposing kinematic constraints. In Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} we develop this further for general systems. We concluded the chapter by considering specific Cosserat rod models. In Sec.~\ref{sec:The hyperelastic Cosserat rod model} we derived the constitutive stress energy of a slender hyper-elastic tube, and through a coarse-graining procedure we approximated its kinodynamics as that of a Cosserat rod. In Sec.~\ref{sec:Dissipative and overdamped dynamics} we formulated the dynamics of a Cosserat rod subject to internal and external frictional forces, and derived the corresponding equations of motion in an overdamped limit. Chapter \ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} will build and develop many of the concepts introduced in this chapter, which will culminate in a framework to study the kinodynamics of general continuum systems with Lie group- or homogeneous configuration spaces.
-
-
-
-Lie algebra numerics stuff  coordinations
-
-Define stochastic dynamics. Lie poissio. Could also just mention that we can then sample the system using MCMCs.
-
-Material defect simulations
-
-
-\textbf{Dynamics on $G/H$ vs. dynamics on $\mathfrak{g}$}. It should be noted that in principle the kinodynamics of a $G/H$-configured system could be formulated entirely in terms of the $G/H$-valued spatio-temporal configuration $\tilde{\Phi}$ and its derivative $d \tilde{\Phi}$, as opposed to on the Lie algebra $\mathfrak{g}$ of its symmetry group $G$ as we have done here. This is perhaps the most common way of modelling many systems in classical continuum and Cosserat mechanics \citep{naughtonElasticaCompliantMechanics2021, powersDynamicsFilamentsMembranes2010, stefanouThreedimensionalCosseratHomogenization2008, caoNonlinearDynamicsElastic2008}. When simulating systems in this formulation, it requires the discretisation of the $G$- or $G/H$-valued system configuration. As $G$ and $G/H$ are always numerically embedded in $\mathbb{R}^m$, for some $m > \text{dim}(G)$ or $m > \text{dim}(G/H)$, numerical errors accrue in such a manner so that the configuration leaves the sub-manifold $G \subset \mathbb{R}^m$ or $G/H \subset \mathbb{R}^m$. The benefit of the geometrisation programme stems from the fact that it exploits the trivialisation $TG \to G \times \mathfrak{g}$, which enables us to formulate the kinodynamics in terms of the linear vector space $\mathfrak{g}$, as opposed to the non-linear space $G$.
-
-Furthermore, the geometrisation programme thus naturally leads to a formulation of the dynamics in terms of the intrinsic geometry of the system. For constitutive dynamics, this is reflected in the fact that the Lagrangian admits a reduction. The reduction procedure `subtracts' all global information from the dynamics, such that only differential deformations are energetically relevant. These deformations are precisely encompassed in the Maurer-Cartan form $\xi$. To illustrate the difference between a $G/H$-based approach and a $\mathfrak{g}$-based approach, recall the filament system defined in Sec.~\ref{sec:Mechanics of kinematically constrained Cosserat rods}. A typical potential energy for a filament is quadratic in its scalar curvature $\kappa$ and extension $h$ \citep{sodaDynamicsStiffChains1973, goldsteinNonlinearDynamicsStiff1995}
-\begin{equation} \label{eq:filament curvature energy in terms of intrinsic quantities}
-U = \int_0^{L_0} (k (h-1)^2 +  \epsilon \kappa^2) du,
-\end{equation}
-where $k$ and $\epsilon$ are constants. As we showed in Sec.~\ref{sec:Mechanics of kinematically constrained Cosserat rods} $\kappa$ is a component of the Maurer-Cartan form $\xi$ once kinematic restrictions have been imposed. Equation ~\ref{eq:filament curvature energy in terms of intrinsic quantities} can be rewritten in terms of the $\mathbb{E}^3 \cong SE(3)/SO(3)$-valued center-line $\mathbf{r}(u)$. However as intrinsic geometry of a space-curve $\mathbf{r}(u)$ is translation-invariant, the resulting expression is not a function of $\mathbf{r}$ but its derivatives $\partial_u \mathbf{r}$ and $\partial_u^2 \mathbf{r}$. We find
-\begin{equation} \label{eq:filament curvature energy in terms of non-intrinsic quantities}
-U = \int_0^{L_0} \left\{ k \left( |\partial_u \mathbf{r}| - 1 \right)^2 + \epsilon \left| \partial_u \left( \partial_u \mathbf{r} / |\partial_u \mathbf{r} | \right) \right|^2  \right\} du.
-\end{equation}
-Aside from the fact that Eq.~\ref{eq:filament curvature energy in terms of intrinsic quantities} might be aesthetically preferred over Eq.~\ref{eq:filament curvature energy in terms of non-intrinsic quantities}, the evaluation of the latter will be highly sensitive to numerical errors due to the derivatives.
 
 
 \chapter{Geometric numerical integrators} \label{ch:Geometric numerical integrators}
 
-In numerics, the general class of systems considered in Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} are simulated by integrating the kinodynamic equations of motion, which were stated in full in Eq.~\ref{eq:combined, eoms}. One of the simplest methods to use is the Forward-Euler integrator (FEI), wherein the equations are linearised by means of a uniform discretisation in time. However, the Lie group-geometric intricacies of Eq.~\ref{eq:combined, eoms} are lost if such a scheme is applied. In particular, the adjoint action of the Lie group $G$ is prominent in the equations of motion, where $G$ is either the symmetry group of the configuration space or the configuration space itself. In this chapter we develop numerical integrators that are built around the properties of $G$, which are constructed so that solutions retain the qualitative geometric features of their equations of motion. As we show in Sec.~\ref{sec:lie group integrators applications}, the resulting \textit{geometric} numerical integrators preserve the spatial integrability conditions Eq.~\ref{eq:combined, spatial integrability}. There is an extended literature on similar integrators to those that we derive here for finite-dimensional Lie group-valued Hamiltonian systems \citep{kaasHighOrderRungeKutta1999a, buddGeometricIntegrationNumerical1999, engoNumericalIntegrationLie2001}.
+In numerics, the general class of systems considered in Ch.~\ref{ch:Geometric continuum mechanics on homogeneous configuration spaces} are simulated by integrating the kinodynamic equations of motion, which were stated in full in Eq.~\ref{eq:combined, eoms}. One of the simplest methods to use is the Forward-Euler integrator (FEI), wherein the equations are linearised by means of a uniform discretisation in time. However, the geometric intricacies of Eq.~\ref{eq:combined, eoms} are lost if such a scheme is applied. In particular, the adjoint action of the Lie group $G$ is prominent in the equations of motion, where $G$ is either the symmetry group of the configuration space or the configuration space itself. In this chapter we develop numerical integrators that are built around the properties of $G$, which are constructed so that solutions retain the qualitative geometric features of their equations of motion. As we show in Sec.~\ref{sec:lie group integrators applications}, the resulting \textit{geometric} numerical integrators preserve the spatial integrability conditions Eq.~\ref{eq:combined, spatial integrability}. There is an extended literature on similar integrators to those that we derive here for finite-dimensional Lie group-valued Hamiltonian systems \citep{munthe-kaasHighOrderRungeKutta1999, buddGeometricIntegrationNumerical1999, engoNumericalIntegrationLie2001}.
 
-The equations of motion we consider in this text can all be be put into the form
+The kinodynamic equations of motion Eq.~\ref{eq:combined, eoms} are all expressed in terms of Lie algebra-valued, or dual Lie algebra-valued, quantities. Using the fundamental representation of the Lie algebra and its dual, we get equations in terms of the $\mathbb{R}$-valued components of their matrix representations. Therefore we will begin by studying the most general form in which our equations of motion appear
 \begin{equation} \label{eq:general class of matrix equations}
 \partial_t x = F + A x
 \end{equation}
@@ -3254,17 +3251,17 @@ where $x = x(t,\mathbf{u}) \in \mathbb{R}^n$ is the state of the system, and $F$
 \begin{equation} \label{eq:FE scheme}
 	x(t_0 + \Delta t, \mathbf{u}) \approx F_0 \Delta t + A_0 x_0 \Delta t.
 \end{equation}
-which is an approximate short-time propagator Eq.~\ref{eq:general class of matrix equations}. This is the Forward-Euler integration scheme, using which we can numerically approximate solutions to Eq.~\ref{eq:general class of matrix equations} on a uniform time-grid $t_i = i \Delta t$. Implicitly we have assumed that $f$ and the product $A x_0$ are constant in the time-interval $[t_0, t_0 + \Delta t]$ in Eq.~\ref{eq:FE scheme}. We now relax the latter assumption, approximating Eq.~\ref{eq:general class of matrix equations} as
-\begin{equation} \label{eq:general class of matrix equations}
+which is an approximate short-time propagator. This is the Forward-Euler integration scheme, using which we can numerically approximate solutions to Eq.~\ref{eq:general class of matrix equations} on a uniform time-grid $t_i = i \Delta t$. Implicitly we have assumed that $f$ and the product $A x_0$ are constant in the time-interval $[t_0, t_0 + \Delta t]$ in Eq.~\ref{eq:FE scheme}. We now relax the latter assumption, approximating Eq.~\ref{eq:general class of matrix equations} as
+\begin{equation} \label{eq:general class of matrix equations propagator}
 \partial_t x \approx F_0 + A_0 x,\ \quad t \in [t_0, t_0 + \Delta t].
 \end{equation}
 where $x(t_0) = x_0$. The right-hand side can be solved analytically \citep{haleOrdinaryDifferentialEquations2009}, such that we get the alternative short-time propagator
 \begin{equation} \label{eq:general lie group integrator}
 	x(t_0 + \Delta t, \mathbf{u}) \approx e^{\Delta t A_0} x_0 + \left( \int_0^{\Delta t} e^{(\Delta t - \Delta t') A_0} d \Delta t' \right) F_0,
 \end{equation}
-which provides an alternative to the FEI.
+which provides an alternative to the FEI Eq.~\ref{eq:general class of matrix equations propagator}.
 
-Now, let $\mathfrak{g}$ be a a Lie algebra with representation $\rho : \mathfrak{g} \to \mathfrak{gl}(V)$, where $V$ is an $n$-dimensional vector space and $\mathfrak{gl}(V)$ is the Lie algebra of the general linear group. If we recast Eq.~\ref{eq:general class of matrix equations} such that $A$ is an element of the given Lie algebra representation (that is, $A \in \rho(\mathfrak{g})$), then $x$ takes values in the vector space $V$ that the Lie algebra is acting on. Furthermore, the drift-field is now a function $F : V \to V$, and should be considered to take values in $\mathfrak{t}(V)$, the Lie algebra of the \textit{translation group}\footnote{Note that as the translation group is abelian, we have that it is isomorphic with its Lie algebra $\mathfrak{t}(V) \cong T(V)$.} $T(V)$ acting on $V$. The right-hand side of Eq.~\ref{eq:general class of matrix equations} can thus be seen as a combination of a translation $F \in \mathfrak{t}(V)$ and the $\mathfrak{g}$-action $A\in \rho(\mathfrak{g}$ on the $V$-valued $x$. Therefore, the linear map
+Now, let $\mathfrak{g}$ be a a Lie algebra with representation $\rho : \mathfrak{g} \to \mathfrak{gl}(V)$, where $V$ is an $n$-dimensional vector space and $\mathfrak{gl}(V)$ is the Lie algebra of the general linear group. If we recast Eq.~\ref{eq:general class of matrix equations} such that $A$ is an element of the given Lie algebra representation (that is, $A \in \rho(\mathfrak{g})$), then $x$ takes values in the vector space $V$ that the Lie algebra is acting on. Furthermore, the drift-field is now a function $F : V \to V$, and should be considered to take values in $\mathfrak{t}(V)$, the Lie algebra of the \textit{translation group}\footnote{Note that as the translation group is abelian, we have that it is isomorphic with its Lie algebra $\mathfrak{t}(V) \cong T(V)$.} $T(V)$ acting on $V$. The right-hand side of Eq.~\ref{eq:general class of matrix equations} can thus be seen as a combination of a translation $F \in \mathfrak{t}(V)$ and the $\mathfrak{g}$-action $A\in \rho(\mathfrak{g})$ on the $V$-valued $x$. Therefore, the linear map
 \begin{equation}
 	x \mapsto F + Ax
 \end{equation}
@@ -3293,7 +3290,7 @@ where we identify $M$ as a representation of $\mathfrak{t} \times \mathfrak{g}$.
 		1 \\ x_0
 	\end{pmatrix}.
 \end{equation}
-Recall that the exponential map of a Lie algebra representation yields a representation of the corresponding Lie group. Therefore, therefore we have that $e^{\Delta t M_0}$ is a representation of the Lie group product $T \times G$. Now, note that Eq.~\ref{eq:general lie group integrator 2} must be equivalent Eq.~\ref{eq:general lie group integrator}. This tells us that the right-hand side of Eq.~\ref{eq:general class of matrix equations} can be seen as the infinitesimal action of the Lie algebra $\mathfrak{t}(V) \times \mathfrak{g}$ on the $V$-valued $x$, via the given representation. Eq.~\ref{eq:general lie group integrator} thus ensures, using the exponential map $\exp : \mathfrak{t}(V) \times \mathfrak{g} \to T \times G$, that we properly integrate the infinitesimal action from the Lie algebra to the corresponding Lie group $T(V) \times G$. In this setting, the integrator Eq.~\ref{eq:general lie group integrator} is known as a \textit{Lie group integrator} (LGI) \citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022}. Both the FEI and the LGI will suffer numerical errors. However, the errors of the former will accrue in such a way that the `effective' action of $F$ and $A$ on $x$ does not exponentiate to a well-defined action on the Lie group-level. On the other hand, the LGI is defined so that errors accrue \textit{within the Lie group itself}.
+Recall that the exponential map of a Lie algebra representation yields a representation of the corresponding Lie group. Therefore, therefore we have that $e^{\Delta t M_0}$ is a representation of the Lie group product $T \times G$. Now, note that Eq.~\ref{eq:general lie group integrator 2} must be equivalent Eq.~\ref{eq:general lie group integrator}. This tells us that the right-hand side of Eq.~\ref{eq:general class of matrix equations} can be seen as the infinitesimal action of the Lie algebra $\mathfrak{t}(V) \times \mathfrak{g}$ on the $V$-valued $x$, via the given representation. Eq.~\ref{eq:general lie group integrator} thus ensures, using the exponential map $\exp : \mathfrak{t}(V) \times \mathfrak{g} \to T \times G$, that we properly integrate the infinitesimal action from the Lie algebra to the corresponding Lie group $T(V) \times G$. In this setting, the integrator Eq.~\ref{eq:general lie group integrator} is known as a \textit{Lie group integrator} (LGI) \citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022a}. Both the FEI and the LGI will suffer numerical errors. However, the errors of the former will accrue in such a way that the `effective' action of $F$ and $A$ on $x$ does not exponentiate to a well-defined action on the Lie group-level. On the other hand, the LGI is defined so that errors accrue \textit{within the Lie group itself} \citep{iserlesLiegroupMethods2005}.
 
 %We thus see that the integrator we derived in Eq.~\ref{eq:general lie group integrator} can be seen as the result of exponentiating the action of $\mathfrak{t} \times \mathfrak{g}$ to its corresponding Lie group $T \times G$, via the exponential map $\exp : \mathfrak{t} \times \mathfrak{g} \to T \times G$. 
 
@@ -3320,7 +3317,7 @@ where $\alpha = 1, \dots, d$ and
 and $A = - \text{ad}_N$, $B = - \text{ad}^*_N$, where we used $\text{ad}_X N = - \text{ad}_N X$. We assume that all quantities are expressed in a non-dimensionalised form. Now, as per the discussion in the introduction of this chapter, we recognise that the vector spaces in which $X$ and $S$ take values in are $\mathfrak{g}$ and $\mathfrak{g}^*$ respectively.\footnote{That is, $V = \mathfrak{g}$ and $V = \mathfrak{g}^*$ for Eq.~\ref{eq:rewritten kinematic eom} and Eq.~\ref{eq:rewritten dynamic eom} respectively.} Furthermore, $F$ and $H$ are translations acting on  $\mathfrak{g}$ and $\mathfrak{g}^*$ respectively, and $A$ and $B$ are elements of the \textit{adjoint representation} of $\mathfrak{g}$ and its corresponding dual representation, respectively. The adjoint representation $\text{ad} : \mathfrak{g} \to \mathfrak{gl}(\mathfrak{g})$ maps Lie algebra elements to linear maps on the Lie algebra itself. We will consider $X$ and $N$ in their fundamental matrix representation $X,N \in \mathbb{R}^{m \times m}$ for some $m$, and we write their indices as $X_{ij}$ and $N_{ij},\ i,j=1,\dots, m$.
 
 From Eq.~\ref{eq:general lie group integrator} we find the short-term propagators
-\begin{subequations} \label{eq:kinodynamic short term propagators}
+\begin{subequations} \label{eq:kinodynamic short term propagators raw}
 	\begin{align}
 		X_\alpha(t_0 + \Delta t, \mathbf{u}) & \approx e^{- \Delta t\ \text{ad}_N} X_0
 			+ \left( \int_0^{\Delta t} e^{-(\Delta t - \Delta t') \text{ad}_N} d \Delta t' \right) F_{\alpha,0} \\
@@ -3344,7 +3341,7 @@ for any $g \in G$. We therefore have that, using $(e^{Y})^{-1} = e^{-Y}$
 	\end{align}
 \end{subequations}
 where the right-hand sides are now expressed in terms of the exponentials of the Lie algebra elements, which are computationally more convenient to compute. To find the equivalent expressions for Eq.~\ref{eq:S short-term propagator}, note that from $e^{\text{ad}^*_Y} = e^{(\text{ad}_Y)^T} = (e^{\text{ad}_Y})^T$ we have that $e^{\text{ad}^*_Y} = (\text{Ad}_{ e^Y })^T$. To find the transpose of the adjoint action, we can write Eq.~\ref{eq:adjoint action 2} in index form $(\text{Ad}_g Y)_{ij} = (\text{Ad}_g)_{ik, jl} Y_{kl}$, where $(\text{Ad}_g)_{ik, jl} = g_{ik} g^{-1}_{lj}$, summing over repeated indices. Then $(\text{Ad}_g)^T_{ik, jl} = (\text{Ad}_g)_{jl, ik} = g_{jl} g^{-1}_{ki}$ such that
-\begin{equation} \label{eq:adjoint action 2}
+\begin{equation} \label{eq:adjoint action transpose}
 (\text{Ad}_g)^T Z = (g^{-1})^T Z g^T
 \end{equation} 
 for any $Z \in \mathfrak{g}^*$ and $g \in G$. We thus find that
@@ -3359,7 +3356,7 @@ Comparing Eqs.~\ref{eq:exp expressions for kinematic eom} and \ref{eq:exp expres
 \begin{equation}
 	\mathscr{E}_G(\Delta t, N, Y) = \int_0^{\Delta t} e^{-(\Delta t - \Delta t') N} Y e^{(\Delta t - \Delta t') N} d \Delta t'
 \end{equation}
-where $N,Y \in \mathbb{R}^{m \times m}$ are constant matrices, such that we can rewrite Eq.~\ref{eq:kinodynamic short term propagators} as
+where $N,Y \in \mathbb{R}^{m \times m}$ are constant matrices, such that we can rewrite Eq.~\ref{eq:kinodynamic short term propagators raw} as
 \begin{subequations} \label{eq:kinodynamic short term propagators}
 	\begin{align}
 		X_{\alpha}(t_0 + \Delta t, \mathbf{u}) & \approx e^{- \Delta t N} X_{\alpha, 0} e^{ \Delta t N} + \mathscr{E}_G(\Delta t, N, F_{\alpha, 0}) \label{eq:X propagator} \\
@@ -3423,20 +3420,16 @@ In Appendix \ref{app:Detailed derivation of the SE(3) short-time propagator} we 
 \begin{equation} \label{eq:E thingie SE(3) result}
 	\mathscr{E}_{SE(3)}(\Delta t, N, Y)  = \begin{pmatrix}
 		0 & \vec{0}^T \\
-		\circled{1} + \vec{r}(\Delta t, \vec{m}, \vec{V}) & \circled{2}
+		\Delta t \mathscr{B}( - \Delta t \hat{\Omega}) \vec{a} + \vec{r}(\Delta t, \vec{m}, \vec{V}) & \mathscr{E}_{SO(3)}(\Delta t, \hat{\Omega}, \hat{m})
 		\end{pmatrix}
 \end{equation}
 where
-\begin{subequations}
-	\begin{align}
-		\circled{1} & = \Delta t \mathscr{B}( - \Delta t \hat{\Omega}) \vec{a} \\
-		\circled{2} & = \mathscr{E}_{SO(3)}(\Delta t, \hat{\Omega}, \hat{m}) \\
-		\vec{r}(\Delta t, N, \vec{m}) & = \frac{1}{|\vec{\Omega}|^2} \sum_{i,j=1}^{3} R_{ij} \bar{\Omega}^{i-1} \hat{m} \bar{\Omega}^{j-1} \vec{V}
-	\end{align}
-\end{subequations}
+\begin{equation}
+	\vec{r}(\Delta t, N, \vec{m}) = \frac{1}{|\vec{\Omega}|^2} \sum_{i,j=1}^{3} R_{ij} \bar{\Omega}^{i-1} \hat{m} \bar{\Omega}^{j-1} \vec{V}
+\end{equation}
 where $\bar{\Omega} = \hat{\Omega} / |\vec{\Omega}|$ and
 \footnotesize
-\begin{equation} \label{eq:geometric integrator R matrix}
+\begin{equation} \label{eq:geometric integrator R matrix main}
 \begin{aligned}
 	& R = \psi^{-2} \int_0^1 d\alpha P =  \\
 	& \begin{pmatrix}
@@ -3553,36 +3546,10 @@ For the Cosserat surface, we considered an initial conditional of a flat sheet w
  
 \section{Conclusion}
  
- {\color{red} TODO can visualise the defects. For a filament, just visualise the failure to close. For a surface, show two different surfaces as a result of two different integrations. Maybe add anotehr section: Failure of spatial integrability. I think this section should be here, but reference it at the point where you talk about spatial integrability in the geometry chapter.
- 
- Failure of spatial integrability means that the map $\mathbf{u} \mapsto \Phi(t, \mathbf{u})$ is no longer single-valued.
- 
- 
- Could even try to simulate UD without friction. See if it preserves energy now.}
- 
-We demonstrated the importance of geometric integrators
- 
- "Geometric integration emphasizes the principle that one ought to retain important qualitative features of the
-flow in the numerical solution of differential equations " For the systems in consideration here, one of the primary features of interest is the spatial integrability. We have demonstrated that the geometric integrators we have derived preserve the spatial integrability of the system.
+The purpose of geometric integrators are to preserve qualitative features of a system, in the numerical solution of their equations of motion. For the class of systems considered in this text, it is important to preserve spatial integrability. Failure to do so causes the spatio-temporal configuration of the system to be multi-valued. Furthermore, we have previously shown that errors in spatial integrability suffer exponential growth. In this chapter we constructed geometric integrators for this purpose.
 
-Future work can consider energy-conserving integrators, and preserving symplectic structure.
+ The geometric integrators we derived can be compared with the Lie-Poisson integrators of \citep{munthe-kaasHighOrderRungeKutta1999, buddGeometricIntegrationNumerical1999, engoNumericalIntegrationLie2001}, defined on finite-dimensional systems. The primary point of difference is the presence of the translation terms $F_\alpha$ and $H$ in Eq.~\ref{eq:rewritten kinodynamic eoms}, which we take care to exponentiate in combination with the infinitesimal action of the adjoint $-\text{ad}_N$ and its dual $-\text{ad}^*_N$ respectively. These translational terms arise due to the presence of generalised constitutive and body forces (see Eq.~\ref{eq:F H defs}). Whilst a finite dimensional system can be subject to the latter, its finitude precludes constitutive dynamics (for example, recall the equations of motion of a rigid body Eq.~\ref{eq:euler poincare equation for rigid body}), whilst constitutive dynamics is a fundamental feature of any real continuum system. It is therefore prudent to construct geometric integrators that accommodates both terms in Eq.~\ref{eq:rewritten kinodynamic eoms}, and we gave numerical evidence of the importance of doing so in Sec.~\ref{sec:lie group integrators applications}. By carefully exponentiating the right-hand sides of the kinodynamic equations of motion Eq.~\ref{eq:combined, eoms}, we found expressions for geometric integrators for general Lie group and homogeneous space-continua. We then applied our general result to consider the special cases of $SO(3)$- and $SE(3)$-configured continua. The resulting geometric integrators were shown in numerical experiments to preserve the spatial integrability, and we compared their performance relative to non-geometric integrators.
  
- More work can be done on Lie group integrators. Im only using the vanilla version. Can also do operator splitting to consider the derivatives as well (integrating factor).
- 
- 
- The geometric integrators we derived can be compared with the Lie-Poisson integrators of \citep{kaasHighOrderRungeKutta1999a, buddGeometricIntegrationNumerical1999, engoNumericalIntegrationLie2001}, defined on finite-dimensional systems. The primary point of difference is the presence of the translation terms $F_\alpha$ and $H$ in Eq.~\ref{eq:rewritten kinodynamic eoms}, which we take care to exponentiate in combination with the infinitesimal action of the adjoint $-\text{ad}_N$ and its dual $-\text{ad}^*_N$ respectively. These translational terms arise due to the presence of generalised constitutive and body forces (see Eq.~\ref{eq:F H defs}). Whilst a finite dimensional system can be subject to the latter, its finitude precludes constitutive dynamics (for example, recall the equations of motion of a rigid body Eq.~\ref{eq:euler poincare equation for rigid body}), whilst constitutive dynamics is a fundamental feature of any real continuum system. It is therefore prudent to construct geometric integrators that accommodates both terms in Eq.~\ref{eq:rewritten kinodynamic eoms}, and we gave numerical evidence of the importance of doing so in Sec.~\ref{sec:lie group integrators applications}.
- 
- 
- Runge kutta Lie groups, thats how you reduce errors (not purpose of LI integrators in general).
-
-\chapter*{Summary}
-\addcontentsline{toc}{chapter}{Summary}
- 
- In the second part of this thesis
- 
- Mention that the two parts can be combined by deriving stochastic dynamics for part 2 systems and the field stuff for part 1.
+ Our work in this chapter can be seen as a contribution to the literature on geometric integrators, where we have applied it in a continuum setting. There is an extensive literature on which to draw on for future work \citep{celledoniIntroductionLieGroup2014c, owrenLieGroupIntegrators2016, iserlesLiegroupMethods2005, celledoniLieGroupIntegrators2022a, munthe-kaasHighOrderRungeKutta1999, buddGeometricIntegrationNumerical1999, engoNumericalIntegrationLie2001}. For example, whilst the integrators we propose here successfully preserve geometric properties, errors still acccrue within the sub-manifold of configurations that abide by spatial integrability. Such errors can be reduced, for example, using \textit{Runge–Kutta–Munthe–Kaas methods} \citep{munthe-kaasRungeKuttaMethodsLie1998, kaasHighOrderRungeKutta1999}, which generalise Runge-Kutta methods \citep{ascherComputerMethodsOrdinary1998} to Lie group-configured systems.
 
 
-
-
-in all the subsection conclusions, you will talk about further work. here you can summarise the further work.

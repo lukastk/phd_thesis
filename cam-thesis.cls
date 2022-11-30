@@ -307,27 +307,12 @@
 \newcommand{\submissiondate}[1]{\renewcommand{\@submissiondate}{#1}\cam@submissiondatetrue}
 
 % DOCVAR: submissionnotice (The submission notice is shown on the bottom of the
-% title page.)
+% title page.). % MARKER Submission text
 \newcommand{\@submissionnotice}{%
-\ifcam@firstyr
-First year report submitted
-\else 
-\ifcam@secondyr
-Second year report submitted
-\else
-This dissertation is submitted
-\fi
-\fi
-\ifcam@submissiondate
-    on \@submissiondate{}
-\fi
-\ifcam@firstyr
-in partial fulfilment of the requirements
-\fi
-\ifcam@secondyr
-in partial fulfilment of the requirements
-\fi
-for the degree of Doctor of Philosophy%
+\normalsize
+This dissertation is submitted for the degree of \linebreak
+\large
+\textit{Doctor of Philosophy}
 }
 \newcommand{\submissionnotice}[1]{\renewcommand{\@submissionnotice}{#1}}
 
@@ -385,13 +370,13 @@ for the degree of Doctor of Philosophy%
 \setlength{\cam@logorightnudge}{-0.5\paperwidth+12mm}
 \newsavebox{\cam@logo}
 \begin{lrbox}{\cam@logo}
-\hspace*{\cam@logorightnudge}\includegraphics[width=73mm]{CollegeShields/CUni}
+%\hspace*{\cam@logorightnudge}\includegraphics[width=73mm]{CollegeShields/CUni} % MARKER cambridge text logo
 \end{lrbox}
 
 %% THESIS TITLE box
 \newsavebox{\cam@title}
 \begin{lrbox}{\cam@title}
-    \begin{minipage}[c][\height][c]{.98\textwidth}
+    \begin{minipage}[c][\height][c]{.98\textwidth} % MARKER Width of title 
         \begin{center}
 			\Huge%
 				\ifcam@times\else%
@@ -412,7 +397,7 @@ for the degree of Doctor of Philosophy%
 \ifcam@collegeshield%
     \newsavebox{\cam@collegeshieldbox}
     \begin{lrbox}{\cam@collegeshieldbox}
-    \includegraphics[height=20mm]{\@collegeshield}
+    \includegraphics[height=50mm]{\@collegeshield} % MARKER cambridge logo size
     \end{lrbox}
 \fi
 
@@ -421,11 +406,27 @@ for the degree of Doctor of Philosophy%
 \begin{lrbox}{\cam@authorcollege}
     \begin{minipage}[c][\height][c]{.98\textwidth}
         \begin{center}
-        {\large \@author{}~\\[1ex]}
+        
         \ifcam@collegeshield%
             \vspace{2mm}{\usebox{\cam@collegeshieldbox}}\\
         \fi
-        \@college{}
+        
+        \vspace{2cm}
+        
+        {\Large \textbf{\@author{}~\\[1ex]}}
+        
+        {
+        \Large
+        \vspace*{0.4cm}
+        
+        Department of Applied Mathematics and Theoretical Physics 
+        
+        \vspace*{0.3cm}
+        \Large
+        University of Cambridge
+        }
+        
+        
         \end{center}
     \end{minipage}
 \end{lrbox}
@@ -436,6 +437,24 @@ for the degree of Doctor of Philosophy%
     \begin{minipage}[c][\height][c]{.98\textwidth}
         \begin{center}
             \@submissionnotice{}
+        \end{center}
+    \end{minipage}
+\end{lrbox}
+
+%% COLLEG and DATE box
+\newsavebox{\cam@collegeanddate}
+\begin{lrbox}{\cam@collegeanddate}
+    \begin{minipage}[c][\height][c]{1\textwidth}
+        \begin{center}
+			\begin{minipage}[t]{7cm}
+			\flushleft
+			Churchill college
+			\end{minipage}
+			\hfill
+			\begin{minipage}[t]{7cm}
+			\flushright
+			2022
+			\end{minipage}
         \end{center}
     \end{minipage}
 \end{lrbox}
@@ -456,14 +475,18 @@ for the degree of Doctor of Philosophy%
 %%
 %%%%%
 \begin{center}
-~\vspace{.02\cam@titlepagevspace}\\
+~\vspace{-.15\cam@titlepagevspace}\\
 {\usebox{\cam@logo}}\\
-\vspace{.28\cam@titlepagevspace}
+\vspace{0.28\cam@titlepagevspace}
 {\usebox{\cam@title}}\\
-\vspace{.23\cam@titlepagevspace}
+\vspace{0.23\cam@titlepagevspace}
 {\usebox{\cam@authorcollege}}\\
-\null\vfill
+%\null\vfill
+\vspace{2.2cm}
 {\usebox{\cam@submitnotice}}
+
+\vspace{3.1cm}
+{\usebox{\cam@collegeanddate}}
 \end{center}
 \hypersetup{pdfsubject={\@subjectline},pdfkeywords={\@keywords}}
 \fi
@@ -488,16 +511,14 @@ for the degree of Doctor of Philosophy%
 \else
 \chapter*{Declaration}
 \thispagestyle{empty}
-This dissertation is the result of my own work and includes nothing which is the outcome
-of work done in collaboration except as declared in the Preface and specified in the text.
+I hereby declare that except where specific reference is made the work of others, the contents of this dissertation are original, and includes nothing which is the outcome of work done in collaboration except as indicated in the text.
 It is not substantially the same as any that I have submitted, or am concurrently
 submitting, for a degree or diploma or other qualification at the University of Cambridge
-or any other University or similar institution except as declared in the Preface and
-specified in the text. I further state that no substantial part of my dissertation has
+or any other University or similar institution. I further state that no substantial part of my dissertation has
 already been submitted, or is being concurrently submitted, for any such degree, diploma
 or other qualification at the University of Cambridge or any other University or similar
-institution except as declared in the Preface and specified in the text.
-This dissertation does not exceed the prescribed limit of 60\,000 words.
+institution.
+
 
 % Leaving some space for the signature:
 \vspace{15mm}
@@ -511,15 +532,6 @@ This dissertation does not exceed the prescribed limit of 60\,000 words.
 \fi}
 \fi
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%% Declaration
-%%
-%%%%%
-
-\chapter*{Declaration}
-\thispagestyle{empty}
-\@declaration{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -527,8 +539,15 @@ This dissertation does not exceed the prescribed limit of 60\,000 words.
 %%
 %%%%%
 
+% MARKER dedication
+
+\newpage
 \thispagestyle{empty}
-\@dedication{}
+\begin{center}
+\vspace*{8cm}
+	\@dedication{}
+\end{center}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
