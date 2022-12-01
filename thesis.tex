@@ -100,15 +100,11 @@
 %%
 \abstract{%
 
-The matter of this thesis is divided in two parts, both of which belong to disciplines that lie within the purview soft matter physics. In the first part, we study the infinite-dimensional probability space of stochastic differential equations. In particular, we study the transition path ensemble (TPE), the set of transition paths between meta-stable states of It\^{o} diffusions. In the limit of vanishing diffusivity, the Freidlin-Wentzell action characterises the asymptotic character of the path-probability distribution over the TPE. We develop spectral Ritz methods to efficiently find minimisers of this action, and to construct quasipotentials of steady-state distributions, and we test our algorithm on a number of benchmark systems. To study the TPE in the finite temperature regime, we develop an MCMC algorithm to sample the infinite-dimensional space of transition paths, which we call the \textit{teleporter MCMC}.
+The matter of this thesis is divided in two parts, both of which of are substantially different from the other, but nevertheless belong to disciplines that lie within the purview soft matter physics.
 
+In the first part, we study the infinite-dimensional probability space of stochastic differential equations. In particular, we study the transition path ensemble (TPE), the set of transition paths between meta-stable states of It\^{o} diffusions. In the limit of vanishing diffusivity, the Freidlin-Wentzell action characterises the asymptotic character of the path-probability distribution over the TPE. We develop spectral Ritz methods to efficiently find minimisers of this action, and to construct quasipotentials of steady-state distributions, and we test our algorithm on a number of benchmark systems. To study the TPE in the finite temperature regime, we develop an MCMC algorithm to sample the infinite-dimensional space of transition paths, which we call the \textit{teleporter MCMC}. The algorithm was designed to efficiently sample the TPEs of It\^{o} diffusions with multiple competing transition channels, avoiding the issue of slow-mixing common to MCMC schemes. We concluded this part of the thesis by applying our MCMC method to study the temperature-dependence of the TPE. Using two model systems, we show that the dominant transition channel does not in general coincide with the most probable path of the path distribution, even in a low-to-intermediate temperature regime.
 
- to find the minimisers of large deviation principle that  the asymptotics
-
-
- We develop a suite of techniques to characterise the dominant transition channels of such systems, and study the character of the transition path ensemble as a function of varying diffusivity. 
-
-rare events
+In the second part of this thesis we develop a general theory of the geometric mechanics of a broad class of microstructured continuum systems. Specifically, we consider systems with configuration spaces that are either Lie groups, or homogeneous spaces. We demonstrate that this theory, which we call a generalised geometric Cosserat theory (GGCT), can be seen as a unifying framework with which to study classical Cosserat systems, and numerous non-classical variations. As a paradigmatic example we first study the Cosserat rod model, we identify its configuration space as a curve in $SE(3)$, the Lie group of translations and rotations on Euclidean space, and use the Lie algebra-Lie group correspondence to relate its configuration to curves in the Lie algebra. Using the Euler-Poincar\'e theorem we then proceeded to formulate the dynamics of the Cosserat rod on the dual Lie algebra. The resulting kinodynamical - kinematic and dynamic - theory of the Cosserat rod is defined completely on the trivialisation of the tangent bundle of $SE(3)$, the Lie algebra $\mathfrak{se}(3)$. We then constructed the GGCT by extrapolating these above steps to systems with generalised configuration spaces. In the final chapter of this thesis, we constructed geometric numerical integrators designed to preserve the qualitative features of the system geometry.
 
 }
 
@@ -116,6 +112,14 @@ rare events
 %% Acknowledgements:
 %%
 \acknowledgements{%
+I would like to first of all thank my supervisor, Ronojoy Adhikari, for his guidance and creativity in conceptualising our research together. I have grown immensely as a research scientist throughout my doctoral studies, and this is in very large part thanks to him.
+
+Secondly, I am immensely grateful for the persistent support and mentorship of Julian Kappler, who was my frequent collaborator throughout my studies.  
+
+I would also like to thank my secondary supervisor Mike Cates, for his advice, willingness to proofread my manuscripts and interesting discussions. Additionally, I would like to give thanks and appreciate the soft matter group, for their conviviality and support. 
+
+Lastly, I would like to thank my friends, who are my family.
+
  % I would like to thank my supervisor, Ronojoy Adhikari, and his creativity and 
  % Mike Cates, Julian Kappler
  
@@ -179,7 +183,6 @@ To my friends.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PART I : Introduction
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 
 
